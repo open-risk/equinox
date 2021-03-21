@@ -1,0 +1,14 @@
+h1#grp-admin-title {
+    font-size: 18px !important;
+}
+
+div#grp-branding {
+    margin-top: 6px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    margin-left: -10px;
+}
+
+#grp-navigation {
+    background-image: linear-gradient(#7d7d7d, #222);
+}

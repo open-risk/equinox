@@ -23,4 +23,4 @@ from django.apps import AppConfig
 
 
 class PfPortfolioConfig(AppConfig):
-    name = 'pf_portfolio'
+    name = 'portfolio'

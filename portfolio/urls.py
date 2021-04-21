@@ -3,7 +3,7 @@ from djgeojson.views import GeoJSONLayerView
 
 from .views import PFMapView
 
-app_name = "pf_portfolio"
+app_name = "portfolio"
 
 urlpatterns = [
     path("", PFMapView.as_view()),

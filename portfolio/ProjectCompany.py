@@ -1,13 +1,40 @@
+# Copyright (c) 2021 Open Risk (https://www.openriskmanagement.com)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+
 from django.db import models
-from pf_portfolio.model_choices import *
+from portfolio.model_choices import *
+from django.urls import reverse
+
 class ProjectCompany(models.Model):
 
+    """
+    The Project Company model holds data for special Legal Entity that represents the Project being financed
 
+
+    """
 
     assignment_of_contracts_and_accounts = models.IntegerField(blank=True, null=True, choices=ASSIGNMENT_OF_CONTRACTS_AND_ACCOUNTS_CHOICES, help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
-    cash_sweep = models.NullBooleanField(blank=True, null=True, 
+    cash_sweep = models.BooleanField(blank=True, null=True,
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
@@ -29,7 +56,7 @@ help_text='Standard Description. <a class="risk_manual_url" href="https://www.op
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
-    dividend_restrictions = models.NullBooleanField(blank=True, null=True, 
+    dividend_restrictions = models.BooleanField(blank=True, null=True,
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
@@ -50,7 +77,7 @@ help_text='Standard Description. <a class="risk_manual_url" href="https://www.op
     impact_category = models.IntegerField(blank=True, null=True, choices=IMPACT_CATEGORY_CHOICES, help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
-    independent_escrow_account = models.NullBooleanField(blank=True, null=True, 
+    independent_escrow_account = models.BooleanField(blank=True, null=True,
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
@@ -73,7 +100,7 @@ help_text='Standard Description. <a class="risk_manual_url" href="https://www.op
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
-    mandatory_prepayments = models.NullBooleanField(blank=True, null=True, 
+    mandatory_prepayments = models.BooleanField(blank=True, null=True,
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
@@ -81,11 +108,11 @@ help_text='Standard Description. <a class="risk_manual_url" href="https://www.op
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
-    payment_cascade = models.NullBooleanField(blank=True, null=True, 
+    payment_cascade = models.BooleanField(blank=True, null=True,
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
-    payment_deferrals = models.NullBooleanField(blank=True, null=True, 
+    payment_deferrals = models.BooleanField(blank=True, null=True,
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
@@ -117,3 +144,18 @@ help_text='Standard Description. <a class="risk_manual_url" href="https://www.op
     security_package = models.FloatField(blank=True, null=True, 
 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.project_identifier
+
+    def get_absolute_url(self):
+        return reverse('portfolio:ProjectCompany_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Project Company"
+        verbose_name_plural = "Project Companies"

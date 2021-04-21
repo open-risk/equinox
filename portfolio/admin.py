@@ -21,22 +21,37 @@
 
 from django.contrib.gis import admin
 
-from pf_portfolio.models import Marker
-from pf_portfolio.ProjectCompany import ProjectCompany
-from pf_portfolio.Revenue import Revenue
-from pf_portfolio.Loan import Loan
-from pf_portfolio.Stakeholders import Stakeholders
-from pf_portfolio.Sponsor import Sponsor
-from pf_portfolio.Asset import Asset
-from pf_portfolio.Contractor import Contractor
-from pf_portfolio.Operator import Operator
-from pf_portfolio.Swap import Swap
+from portfolio.models import Marker, ProjectRegion
+from portfolio.ProjectCompany import ProjectCompany
+from portfolio.Revenue import Revenue
+from portfolio.Loan import Loan
+from portfolio.Stakeholders import Stakeholders
+from portfolio.Sponsor import Sponsor
+from portfolio.Asset import Asset
+from portfolio.Contractor import Contractor
+from portfolio.Operator import Operator
+from portfolio.Swap import Swap
+
+
+@admin.register(Asset)
+class AssetAdmin(admin.OSMGeoAdmin):
+    """Project Asset."""
+    pass
+
 
 @admin.register(Marker)
 class MarkerAdmin(admin.OSMGeoAdmin):
     """Marker admin."""
 
     list_display = ("name", "location")
+
+
+@admin.register(ProjectRegion)
+class ProjectRegionAdmin(admin.OSMGeoAdmin):
+    """Project Region admin."""
+
+    list_display = ("name", "location")
+
 
 @admin.register(ProjectCompany)
 class ProjectCompanyAdmin(admin.ModelAdmin):
@@ -63,11 +78,6 @@ class SponsorAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Asset)
-class AssetAdmin(admin.ModelAdmin):
-    pass
-
-
 @admin.register(Contractor)
 class ContractorAdmin(admin.ModelAdmin):
     pass
@@ -81,4 +91,3 @@ class OperatorAdmin(admin.ModelAdmin):
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):
     pass
-

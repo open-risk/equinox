@@ -1,8 +1,8 @@
 # Equinox Overview
-![Equinox Logo](/docs/source/equinox.png) Equinox is an open source platform that supports the holistic risk management of major spatial finance projects such as project finance.
+![Equinox Logo](/docs/source/equinox-logo.png) Equinox is an open source platform that supports the holistic risk management and reporting of major "spatial finance" projects (the financing of projects with material physical footprint) such as project finance.
 
-## The Challenge of Project Finance Sustainability
-Sustainability (both environmental and social) is a serious and ongoing issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is thus an important objective
+## The Challenge of Project Finance and Sustainability
+Sustainability (understood both in environmental and social terms) is a serious and ongoing issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is thus an important objective
 
 ## What exactly is Equinox?
 Equinox is a *web application* that works together with a tailored data schema to provide easy access to Project Finance data adhering to the regulatory and ESG initiative recommendations. 
@@ -11,14 +11,16 @@ Running the application creates a *server* that can then be accessed via any reg
 
 ## Functionality
 
-The initial functionality of Equinox focuses on integrating the following concepts</p>
+The initial functionality of Equinox focuses on integrating the following concepts:
 
-* The European Banking Authority's Criteria for the Credit Risk Assessement of Project Finance under the Standardized approach for Specialized Lending 
+* The European Banking Authority's Criteria for Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending 
+* The PCAF coalition's approach to accounting and reporting project finance GHG emissions  
 * The Equator Principles
 
 
 ## Credits
 * Django
-* Grappelli
+* Jazzmin
 * European Banking Authority
+* Partnership for Carbon Accounting Financials  
 * Equator Principles

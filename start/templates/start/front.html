@@ -1,110 +1,75 @@
-{% extends "admin/base_site.html" %}
-
 {% load i18n static %}
-
-{% block branding %}
-    <div id="grp-branding"><img src="{% static 'start/img/equinox.png' %}" height="24"/></div>
-{% endblock %}
-
-{% block title %}equinox{% endblock %}
 
 {% block extrastyle %}
     <link href="{% static 'start/css/styling.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-{% block breadcrumbs %}
-    <ul>
-        <li><a href="/admin">Home</a></li>
-        <li>FrontPage</li>
-    </ul>
-{% endblock %}
-
-
 {% block content %}
 
-    <h1>Welcome to Equinox</h1>
+    <div class="container">
+        <div class="image">
+            <img src="{% static 'start/img/equinox-large.png' %}" height="100"/>
+        </div>
+        <div class="text">
+            <h3> Equinox is an open source platform that supports the holistic risk management of major spatial finance
+                projects such as project finance.</h3>
+        </div>
+    </div>
 
-    <p>
-        Equinox is an open source platform that supports the holistic risk management of major spatial finance projects such as project finance.
-    </p>
+    <hr style="color: white">
+    <h2>Welcome to Equinox</h2>
 
-    <h2 style="margin-top:20px">The challenge of Project Finance Sustainability</h2>
-    <p>Sustainability (both environmental and social) is a serious and ongoing issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is thus an important objective</p>
+    <h3>Focus on the challenge of Sustainability in Project Finance context</h3>
+    <p>Sustainability (both environmental and social) is a serious and ongoing issue that affects all economies.
+        Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is
+        thus an important objective</p>
 
-    <h2 style="margin-top:20px">What exactly is Equinox?</h2>
-    <p>Equinox is a <i>web application</i> that works together with a tailored data schema to provide easy access to Project Finance data adhering to the regulatory and ESG initiative recommendations. Running the application creates a <i>server</i> that can then be accessed via any regular browser. For easy installation and testing the current release uses an sqlite database instead of a production database.</p>
+    <h3>What exactly is Equinox?</h3>
+    <p>Equinox is a <i>database and web application</i> that works together with a tailored data schema to provide easy
+        access to Project Finance data adhering to the regulatory and ESG initiative recommendations. Running the
+        application creates a <i>server</i> that can then be accessed via any regular browser. For easy installation and
+        testing the current release uses an sqlite database instead of a production database.</p>
 
     <p>The initial functionality of Equinox focuses on integrating the following concepts</p>
 
     <ul>
-    <li> The European Banking Authority's Criteria for the Credit Risk Assessemnt of Project Finance under the Standardized approach for Specialized Lending</li>
-    <li> The Equator Principles</li>
+        <li> The European Banking Authority's Criteria for the Credit Risk Assessment of Project Finance under the
+            Standardized approach for Specialized Lending
+        </li>
+        <li> The PCAF accounting and reporting recommendations for Project Finance GHG emissions</li>
+        <li> The Equator Principles</li>
     </ul>
 
-    <p style="margin-top:20px">Once the platform is up and running a wealth of functionality is available. Just
-        as a sample:</p>
+    <p>Once the platform is up and running a wealth of functionality is available.</p>
 
-    <table class="grp-table grp-full-width" style="margin-top:20px">
-        <thead>
-        <tr>
-            <th>User Functionality</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        <tr class="grp-row-even">
-            <td>A user can log-in into the application with their credentials</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Inspect the available data sets (tables or relations) that capture the EBA / EP Data requirements</td>
-        </tr>
-        <tr class="grp-row-even">
-            <td>Insert, Update or Delete records (e.g. new Project Data)</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Consult the documentation as to the meaning and requirements of each data element</td>
-        </tr>
-        </tbody>
-    </table>
+    <h3>User Functionality</h3>
 
-    <table class="grp-table grp-full-width" style="margin-top:20px">
-        <thead>
-        <tr>
-            <th>Administrator Functionality</th>
-        </tr>
-        </thead>
+    <ul>
+        <li>A user can log-in into the application with their credentials</li>
+        <li>Inspect the available data sets (tables or relations) that capture the EBA / EP / PCAF Data
+            requirements
+        </li>
+        <li>Insert, Update or Delete records (e.g. new Project Data)</li>
+        <li>Consult the documentation as to the meaning and requirements of each data element (TODO)</li>
+    </ul>
 
-        <tbody>
-        <tr class="grp-row-even">
-            <td>An administrator can create users and user groups and assign permissions</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Perform bulk insertion or deletion of data sets</td>
-        </tr>
-        </tbody>
-    </table>
+    <h3>Administrator Functionality</h3>
+    <ul>
+        <li>An administrator can create users and user groups and assign permissions</li>
+        <li>Perform bulk insertion or deletion of data sets</li>
+    </ul>
 
-    <table class="grp-table grp-full-width" style="margin-top:20px">
-        <thead>
-        <tr>
-            <th>Developer Functionality</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        <tr class="grp-row-even">
-            <td>Equinox is based on the well known and loved Python web framework Django</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Developers can customize and adapt the platform in unlimited ways</td>
-        </tr>
-        </tbody>
-    </table>
+    <h3>Developer Functionality</h3>
+    <ul>
+        <li>Equinox is based on the well known and loved Python web framework Django</li>
+        <li>Developers can customize and adapt the platform in unlimited ways</li>
+    </ul>
 
-    <h2 style="margin-top:20px">Join the Equinox community</h2>
+    <h3>Join the Equinox community</h3>
     <p>
-        The project aims to be driven by community needs. We welcome code contributions and feature
-        requests via <a href="https://github.com/open-risk/equinox">github</a>.
+        The project aims to be driven by community needs. We welcome code contributions and feature requests via <a href="https://github.com/open-risk/equinox">github</a>.
     </p>
 
 

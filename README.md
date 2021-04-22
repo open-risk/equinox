@@ -5,9 +5,9 @@
 Sustainability (understood both in environmental and social terms) is a serious and ongoing issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is thus an important objective
 
 ## What exactly is Equinox?
-Equinox is a *web application* that works together with a tailored data schema to provide easy access to Project Finance data adhering to the regulatory and ESG initiative recommendations. 
+Equinox is a *database and web application frontend* that works together with a tailored data schema to provide a flexible and powerful Project Finance platform adhering to regulatory and ESG initiative recommendations. 
 
-Running the application creates a *server* that can then be accessed via any regular browser. For easy installation and testing the current release uses an sqlite database instead of a production database.
+Running the application creates a local *server* that can then be accessed via any regular web browser. For easy installation and testing the current release uses an sqlite database instead of a production database.
 
 ## Functionality
 

@@ -1,14 +1,25 @@
-h1#grp-admin-title {
-    font-size: 18px !important;
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-div#grp-branding {
-    margin-top: 6px;
-    margin-right: 10px;
-    margin-bottom: 0px;
-    margin-left: -10px;
+img {
+    max-width: 100%
 }
 
-#grp-navigation {
-    background-image: linear-gradient(#7d7d7d, #222);
+.image {
+    flex-basis: 40%
+}
+
+.text {
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+body {
+    font-family: Lato;
+    background-color: #4d4d4d;
+    color: white;
 }

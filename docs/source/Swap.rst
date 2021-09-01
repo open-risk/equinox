@@ -6,4 +6,4 @@ Swap
    :undoc-members:
    :noindex:
 
-   .. automethod:: Swap
+   .. automethod:: portfolio.Swap.Swap

@@ -6,4 +6,4 @@ Loan
    :undoc-members:
    :noindex:
 
-   .. automethod:: Loan
+   .. automethod:: portfolio.Loan.Loan

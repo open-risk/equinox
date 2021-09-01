@@ -24,6 +24,7 @@ from django.contrib.gis.db.models import PointField, PolygonField
 from django.urls import reverse
 from datetime import datetime
 
+
 class Asset(models.Model):
     """
     The Asset model holds asset specific data for each real asset (plant, infrastructure etc) that is being financed

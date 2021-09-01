@@ -6,4 +6,4 @@ Sponsors
    :undoc-members:
    :noindex:
 
-   .. automethod:: Sponsor
+   .. automethod:: portfolio.Sponsor.Sponsor

@@ -7,4 +7,4 @@ ProjectCompany
    :noindex:
    :show-inheritance:
 
-   .. automethod:: ProjectCompany
+   .. automethod:: portfolio.ProjectCompany.ProjectCompany

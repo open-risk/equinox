@@ -25,7 +25,7 @@ from django.urls import reverse
 
 class Stakeholders(models.Model):
     """
-    The stakeholders model holds data documenting project stakeholders and the social / political environment. This support compliance assessment according to Equator Principles and political risk analysis
+    The stakeholders model holds data documenting project stakeholders and the relevant social / political environment. These data aim to support compliance assessment according to Equator Principles and political risk analysis
 
     """
 
@@ -63,7 +63,7 @@ class Stakeholders(models.Model):
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     stakeholders_group = models.TextField(blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

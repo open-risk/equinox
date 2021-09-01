@@ -22,31 +22,28 @@ from django.db import models
 from portfolio.model_choices import *
 from django.urls import reverse
 
-class Operator(models.Model):
 
+class Operator(models.Model):
     """
     The Operator model holds data for each for each Operator involved in the operation of the project being financed
 
 
     """
 
+    o_and_m_contract = models.IntegerField(blank=True, null=True, choices=O_AND_M_CONTRACT_CHOICES,
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    o_and_m_contract = models.IntegerField(blank=True, null=True, choices=O_AND_M_CONTRACT_CHOICES, help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
-    operating_risk = models.FloatField(blank=True, null=True, 
-help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
+    operating_risk = models.FloatField(blank=True, null=True,
+                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     operator_identifier = models.TextField(blank=True, null=True,
-help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    operator_lei = models.TextField(blank=True, null=True,
+                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    operator_lei = models.TextField(blank=True, null=True, 
-help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
-    operator_track_record = models.IntegerField(blank=True, null=True, choices=OPERATOR_TRACK_RECORD_CHOICES, help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    operator_track_record = models.IntegerField(blank=True, null=True, choices=OPERATOR_TRACK_RECORD_CHOICES,
+                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

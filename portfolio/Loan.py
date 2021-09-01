@@ -25,7 +25,7 @@ from django.urls import reverse
 
 class Loan(models.Model):
     """
-    The Loan model holds data for each for each loan (or other credit facility / financial instrument) providing financing to a project
+    The Loan model holds data for each for each loan (or other credit facility / financial instrument) that provides financing to a project
 
 
     """

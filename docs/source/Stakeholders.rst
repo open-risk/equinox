@@ -6,4 +6,4 @@ Stakeholders
    :undoc-members:
    :noindex:
 
-   .. automethod:: Stakeholders
+   .. automethod:: portfolio.Stakeholders.Stakeholders

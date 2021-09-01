@@ -6,4 +6,4 @@ Revenue
    :undoc-members:
    :noindex:
 
-   .. automethod:: Revenue
+   .. automethod:: portfolio.Revenue.Revenue

@@ -6,4 +6,4 @@ Contractor
    :undoc-members:
    :noindex:
 
-   .. automethod:: Contractor
+   .. automethod:: portfolio.Contractor.Contractor

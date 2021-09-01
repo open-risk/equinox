@@ -3,11 +3,6 @@ The equinox platform
 
 **equinox** is a Python / Django powered portfolio management platform that allows the collection and reporting of project finance risk and sustainability characteristics
 
-The source code is available in the Open Risk Repository `Link <https://github.com/open-risk/equinox.git>`_.
-
-* Author: `Open Risk <http://www.openriskmanagement.com>`_
-* License: MIT
-* Online Code Documentation: `Read The Docs <https://equinox.readthedocs.io/en/latest/>`_
 
 Functionality
 -------------
@@ -19,4 +14,10 @@ The equinox platform may be useful to financial industry users (portfolio manage
 
 
 .. note:: equinox is still in active development. The functionality of the platform will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository.
+
+
+Architecture
+-------------
+
+At the core of equinox are a number of data models that capture information about the different entities and concepts involved in Project Finance. These data models follow a logical pattern that is independent of any of the reference standards that are being implemented.
 

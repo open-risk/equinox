@@ -6,4 +6,4 @@ Operator
    :undoc-members:
    :noindex:
 
-   .. automethod:: Operator
+   .. automethod:: portfolio.Operator.Operator

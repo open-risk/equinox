@@ -58,8 +58,8 @@ FORCE_MAJEURE_RISK_CHOICES = [(0, '(a) No or very low exposure to force majeure 
                                                                                    "'(c) Significant exposure to force  majeure risk which is not  sufficiently mitigated  "),
                               (3, "'(d) Significant exposure to force  majeure risk which is not mitigated  ")]
 
-GHG_DATA_QUALITY_CHOICES = [(1, '(a) Score 1'), (2, '(b) Score 2'), (3, '(c) Score 3'), (4, '(d) Score 4'), (5, '(e) Score 5')]
-
+GHG_DATA_QUALITY_CHOICES = [(1, '(a) Score 1'), (2, '(b) Score 2'), (3, '(c) Score 3'), (4, '(d) Score 4'),
+                            (5, '(e) Score 5')]
 
 GOVERNMENT_SUPPORT_CHOICES = [(0,
                                '(a) Project of strategic importance for the country (preferably export-oriented) Strong support from Government'),
@@ -89,8 +89,8 @@ DESIGN_AND_TECHNOLOGY_RISK_CHOICES = [(0, '(a) Fully proven technology and desig
                                        "'(d) Unproven technology and design; technology issues exist and/or complex design")]
 
 PERMITTING_AND_SITING_CHOICES = [(0, '(a) All permits have been obtained'), (
-1, "'(b) Some permits are still outstanding but their receipt is considered very likely"), (2,
-                                                                                            "'(c) Some permits are still outstanding but the permitting process is well defined and they are considered routine"),
+    1, "'(b) Some permits are still outstanding but their receipt is considered very likely"), (2,
+                                                                                                "'(c) Some permits are still outstanding but the permitting process is well defined and they are considered routine"),
                                  (3,
                                   "'(d) Key permits still need to be obtained and are not considered routine. Significant conditions may be attached")]
 
@@ -161,7 +161,7 @@ SUPPLY_COST_RISKS_CHOICES = [(0, '(a) Long-term supply contract with supplier of
                               "'(d) Short-term supply contract or long-term supply contract with financially weak supplier \\n\\nA degree of price risk definitely remains")]
 
 RESERVE_RISK_CHOICES = [(0, '(a) Independently audite'), (
-1, 'proven and developed reserves well in excess of requirements over lifetime of the project'),
+    1, 'proven and developed reserves well in excess of requirements over lifetime of the project'),
                         (2, "'(b) Independently audite"),
                         (3, 'proven and developed reserves in excess of requirements over lifetime of the project'),
                         (4, "'(c) Proven reserves can supply the project adequately through the maturity of the debt"),
@@ -175,7 +175,8 @@ SPONSOR_FINANCIAL_STRENGTH_CHOICES = [(0, '(a) Strong sponsor with high financia
 SPONSOR_TRACK_RECORD_CHOICES = [(0, '(a) Sponsor with excellent track record and country/sector experience'),
                                 (1, "'(b) Good sponsor with satisfactory track record and country/sector experience"),
                                 (2, "'(c) Adequate sponsor with adequate track record and country/sector experience"), (
-                                3, "'(d) Weak sponsor with questionable track record and/or country/sector experience")]
+                                    3,
+                                    "'(d) Weak sponsor with questionable track record and/or country/sector experience")]
 
 SPONSOR_SUPPORT_CHOICES = [
     (0, '(a) Strong. Project is highly strategic for the sponsor (core business – long term strategy.'),

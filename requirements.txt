@@ -3,3 +3,5 @@ django-debug-toolbar==3.2.1
 django-grappelli==2.14.4
 djangorestframework==3.12.4
 django-jazzmin==2.4.6
+django-leaflet==0.27.1
+django-geojson==3.1.0

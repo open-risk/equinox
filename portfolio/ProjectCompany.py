@@ -26,7 +26,7 @@ from django.urls import reverse
 
 class ProjectCompany(models.Model):
     """
-    The Project Company model holds data for the Special Legal Entity that represents the Project being financed
+    The Project Company model holds data for the Corporate or Special Legal Entity that represents the Project being financed
 
 
     """

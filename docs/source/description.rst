@@ -6,7 +6,7 @@ The equinox platform
 
 Functionality
 -------------
-The equinox platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers. It currently targets the following use cases
+The equinox platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers. It currently targets the following use cases:
 
 * Compile standardized credit risk score according to EBA Specialized Lending criteria for Project Finance
 * PCAF Emissions accounting and reporting

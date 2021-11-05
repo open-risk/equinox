@@ -67,12 +67,6 @@ FORCE_MAJEURE_RISK_CHOICES = [(0, '(a) No or very low exposure to force majeure 
                               (2, '(c) Significant exposure to force majeure risk which is not sufficiently mitigated'),
                               (3, '(d) Significant exposure to force majeure risk which is not mitigated')]
 
-GHG_DATA_QUALITY_CHOICES = [(1, '(a) Score 1'),
-                            (2, '(b) Score 2'),
-                            (3, '(c) Score 3'),
-                            (4, '(d) Score 4'),
-                            (5, '(e) Score 5')]
-
 GOVERNMENT_SUPPORT_CHOICES = [(0, '(a) Project of strategic importance for the country (preferably export-oriented) Strong support from Government'),
                               (1, '(b) Project considered important for the country. Good level of support from Government'),
                               (2, '(c) Project may not be strategic but brings unquestionable benefits for the country. Support from Government may not be explicit'),

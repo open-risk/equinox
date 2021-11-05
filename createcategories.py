@@ -25,6 +25,15 @@ import django
 os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
 django.setup()
 
-from django.contrib.auth.models import User
+from portfolio.ProjectCategory import ProjectCategory
 
-User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+get = lambda node_id: ProjectCategory.objects.get(pk=node_id)
+root = ProjectCategory.add_root(name='GHG Project')
+node = get(root.pk).add_child(name='Wind Power')
+get(node.pk).add_sibling(name='Landfill Gas')
+get(node.pk).add_sibling(name='Afforestation')
+get(node.pk).add_sibling(name='Energy Efficiency')
+get(node.pk).add_sibling(name='Transportation Fuel Switch')
+get(node.pk).add_sibling(name='Industrial Fuel Switch')
+get(node.pk).add_sibling(name='Agricultural Tillage')
+# get(node.pk).add_child(name='Sub Category Project')

@@ -20,6 +20,7 @@
 
 from django.db import models
 from portfolio.model_choices import *
+from portfolio.ghg_choices import *
 from django.urls import reverse
 
 

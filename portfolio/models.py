@@ -48,7 +48,7 @@ class Marker(models.Model):
 
 
 class ProjectRegion(models.Model):
-    """A polygon geometry demarcating the area of a Project."""
+    """A polygon geometry demarcating the area of a Project (if applicable)"""
 
     name = models.CharField(max_length=255)
     location = PolygonField()

@@ -20,9 +20,13 @@
 
 
 from django.contrib.gis import admin
+from treebeard.admin import TreeAdmin
+from treebeard.forms import movenodeform_factory
 
 from portfolio.models import Marker, ProjectRegion
 from portfolio.ProjectCompany import ProjectCompany
+from portfolio.Project import Project
+from portfolio.ProjectCategory import ProjectCategory
 from portfolio.Revenue import Revenue
 from portfolio.Loan import Loan
 from portfolio.Stakeholders import Stakeholders
@@ -33,10 +37,34 @@ from portfolio.Operator import Operator
 from portfolio.Swap import Swap
 
 
+#
+# Tree Objects
+#
+
+# @admin.register(ProjectCategory)
+# class ProjectCategoryAdmin(TreeAdmin):
+#     form = movenodeform_factory(ProjectCategory)
+
+class ProjectCategoryAdmin(TreeAdmin):
+    view_on_site = False
+    list_display = ('name',)
+    form = movenodeform_factory(ProjectCategory)
+
+admin.site.register(ProjectCategory, ProjectCategoryAdmin)
+
+# admin.site.register(MyNode, MyAdmin)
+
+
+
+#
+# Geospatial Objects
+#
+
+
 @admin.register(Asset)
 class AssetAdmin(admin.OSMGeoAdmin):
     """Project Asset."""
-    pass
+    view_on_site = False
 
 
 @admin.register(Marker)
@@ -44,6 +72,7 @@ class MarkerAdmin(admin.OSMGeoAdmin):
     """Marker admin."""
 
     list_display = ("name", "location")
+    view_on_site = False
 
 
 @admin.register(ProjectRegion)
@@ -51,43 +80,54 @@ class ProjectRegionAdmin(admin.OSMGeoAdmin):
     """Project Region admin."""
 
     list_display = ("name", "location")
+    view_on_site = False
+
+
+#
+# Regular Objects
+#
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    """Project admin"""
+    view_on_site = False
 
 
 @admin.register(ProjectCompany)
 class ProjectCompanyAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Revenue)
 class RevenueAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Loan)
 class LoanAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Stakeholders)
 class StakeholdersAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Sponsor)
 class SponsorAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Contractor)
 class ContractorAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Operator)
 class OperatorAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False
 
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):
-    pass
+    view_on_site = False

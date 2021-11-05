@@ -32,17 +32,33 @@ class Asset(models.Model):
 
     """
 
+    #
+    # GHG Data
+    #
+
+    asset_ghg_emissions = models.FloatField(blank=True, null=True,
+                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    #
+    # Geographic Data
+    #
+    asset_basin_of_influence = PolygonField(blank=True, null=True,
+                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    asset_perimeter = PolygonField(blank=True, null=True,
+                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    #
+    # Financial Data
+    #
+
     activation_of_guarantee = models.BooleanField(blank=True, null=True,
                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     address_of_registered_location = models.TextField(blank=True, null=True,
                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    asset_basin_of_influence = PolygonField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -50,8 +66,7 @@ class Asset(models.Model):
     asset_identifier = models.TextField(blank=True, null=True,
                                         help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    asset_perimeter = PolygonField(blank=True, null=True,
-                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     asset_purchase_obligation = models.BooleanField(blank=True, null=True,
                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

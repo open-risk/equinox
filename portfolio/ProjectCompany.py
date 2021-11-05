@@ -26,10 +26,16 @@ from django.urls import reverse
 
 class ProjectCompany(models.Model):
     """
-    The Project Company model holds data for the Corporate or Special Legal Entity that represents the Project being financed
+    The Project model holds data for a general sustainability Project (irrespective of financial aspects)
 
 
     """
+
+    project_identifier = models.TextField(blank=True, null=True,
+                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    project_company_lei = models.TextField(blank=True, null=True,
+                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     assignment_of_contracts_and_accounts = models.IntegerField(blank=True, null=True,
                                                                choices=ASSIGNMENT_OF_CONTRACTS_AND_ACCOUNTS_CHOICES,
@@ -104,13 +110,7 @@ class ProjectCompany(models.Model):
     pledge_of_assets = models.IntegerField(blank=True, null=True, choices=PLEDGE_OF_ASSETS_CHOICES,
                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    project_identifier = models.TextField(blank=True, null=True,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    project_lei = models.TextField(blank=True, null=True,
-                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    project_life_coverage_ratio = models.FloatField(blank=True, null=True,
+    life_coverage_ratio = models.FloatField(blank=True, null=True,
                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     refinancing_risk = models.IntegerField(blank=True, null=True, choices=REFINANCING_RISK_CHOICES,
@@ -132,7 +132,7 @@ class ProjectCompany(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.project_identifier
+        return self.project_company_identifier
 
     def get_absolute_url(self):
         return reverse('portfolio:ProjectCompany_edit', kwargs={'pk': self.pk})

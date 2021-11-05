@@ -53,8 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'treebeard',
     "django.contrib.gis",
     "djgeojson",
+    "markdownfield",
     "leaflet",
     "start",
     "portfolio",
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,9 +77,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'equinox.urls'
 
-ROOT_VIEW = "http://localhost:8001"
+ROOT_VIEW = "http://localhost:8000"
 
 SITE_ID = 1
+SITE_URL = "https://example.com"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
+MEDIA_URL = '/uploads/'
 
 TEMPLATES = [
     {
@@ -110,6 +117,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -127,6 +137,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'nl'
+# LANGUAGE_CODE = 'el'
+
+LANGUAGES = [
+    ('nl', 'Dutch'),
+    ('en', 'English'),
+    ('el', 'Greek'),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -146,6 +164,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 JAZZMIN_SETTINGS = {
+    # Whether to show the UI customizer on the sidebar
+    # "show_ui_builder": False,
+    "show_ui_builder": True,
+
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Equinox",
 
@@ -247,10 +269,9 @@ JAZZMIN_SETTINGS = {
     # UI Tweaks #
     #############
     # Relative paths to custom CSS/JS scripts (must be present in static files)
-    "custom_css": None,
+    "custom_css": "./start/css/jazzmin.css",
     "custom_js": None,
-    # Whether to show the UI customizer on the sidebar
-    "show_ui_builder": False,
+
 
     ###############
     # Change view #
@@ -280,7 +301,7 @@ JAZZMIN_UI_TWEAKS = {
     "navbar_fixed": True,
     "layout_boxed": False,
     "footer_fixed": False,
-    "sidebar_fixed": False,
+    "sidebar_fixed": True,
     "sidebar": "sidebar-dark-primary",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
@@ -288,8 +309,8 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-    "theme": "solar",
-    "dark_mode_theme": "solar",
+    "theme": "slate",
+    "dark_mode_theme": "slate",
     "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",

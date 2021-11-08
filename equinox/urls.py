@@ -38,14 +38,32 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
-from . import settings
+from . import views, settings
+
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="equinox API",
+      default_version='v1',
+      description="equinox is an open source platform for the holistic management of sustainable finance projects. ",
+      terms_of_service="https://www.openriskmanagement.com/",
+      contact=openapi.Contact(email="info@openrisk.eu"),
+      license=openapi.License(name="MIT License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('grappelli/', include('grappelli.urls')),  # grappelli URLS
-    # path('grappelli/grp_doc/', include('grappelli.urls_docs')),  # grappelli URLS
     path('', include('start.urls')),  # start URLS
+    path(r'api/', views.api_root, name='api_root'),  # API root
+    path(r'api/portfolio_data/', include(('portfolio.urls', 'portfolio'), namespace='portfolio')),  # Portfolio data
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.DEBUG:
     import debug_toolbar

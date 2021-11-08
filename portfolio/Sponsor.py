@@ -25,10 +25,40 @@ from django.urls import reverse
 
 class Sponsor(models.Model):
     """
-    The Sponsor model holds data about the entity that principally supports the Project
+    The Sponsor model holds data about the entity that principally supports the Project. Depending on context it may be the only or largest shareholder, a guarantor or similar.
 
 
     """
+
+    # IDENTITY
+    sponsor_identifier = models.TextField(blank=True, null=True,
+                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    sponsor_legal_entity_identifier = models.TextField(blank=True, null=True,
+                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    registration_number = models.TextField(blank=True, null=True,
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # LINKS
+    project = models.ManyToManyField('Project', blank=True, help_text="The Project being operated")
+
+    # SCORECARD
+
+    sponsor_support = models.IntegerField(blank=True, null=True, choices=SPONSOR_SUPPORT_CHOICES,
+                                          help_text='Risk Factor. EBA 4.3. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    sponsor_track_record = models.IntegerField(blank=True, null=True, choices=SPONSOR_TRACK_RECORD_CHOICES,
+                                               help_text='Risk Factor. EBA 4.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    sponsor_financial_strength = models.IntegerField(blank=True, null=True, choices=SPONSOR_FINANCIAL_STRENGTH_CHOICES,
+                                                     help_text='Risk Factor. EBA 4.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    # OTHER
+
+    strength_of_sponsor = models.FloatField(blank=True, null=True,
+                                            help_text='Risk Factor Group <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     address_of_registered_location = models.TextField(blank=True, null=True,
                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -97,9 +127,6 @@ class Sponsor(models.Model):
     internal_credit_rating_at_origination = models.TextField(blank=True, null=True,
                                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    legal_regime = models.IntegerField(blank=True, null=True, choices=LEGAL_REGIME_CHOICES,
-                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
     market_capitalisation = models.FloatField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
@@ -118,32 +145,16 @@ class Sponsor(models.Model):
     postcode_of_registered_location = models.TextField(blank=True, null=True,
                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    registration_number = models.TextField(blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
     source_of_current_external_credit_rating = models.TextField(blank=True, null=True,
                                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     source_of_external_credit_rating_at_origination = models.TextField(blank=True, null=True,
                                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    sponsor_financial_strength = models.IntegerField(blank=True, null=True, choices=SPONSOR_FINANCIAL_STRENGTH_CHOICES,
-                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    sponsor_identifier = models.TextField(blank=True, null=True,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    sponsor_legal_entity_identifier = models.TextField(blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    sponsor_support = models.IntegerField(blank=True, null=True, choices=SPONSOR_SUPPORT_CHOICES,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    sponsor_track_record = models.IntegerField(blank=True, null=True, choices=SPONSOR_TRACK_RECORD_CHOICES,
-                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    strength_of_sponsor = models.FloatField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     total_assets = models.FloatField(blank=True, null=True,
                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -153,6 +164,9 @@ class Sponsor(models.Model):
 
     total_liabilities = models.FloatField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    guarantee_amount = models.FloatField(blank=True, null=True,
+                                         help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

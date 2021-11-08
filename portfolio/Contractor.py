@@ -25,23 +25,12 @@ from django.urls import reverse
 
 class Contractor(models.Model):
     """
-    The Contractor model holds data for each for each Contractor involved in the construction of the project being financed
+    The Contractor model holds data for each for each Contractor involved in the construction of the Project
 
 
     """
 
-    completion_guarantees = models.BooleanField(blank=True, null=True,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    completion_guarantees_and_liquidated_damages = models.IntegerField(blank=True, null=True,
-                                                                       choices=COMPLETION_GUARANTEES_AND_LIQUIDATED_DAMAGES_CHOICES,
-                                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    completion_risk = models.IntegerField(blank=True, null=True, choices=COMPLETION_RISK_CHOICES,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    construction_risk = models.FloatField(blank=True, null=True,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    # IDENTITY
 
     contractor_identifier = models.TextField(blank=True, null=True,
                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -49,21 +38,42 @@ class Contractor(models.Model):
     contractor_legal_entity_identifier = models.TextField(blank=True, null=True,
                                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    name_of_contractor = models.TextField(blank=True, null=True,
+                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # LINKS
+
+    project = models.ManyToManyField('Project', blank=True, help_text="The Project undertaken by this contractor")
+
+    # SCORECARD
+
+    permitting_and_siting = models.IntegerField(blank=True, null=True, choices=PERMITTING_AND_SITING_CHOICES,
+                                                help_text='Risk SubFactor. EBA 3.2.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    completion_guarantees_and_liquidated_damages = models.IntegerField(blank=True, null=True,
+                                                                       choices=COMPLETION_GUARANTEES_AND_LIQUIDATED_DAMAGES_CHOICES,
+                                                                       help_text='SRisk SubFactor. EBA 3.2.4. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    type_of_construction_contract = models.IntegerField(blank=True, null=True,
+                                                        choices=TYPE_OF_CONSTRUCTION_CONTRACT_CHOICES,
+                                                        help_text='Risk SubFactor. EBA 3.2.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     contractor_track_record = models.IntegerField(blank=True, null=True, choices=CONTRACTOR_TRACK_RECORD_CHOICES,
-                                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                  help_text='Risk SubFactor. EBA 3.2.5. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    # OTHER
+
+    completion_guarantees = models.BooleanField(blank=True, null=True,
+                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     liquidated_damages = models.BooleanField(blank=True, null=True,
                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    name_of_contractor = models.TextField(blank=True, null=True,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    permitting_and_siting = models.IntegerField(blank=True, null=True, choices=PERMITTING_AND_SITING_CHOICES,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    type_of_construction_contract = models.IntegerField(blank=True, null=True,
-                                                        choices=TYPE_OF_CONSTRUCTION_CONTRACT_CHOICES,
-                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     #
     # BOOKKEEPING FIELDS

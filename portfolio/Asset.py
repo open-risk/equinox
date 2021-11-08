@@ -27,10 +27,31 @@ from datetime import datetime
 
 class Asset(models.Model):
     """
-    The Asset model holds asset specific data for each real asset (plant, infrastructure etc) that is being financed
+    The Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Project (which may or may not be financed)
+
+    Assumption is that an Asset participates in only one Project
 
 
     """
+
+    # IDENTIFICATION
+
+    asset_identifier = models.TextField(blank=True, null=True,
+                                        help_text='Unique identifier of the asset for internal purposes')
+
+
+    description = models.TextField(blank=True, null=True,
+                                   help_text='Textual Description of the Asset')
+
+    asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
+                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    business_description = models.TextField(blank=True, null=True,
+                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # LINKS
+
+    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE)
 
     #
     # GHG Data
@@ -49,6 +70,31 @@ class Asset(models.Model):
     asset_perimeter = PolygonField(blank=True, null=True,
                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    city_of_registered_location = models.TextField(blank=True, null=True,
+                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    address_of_registered_location = models.TextField(blank=True, null=True,
+                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    country_of_registered_location = models.TextField(blank=True, null=True,
+                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    current_country_of_registration = models.TextField(blank=True, null=True,
+                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    geographic_region_classification = models.TextField(blank=True, null=True,
+                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    geographic_region_of_registered_location = models.TextField(blank=True, null=True,
+                                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    original_country_of_registration = models.TextField(blank=True, null=True,
+                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    postcode_of_registered_location = models.TextField(blank=True, null=True,
+                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
     #
     # Financial Data
     #
@@ -56,26 +102,11 @@ class Asset(models.Model):
     activation_of_guarantee = models.BooleanField(blank=True, null=True,
                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    address_of_registered_location = models.TextField(blank=True, null=True,
-                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
-    asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
-                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    asset_identifier = models.TextField(blank=True, null=True,
-                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
 
 
     asset_purchase_obligation = models.BooleanField(blank=True, null=True,
                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    business_description = models.TextField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    city_of_registered_location = models.TextField(blank=True, null=True,
-                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     collateral_insurance = models.BooleanField(blank=True, null=True,
                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -92,14 +123,11 @@ class Asset(models.Model):
     configuration = models.TextField(blank=True, null=True,
                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    country_of_registered_location = models.TextField(blank=True, null=True,
-                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     currency_of_collateral = models.TextField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    current_country_of_registration = models.TextField(blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     current_opex_and_overheads = models.FloatField(blank=True, null=True,
                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -113,11 +141,6 @@ class Asset(models.Model):
     date_of_the_latest_residual_valuation = models.DateField(blank=True, null=True,
                                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    description = models.TextField(blank=True, null=True,
-                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    design_and_technology_risk = models.IntegerField(blank=True, null=True, choices=DESIGN_AND_TECHNOLOGY_RISK_CHOICES,
-                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     engine_size = models.FloatField(blank=True, null=True,
                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -125,14 +148,6 @@ class Asset(models.Model):
     estimated_useful_life = models.FloatField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    geographic_region_classification = models.TextField(blank=True, null=True,
-                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    geographic_region_of_registered_location = models.TextField(blank=True, null=True,
-                                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    guarantee_amount = models.FloatField(blank=True, null=True,
-                                         help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     industry_segment = models.TextField(blank=True, null=True,
                                         help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -167,11 +182,6 @@ class Asset(models.Model):
     option_to_buy_price = models.FloatField(blank=True, null=True,
                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    original_country_of_registration = models.TextField(blank=True, null=True,
-                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    postcode_of_registered_location = models.TextField(blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     project_characteristics = models.FloatField(blank=True, null=True,
                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

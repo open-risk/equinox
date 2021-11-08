@@ -26,17 +26,41 @@ from django.urls import reverse
 
 class Loan(models.Model):
     """
-    The Loan model holds data for each for each loan (or other credit facility / financial instrument) that provides financing to a project
+    The Loan model holds data for each for each loan (or other credit facility / financial instrument) that provides financing to a Project. It is a liability of a ProjectCompany (which may be a special purpose entity or a regular company)
 
 
     """
+    # IDENTIFICATION
+
+    contract_identifier = models.TextField(blank=True, null=True,
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # LINKS
+
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE)
+
+
+    # SCORECARD
+
+    amortisation_schedule = models.IntegerField(blank=True, null=True, choices=AMORTISATION_SCHEDULE_CHOICES,
+                                                help_text='Risk SubFactor. EBA 1.4.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Amortization_Schedule">Documentation</a>')
+
+    foreign_exchange_risk = models.IntegerField(blank=True, null=True, choices=FOREIGN_EXCHANGE_RISK_CHOICES,
+                                                help_text='Risk SubFactor. EBA 1.4.3. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Foreign_Exchange_Risk">Documentation</a>')
+
+    # GHG DATA
+
+    ghg_attribution_factor = models.FloatField(blank=True, null=True,
+                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    ghg_data_quality = models.IntegerField(blank=True, null=True, choices=GHG_DATA_QUALITY_CHOICES,
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # OTHER
 
     accounting_stages_of_asset_quality = models.IntegerField(blank=True, null=True,
                                                              choices=ACCOUNTING_STAGES_OF_ASSET_QUALITY_CHOICES,
                                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    amortisation_schedule = models.IntegerField(blank=True, null=True, choices=AMORTISATION_SCHEDULE_CHOICES,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     amortisation_type = models.IntegerField(blank=True, null=True, choices=AMORTISATION_TYPE_CHOICES,
                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -50,8 +74,6 @@ class Loan(models.Model):
     comments_on_covenant_waiver = models.TextField(blank=True, null=True,
                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    contract_identifier = models.TextField(blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     country_of_origination = models.TextField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -132,11 +154,6 @@ class Loan(models.Model):
     governing_law_of_loan_agreement = models.TextField(blank=True, null=True,
                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    ghg_attribution_factor = models.FloatField(blank=True, null=True,
-                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    ghg_data_quality = models.IntegerField(blank=True, null=True, choices=GHG_DATA_QUALITY_CHOICES,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     interest_cap_rate = models.FloatField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

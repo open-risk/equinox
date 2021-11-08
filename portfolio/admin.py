@@ -26,6 +26,9 @@ from treebeard.forms import movenodeform_factory
 from portfolio.models import Marker, ProjectRegion
 from portfolio.ProjectCompany import ProjectCompany
 from portfolio.Project import Project
+from portfolio.ProjectActivity import ProjectActivity
+from portfolio.PrimaryEffect import PrimaryEffect
+from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.ProjectCategory import ProjectCategory
 from portfolio.Revenue import Revenue
 from portfolio.Loan import Loan
@@ -35,6 +38,7 @@ from portfolio.Asset import Asset
 from portfolio.Contractor import Contractor
 from portfolio.Operator import Operator
 from portfolio.Swap import Swap
+from portfolio.Scorecard import Scorecard
 
 
 #
@@ -50,11 +54,11 @@ class ProjectCategoryAdmin(TreeAdmin):
     list_display = ('name',)
     form = movenodeform_factory(ProjectCategory)
 
+
 admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 
+
 # admin.site.register(MyNode, MyAdmin)
-
-
 
 #
 # Geospatial Objects
@@ -90,6 +94,24 @@ class ProjectRegionAdmin(admin.OSMGeoAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     """Project admin"""
+    view_on_site = False
+
+
+@admin.register(PrimaryEffect)
+class PrimaryEffectAdmin(admin.ModelAdmin):
+    """Primary Effect admin"""
+    view_on_site = False
+
+
+@admin.register(SecondaryEffect)
+class SecondaryEffectAdmin(admin.ModelAdmin):
+    """Secondary Effect admin"""
+    view_on_site = False
+
+
+@admin.register(ProjectActivity)
+class ProjectActivityAdmin(admin.ModelAdmin):
+    """Project Activity admin"""
     view_on_site = False
 
 
@@ -130,4 +152,10 @@ class OperatorAdmin(admin.ModelAdmin):
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):
+    view_on_site = False
+
+
+@admin.register(Scorecard)
+class ScorecardAdmin(admin.ModelAdmin):
+    """Scorecard admin"""
     view_on_site = False

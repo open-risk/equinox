@@ -25,9 +25,38 @@ from django.urls import reverse
 
 class Stakeholders(models.Model):
     """
-    The stakeholders model holds data documenting project stakeholders and the relevant social / political environment. These data aim to support compliance assessment according to Equator Principles and political risk analysis
+    The stakeholders model holds data documenting project stakeholders and the relevant social / political environment in which a Project is pursued. These data aim to support compliance assessment according to Equator Principles and political risk analysis
 
     """
+
+    # LINKS
+
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE)
+
+    # SCORECARD
+
+    political_and_legal_environment = models.FloatField(blank=True, null=True,
+                                                        help_text='Risk Factor Group. EBA 2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Political_and_Legal_Environment">Documentation</a>')
+
+    legal_and_regulatory_risk = models.IntegerField(blank=True, null=True, choices=LEGAL_AND_REGULATORY_RISK_CHOICES,
+                                                    help_text='Risk Factor. EBA 2.4. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    political_risk = models.IntegerField(blank=True, null=True, choices=POLITICAL_RISK_CHOICES,
+                                         help_text='Risk Factor. EBA 2.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Political_Risk">Documentation</a>')
+
+    project_approval_risk = models.IntegerField(blank=True, null=True, choices=PROJECT_APPROVAL_RISK_CHOICES,
+                                                help_text='Risk Factor. EBA 2.5. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Project_Risk">Documentation</a>')
+
+    force_majeure_risk = models.IntegerField(blank=True, null=True, choices=FORCE_MAJEURE_RISK_CHOICES,
+                                             help_text='Risk Factor. EBA 2.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Force_Majeure_Risk">Documentation</a>')
+
+    government_support = models.IntegerField(blank=True, null=True, choices=GOVERNMENT_SUPPORT_CHOICES,
+                                             help_text='Risk Factor. EBA 2.3. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Government_Guaranty">Documentation</a>')
+
+    legal_regime = models.IntegerField(blank=True, null=True, choices=LEGAL_REGIME_CHOICES,
+                                       help_text='Risk Factor. EBA 2.6. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Legal_Basis">Documentation</a>')
+
+    # OTHER
 
     compliance_with_standards = models.TextField(blank=True, null=True,
                                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -38,26 +67,10 @@ class Stakeholders(models.Model):
     environmental_and_social_management_system = models.TextField(blank=True, null=True,
                                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    force_majeure_risk = models.IntegerField(blank=True, null=True, choices=FORCE_MAJEURE_RISK_CHOICES,
-                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    government_support = models.IntegerField(blank=True, null=True, choices=GOVERNMENT_SUPPORT_CHOICES,
-                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     grievance_mechanisms = models.TextField(blank=True, null=True,
                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    legal_and_regulatory_risk = models.IntegerField(blank=True, null=True, choices=LEGAL_AND_REGULATORY_RISK_CHOICES,
-                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    political_and_legal_environment = models.FloatField(blank=True, null=True,
-                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    political_risk = models.IntegerField(blank=True, null=True, choices=POLITICAL_RISK_CHOICES,
-                                         help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    project_approval_risk = models.IntegerField(blank=True, null=True, choices=PROJECT_APPROVAL_RISK_CHOICES,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     stakeholder_engagement = models.TextField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

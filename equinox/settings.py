@@ -37,7 +37,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '3i=clc#nog3a2v__q9n89wak2#p54mfs(*-x)oj7+1)igkmylf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_yasg',
     'treebeard',
     "django.contrib.gis",
     "djgeojson",
@@ -160,7 +160,6 @@ INTERNAL_IPS = [
 ]
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 JAZZMIN_SETTINGS = {

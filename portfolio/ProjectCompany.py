@@ -26,29 +26,55 @@ from django.urls import reverse
 
 class ProjectCompany(models.Model):
     """
-    The Project model holds data for a general sustainability Project (irrespective of financial aspects)
+    The Project Company model holds data for a sustainability oriented Project Finance entity. A Project Company always refers to a Project
 
 
     """
 
-    project_identifier = models.TextField(blank=True, null=True,
+    # IDENTIFICATION
+
+    project_company_identifier = models.TextField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     project_company_lei = models.TextField(blank=True, null=True,
                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    # LINKS
+
+    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company whos revenue is documented")
+
+    # SCORECARD
+
+    financial_ratios = models.IntegerField(blank=True, null=True, choices=FINANCIAL_RATIOS_CHOICES,
+                                           help_text='Risk Factor. EBA 1.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Financial_Ratios">Documentation</a>')
+
+    refinancing_risk = models.IntegerField(blank=True, null=True, choices=REFINANCING_RISK_CHOICES,
+                                           help_text='Risk Subfactor. EBA 1.4.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Refinancing_Risk">Documentation</a>')
+
+    control_over_cash_flow = models.IntegerField(blank=True, null=True, choices=CONTROL_OVER_CASH_FLOW_CHOICES, help_text='Risk Factor. EBA 5.3.  <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    covenant_package = models.IntegerField(blank=True, null=True, choices=COVENANT_PACKAGE_CHOICES,
+                                           help_text='Risk Factor. EBA 5.4. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    reserve_funds = models.IntegerField(blank=True, null=True, choices=RESERVE_FUNDS_CHOICES,
+                                        help_text='Risk Factor. EBA 5.5. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    pledge_of_assets = models.IntegerField(blank=True, null=True, choices=PLEDGE_OF_ASSETS_CHOICES,
+                                           help_text='Risk Factor. EBA 5.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     assignment_of_contracts_and_accounts = models.IntegerField(blank=True, null=True,
-                                                               choices=ASSIGNMENT_OF_CONTRACTS_AND_ACCOUNTS_CHOICES,
-                                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+       choices=ASSIGNMENT_OF_CONTRACTS_AND_ACCOUNTS_CHOICES,                                                               help_text='Risk Factor. EBA 5.1.  <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # OTHER
+
+    financial_strength = models.FloatField(blank=True, null=True, help_text='Risk Factor Group. EBA 1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Financial_Strength">Documentation</a>')
 
     cash_sweep = models.BooleanField(blank=True, null=True,
                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    control_over_cash_flow = models.IntegerField(blank=True, null=True, choices=CONTROL_OVER_CASH_FLOW_CHOICES,
-                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    covenant_package = models.IntegerField(blank=True, null=True, choices=COVENANT_PACKAGE_CHOICES,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
 
     covenants = models.TextField(blank=True, null=True,
                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -62,17 +88,9 @@ class ProjectCompany(models.Model):
     dividend_restrictions = models.BooleanField(blank=True, null=True,
                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    financial_ratios = models.IntegerField(blank=True, null=True, choices=FINANCIAL_RATIOS_CHOICES,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    financial_strength = models.FloatField(blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     financial_structure = models.FloatField(blank=True, null=True,
                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    foreign_exchange_risk = models.IntegerField(blank=True, null=True, choices=FOREIGN_EXCHANGE_RISK_CHOICES,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     impact_category = models.IntegerField(blank=True, null=True, choices=IMPACT_CATEGORY_CHOICES,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -107,20 +125,16 @@ class ProjectCompany(models.Model):
     payment_deferrals = models.BooleanField(blank=True, null=True,
                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    pledge_of_assets = models.IntegerField(blank=True, null=True, choices=PLEDGE_OF_ASSETS_CHOICES,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     life_coverage_ratio = models.FloatField(blank=True, null=True,
                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    refinancing_risk = models.IntegerField(blank=True, null=True, choices=REFINANCING_RISK_CHOICES,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     reporting_and_transparency = models.TextField(blank=True, null=True,
                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    reserve_funds = models.IntegerField(blank=True, null=True, choices=RESERVE_FUNDS_CHOICES,
-                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     security_package = models.FloatField(blank=True, null=True,
                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

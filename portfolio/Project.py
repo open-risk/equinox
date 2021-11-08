@@ -21,6 +21,7 @@
 
 from django.db import models
 from portfolio.ProjectCategory import ProjectCategory
+from portfolio.model_choices import *
 from django.urls import reverse
 from markdownfield.models import MarkdownField, RenderedMarkdownField
 from markdownfield.validators import VALIDATOR_STANDARD
@@ -32,6 +33,8 @@ class Project(models.Model):
 
 
     """
+
+    # IDENTIFICATION
 
     project_identifier = models.TextField(blank=True, null=True,
                                           help_text='A unique identification of the Project for internal use')
@@ -46,7 +49,22 @@ class Project(models.Model):
     project_visualization = models.ImageField(upload_to='project_files', blank=True, null=True,
                                               help_text='Visual representation of a  Project')
 
+    # LINKS
+
     project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.CASCADE)
+
+    # SCORECARD
+
+    design_and_technology_risk = models.IntegerField(blank=True, null=True, choices=DESIGN_AND_TECHNOLOGY_RISK_CHOICES,
+                                                     help_text='Risk Factor. EBA 3.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Technology_Risk">Documentation</a>')
+
+    completion_risk = models.IntegerField(blank=True, null=True, choices=COMPLETION_RISK_CHOICES,
+                                          help_text='Risk SubFactor. EBA 3.2.3. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # OTHER
+
+    construction_risk = models.FloatField(blank=True, null=True,
+                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

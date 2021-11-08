@@ -25,16 +25,12 @@ from django.urls import reverse
 
 class Operator(models.Model):
     """
-    The Operator model holds data for each for each Operator involved in the operation of the project being financed
+    The Operator model holds data for each for each Operator involved in the operation of the Project
 
 
     """
 
-    o_and_m_contract = models.IntegerField(blank=True, null=True, choices=O_AND_M_CONTRACT_CHOICES,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    operating_risk = models.FloatField(blank=True, null=True,
-                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    # IDENTITY
 
     operator_identifier = models.TextField(blank=True, null=True,
                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -42,8 +38,23 @@ class Operator(models.Model):
     operator_lei = models.TextField(blank=True, null=True,
                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    # LINKS
+    project = models.ManyToManyField('Project', blank=True, help_text="The Project being operated")
+
+    # SCORECARD
+
+    o_and_m_contract = models.IntegerField(blank=True, null=True, choices=O_AND_M_CONTRACT_CHOICES,
+                                           help_text='Risk SubFactor. EBA 3.3.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     operator_track_record = models.IntegerField(blank=True, null=True, choices=OPERATOR_TRACK_RECORD_CHOICES,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                help_text='Risk SubFactor. EBA 3.3.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    # OTHER
+    operating_risk = models.FloatField(blank=True, null=True,
+                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
 
     #
     # BOOKKEEPING FIELDS

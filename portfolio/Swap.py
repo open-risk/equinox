@@ -30,6 +30,15 @@ class Swap(models.Model):
 
     """
 
+    # IDENTIFICATION
+    swap_identifier = models.TextField(blank=True, null=True,
+                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # LINKS
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE)
+
+    # OTHER
+
     currency_of_institution_leg = models.TextField(blank=True, null=True,
                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
@@ -66,8 +75,6 @@ class Swap(models.Model):
     start_date_of_swap = models.DateField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    swap_identifier = models.TextField(blank=True, null=True,
-                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     type_of_interest_rate_institution = models.TextField(blank=True, null=True,
                                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

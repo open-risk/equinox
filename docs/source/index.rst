@@ -13,12 +13,13 @@ equinox Documentation
 
 Reference Standards
 -----------
-The set of standards currently implemented includes the following references:
+The set of standards currently implemented is based on the following references:
 
 
 * BIS/EBA Standardized Credit Risk assessment of Project Finance
-* Equator Principles
-* PCAF Emissions Accounting and Reporting
+* Equator Principles for Project Finance
+* PCAF Emissions Accounting and Reporting for Project Finance
+* GHG Protocol for Projects
 
 
 Overview

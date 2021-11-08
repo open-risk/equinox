@@ -20,12 +20,16 @@
 
 from django.urls import path
 from djgeojson.views import GeoJSONLayerView
+from django.conf.urls import url
 
 from .views import PFMapView
+from equinox import views
 
 app_name = "portfolio"
 
 urlpatterns = [
-    path("", PFMapView.as_view()),
-    path(r'^geojson$', GeoJSONLayerView.as_view(model=MushroomSpot), name='data'),
+    # path("", PFMapView.as_view()),
+    path(r'scorecards', views.scorecard_api, name='scorecard_api'),
+    url(r'^scorecards/(?P<pk>[0-9]+)/$', views.scorecard_detail, name='scorecard_detail'),
+    # path(r'^geojson$', GeoJSONLayerView.as_view(model=MushroomSpot), name='data'),
 ]

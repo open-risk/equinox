@@ -18,24 +18,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
 
-from treebeard.mp_tree import MP_Node
+from rest_framework import serializers
+from equinox.settings import ROOT_VIEW
+from portfolio.Scorecard import Scorecard
 
 
-class ProjectCategory(MP_Node):
+class ScorecardSerializer(serializers.ModelSerializer):
     """
-    Projects are classified in categories of similar characteristics
-
-
+    Serialize Scorecard Inventory
     """
-    name = models.CharField(max_length=30)
-
-    node_order_by = ['name']
-
-    def __str__(self):
-        return 'Project Category: {}'.format(self.name)
+    link = serializers.SerializerMethodField()
 
     class Meta:
-        verbose_name = "Project Category"
-        verbose_name_plural = "Project Categories"
+        model = Scorecard
+        fields = ('id', 'scorecard_identifier', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/portfolio_data/scorecards/" + str(obj.pk)
+        return link
+
+
+class ScorecardDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize Scorecard Data
+    """
+
+    class Meta:
+        model = Scorecard
+        fields = '__all__'

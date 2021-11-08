@@ -14,8 +14,9 @@ Running the application creates a local *server* that can then be accessed via a
 The initial functionality of Equinox focuses on integrating the following concepts:
 
 * The European Banking Authority's Criteria for Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending 
-* The PCAF coalition's approach to accounting and reporting project finance GHG emissions  
-* The Equator Principles
+* The PCAF coalition's approach to accounting and reporting project finance GHG emissions
+* Equator Principles for Project Finance
+* GHG Accounting Protocol for Projects
 
 
 ## Credits

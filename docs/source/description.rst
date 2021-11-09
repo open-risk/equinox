@@ -1,6 +1,5 @@
 The equinox platform
 =====================
-
 **equinox** is a Python / Django powered portfolio management platform that allows the collection and reporting of project finance risk and sustainability characteristics
 
 
@@ -22,16 +21,21 @@ Architecture
 At the core of equinox are a number of data models that capture information about the different entities and concepts involved in Project Finance. These data models follow a logical pattern that is independent of any of the reference standards that are being implemented.
 
 
+Physical Layer
+~~~~~~~~~~~~~~~~~~
 * Project is the core object. It belongs to a Project Category
 * One or More Assets are major real items linked to the Project.
-* Contractors are Entities that are involved in delivering the Project
-* Operators are Entities that are involved in running the Project
-* Sponsors are Entities that are involved in commissioning, guaranteeing or providing equity finance for the Project
-* Stakeholders are other entities that are impacted or impacting the Project
 * Primary Effect is the GHG impact of a Project Activity
 * Secondary Effect is the GHG impact of a Project Activity
 * Project Activity is a specific Sustainability impact (eg GHG reduction) of a Project
+
+Socioeconomic Layer
+~~~~~~~~~~~~~~~~~~~~~
 * Project Company is a Legal Entity that finances a Project
+* Contractors are Entities that are involved in delivering under contract to the Project Company
+* Operators are Entities that are involved in operating under contract to the Project Company
+* Sponsors are Entities that are involved in commissioning, guaranteeing or providing equity to the Project Company
+* Stakeholders are other entities that are impacted or impacting by the Project Company
 * Revenue focuses specifically on the business model of a Project Company
 * A Loan is a borrowing made by a Project Company
 * Swap is an example of additional contract by the Project Company

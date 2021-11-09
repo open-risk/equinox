@@ -43,7 +43,7 @@ class Contractor(models.Model):
 
     # LINKS
 
-    project = models.ManyToManyField('Project', blank=True, help_text="The Project undertaken by this contractor")
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="Project Company that sourced this contractor")
 
     # SCORECARD
 

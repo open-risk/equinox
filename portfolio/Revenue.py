@@ -32,7 +32,7 @@ class Revenue(models.Model):
 
     # LINKS
 
-    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company whos revenue is documented")
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company who's revenue is documented")
 
     # SCORECARD
 

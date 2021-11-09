@@ -41,7 +41,8 @@ class Sponsor(models.Model):
                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # LINKS
-    project = models.ManyToManyField('Project', blank=True, help_text="The Project being operated")
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
+                                        help_text="Project Company that is Sponsored by this Sponsor")
 
     # SCORECARD
 

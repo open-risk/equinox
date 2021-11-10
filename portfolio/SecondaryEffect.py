@@ -36,7 +36,7 @@ class SecondaryEffect(models.Model):
     """
     # IDENTIFICATION
 
-    secondary_effect_identifier = models.TextField(blank=True, null=True,
+    secondary_effect_identifier = models.CharField(max_length=80, blank=True, null=True,
                                                    help_text='A unique identification of a Secondary Effect for internal use')
 
     secondary_effect_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',

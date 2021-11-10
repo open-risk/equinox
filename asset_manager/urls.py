@@ -18,14 +18,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from django.urls import path
+from djgeojson.views import GeoJSONLayerView
+from asset_manager.views import AssetList
 
-from django.shortcuts import render
+from .views import PFMapView
+from equinox import views
 
-# Create your views here.
-from django.views.generic.base import TemplateView
+# app_name = "asset_manager"
 
-
-class PFMapView(TemplateView):
-    """Markers map view."""
-
-    template_name = "map.html"
+urlpatterns = [
+    path('', AssetList.as_view(), name='Asset Manager'),
+    path('map', PFMapView.as_view(), name='Map'),
+    # path(r'^geojson$', GeoJSONLayerView.as_view(model=MushroomSpot), name='data'),
+]

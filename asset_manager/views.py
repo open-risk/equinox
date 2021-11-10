@@ -18,13 +18,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.urls import path, re_path
-from django.conf.urls import url
-from equinox import views
+from django.views.generic import ListView
+from portfolio.Asset import Asset
+from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
-app_name = "portfolio"
 
-urlpatterns = [
-    path('scorecards', views.scorecard_api, name='scorecard_api'),
-    re_path(r'^scorecards/(?P<pk>[0-9]+)/$', views.scorecard_detail, name='scorecard_detail'),
-]
+class AssetList(ListView):
+    """
+    List all assets sequentially with common action buttons
+    Also generation options at the end
+    """
+    model = Asset
+    template_name = 'asset_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListView, self).get_context_data(**kwargs)
+        return context
+
+
+class PFMapView(TemplateView):
+    """Markers map view."""
+
+    template_name = "asset_map.html"

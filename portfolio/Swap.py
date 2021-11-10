@@ -31,7 +31,7 @@ class Swap(models.Model):
     """
 
     # IDENTIFICATION
-    swap_identifier = models.TextField(blank=True, null=True,
+    swap_identifier = models.CharField(max_length=80, blank=True, null=True,
                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # LINKS

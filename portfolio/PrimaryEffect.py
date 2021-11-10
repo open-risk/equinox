@@ -37,7 +37,7 @@ class PrimaryEffect(models.Model):
 
     # IDENTIFICATION
 
-    primary_effect_identifier = models.TextField(blank=True, null=True, help_text='A unique identification of a Primary Effect internal use')
+    primary_effect_identifier = models.CharField(max_length=80, blank=True, null=True, help_text='A unique identification of a Primary Effect internal use')
 
     primary_effect_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',
                                                  validator=VALIDATOR_STANDARD,

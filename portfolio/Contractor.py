@@ -32,7 +32,7 @@ class Contractor(models.Model):
 
     # IDENTITY
 
-    contractor_identifier = models.TextField(blank=True, null=True,
+    contractor_identifier = models.CharField(max_length=80, null=True,
                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     contractor_legal_entity_identifier = models.TextField(blank=True, null=True,

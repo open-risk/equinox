@@ -23,7 +23,7 @@ from django.contrib.gis import admin
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
-from portfolio.models import Marker, ProjectRegion
+from portfolio.models import PointSource, AreaSource
 from portfolio.ProjectCompany import ProjectCompany
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
@@ -61,26 +61,19 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 # admin.site.register(MyNode, MyAdmin)
 
 #
-# Geospatial Objects
+# Geospatial Objects (Source Geometries)
 #
 
-
-@admin.register(Asset)
-class AssetAdmin(admin.OSMGeoAdmin):
-    """Project Asset."""
-    view_on_site = False
-
-
-@admin.register(Marker)
-class MarkerAdmin(admin.OSMGeoAdmin):
-    """Marker admin."""
+@admin.register(PointSource)
+class PointSourceAdmin(admin.OSMGeoAdmin):
+    """Point Source admin."""
 
     list_display = ("name", "location")
     view_on_site = False
 
 
-@admin.register(ProjectRegion)
-class ProjectRegionAdmin(admin.OSMGeoAdmin):
+@admin.register(AreaSource)
+class AreaSourceAdmin(admin.OSMGeoAdmin):
     """Project Region admin."""
 
     list_display = ("name", "location")
@@ -90,6 +83,30 @@ class ProjectRegionAdmin(admin.OSMGeoAdmin):
 #
 # Regular Objects
 #
+
+@admin.register(Asset)
+class AssetAdmin(admin.OSMGeoAdmin):
+    """Project Asset."""
+    view_on_site = False
+
+    fieldsets = (
+        ('Identification', {
+            'fields': ('asset_identifier', 'description', 'asset_class')
+        }),
+        ('Relations', {
+            'fields': ('project', 'legal_owner'),
+        }),
+        ('GHG Emissions', {
+            'fields': ('asset_ghg_emissions',),
+        }),
+        ('Financial', {
+            'fields': ('latest_valuation_amount',),
+        }),
+        ('Other', {
+            'classes': ('collapse',),
+            'fields': ('activation_of_guarantee',),
+        }),
+    )
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):

@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "leaflet",
     "start",
     "portfolio",
+    "asset_manager",
     "debug_toolbar"
 ]
 
@@ -183,7 +184,8 @@ JAZZMIN_SETTINGS = {
     "copyright": "Open Risk",
 
     # The model admin to search from the search bar, search bar omitted if excluded
-    "search_model": "auth.User",
+    # "search_model": "auth.User",
+    "search_model": "portfolio.project",
 
     # Field name on user model that contains avatar image
     "user_avatar": None,
@@ -196,16 +198,23 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Home", "url": "/", "permissions": ["auth.view_user"]},
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/open-risk/equinox", "new_window": True},
+        # {"name": "Support", "url": "https://github.com/open-risk/equinox", "new_window": True},
 
         # model admin to link to (Permissions checked against model)
-        {"model": "auth.User"},
+        # {"model": "auth.User"},
 
         # App with dropdown menu to all its models pages
         {"app": "portfolio"},
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Asset Manager", "url": "/asset_manager", "permissions": ["auth.view_user"]},
+
     ],
 
     #############
@@ -295,7 +304,7 @@ JAZZMIN_UI_TWEAKS = {
     "brand_small_text": False,
     "brand_colour": False,
     "accent": "accent-primary",
-    "navbar": "navbar-dark",
+    "navbar": "navbar-navy navbar-dark",
     "no_navbar_border": False,
     "navbar_fixed": True,
     "layout_boxed": False,

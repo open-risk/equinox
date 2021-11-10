@@ -30,7 +30,7 @@ class Scorecard(models.Model):
 
     """
 
-    scorecard_identifier = models.TextField(blank=True, null=True,
+    scorecard_identifier = models.CharField(max_length=80, blank=True, null=True,
                                             help_text='Identification of a specific scorecard data container<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Scorecard">Documentation</a>')
 
     scorecard_data = models.JSONField(blank=True, null=True,

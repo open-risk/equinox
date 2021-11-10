@@ -22,14 +22,17 @@
 from django.db import models
 from django.contrib.gis.db.models import PointField, PolygonField
 from django.urls import reverse
+from portfolio.Asset import Asset
 
 
-class Marker(models.Model):
+class PointSource(models.Model):
     """A point marker with name and location (to create elementary geospatial reference)."""
 
     name = models.CharField(max_length=255)
     location = PointField()
 
+    asset = models.ForeignKey('Asset', null=True, blank=True, on_delete=models.CASCADE)
+
     #
     # BOOKKEEPING FIELDS
     #
@@ -40,19 +43,21 @@ class Marker(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:Marker_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:PointSource_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "PointMarker"
-        verbose_name_plural = "PointMarkers"
+        verbose_name = "Point Source"
+        verbose_name_plural = "Point Sources"
 
 
-class ProjectRegion(models.Model):
+class AreaSource(models.Model):
     """A polygon geometry demarcating the area of a Project (if applicable)"""
 
     name = models.CharField(max_length=255)
     location = PolygonField()
 
+    asset = models.ForeignKey('Asset', null=True, blank=True, on_delete=models.CASCADE)
+
     #
     # BOOKKEEPING FIELDS
     #
@@ -63,19 +68,18 @@ class ProjectRegion(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:ProjectRegion_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:AreaSource_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Project Region"
-        verbose_name_plural = "Project Regions"
+        verbose_name = "Area Source"
+        verbose_name_plural = "Area Sources"
 
-
-from portfolio.ProjectCompany import ProjectCompany
-from portfolio.Revenue import Revenue
-from portfolio.Loan import Loan
-from portfolio.Stakeholders import Stakeholders
-from portfolio.Sponsor import Sponsor
-from portfolio.Asset import Asset
-from portfolio.Contractor import Contractor
-from portfolio.Operator import Operator
-from portfolio.Swap import Swap
+# from portfolio.ProjectCompany import ProjectCompany
+# from portfolio.Revenue import Revenue
+# from portfolio.Loan import Loan
+# from portfolio.Stakeholders import Stakeholders
+# from portfolio.Sponsor import Sponsor
+# from portfolio.Asset import Asset
+# from portfolio.Contractor import Contractor
+# from portfolio.Operator import Operator
+# from portfolio.Swap import Swap

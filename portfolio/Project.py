@@ -36,7 +36,7 @@ class Project(models.Model):
 
     # IDENTIFICATION
 
-    project_identifier = models.TextField(blank=True, null=True,
+    project_identifier = models.CharField(max_length=80, blank=True, null=True,
                                           help_text='A unique identification of the Project for internal use')
 
     project_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',

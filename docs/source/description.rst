@@ -7,8 +7,8 @@ Functionality
 -------------
 The equinox platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers. It currently targets the following use cases:
 
-* Compile standardized credit risk score according to EBA Specialized Lending criteria for Project Finance
 * PCAF Emissions accounting and reporting
+* Compile standardized credit risk score according to EBA Specialized Lending criteria for Project Finance
 * Equator Principles Reporting
 
 
@@ -18,7 +18,13 @@ The equinox platform may be useful to financial industry users (portfolio manage
 Architecture
 -------------
 
-At the core of equinox are a number of data models that capture information about the different entities and concepts involved in Project Finance. These data models follow a logical pattern that is independent of any of the reference standards that are being implemented.
+* At the core of equinox are a number of data models that capture information about the different entities and concepts involved in Sustainable Finance. These data models follow a logical pattern that is independent of any of the reference standards or eventual applications that are being implemented.
+* Functionality is delivered via a number of apps that process user inputs and portfolio data and deliver analyses and reports
+
+
+Data Layer
+---------------
+The data layer can be segmented into two major categories: The Physical Layer that holds information about physical aspects of assets, activities etc. and the "socioeconomic" layer that holds information about entities, economic and financial aspects etc.
 
 
 Physical Layer
@@ -40,3 +46,11 @@ Socioeconomic Layer
 * A Loan is a borrowing made by a Project Company
 * Swap is an example of additional contract by the Project Company
 * Scorecard collects relevant data to support the risk analysis of a Project Company
+
+Application Layer
+------------------
+The application layer help the user extract useful information from the database and perform the required analyses and reports
+
+* Asset Manager
+* Risk Analysis
+* Results Explorer

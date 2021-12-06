@@ -18,13 +18,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.apps import AppConfig
+from django import forms
+from django.forms import ModelForm
 
-""" Asset manager for geospatial assets
+from risk_analysis.Objectives import Playbook
+from risk_analysis.Scenarios import Scenario
+from risk_analysis.Workflows import Workflow
 
-"""
+
+class ScenarioForm(ModelForm):
+    class Meta:
+        model = Scenario
+        exclude = None
+        fields = '__all__'
 
 
-class AssetManagerConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'asset_manager'
+class WorkflowInteractiveForm(ModelForm):
+    class Meta:
+        model = Workflow
+        fields = ['portfolio', 'results_list']
+        widgets = {'results_list': forms.TextInput(attrs={'style': 'width:200px; height:50px;'})}
+
+
+class WorkflowBatchForm(ModelForm):
+    class Meta:
+        model = Workflow
+        fields = ['name']
+
+
+class PlaybookBatchForm(ModelForm):
+    class Meta:
+        model = Playbook
+        fields = ['name']

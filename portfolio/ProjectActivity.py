@@ -27,10 +27,13 @@ from markdownfield.validators import VALIDATOR_STANDARD
 from portfolio.Project import Project
 from portfolio.ghg_choices import BASELINE_ESTIMATION_PROCEDURE
 
+PROJECT_ACTIVITY_ROLE = [(0, 'Target'),
+                         (1, 'Baseline')]
+
 
 class ProjectActivity(models.Model):
     """
-    The Project Activity model holds data for specific activities associated with a Project
+    The Project Activity model holds data for specific activities associated with a Project. It acts as a container for both the target activity and alternative "baseline candidates"
 
 
     """
@@ -42,15 +45,15 @@ class ProjectActivity(models.Model):
                                                  validator=VALIDATOR_STANDARD,
                                                  help_text='Textual description of a Project Activity. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/GHG_Project_Activity">Documentation</a>')
 
-    # text = MarkdownField(rendered_field='text_rendered', validator=VALIDATOR_STANDARD)
     text_rendered = RenderedMarkdownField()
+
+    project_activity_role = models.IntegerField(blank=True, null=True, choices=PROJECT_ACTIVITY_ROLE,
+                                              help_text='Select whether the activity role is baseline or target')
 
     # LINKS
 
     project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE,
                                 help_text="The Project to which this Activity belongs")
-
-
 
     baseline_estimation = models.IntegerField(blank=True, null=True, choices=BASELINE_ESTIMATION_PROCEDURE,
                                               help_text='Baseline procedures are methods used to estimate baseline emissions <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Baseline_Emissions">Documentation</a>')

@@ -60,7 +60,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),  # Dashboard URL's
     path('', include('start.urls')),  # FrontPage URLS
-    path('asset_manager/', include('asset_manager.urls')), # Asset Manager URLS
+    path('asset_manager/', include('asset_manager.urls')),  # Asset Manager URLS
     path(r'api/', views.api_root, name='api_root'),  # API root
     path(r'api/portfolio_data/', include(('portfolio.urls', 'portfolio'), namespace='portfolio')),  # Portfolio data API
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

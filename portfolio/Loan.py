@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from portfolio.model_choices import *
 from portfolio.ghg_choices import *
 from django.urls import reverse
@@ -315,5 +316,5 @@ class Loan(models.Model):
         return reverse('portfolio:Loan_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Loan"
-        verbose_name_plural = "Loans"
+        verbose_name = _("Loan")
+        verbose_name_plural = _("Loans")

@@ -19,16 +19,14 @@
 # SOFTWARE.
 
 from django.urls import path
-from djgeojson.views import GeoJSONLayerView
-from asset_manager.views import AssetList
 
-from .views import PFMapView
-from equinox import views
+from asset_manager.views import AssetList
+from asset_manager.views import AssetMapView
 
 # app_name = "asset_manager"
 
 urlpatterns = [
     path('', AssetList.as_view(), name='Asset Manager'),
-    path('map', PFMapView.as_view(), name='Map'),
+    path('map', AssetMapView.as_view(), name='Map'),
     # path(r'^geojson$', GeoJSONLayerView.as_view(model=MushroomSpot), name='data'),
 ]

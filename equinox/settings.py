@@ -25,6 +25,7 @@ Django settings for the Equinox platform.
 """
 
 from pathlib import Path
+from django.utils.translation import ugettext_lazy as _
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_json_widget',
     'rest_framework',
     'drf_yasg',
     'treebeard',
@@ -59,8 +61,11 @@ INSTALLED_APPS = [
     "markdownfield",
     "leaflet",
     "start",
+    "reference",
     "portfolio",
     "asset_manager",
+    "risk_analysis",
+    "results_explorer",
     "debug_toolbar"
 ]
 
@@ -137,15 +142,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
-# LANGUAGE_CODE = 'nl'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl'
 # LANGUAGE_CODE = 'el'
 
 LANGUAGES = [
-    ('nl', 'Dutch'),
-    ('en', 'English'),
-    ('el', 'Greek'),
+    ('nl', _('Dutch')),
+    ('en', _('English')),
+    ('el', _('Greek')),
 ]
+
+LOCALE_PATHS = (
+   os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = 'UTC'
 
@@ -201,7 +210,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Home", "url": "/", "permissions": ["auth.view_user"]},
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
+        # {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
         # {"name": "Support", "url": "https://github.com/open-risk/equinox", "new_window": True},
@@ -210,10 +219,13 @@ JAZZMIN_SETTINGS = {
         # {"model": "auth.User"},
 
         # App with dropdown menu to all its models pages
-        {"app": "portfolio"},
+        # {"app": "portfolio"},
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Asset Manager", "url": "/asset_manager", "permissions": ["auth.view_user"]},
+        {"name": "Shape", "url": "/asset_manager", "permissions": ["auth.view_user"]},
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Analyse", "url": "/asset_manager", "permissions": ["auth.view_user"]},
 
     ],
 
@@ -234,11 +246,11 @@ JAZZMIN_SETTINGS = {
     # Whether to display the side menu
     "show_sidebar": True,
 
-    # Whether to aut expand the menu
-    "navigation_expanded": True,
+    # Whether to expand the side menu
+    "navigation_expanded": False,
 
     # Hide these apps when generating side menu e.g (auth)
-    "hide_apps": [],
+    "hide_apps": ['auth'],
 
     # Hide these models when generating side menu (e.g auth.user)
     "hide_models": [],
@@ -303,18 +315,18 @@ JAZZMIN_UI_TWEAKS = {
     "body_small_text": False,
     "brand_small_text": False,
     "brand_colour": False,
-    "accent": "accent-primary",
+    "accent": "accent-warning",
     "navbar": "navbar-navy navbar-dark",
     "no_navbar_border": False,
     "navbar_fixed": True,
     "layout_boxed": False,
     "footer_fixed": False,
-    "sidebar_fixed": True,
+    "sidebar_fixed": False,
     "sidebar": "sidebar-dark-primary",
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
-    "sidebar_nav_child_indent": False,
-    "sidebar_nav_compact_style": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
     "theme": "slate",

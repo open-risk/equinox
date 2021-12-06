@@ -21,6 +21,7 @@
 from django.db import models
 from portfolio.model_choices import *
 from django.urls import reverse
+from portfolio.ProjectCompany import ProjectCompany
 
 
 class Scorecard(models.Model):
@@ -34,12 +35,12 @@ class Scorecard(models.Model):
                                             help_text='Identification of a specific scorecard data container<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Scorecard">Documentation</a>')
 
     scorecard_data = models.JSONField(blank=True, null=True,
-                                      help_text='Scorecard data as key/value pairs of characteristics / attributes href="https://www.openriskmanual.org/wiki/Characteristic">Documentation</a>')
+                                      help_text='Scorecard data as key/value pairs of characteristics / attributes <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Characteristic">Documentation</a>')
 
     # LINKS
 
-    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company who's score is being computed")
-
+    project_company = models.ForeignKey(ProjectCompany, blank=True, null=True, on_delete=models.CASCADE,
+                                        help_text="The Project Company who's score is being computed")
 
     #
     # BOOKKEEPING FIELDS
@@ -51,7 +52,7 @@ class Scorecard(models.Model):
         return self.scorecard_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Scorecard_edit', kwargs={'pk': self.pk})
+        return reverse('risk_analysis:Scorecard_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Scorecard"

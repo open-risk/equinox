@@ -1,0 +1,54 @@
+# GENERAL TRANSLATIONS
+# Copyright (C) 2021, Open Risk (www.openriskmanagement.com)
+# This file is distributed under the same license as the equinox package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-11 17:00+0000\n"
+"PO-Revision-Date: 2021-11-11\n"
+"Last-Translator: Open Risk <info@openrisk.eu>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: equinox/settings.py:147
+msgid "Dutch"
+msgstr ""
+
+#: equinox/settings.py:148
+msgid "English"
+msgstr ""
+
+#: equinox/settings.py:149
+msgid "Greek"
+msgstr ""
+
+#: portfolio/Loan.py:319
+msgid "Loan"
+msgstr "Lenning"
+
+#: portfolio/Loan.py:320
+msgid "Loans"
+msgstr "Lenningen"
+
+#: risk_analysis/apps.py:7
+msgid "Risk Analysis"
+msgstr "Risico Analyse"
+
+#: start/templates/start/front.html:14
+msgid ""
+"Equinox is an open source platform that supports the holistic risk "
+"management of sustainable finance projects"
+msgstr ""
+"Equinox is een open source platform dat holistische risicobeheer van duurzame "
+"financieringsprojecten ondersteunt"
+
+#: start/templates/start/front.html:19
+msgid "Welcome to Equinox"
+msgstr "Welkoom op Equinox"

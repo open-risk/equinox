@@ -21,6 +21,8 @@
 
 from django.apps import AppConfig
 
+""" The main portfolio management app
+"""
 
-class PfPortfolioConfig(AppConfig):
+class PortfolioConfig(AppConfig):
     name = 'portfolio'

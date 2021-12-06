@@ -37,7 +37,7 @@ class AssetList(ListView):
         return context
 
 
-class PFMapView(TemplateView):
-    """Markers map view."""
+class AssetMapView(TemplateView):
+    """Asset Markers Map view."""
 
     template_name = "asset_map.html"

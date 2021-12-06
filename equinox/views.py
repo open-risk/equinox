@@ -25,7 +25,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.reverse import reverse
 
-from portfolio.Scorecard import Scorecard
+from risk_analysis.Scorecard import Scorecard
 from equinox.serializers import ScorecardSerializer, ScorecardDetailSerializer
 from portfolio.Revenue import Revenue
 from portfolio.Sponsor import Sponsor

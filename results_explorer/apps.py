@@ -18,13 +18,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 from django.apps import AppConfig
+from django.utils.translation import ugettext_lazy as _
 
-""" Asset manager for geospatial assets
-
+""" Application for the management of results and reporting
 """
 
 
-class AssetManagerConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'asset_manager'
+class ResultsExplorerConfig(AppConfig):
+    name = 'results_explorer'
+    verbose_name = _('Reporting')

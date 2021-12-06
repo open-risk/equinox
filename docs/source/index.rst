@@ -12,7 +12,7 @@ equinox Documentation
 
 
 Reference Standards
------------
+-------------------
 The set of standards currently implemented is based on the following references:
 
 

@@ -2,20 +2,30 @@
 
 Equinox Data Models
 ==============================
-
-The next pages document the Equinox data models.
-
-Each data model is implemented in a separate file TABLE_NAME.py in the portfolio directory.
+The following pages document the Equinox data models. Each data model is implemented in a separate file TABLE_NAME.py in the portfolio directory.
 
 .. toctree::
    :maxdepth: 4
 
+   Asset
    ProjectCompany
    Loan
    Contractor
    Operator
-   Asset
    Swap
    Stakeholders
    Sponsors
    Revenue
+
+
+Equinox Applications
+==============================
+The following pages document the Equinox applications
+
+.. toctree::
+   :maxdepth: 4
+
+   Workflows
+   Reporting
+
+

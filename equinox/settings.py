@@ -47,10 +47,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.humanize',
     'django.contrib.staticfiles',
     'django_json_widget',
     'rest_framework',
@@ -63,7 +65,6 @@ INSTALLED_APPS = [
     "start",
     "reference",
     "portfolio",
-    "asset_manager",
     "risk_analysis",
     "results_explorer",
     "debug_toolbar"
@@ -83,10 +84,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'equinox.urls'
 
-ROOT_VIEW = "http://localhost:8000"
+ROOT_VIEW = "http://localhost:8080"
 
 SITE_ID = 1
-SITE_URL = "https://example.com"
+SITE_URL = "http://equinoxpoint.org"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/uploads/'
@@ -149,6 +150,7 @@ LANGUAGE_CODE = 'nl'
 LANGUAGES = [
     ('nl', _('Dutch')),
     ('en', _('English')),
+    ('es', _('Spanish')),
     ('el', _('Greek')),
 ]
 

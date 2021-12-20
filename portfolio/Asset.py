@@ -24,17 +24,25 @@ from django.contrib.gis.db.models import PointField, PolygonField
 from django.urls import reverse
 from datetime import datetime
 
+ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
+                       (1, '(b) CRE'),
+                       (2, '(c) SME/Corporate'),
+                       (3, '(d) Unsecured'),
+                       (4, '(e) Auto'),
+                       (5, '(f) Leasing / ABF'),
+                       (6, '(g) Specialised')]
+
 
 class Asset(models.Model):
     """
-    The Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Project (which may or may not be financed)
+    The Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Portfolio or Inventory or a Project - which may or may not be financed. An asset will involve one more emissions sources.
 
-    Assumption is that an Asset participates in only one Project
+    An Asset participates in only one Project at a time (if linked to a project object)
 
 
     """
 
-    # IDENTIFICATION
+    # IDENTIFICATION & CATEGORIZATION
 
     asset_identifier = models.CharField(max_length=80, blank=True, null=True,
                                         help_text='Unique identifier of the asset for internal purposes')
@@ -58,13 +66,12 @@ class Asset(models.Model):
     legal_owner = models.TextField(blank=True, null=True,
                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     #
     # GHG Data
     #
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                            help_text='This stores the aggregate current annualized emissions of an asset in GO2 equivalents')
 
     #
     # Geographic Information (Geometries stored separately)
@@ -162,7 +169,6 @@ class Asset(models.Model):
 
     latest_valuation_amount = models.FloatField(blank=True, null=True,
                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
 
     manufacturer_of_collateral = models.TextField(blank=True, null=True,
                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

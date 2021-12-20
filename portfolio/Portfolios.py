@@ -5,51 +5,38 @@ from django.urls import reverse
 from reference.nace_list import NACE_CHOICES
 from reference.nuts3_list import NUTS3_CHOICES
 
-"""
-Current structure of simplified portfolio data structure
-"
-"portfolio_id": p, FK
-"Obligor_ID": i,
-"EAD": EAD,
-"LGD": LGD,
-"Rating": R,
-"Stage": Stage,
-"Tenor": T,
-"Sector": Sector
-"Country": Country
-"""
-
-portfolio_attributes = [(0, 'EAD'), (1, 'LGD'), (2, 'Rating'), (3, 'Stage'),
-                        (4, 'Tenor'), (5, 'Sector'), (6, 'Country')]
-
 
 class Portfolio(models.Model):
     """
-    Portfolio object holds workflow oriented portfolio data
-    The object is read/write
-    Includes reference to user creating the data set
-    Portfolio is named to facilitate recognition
-    Actual Portfolio data stored in the PortfolioData model
+    The Portfolio object holds a collection of projects
+
+    Includes reference to user creating the data set (portfolio manager)
+
+    Portfolios are named to facilitate recognition
+
+    The actual Portfolio data stored in the PortfolioData model
+
     Notes is a user oriented field to allow storing human readable context about the portfolio
 
-    Type is an integer field representing the type of the portfolio
+    **Type** is an integer field representing the type of the portfolio
     0 -> Performing Book (default)
-    1 -> Non-performing Book
+    1 -> Historical Book
 
 
     """
 
-    PORTFOLIO_TYPES = [(0, 'Performing'), (1, 'NPL')]
+    PORTFOLIO_TYPES = [(0, 'Performing'), (1, 'Historical')]
     GENERATION_TYPES = [(0, 'Actual'), (1, 'Synthetic'), (2, 'External')]
 
     name = models.CharField(max_length=200, help_text="An assigned name to help identify the portfolio")
     user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="The user that created the portfolio")
     notes = models.TextField(blank=True, null=True,
                              help_text="Description of the purpose or other relevant information about the portfolio")
-    portfolio_type = models.IntegerField(default=0, choices=PORTFOLIO_TYPES, help_text='0=Performing Book, 1=NPL Book')
+    portfolio_type = models.IntegerField(default=0, choices=PORTFOLIO_TYPES,
+                                         help_text='0=Performing Book, 1=Historical Book')
 
     generation = models.IntegerField(default=0, choices=GENERATION_TYPES,
-                                     help_text='0=Actual, 1=Synthetic')
+                                     help_text='0=Actual, 1=Synthetic, 2=External')
 
     # portfolio shape parameters
 
@@ -93,12 +80,11 @@ class Portfolio(models.Model):
 
 class PortfolioData(models.Model):
     """
-    PortfolioData object holds portfolio data in classic table format
-    The object is read/write
+    The PortfolioData object aggregates portfolio data in table format
+
 
     """
     # TODO incorporate portfolio type based constraint
-    # NPL Assets have Rating=D, Stage=3
 
     portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
 
@@ -106,11 +92,17 @@ class PortfolioData(models.Model):
     EAD = models.FloatField(blank=True, null=True, help_text="Exposure at Default")
     LGD = models.IntegerField(blank=True, null=True, help_text="Loss Given Default Class")
     Tenor = models.IntegerField(blank=True, null=True, help_text="Tenor (integer years)")
+
     # The field encodes using an integer key a dictionary of business (industry) sectors
     Sector = models.IntegerField(blank=True, null=True, choices=NACE_CHOICES, help_text="Business Sector")
+
     # The field encodes using an integer key a dictionary of geographical locations
     # Eg. countries, NUTS regions etc.
     Country = models.IntegerField(blank=True, null=True, choices=NUTS3_CHOICES, help_text="NUTS3 Region of Operations")
+
+    # bookkeeping
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.pk)
@@ -125,10 +117,11 @@ class PortfolioData(models.Model):
 
 class LimitStructure(models.Model):
     """
-    LimitStructure object holds limitflow oriented limit data
-    The object is read/write
-    Includes reference to user creating the data set
-    LimitStructure is named to facilitate recognition
+    The LimitStructure object holds target (budget) oriented limit data
+
+    Includes reference to user creating the budget scenario
+
+    Each LimitStructure is named to facilitate recognition
 
     """
 

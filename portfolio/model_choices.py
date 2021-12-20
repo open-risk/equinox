@@ -208,14 +208,6 @@ LEGAL_TYPE_OF_PROJECT_CHOICES = [
     (4, '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership where profits and liabilities are shared'),
     (5, '(f) Private Individual')]
 
-ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
-                       (1, '(b) CRE'),
-                       (2, '(c) SME/Corporate'),
-                       (3, '(d) Unsecured'),
-                       (4, '(e) Auto'),
-                       (5, '(f) Leasing / ABF'),
-                       (6, '(g) Specialised')]
-
 PRODUCT_TYPE_CHOICES = [(0, '(a) Term Loans'),
                         (1, '(b) Revolving Credit Facility'),
                         (2, '(c) Overdraft')]

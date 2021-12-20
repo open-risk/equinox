@@ -19,12 +19,10 @@
 # SOFTWARE.
 
 from django.apps import AppConfig
-
-""" Asset manager for geospatial assets
-
-"""
+from django.utils.translation import ugettext_lazy as _
 
 
-class AssetManagerConfig(AppConfig):
+class RiskAnalysisConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'asset_manager'
+    name = 'risk_analysis'
+    verbose_name = _('Risk Analysis')

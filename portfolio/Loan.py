@@ -24,6 +24,14 @@ from portfolio.model_choices import *
 from portfolio.ghg_choices import *
 from django.urls import reverse
 
+ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
+                       (1, '(b) CRE'),
+                       (2, '(c) SME/Corporate'),
+                       (3, '(d) Unsecured'),
+                       (4, '(e) Auto'),
+                       (5, '(f) Leasing / ABF'),
+                       (6, '(g) Specialised')]
+
 
 class Loan(models.Model):
     """
@@ -36,10 +44,12 @@ class Loan(models.Model):
     contract_identifier = models.CharField(max_length=80, blank=True, null=True,
                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
+                                      help_text='Lending Asset Class. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     # LINKS
 
     project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE)
-
 
     # SCORECARD
 
@@ -74,7 +84,6 @@ class Loan(models.Model):
 
     comments_on_covenant_waiver = models.TextField(blank=True, null=True,
                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
 
     country_of_origination = models.TextField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -154,7 +163,6 @@ class Loan(models.Model):
 
     governing_law_of_loan_agreement = models.TextField(blank=True, null=True,
                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
 
     interest_cap_rate = models.FloatField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

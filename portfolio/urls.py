@@ -21,10 +21,14 @@
 from django.urls import path, re_path
 from django.conf.urls import url
 from equinox import views
+from portfolio.views import AssetList
+from portfolio.views import AssetMapView
 
 app_name = "portfolio"
 
 urlpatterns = [
+    path('', AssetList.as_view(), name='Asset Manager'),
+    path('map', AssetMapView.as_view(), name='Map'),
     path('scorecards', views.scorecard_api, name='scorecard_api'),
     re_path(r'^scorecards/(?P<pk>[0-9]+)/$', views.scorecard_detail, name='scorecard_detail'),
 ]

@@ -1,0 +1,268 @@
+[
+  {
+    "model": "start.docpage",
+    "pk": 1,
+    "fields": {
+      "slug": "About_Assets",
+      "title": "About Assets",
+      "tooltip_message": "This page provides an overview of the Equinox functionality for representing loan portfolios, credit networks of borrowers etc. In the language of financial accounting this type of information belongs to the \"asset side\" of the balance sheet. This page only provides an overview, select specific links for more detailed information",
+      "content": "<h3><i class=\"fa fa-cubes\"></i> The overall design </h3>\r\n\r\n<p> Equinox supports multiple sources of databases of credit data. Here is a list of the most important categories</p>\r\n\r\n<ul>\r\n<li> <a href=\"{{ root_view }}/documentation/Golden_Source_Databases\">\"Golden source\" databases</a> for detailed contract level data\r\n<ul>\r\n<li> Templates based on the EBA loan level data templates</li>\r\n<li> Templates based on the ESMA securitisation collateral data templates </li>\r\n</ul>\r\n</li>\r\n<li>A simplified and standardized <it>native</it> portfolio database that holds portfolio data the include risk parameters such as PD/LGD/EAD </li>\r\n<li>A synthetic portfolio database that holds arbitrary portfolio specifications for testing and what-if type analyses</li>\r\n<li>Specialized databases for holding non-standard data such as representations of credit networks</li>\r\n</ul>\r\n\r\n<h3><i class=\"fa fa-table\"></i> Standardized (Golden Source) Backend </h3>\r\n\r\n<p>Equinox has the concept of a \"golden source\" backend (database / warehouse) that holds the most detailed and accurate information about clients and products. The schema (detailed type of information) of the current golden source backend replicates the proposed standards of the European Banking Authority</p>\r\n\r\n<p>We make a distinction between the main backend database and the data collections (views) that are used for various credit portfolio management <i>Objectives</i>. The latter will typically be <i>subsets</i> extracted and collated from the backend sources and further enhanced by applying calculation <i>Workflows</i>.\r\n</p>\r\n\r\n<h3><i class=\"fa fa-cubes\"></i> Portfolio Explorer </h3>\r\n\r\n<p>The Portfolio Explorer is a key interface to the Equinox databases of credit data. In the Portfolio Explorer application we consider a <i>Credit Portfolio</i> as a composite <b>view</b> that integrates both <i>Client</i> specific and <i>Loan Product</i> information. Such views can be generated in various ways:</p>\r\n\r\n<ul>\r\n<li>By processing actual credit data from the golden source backend database of Equinox</li>\r\n<li>By importing data from external files or databases</li>\r\n<li>By generating simulated (synthetic) portfolios for training and analysis purposes</li>\r\n</ul>\r\n\r\n<p>Practically every user workflow / objective and desired report in Equinox requires specifying a portfolio to use for analysis. Hence familiarizing with\r\nthe type of data used by the portfolio explorer and how they can be generated or modified is a significant step in making efficient use of the platform</p>\r\n\r\n\r\n<h3><i class=\"fa fa-scissors\"></i> Synthetic Portfolios</h3> \r\n\r\n<p>Synthetic portfolios are an important way to use Equinox to gain deep portfolio management insights. The key idea is that a synthetic portfolio is not derived explicitly from actual portfolio data but is constructed via a summary specification. This allows the user to explore scenarios in an easy and focused manner </p> \r\n\r\n<h3><i class=\"fa fa-users\"></i> Cyclos Link </h3>\r\n<p>Cyclos Link is an example of generating Client Data aggregations in Equinox through the use of external sources. It creates a direct link to an external instance of the Cyclos Software which allows the construction of <i>Snapshots</i> that are stored within Equinox and can be used for further analysis\r\n</p>\r\n\r\n<h3><i class=\"fa fa-users\"></i> Client Explorer </h3>\r\n<p>The Client Explorer views focus exclusively on borrowing entities (clients, borrowers, counterparties) and their possible connections. A important future functionality available at the client explorer level will be the credit scoring of clients on the basis of standardized credit scoring models.\r\n</p>",
+      "doc_type": 0,
+      "category": 2,
+      "creation_date": "2018-04-16T09:01:48.601",
+      "last_change_date": "2019-05-10T12:35:20.165"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 2,
+    "fields": {
+      "slug": "About_Liabilities",
+      "title": "About Liabilities",
+      "tooltip_message": "Overview of Equinox functionality relating to Liability structures of various modeled Entities",
+      "content": "<h3><i class=\"fa fa-lightbulb-o\"></i> The concept of Entities </h3>\r\n<p>Within Equinox, <i>Entity</i> denotes the financial structure that is holding and / or managing a portfolio of credit assets. This can be any type of bank, a special purpose vehicle and asset manager etc.  \r\n</p>\r\n\r\n<h3><i class=\"fa fa-university\"></i> Entity Explorer </h3>\r\n<p>In the simplest case the Entity Explorer allows specifying the <i>liabilities</i> of the financial\r\n    institution managing a credit portfolio. For example the amount of risk capital available to\r\n    cover credit losses. Portfolios can be analysed without specifying any entity in detail.\r\n</p>\r\n\r\n <h3><i class=\"fa fa-bug\"></i> Incorporating liabilities into workflows / objectives </h3>\r\n<p>Lots of functionality still coming...\r\n</p>",
+      "doc_type": 0,
+      "category": 3,
+      "creation_date": "2018-04-16T09:01:48.601",
+      "last_change_date": "2019-01-29T18:44:52.335"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 3,
+    "fields": {
+      "slug": "About_Scenarios_and_Models",
+      "title": "About Scenarios and Models",
+      "tooltip_message": "",
+      "content": "<h3><i class=\"fa fa-line-chart\"></i> Scenarios, Indices, Metrics and Models </h3>\r\n<p> The Model Explorer helps develop and organize any functions that are to be applied to\r\n    the portfolio to derive useful insights and help with its management. The toolkit encompasses\r\n    a wide range, from very simple to very complex.\r\n</p>\r\n\r\n<h3><i class=\"fa fa-list\"></i> The Scenario Engine </h3>\r\n<p> The Scenario Engine is one of the core models available within Equinox. It allows to\r\n    analyse the performance of a portfolio under various future scenarios. It has various\r\n    <i>modes</i>, for example a single scenario, a simulation using various economic factors\r\n    etc. Configuring the Scenario Engine (via the workflows) requires beyond the portfolio\r\n    data to specify a set of model configuration parameters and additional model data\r\n(Read more about this topic in <b>ScenarioEngine Workflows</b>)\r\n</p>\r\n\r\n<h3><i class=\"fa fa-book\"></i> DOAM (Description of a Model) </h3>\r\n<p> Equinox implements an Open Risk API specification for model documentation DOAM. This is an\r\n    RDF based semantic annotation of risk models that aims to make the production of\r\n    risk metrics transparent (traceable, reproducible).\r\n</p>\r\n\r\n<h3><i class=\"fa fa-code\"></i> Open Risk API </h3>\r\n<p> The Open Risk API provides the glue for putting the various models together with data.\r\n    Each model has a unique URL (link) where it can be accessed and document itself.\r\n</p>\r\n\r\n <h3><i class=\"fa fa-bug\"></i> Lots of functionality still coming... </h3>\r\n<p> This includes exposing all the modes of the Scenario Engine, full implementation of the\r\n    Open Risk API\r\n</p>",
+      "doc_type": 0,
+      "category": 7,
+      "creation_date": "2018-04-16T09:01:48.601",
+      "last_change_date": "2019-01-29T18:45:06.252"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 4,
+    "fields": {
+      "slug": "About_Workflows",
+      "title": "About Workflows",
+      "tooltip_message": "Workflows is how Equinox orchestrates any desired operation on portfolio data. This page provides a basic introduction. Further information is available in the documentation.",
+      "content": "<h3><i class=\"fa fa-cogs\"></i> The Workflow Concept </h3>\r\n<p> Workflows are a powerful means to expose the <b>full</b> functionality of Equinox allowing near limitless customization. Defining new workflows does require higher technical level and familiarity with the platform. But once defined, workflows are the building blocks of <a href=\"{{ root_view }}/documentation/About_Playbooks\">Playbooks</a>. In turn, one or more Playbooks allow you to achieve your Credit Portfolio Management  <a href=\"{{ root_view }}/documentation/About_Objectives\">Objectives</a>\r\n\r\n<p>Standard tasks can usually be achieved easier and faster with the <i>built-in</i> functionalities of the various apps.</p>\r\n\r\n<p>Each workflow is:</p>\r\n<ul>\r\n<li>a specification of a set of input data</li>\r\n<li>the performance of some desired operation / calculations and finally</li>\r\n<li>where applicable, the storage of the output</li>\r\n</ul>\r\n\r\n<h3><i class=\"fa fa-bars\"></i> Workflow Classifications </h3>\r\n\r\n<p>A good way to understand the nature of workflows is to examine some possible classifications:</p>\r\n\r\n\r\n<h4>By Portfolio Management Objective </h4>\r\n\r\n<p> Workflows can be classified according to the desired portfolio management objective. This classification aims to help use Equinox in the most effective way to perform the portfolio management mandate</p>\r\n\r\n<h4>By Content Type</h4>\r\n\r\n<p> Workflows can also be classified according to the type of content produced. In logical order:</p>\r\n<ol>\r\n    <li> A <b>Modelling task</b> that performs a customized model calculation. We call modelling workflows simply <i>Workflows</i> as they\r\nare the only type of workflow that actually modifies the Equinox database (creates and inserts new data) </li>\r\n    <li> A <b>Reporting task</b> that produces a customized report for human consumption (e.g. in html or pdf format). We call reporting workflows simply <i>Reports</i></li>\r\n    <li> A <b>Visualization task</b> that produces a customized visualization (either a static graphic or a dynamic visualization offering some embedded interactivity). We call visualization workflows simply <i>Visualizations</i></li>\r\n</ol>\r\n\r\n<p>A mentioned above, not all Equinox functionality is available or optimal to use via Workflows. The most important category of tasks currently not available via Workflows are operations modifying the Portfolio databases.\r\n\r\n<h4>By User Interaction Style</h4>\r\n\r\n<p> Finally, workflows can also be classified according to the type of interaction with the user:</p>\r\n<ul>\r\n    <li> A <b>Batch workflow</b> that performs a calculation and permanently stores the results in the database. This is the recommended mode for formal tasks performed using Equinox. Batch workflows may be a single calculation or a family of operations (for example  a parameter space survey to allow some optimization) and stores the results</li>\r\n    <li> An <b>Interactive workflow</b> that allows <i>interactively</i> working with models and data. This is the recommended mode for exploratory analysis, training and other tasks that require significant experimentation. This mode does not (normally) save results in permanent storage (does not create a log file).</li>\r\n</ul>\r\n\r\n<h3><i class=\"fa fa-list\"></i> Modelling workflow Components </h3>\r\n<p> There are four modelling workflow components:</p>\r\n<ul>\r\n    <li> The model to be used (currently only one model per calculation) </li>\r\n    <li> The portfolio data to be used </li>\r\n    <li> The model configuration parameters</li>\r\n    <li> The model data parameters </li>\r\n</ul>",
+      "doc_type": 0,
+      "category": 9,
+      "creation_date": "2018-04-16T09:01:48.601",
+      "last_change_date": "2019-02-04T14:58:39.853"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 5,
+    "fields": {
+      "slug": "About_Objectives",
+      "title": "About Objectives",
+      "tooltip_message": "The Objectives and Results Manager provides the functionality for extracting business relevant information from the Equinox system. This page provides an overall introduction. Further information is available via the embedded links",
+      "content": "<h3><i class=\"fa fa-bullseye\"></i> Objectives </h3>\r\n\r\n<p><i>Objectives</i> is the core  organizational concept of Equinox. Under the Objectives approach, the credit portfolio management mission is decomposed into a number of distinct objectives (aims, targets) which in turn can be achieved by executing a sequence of tasks, denoted\r\n<i>playbooks</i> or <i>workflows</i></p>\r\n\r\n<p> In its simplest, the end result of fulfilling a portfolio management objective using Equinox is the production of a set  of numbers (a Report) about various aspects of the portfolio. Working with visual data may also lead to <i>graphical reports</i>. More complex reports will involve composite workflows and storage of results (also for Audit purposes). \r\n</p>\r\n\r\n<h3><i class=\"fa fa-list\"></i> Objective Categories </h3>\r\n<dl>\r\n<dt>Provide <i>Portfolio Information</i></dt>\r\n<dd>In this category of objectives the goal is to obtain insights about the current stat of the portfolio through views and summaries of portfolio data.</dd>\r\n<dt>Manage <i>Concentration Risk</i></dt>\r\n<dd>In this category the focus is on identifying weaknesses in the current portfolio such as excessive concentrations to different risk factors</dd>\r\n<dt>Guide <i>Origination</i> of new credit assets</dt>\r\n<dd>This category ties up portfolio management with overall strategy for the portfolio. Actual or hypothetical\r\nproposals are analyzed in the context of the current portfolio</dd>\r\n<dt>Manage <i>Risk Appetite</i></dt>\r\n<dd>This category links up portfolio management objectives with risk constraints (for example exposure limits) imposed by internal or external requirements and policies.</dd>\r\n<dt>Manage <i>Risk Capital</i> and risk-adjusted returns</dt>\r\n<dd>This category links the asset side (risky assets) with the liability side (equity and debt instruments or guarantees). It is the most complex objective class</dd>\r\n\r\n<h3><i class=\"fa fa-cogs\"></i> Support for Objectives in Equinox </h3>\r\n<p>In Equinox achieving the objectives is via one of the following mechanisms:\r\n<ul>\r\n<li> Using <b>Built-in</b> (standardized) functionality in the various <b>Apps</b> that directly fulfills an objective without further requirements from the user\r\n<li> The more flexible <b>Playbook/Workflow</b> mechanism that enables full customization and extension of Equinox to incorporate arbitrarily complex sequences of calculations and report generation (but also requires deeper technical skills)\r\n</ul>\r\n\r\n<h3><i class=\"fa fa-eye\"></i> Examples </h3>\r\n<ul>\r\n<li>A simple example of fulfilling a Portfolio Information objective is using a built-in method is to create a report on portfolio statistics using the Portfolio Explorer app\r\n<li>An example of using a workflow-based method to fulfill a concentration management objective is to compute a concentration index via one of the linked models available for that purpose\r\n</ul>\r\n\r\n<h3><i class=\"fa fa-video-camera\"></i> Keeping Record (Audit Trail) </h3>\r\n<p> Equinox can assist with reaching Portfolio Management objectives but it does not know what those objectives are, cannot verify whether they are appropriate or whether they have been achieved! The functionality that is provided in this direction is a faithful audit trail (record of calculations) that have been performed (The Results Explorer App)",
+      "doc_type": 0,
+      "category": 10,
+      "creation_date": "2018-04-16T09:01:48.601",
+      "last_change_date": "2019-05-09T13:13:30.852"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 6,
+    "fields": {
+      "slug": "About_Interactivities",
+      "title": "About Interactivities",
+      "tooltip_message": "Interactivities are Equinox apps that aim to train users about the concepts and methods of credit portfolio management",
+      "content": "<h3><i class=\"fa fa-graduation-cap\"></i> Accelerated Learning </h3>\r\n<p>\r\n    Credit Portfolio Management is a fairly deep and complex domain which requires high quality training material. Interactivities are self-contained activities that use OpeCPM primarily as a training\r\n    resource. \r\n</p>\r\n\r\n<h3><i class=\"fa fa-paw\"></i> Immediate Visual Interaction </h3>\r\n<p>\r\n    Interactivities similar to Interactive Workflows in that the user can repeatedly perform a calculation without this being part of a storage and formal audit trail. The main difference is that \r\ninteractivities take this concept one step further and completely hide from the user the workflow step. Users interact with the various engines using a purely visual interaction with Equinox and its models \r\n</p>\r\n\r\n<h3><i class=\"fa fa-bug\"></i> Under construction </h3>\r\n<p>At present (0.4 Release)  a Demo Interactivity and a Name Concentration Calculator have been deployed</p>",
+      "doc_type": 0,
+      "category": 10,
+      "creation_date": "2018-04-16T09:01:48.601",
+      "last_change_date": "2019-05-10T15:29:16.501"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 7,
+    "fields": {
+      "slug": "Equinox_Components",
+      "title": "Equinox Components",
+      "tooltip_message": "This is a high level overview of the input / output interaction between the different Equinox application components (Not all functionality is deployed in versiobn 0.1)",
+      "content": "#### Model Calibration\r\n\r\nThis is the collection of algorithms required for calibrating credit portfolio models on the basis of historical / market data\r\n\r\n* Threshold Calculator: Calculates stochastic process thresholds consistent with an externally provided credit curve \r\n\r\n#### Simulation Engine\r\n\r\nThis is the core simulation (scenario) engine.  The engine receives model configuration files, portfolio data, user scenario data and emits a variety of numerical outputs\r\n\r\n#### Model Configurator:\r\n\r\n- Receives model configuration files (possibly empty)\r\n- Emits model configuration files\r\n\r\n#### Portfolio Creator:\r\n\r\n- Receives portfolio data parameters\r\n- Emits output portfolio data\r\n\r\n#### Portfolio Visualizer:\r\n\r\n- receives portfolio data\r\n- emits portfolio graphics outputs (histograms, pie-charts, network graphs etc)\r\n\r\n#### Portfolio Explorer / Summarizer:\r\n\r\n- Receives portfolio data\r\n- Emits portfolio numerical outputs (tables with statistics etc.)\r\n\r\n#### Risk Visualizer:\r\n\r\n- Receives model outcomes data\r\n- Produces model outcomes graphics output (loss distributions, heat-maps etc.)\r\n\r\n#### Risk Report Creator:\r\n\r\n- Receives graphics outputs\r\n- Receives numerical outputs\r\n- Emits textual reports\r\n\r\n### Database API's:\r\n\r\n#### Portfolio database:\r\n\r\n- receives portfolio snapshot data\r\n- updates portfolio database\r\n- extracts portfolio snapshot data from portfolio database\r\n\r\n#### Calculation database:\r\n\r\n- receives calculation data\r\n- updates calculation database\r\n- extract calculation data from calculation database",
+      "doc_type": 1,
+      "category": 0,
+      "creation_date": "2018-04-16T09:03:40.574",
+      "last_change_date": "2018-04-24T18:14:12.589"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 8,
+    "fields": {
+      "slug": "Linked_Models",
+      "title": "About Linked Models (Open Risk API)",
+      "tooltip_message": "Linked Models is the central concept of the Open Risk API. This page describes the concept and its implementation within Equinox",
+      "content": "<h3><i class=\"fa fa-line-chart\"></i> Model Explorer </h3>\r\n<p> The Model Explorer helps develop and organize any functions that are to be applied to\r\nthe portfolio to derive useful insights and help with its management. The toolkit of Model encompasses a wide range, from very simple to very complex.\r\n</p>\r\n\r\n<h3><i class=\"fa fa-code\"></i> API Endpoints </h3>\r\n<p> The collection of links in this menu exposes a fraction of the currently implemented API. This\r\nis mostly relevant for technical users interest in machine readable representations of the various data and model resources</p>\r\n\r\n<h3><i class=\"fa fa-bug\"></i> Under construction </h3>\r\n<p>The initial Open Risk API concept has been published in a <a href=\"https://www.openriskmanagement.com/open-risk-api/\">White Paper</a>. This page and links\r\nwill feature updated documentation as it applies currently to Equinox</p>\r\n\r\n\r\n<img width=\"500px\" src=\"/static/start/img/linked_models.png\">",
+      "doc_type": 0,
+      "category": 11,
+      "creation_date": "2018-04-16T10:09:34.283",
+      "last_change_date": "2019-05-11T17:31:47.923"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 9,
+    "fields": {
+      "slug": "Risk_Parameters",
+      "title": "Risk Parameters",
+      "tooltip_message": "",
+      "content": "<h3><i class=\"fa fa-question-circle\"></i> What are Risk Parameters </h3>\r\n<p> This page provides a brief introduction to the so called Risk Parameters (The abbreviations EAD, LGD etc.) as those are used in Equinox apps. Deeper discussions are provided in the Open Risk Manual (check the Concepts Page for a convenient collection of links)</p>\r\n\r\n<h3><i class=\"fa fa-gavel\"></i> Regulatory Risk Parameters (Basel II/III)</h3>\r\n<p> Risk Parameters denote any primary or derived data that convey risk information. In the context of credit portfolio management this is mostly information relevant for credit risk assessment \r\nand management</p>\r\n\r\n<p> The Basel II regulatory framework was the first large scale standardization of credit risk parameters. Terms such as EAD (Exposure at Default), LGD (Loss given default) have become standard regulatory reporting jargon. \r\n\r\n<h3><i class=\"fa fa-eye\"></i> Usage in Equinox </h3>\r\n<p> In Equinox these concepts are followed where useful (The full range of portfolio management activities requires concepts beyond regulatory reporting requirements). The following is a simplified list and definitions as used in the current release (0.1). Not all data are required for the various analyses. In fact even just a list of exposures (EAD) can produce meaningful insights and metrics.\r\n\r\n<dl>\r\n<dt>EAD</dt><dd>Exposure at default. The amount that is at risk at a future date if the borrower default. In the simplest case just the amount of the loan. </dd>\r\n<dt>LGD</dt><dd>Loss given default. The fraction of the amount legally due that is actually expected to be recovered. In the current release we use a range of LGD classes (modelling higher or lower recoveries)</dd>\r\n<dt>Tenor</dt><dd>The maturity (duration) of a loan product expressed as an integer number of periods (months, years etc). </dd>\r\n<dt>Sector</dt><dd>The business sector or other economic category to which a borrower belongs. Expressed\r\nas an integer index that maps e.g to the NACE classification</dd>\r\n<dt>Rating</dt><dd>Credit Rating or Score capturing the credit worthiness of the obligor. The current release uses 8 rating categories</dd>\r\n<dt>Country</dt><dd>A geographic index (e.g Country or NUTS area) indicating geographic\r\naffinity of the borrower</dd>\r\n<dt>Stage</dt><dd>This is an accounting concept (New IFRS 9 standards) for classification\r\nof borrowers according to status (Stage 1, 2, 3)</dd>\r\n</dl>",
+      "doc_type": 0,
+      "category": 8,
+      "creation_date": "2018-04-19T16:08:41.844",
+      "last_change_date": "2019-01-29T18:46:06.138"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 10,
+    "fields": {
+      "slug": "Portfolio_versus_Clients",
+      "title": "Portfolio versus Clients",
+      "tooltip_message": "The Portfolio Data Aggregation equation is simply: Client Data + Product Data = Portfolio Data",
+      "content": "<p>The data requirements for the Portfolio Explorer application includes filtered information about individual obligors / clients <i>and</i> the credit products or other contracts they might hold\r\n\r\n<ul>\r\n<li>Client Data Examples: Sector, Country of Operation, Data that help determine credit-worthiness etc.\r\n<li>Product Data Examples: Loan Contract Details (Duration), Collateral / Security etc\r\n</ul>\r\n\r\n<p>Aggregating risk data per obligor simplifies the analysis of portfolio characteristics",
+      "doc_type": 0,
+      "category": 2,
+      "creation_date": "2018-04-19T16:21:24.532",
+      "last_change_date": "2019-01-29T17:13:32.127"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 11,
+    "fields": {
+      "slug": "ScenarioEngine_Workflows",
+      "title": "ScenarioEngine Workflows",
+      "tooltip_message": "Discussion of ScenarioEngine Workflows (the most complex of the Equinox workflows)",
+      "content": "<p>ScenarioEngine Workflows are managed through the Workflow Manager like all other workflows. While for simpler workflows some elements might be optional, for ScenarioEngine workflows all aspects must be correctly configured. A full configuration consists of the following elements:\r\n<ul>\r\n<li><h4><i class=\"fa fa-cogs\"></i> Core Configuration </h4>\r\n<p> The core configuration of the workflow is accessed by clicking on the workflow name. \r\nWhile the model used is obviously in the case always the ScenarioEngine, editing the workflow entry allows selecting the <b>Model Configuration</b> to use. Different model configurations have different data requirements and may produce different types of outputs (More in Technical Documentation)\r\n</p>\r\n</li>\r\n<li><h4><i class=\"fa fa-cubes\"></i> Portfolio </h4>\r\n<p> The portfolio to be used (can be a full portfolio or a synthetic portfolio configuration). Click\r\non the link to edit portfolio parameters (if you want to point the workflow to another portfolio click\r\non the workflow name instead!)\r\n</p>\r\n</li>\r\n<li><h4><i class=\"fa fa-line-chart\"></i> Scenario Data </h4>\r\n<p> One of the ScenarioEngine modes uses specific scenarios. By clicking on Scenario Data \r\nwe can quickly edit the values of those scenarios. \r\n</p>\r\n</li>\r\n<li><h4><i class=\"fa fa-file-text-o\"></i> Model Configuration </h4>\r\n<p> The ScenarioEngine Model Configuration controls various aspects of the calculation: What\r\nkind of model to use, how long a time horizon for the calculation etc. A complete documentation\r\nis provided in the ScenarioEngine Model Configuration documentation page\r\n</p>\r\n</li>\r\n<li><h4><i class=\"fa fa-file-text-o\"></i> Model Data </h4>\r\n<p> Model Data provides any additional external data that are might be required to run a model\r\n    (historical data, assumptions etc.)\r\n</p>\r\n</li>\r\n</ul>",
+      "doc_type": 0,
+      "category": 9,
+      "creation_date": "2018-04-22T14:47:04.045",
+      "last_change_date": "2019-01-29T18:47:03.825"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 12,
+    "fields": {
+      "slug": "About_Historical_Data",
+      "title": "About Historical Data",
+      "tooltip_message": "Equinox integrates a large number of data sources of historical information that is useful for portfolio magement. This page provides a basic introduction. Further information is available in the documentation.",
+      "content": "<h3><i class=\"fa fa-database\"></i> About Historical Data</h3>\r\n<p>Equinox incorporates two broad types of historical data. Portfolio specific\r\n    historical credit data and economic timeseries data. The first allows for\r\n    example building credit scoring models, estimating credit quality migration.\r\n    The latter allow building scenarios and simulation engines that can project\r\n    outcomes for the portfolio under different environmental (business) conditions.\r\n</p>\r\n\r\n<h3><i class=\"fa fa-dashboard\"></i> About the Economic Data Explorer</h3>\r\n<p>The Economic Data explorer is an interactive, visual application that\r\n    builds on high quality open data repositories. Currently the main link is\r\n    the excellent resource provided by the European Central Bank (ECB)\r\n    via its <a href=\"http://sdw.ecb.europa.eu/\">Statistical Data Warehouse</a>.</p>\r\n\r\n<p>The Explorer retrieves statistical data from the warehouse and\r\n    provides value enhancing <i>visualizations</i> and <i>modelling</i> reports.\r\n    This enables answering the \"what if\" type questions that are essential in stress\r\n    testing business plans and balance sheets against adverse economic scenarios.\r\n\r\n<p>\r\n   It is at the moment not possible to use the Economic Data Explorer to directly\r\nbuild a scenario. This will be future functionality.\r\n</p>\r\n\r\n<h3><i class=\"fa fa-exchange\"></i> Transition Matrix Data</h3>\r\n<p> Functionality for using own historical credit data to build scoring and transition\r\n    models within Equinox will be forthcoming. Currently Transition Matrix data are\r\n    imported directly.\r\n</p>",
+      "doc_type": 0,
+      "category": 4,
+      "creation_date": "2018-10-12T14:48:12.228",
+      "last_change_date": "2018-10-12T14:50:22.959"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 13,
+    "fields": {
+      "slug": "About_Visualizations",
+      "title": "About Visualizations",
+      "tooltip_message": "Visualizations are a central tool within Equinox, enabling insights that are hardly possible from perusing raw data",
+      "content": "<h3><i class=\"fa fa-eye\"></i> Visualizations </h3>\r\n<p> Visualizations are a powerful means to expose the <b>full</b> functionality of Equinox.</p>\r\n\r\n<h3><i class=\"fa fa-bars\"></i> Types of Visualizations </h3>\r\n\r\n<p>A visualization can be:</p>\r\n<ul>\r\n<li>a standardized graph</li>\r\n<li>a custom made graph</li>\r\n<li>a three dimensional visualization</li>\r\n</ul>",
+      "doc_type": 0,
+      "category": 9,
+      "creation_date": "2018-10-12T15:12:25.916",
+      "last_change_date": "2019-01-29T18:47:59.624"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 14,
+    "fields": {
+      "slug": "About_Reports",
+      "title": "About Reports",
+      "tooltip_message": "Reports are the primary means to disseminate results of analyses outside the Equinox environment",
+      "content": "<h3><i class=\"fa fa-cogs\"></i> Report Types </h3>\r\n<p> There are several different types of reports</p>\r\n\r\n<ul>\r\n<li>a specification of a set of input data</li>\r\n<li>the performance of some desired operation / calculations and finally</li>\r\n<li>where applicable, the storage of the output</li>\r\n</ul>",
+      "doc_type": 0,
+      "category": 9,
+      "creation_date": "2018-10-12T15:22:06.704",
+      "last_change_date": "2019-01-29T18:47:45.636"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 15,
+    "fields": {
+      "slug": "About_Synthetic_Data",
+      "title": "About Synthetic Data",
+      "tooltip_message": "Equinox allows the generation of synthetic credit data to enable experimentation and training in cases where actual historical data are scarce. This page provides a basic introduction. Further information is available in the documentation.",
+      "content": "<h3><i class=\"fa fa-database\"></i> About Synthetic Data</h3>\r\n<p>There are two broad types of synthetic credit data that are useful for portfolio management purposes. \r\n<ul>\r\n<li>Static portfolio data that conform to a particular schema / portfolio parameters</li>\r\n<li>Dynamic (time dependent) data that are sampled from a generative statistical model\r\n</ul>\r\n</p\r\n\r\n<h3><i class=\"fa fa-dashboard\"></i> About the Synthetic Data Generator</h3>\r\n<p>The Synthetic Data Generator is an interactive form that allows the generation of \r\nsynthetic credit data according to a well specified schema.</p>",
+      "doc_type": 0,
+      "category": 5,
+      "creation_date": "2018-11-11T14:32:42.207",
+      "last_change_date": "2018-11-11T14:33:20.188"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 16,
+    "fields": {
+      "slug": "About_Playbooks",
+      "title": "About Playbooks",
+      "tooltip_message": "Playbooks are how Objectives can be acted upon. This page explains the Playbook concept, the various types and provides some examples",
+      "content": "<h3><i class=\"fa fa-bullseye\"></i> Playbooks </h3>\r\n<p> While Objectives are something the Portfolio Manager can intuitively understand and link to their mandate, Playbooks are something the computer can understand and execute. Strictly speaking a Playbook is a collection of <a href=\"{{ root_view }}/documentation/About_Workflows\">Workflows</a> which are the more elementary operations on portfolio data. \r\n</p>\r\n\r\n<h3><i class=\"fa fa-list\"></i> Playbook Categories </h3>\r\n<dl>\r\n<dt>Parametric <i>Portfolio</i> Analyses</dt>\r\n<dd>In this category an operation is executed on a set of portfolios that have varying parameters.</dd>\r\n<dt>Varying Model <i>Configuration </i> Analyses</dt>\r\n<dd>In this category an operation is executed on a given portfolio with a given model but\r\na varying set of model configurations</dd>\r\n<dt><i>Defender / Challenger </i> Model Analyses</dt>\r\n<dd>This category employs two distinct models applied to the same portfolio to obtain\r\nand contrast potentially diverging results</dd>\r\n</dl>\r\n\r\n\r\n<h3><i class=\"fa fa-eye\"></i> Examples </h3>\r\n<p> The following snippet is the interesting part of a parametric type playbook that varies the average credit rating of homogeneous pool</p>\r\n<pre>\r\n  \"PortfolioParameter\": [\"portfolio_config\", \"Rating\"],\r\n  \"PortfolioParameterRange\" : [0, 1, 2, 3, 4, 5, 6]\r\n</pre>\r\n\r\n<h3><i class=\"fa fa-video-camera\"></i> Keeping Record </h3>\r\n<p> Playbook results are always stored",
+      "doc_type": 0,
+      "category": 9,
+      "creation_date": "2019-02-04T13:33:17.847",
+      "last_change_date": "2019-02-04T15:26:30.966"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 18,
+    "fields": {
+      "slug": "Correlation_Matrix",
+      "title": "Correlation Matrix",
+      "tooltip_message": "This page provides an overview of the Equinox functionality for using correlation matrices",
+      "content": "<h3><i class=\"fa fa-cubes\"></i> About Correlation Matrices </h3>\r\n\r\n<p> Equinox supports multiple sources of correlation data</p>",
+      "doc_type": 0,
+      "category": 8,
+      "creation_date": "2019-05-09T18:00:25.143",
+      "last_change_date": "2019-05-09T18:00:25.143"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 19,
+    "fields": {
+      "slug": "Transition_Matrix",
+      "title": "Transition Matrix",
+      "tooltip_message": "This page provides an overview of the Equinox functionality for using transition matrices",
+      "content": "<h3><i class=\"fa fa-cubes\"></i> About Transition Matrices </h3>\r\n\r\n<p> Equinox supports multiple sources of rating transition data</p>",
+      "doc_type": 0,
+      "category": 8,
+      "creation_date": "2019-05-09T18:01:45.720",
+      "last_change_date": "2019-05-09T18:01:45.720"
+    }
+  },
+  {
+    "model": "start.docpage",
+    "pk": 20,
+    "fields": {
+      "slug": "Golden_Source_Databases",
+      "title": "Golden Source Databases",
+      "tooltip_message": "This page provides an overview of the different standardized database formats support by Equinox functionality for representing loan portfolios",
+      "content": "<h3><i class=\"fa fa-cubes\"></i> Currently Supported Backends </h3>\r\n\r\n<p>Equinox has the concept of a \"golden source\" backend (database / warehouse) that holds the most detailed and accurate information about clients and products</p>\r\n\r\n<ul>\r\n<li> Templates based on the EBA loan level data templates</li>\r\n<li> Templates based on the ESMA securitisation collateral data templates </li>\r\n</ul>\r\n\r\n<h3><i class=\"fa fa-table\"></i>  EBA NPL Loan Level Data Templates</h3>\r\n\r\n<h3><i class=\"fa fa-table\"></i> ESMA Securitisation Data Templates</h3>",
+      "doc_type": 0,
+      "category": 2,
+      "creation_date": "2019-05-10T12:36:15.423",
+      "last_change_date": "2019-05-10T12:39:14.356"
+    }
+  }
+]

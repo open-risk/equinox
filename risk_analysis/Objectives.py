@@ -75,7 +75,6 @@ class Playbook(models.Model):
       "TestName": "ScenarioEngine 0.3 Parameter Survey",
 
       WORKFLOW DATA (DUPLICATED / OVERRIDDEN)
-      "ExecDir" : "/home/philippos/Desktop/Dev_OpenCPM/OpenCPM/ScenarioEngine/",
       "BuildDir": "cmake-build-release/",
       "ExecName": "ScenarioEngine",
       "WorkflowDir": "Workflows/",

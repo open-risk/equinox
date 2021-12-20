@@ -1,0 +1,51 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} {{ page.title }}
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+{% endblock %}
+
+{% block messages %}
+    <div class="card-header">
+
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="card card-primary card-outline">
+        <div class="card-body pad table-responsive">
+            <div class="card card-info">
+                <div class="card-header">
+                    {{ page.tooltip_message }}
+                </div>
+            </div>
+
+            <div class="card card-body">
+                {% render_doc_page page.content %}
+            </div>
+        </div>
+    </div>
+
+
+    <div id="interface_buttons">
+        {% if user.is_superuser %}
+            <a class="interface_buttons btn btn-default"
+               href="{% url 'admin:start_docpage_change' page.pk %}">Edit DocPage</a>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

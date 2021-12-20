@@ -1,0 +1,92 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Batch Workflow Calculation
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'workflow_explorer/js/batch_workflow.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'workflow_explorer/css/workflow.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'workflow_explorer/css/tables.css' %}">
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <b><i class="fa fa-hand-pointer-o"></i> Review and Execute Selected Workflow: </b><i>{{ object.name }}</i>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "workflow_explorer/wf_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+    <div id="page" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <ul class="fieldWrapper">
+                        <form id="myform" action="">{% csrf_token %}
+                            {{ formset.as_ul }}
+                        </form>
+                    </ul>
+                </div>
+                <div id="workflow_name">Workflow Name: {{ object.name }}</div>
+                <div id="model_url">Model URL: {{ object.model_url }}</div>
+                <div id="model_configuration">Model Configuration: {{ object.model_configuration }}</div>
+                <div id="model_data">Model Data: {{ object.model_data }}</div>
+                <div id="results_url">Results URL: {{ object.result_url }}</div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+
+
+                <form method="post">{% csrf_token %}
+                    <input class="interface_buttons btn btn-default" value="Calculate and Store" type="button"
+                           onclick='JavaScript:batch_workflow()'
+                           id="calculate_button">
+                </form>
+
+                <form action="{{ root_view }}/{% url 'admin:workflow_explorer_workflow_change'  object.pk %}">
+                    <input class="interface_buttons btn btn-default" value="Edit Worfklow" type="submit"
+                           id="edit_button">
+                </form>
+
+                <form id="myForm" action='' method="get">{% csrf_token %}
+                    <input class="interface_buttons btn btn-default" value="Explore Result" type="submit"
+                           id="explore_button"
+                           style="display: none;">
+                </form>
+
+                <p id="result_url" style="display: none;"></p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        var workflow_raw = "{{ workflow_data | escapejs }}";
+        var workflow = JSON.parse(workflow_raw);
+        console.log(workflow);
+        var model_url = "{{ model_url }}";
+    </script>
+
+
+{% endblock %}

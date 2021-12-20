@@ -1,0 +1,64 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Scenario Form Editor
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'scenario_explorer/js/xmlhttppost.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'scenario_explorer/js/timeseries_graph.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'scenario_explorer/css/scenario_editor.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <div class="title">Form Based Scenario Editor</div>
+        <div class="subtitle">Adjust values and/or probabilities</div>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "start/root_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-non-responsive">
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                <h4>Scenario Data</h4>
+            </div>
+            <div>
+                <form id="myform" method="post" action="">{% csrf_token %}
+                    <table>
+                        {{ formset.as_table }}
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <input class="interface_buttons btn btn-default" value="Update" type="submit" form="myform">
+
+
+        </div>
+    </div>
+
+{% endblock %}

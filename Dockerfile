@@ -25,4 +25,4 @@ RUN python /equinox/manage.py migrate
 RUN python /equinox/createadmin.py
 RUN python /equinox/createcategories.py
 RUN python /equinox/manage.py collectstatic --no-input
-CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8000"]
+CMD [ "python", "./manage.py", "runserver", "127.0.0.1:8080"]

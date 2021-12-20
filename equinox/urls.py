@@ -45,29 +45,31 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="equinox API",
-      default_version='v1',
-      description="equinox is an open source platform for the holistic management of sustainable finance projects. ",
-      terms_of_service="https://www.openriskmanagement.com/",
-      contact=openapi.Contact(email="info@openrisk.eu"),
-      license=openapi.License(name="MIT License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="equinox API",
+        default_version='v1',
+        description="equinox is an open source platform for the holistic management of sustainable finance projects.",
+        terms_of_service="https://www.openriskmanagement.com/",
+        contact=openapi.Contact(email="info@openrisk.eu"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Dashboard URL's
-    path('', include('start.urls')),  # FrontPage URLS
-    path('asset_manager/', include('asset_manager.urls')),  # Asset Manager URLS
-    path(r'api/', views.api_root, name='api_root'),  # API root
-    path(r'api/portfolio_data/', include(('portfolio.urls', 'portfolio'), namespace='portfolio')),  # Portfolio data API
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('', include('start.urls')),  # Equinox Start Page URLS
+                  path('admin/doc/', include('django.contrib.admindocs.urls')),  #
+                  path('admin/', admin.site.urls),  # Equinox Admin URL's
+                  path(r'api/', views.api_root, name='api_root'),  # API root
+                  path(r'api/portfolio_data/', include(('portfolio.urls', 'portfolio'), namespace='portfolio')),
+                  # Portfolio data API
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
+# This is the optional debug toolbar
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+                      path('__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns

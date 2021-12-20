@@ -1,0 +1,123 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Interactive Workflow
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/itpoverlay.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'workflow_explorer/js/recalculate_workflow.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'workflow_explorer/css/workflow.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'workflow_explorer/css/tables.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/overlay.css' %}">
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <b><i class="fa fa-hand-pointer-o"></i> Interactive Workflow: </b><i>{{ object.name }}</i>
+        <p>{{ object.description }}</p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "workflow_explorer/wf_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div>
+                    <h4>Select Workflow Options</h4>
+                </div>
+                <div>
+                    <ul class="fieldWrapper">
+                        <form id="myform" method="post" action="">{% csrf_token %}
+                            {{ formset.as_p }}
+                        </form>
+                    </ul>
+                </div>
+                <div id="interface_buttons">
+                    <input class="interface_buttons btn btn-default" value="Calculate" type="submit" form="myform">
+                    <a class="interface_buttons btn btn-default"
+                       href="{% url 'admin:workflow_explorer_workflow_change' object.pk %}">Edit Workflow</a>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div>
+                    <h4>Results</h4>
+                </div>
+                <div id="results">
+                    <h5 id="message"></h5>
+                    <table id="results_data">
+                        <theader>
+
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Message</th>
+                            <th>Data</th>
+
+                        </theader>
+                        <tbody>
+
+                        {% for result in results_data %}
+                            <tr>
+                                <td>
+                                    {{ result.ID }}
+                                </td>
+                                <td>
+                                    {{ result.Type }}
+                                </td>
+                                <td>
+                                    {{ result.Message }}
+                                </td>
+                                <td>
+                                    {{ result.Data }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <span id="scalar"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        var workflow_raw = "{{ workflow_data | escapejs }}";
+        var workflow = JSON.parse(workflow_raw);
+        var results = null;
+
+        var results_raw = "{{ results_data | escapejs }}";
+        try {
+            results = JSON.parse(results_raw);
+        }
+        catch (err) {
+            console.log(results_raw);
+            results = results_raw;
+
+        }
+        console.log(workflow);
+        console.log(results);
+    </script>
+
+{% endblock %}
+

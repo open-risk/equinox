@@ -48,7 +48,7 @@ class ModelDefinition(models.Model):
 
     """
 
-    name = models.CharField(max_length=200, help_text="The Model name precisely as used within OpenCPM "
+    name = models.CharField(max_length=200, help_text="The Model name precisely as used within Equinox "
                                                       "(capitalization / underscores are important!)")
 
     model_definition = models.TextField(blank=True, null=True, help_text="A RDF file containing Model metadata in "
@@ -63,7 +63,7 @@ class ModelDefinition(models.Model):
                                          help_text="Internal name of the model server")
 
     remote_model_url = models.URLField(blank=True, null=True, help_text="A remote URL where a model instance is live "
-                                                                        "(only applicable for models served outside OpenCPM")
+                                                                        "(only applicable for models served outside Equinox")
 
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
@@ -99,9 +99,7 @@ class ModelConfiguration(models.Model):
                           (9, 'Macro Simulation'))
 
     SCENARIO_METHOD_CHOICES = ((1, 'Simulated Macro'),
-                               (2, 'Enumerated Macro'),
-                               (3, 'Simulate + Enumerate'),
-                               (4, 'Enumerate + Simulate'))
+                               (2, 'Enumerated Macro'),)
 
     LGD_METHOD_CHOICES = ((0, 'Fixed LGD Percentage'),
                           (1, 'Stochastic LGD'))

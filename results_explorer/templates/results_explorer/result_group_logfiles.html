@@ -1,0 +1,59 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Result Viewer
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/jsoneditor/jsoneditor.js' %}"></script>
+
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/js/jsoneditor/jsoneditor.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <p> Logfile Viewer
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "start/root_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div>
+                    <h3> Logfiles for ResultGroup </h3>
+                </div>
+                {% for log in logfile_collection %}
+                    <div>
+                        <h4> Logfile </h4>
+                    </div>
+                    <div>
+                    <textarea cols="80" rows="10">
+                        {{ log }}
+                    </textarea>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

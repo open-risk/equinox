@@ -1,3 +1,5 @@
+{% extends 'start/generic.html' %}
+
 {% load i18n static %}
 
 {% block extrastyle %}
@@ -15,65 +17,103 @@
         </div>
     </div>
 
-    <hr style="color: white">
-    <h2>{%  trans "Welcome to Equinox"  %}</h2>
+    <div class="card card-primary card-outline">
 
-    <h3>The Equinox platform focus on the challenge of Sustainability in Project Finance context</h3>
-    <p>Sustainability (both environmental and social) is a major issue that affects all economies. Developing tools and
-        methodologies that improve the ability of all stakeholders to assess and report risks is an important objective
-        and Equinox aims to help carry out this process as optimally as possible.</p>
-
-    <h3>What exactly is Equinox?</h3>
-    <p>Equinox is a both <i>a database and a web application</i> that works together with a tailored <i>data schema</i>
-        to provide easy access to sustainability data adhering to both regulatory requirements, protocols and
-        recommendations and financial industry initiatives. </p>
-
-    <h3>How does it work?</h3>
-    <p>Running the application creates a <i>server</i> that can then be accessed via any regular web browser. NB: For
-        easy installation and testing the current release uses a self-contained sqlite database instead of a production
-        database server</p>
-
-    <p>The initial functionality of Equinox focuses on integrating the following concepts</p>
-
-    <ul>
-        <li>The European Banking Authority's Criteria for the Credit Risk Assessment of Project Finance under the
-            Standardized approach for Specialized Lending
-        </li>
-        <li>The PCAF accounting and reporting recommendations for Project Finance GHG emissions</li>
-        <li>The GHG Protocol for accounting for CO2 emissions</li>
-        <li>The Equator Principles</li>
-    </ul>
-
-    <p>Once the platform is up and running a wealth of functionality is available.</p>
-
-    <h3>User Functionality</h3>
-
-    <ul>
-        <li>A user can log-in into the application with their credentials</li>
-        <li>Inspect the available data sets (tables or relations) that capture the EBA / EP / PCAF / GHG Protocol Data
-            requirements
-        </li>
-        <li>Insert, Update or Delete records (e.g. new Project Data)</li>
-        <li>Consult the documentation as to the meaning and requirements of each data element (TODO)</li>
-    </ul>
-
-    <h3>Administrator Functionality</h3>
-    <ul>
-        <li>An administrator can create users and user groups and assign permissions</li>
-        <li>Perform bulk insertion or deletion of data sets</li>
-    </ul>
+        <div class="card-body pad table-responsive">
 
 
-    <h3>Developer Functionality</h3>
-    <ul>
-        <li>Equinox is based on the well known and loved Python web framework Django</li>
-        <li>Developers can customize and adapt the platform in unlimited ways</li>
-    </ul>
+            <div class="card card-info">
+                <div class="card-header">
+                    <h4>{% trans "Welcome to Equinox" %}</h4>
+                </div>
 
-    <h3>Join the Equinox community</h3>
-    <p>The project aims to be driven by community needs. We welcome code contributions and feature requests via <a
-            href="https://github.com/open-risk/equinox">github</a>.
-    </p>
+                <div class="card card-body">
+                    <p>The Equinox platform focus on the challenge of Sustainability in Project Finance context</p>
 
+                    <p>Sustainability (both environmental and social) is a major issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is an important objective and Equinox aims to help carry out this process as optimally as possible.</p>
+
+                    <p>Equinox is a both <i>a database and a web application</i> that works together with a tailored <i>data schema</i> to provide easy access to sustainability data adhering to both regulatory requirements, protocols and recommendations and financial industry initiatives.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card card-info">
+                <div class="card-header">
+                    <h4>How does it work?</h4>
+                </div>
+                <div class="card card-body">
+                    <p>Running the application creates a <i>server</i> that can then be accessed via any regular web browser. NB: For easy installation and testing the current release uses a self-contained sqlite database instead of a production database server
+                    </p>
+
+                    <p>The initial functionality of Equinox focuses on integrating the following concepts</p>
+
+                    <ul>
+                        <li>The European Banking Authority's Criteria for the Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending
+                        </li>
+                        <li>The PCAF accounting and reporting recommendations for Project Finance GHG emissions</li>
+                        <li>The GHG Protocol for accounting for CO2 emissions</li>
+                        <li>The Equator Principles</li>
+                    </ul>
+
+                    <p>Once the platform is up and running a wealth of functionality is available.</p>
+                </div>
+            </div>
+
+            <div class="card card-info">
+
+                <div class="card-header">
+                    <h4>User Functionality</h4>
+                </div>
+
+                <div class="card card-body">
+                    <ul>
+                        <li>A user can log-in into the application with their credentials</li>
+                        <li>Inspect the available data sets (tables or relations) that capture the EBA / EP / PCAF / GHG Protocol Data requirements
+                        </li>
+                        <li>Insert, Update or Delete records (e.g. new Project Data)</li>
+                        <li>Consult the documentation as to the meaning and requirements of each data element (TODO)
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3>Administrator Functionality</h3>
+                </div>
+                <div class="card card-body">
+                    <ul>
+                        <li>An administrator can create users and user groups and assign permissions</li>
+                        <li>Perform bulk insertion or deletion of data sets</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3>Developer Functionality</h3>
+                </div>
+                <div class="card card-body">
+                    <ul>
+                        <li>Equinox is based on the well known and loved Python web framework Django</li>
+                        <li>Developers can customize and adapt the platform in unlimited ways</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3>Join the Equinox community</h3>
+                </div>
+                <div class="card card-body">
+                    <p>The project aims to be driven by community needs. We welcome code contributions and feature requests via
+                        <a
+                                href="https://github.com/open-risk/equinox">github</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

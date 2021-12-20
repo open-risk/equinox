@@ -27,6 +27,7 @@ from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import Asset
+from portfolio.EmissionsSource import EmissionsSource
 from portfolio.Contractor import Contractor
 from portfolio.Loan import Loan
 from portfolio.Operator import Operator
@@ -48,9 +49,6 @@ from portfolio.models import PointSource, AreaSource
 # Tree Objects
 #
 
-# @admin.register(ProjectCategory)
-# class ProjectCategoryAdmin(TreeAdmin):
-#     form = movenodeform_factory(ProjectCategory)
 
 class ProjectCategoryAdmin(TreeAdmin):
     view_on_site = False
@@ -71,6 +69,10 @@ class PointSourceAdmin(admin.OSMGeoAdmin):
 
     list_display = ("name", "location")
     view_on_site = False
+    save_as = True
+    search_fields = ['name']
+    list_filter = ('location',)
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(AreaSource)
@@ -79,6 +81,10 @@ class AreaSourceAdmin(admin.OSMGeoAdmin):
 
     list_display = ("name", "location")
     view_on_site = False
+    save_as = True
+    search_fields = ['name']
+    list_filter = ('location',)
+    date_hierarchy = ('creation_date')
 
 
 #
@@ -89,6 +95,10 @@ class AreaSourceAdmin(admin.OSMGeoAdmin):
 class AssetAdmin(admin.ModelAdmin):
     """Project Asset admin"""
     view_on_site = False
+    save_as = True
+    search_fields = ['name']
+    list_filter = ('asset_class', 'project')
+    date_hierarchy = ('creation_date')
 
     fieldsets = (
         ('Identification', {
@@ -110,68 +120,99 @@ class AssetAdmin(admin.ModelAdmin):
     )
 
 
+@admin.register(EmissionsSource)
+class EmissionsSourceAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     """Project admin"""
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(PrimaryEffect)
 class PrimaryEffectAdmin(admin.ModelAdmin):
     """Primary Effect admin"""
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(SecondaryEffect)
 class SecondaryEffectAdmin(admin.ModelAdmin):
     """Secondary Effect admin"""
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(ProjectActivity)
 class ProjectActivityAdmin(admin.ModelAdmin):
     """Project Activity admin"""
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(ProjectCompany)
 class ProjectCompanyAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Revenue)
 class RevenueAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Loan)
 class LoanAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Stakeholders)
 class StakeholdersAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Sponsor)
 class SponsorAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Contractor)
 class ContractorAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Operator)
 class OperatorAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):
     view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 class PortfolioDataAdminForm(forms.ModelForm):
@@ -197,6 +238,7 @@ class LimitStructureAdmin(admin.ModelAdmin):
     list_display = ('name', 'creation_date', 'notes')
     save_as = True
     view_on_site = False
+    date_hierarchy = ('creation_date')
 
     def changelist_view(self, request, extra_context=None):
         extra_context = {
@@ -211,6 +253,7 @@ class PortfolioAdmin(admin.ModelAdmin):
     list_filter = ('portfolio_type', 'generation')
     save_as = True
     view_on_site = False
+    date_hierarchy = ('creation_date')
 
     def changelist_view(self, request, extra_context=None):
         extra_context = {
@@ -230,6 +273,7 @@ class PortfolioDataAdmin(admin.ModelAdmin):
     list_filter = ('portfolio_id',)
     save_as = True
     view_on_site = False
+    date_hierarchy = ('creation_date')
 
     def response_change(self, request, obj, post_url_continue=None):
         """This makes the response after adding go to another apps changelist for some model"""

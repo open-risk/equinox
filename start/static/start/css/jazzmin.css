@@ -2,6 +2,14 @@
     display: inline !important;
 }
 
+.cm-s-easymde {
+    margin-left: 10px!important;
+}
+
+.editor-toolbar {
+    margin-left: 10px!important;
+}
+
 /*.select2-container--open .select2-dropdown {*/
 /*    display: inline !important;*/
 /*}*/

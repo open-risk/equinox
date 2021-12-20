@@ -8,18 +8,12 @@ equinox Documentation
   :alt: equinox Logo
   :align: left
 
-**Equinox** is an open source platform for collecting and reporting risk and sustainability information about project finance. Equinox implements / integrates a number of regulatory / industry standards that cover the space of credit and ESG risk analysis. The project is still in its early phases and is not yet suitable for deployment.
+**Equinox** is an open source platform for collecting and reporting risk and sustainability information about project finance. Equinox implements and integrates a number of regulatory or industry standards that cover the space of GHG emissions attribution and reporting and ESG risk analysis.
+
+The full list of implemented standards is in :ref:`References`
 
 
-Reference Standards
--------------------
-The set of standards currently implemented is based on the following references:
-
-
-* BIS/EBA Standardized Credit Risk assessment of Project Finance
-* Equator Principles for Project Finance
-* PCAF Emissions Accounting and Reporting for Project Finance
-* GHG Protocol for Projects
+.. note:: The equinox project is still in its early phases and is not yet suitable for deployment.
 
 
 Overview
@@ -29,22 +23,51 @@ Overview
 * License: MIT
 * Development Website: `Github <https://github.com/open-risk/equinox>`_
 * Online Code Documentation: `Read The Docs <https://equinox.readthedocs.io/en/latest/>`_
-* Project Discussion: Coming
+* Project Discussion: `Open Risk Commons <https://www.openriskcommons.org/c/sustainable-finance>`_
 * Docker Image: Coming
-* Training: Coming
+* Training: Coming: `Open Risk Academy <https://www.openriskacademy.com/>`_
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Documentation Contents:
+   :caption: Getting Started:
 
    description
+   setup
+   requirements
+   loading_sample_data
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Technical Documentation:
+
    modules
+   applications
+   api
+   api_docs
+   changelog
+   contributing
+
+.. toctree::
+   :maxdepth: 2
+   :caption: User Documentation:
+
+   getting_started
+   pages
+   GHG_Project
+   PCAF
+   CIRIS
+   EBA_Scorecard
+   References
+
 
 Further Supporting Documentation
 ---------------------------------
 
+* `Open Risk Manual (Sustainable Finance) <https://www.openriskmanual.org/wiki/Category:Sustainable_Finance>`_
 * `Open Risk Manual (Project Finance) <https://www.openriskmanual.org/wiki/Category:Project_Finance>`_
+* `Open Risk Manual (GHG Protocol) <https://www.openriskmanual.org/wiki/Category:GHG_Protocol>`_
 
 
 Indexes and tables

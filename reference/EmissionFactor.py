@@ -24,7 +24,7 @@ from django.urls import reverse
 
 class EmissionFactor(models.Model):
     """
-    The Emission Factor model holds IPCC reference data about activity emission factors
+    The Emissions Factor model holds IPCC reference data about activity emission factors
 
 
     """
@@ -123,5 +123,5 @@ class EmissionFactor(models.Model):
         return reverse('reference:EmissionFactor_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Emission Factor"
-        verbose_name_plural = "Emission Factor"
+        verbose_name = "Emissions Factor"
+        verbose_name_plural = "Emissions Factors"

@@ -18,14 +18,3 @@ The following pages document the Equinox data models. Each data model is impleme
    Revenue
 
 
-Equinox Applications
-==============================
-The following pages document the Equinox applications
-
-.. toctree::
-   :maxdepth: 4
-
-   Workflows
-   Reporting
-
-

@@ -18,15 +18,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.urls import path
+#!/usr/bin/env python
+import os
+import django
 
-from asset_manager.views import AssetList
-from asset_manager.views import AssetMapView
+os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
+django.setup()
 
-# app_name = "asset_manager"
+from reference.GPCSector import GPCSector
 
-urlpatterns = [
-    path('', AssetList.as_view(), name='Asset Manager'),
-    path('map', AssetMapView.as_view(), name='Map'),
-    # path(r'^geojson$', GeoJSONLayerView.as_view(model=MushroomSpot), name='data'),
-]
+get = lambda node_id: GPCSector.objects.get(pk=node_id)
+root = GPCSector.add_root(name='GPC Sector')
+root.save()
+node = get(root.pk).add_child(name='Stationary Energy')
+# get(node.pk).add_sibling(name='Landfill Gas')
+# get(node.pk).add_sibling(name='Afforestation')
+# get(node.pk).add_sibling(name='Energy Efficiency')
+# get(node.pk).add_sibling(name='Transportation Fuel Switch')
+# get(node.pk).add_sibling(name='Industrial Fuel Switch')
+# get(node.pk).add_sibling(name='Agricultural Tillage')
+# get(node.pk).add_child(name='Sub Category Project')

@@ -44,7 +44,7 @@ class EmissionFactor(models.Model):
     Parameter_Type = models.CharField(max_length=80, blank=True, null=True,
                                       help_text='Standard Description')
 
-    Description = models.CharField(max_length=80, blank=True, null=True,
+    Description = models.TextField(blank=True, null=True,
                                    help_text='Standard Description')
 
     Technology_Practices = models.CharField(max_length=80, blank=True, null=True,

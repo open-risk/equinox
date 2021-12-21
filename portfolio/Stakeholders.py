@@ -28,6 +28,10 @@ class Stakeholders(models.Model):
     The stakeholders model holds data documenting project stakeholders and the relevant social / political environment in which a Project is pursued. These data aim to support compliance assessment according to Equator Principles and political risk analysis
 
     """
+    # IDENTITY
+
+    stakeholder_identifier = models.CharField(max_length=80, null=True,
+                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # LINKS
 
@@ -85,7 +89,7 @@ class Stakeholders(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.stakeholders_group
+        return self.stakeholder_identifier
 
     def get_absolute_url(self):
         return reverse('portfolio:Stakeholders_edit', kwargs={'pk': self.pk})

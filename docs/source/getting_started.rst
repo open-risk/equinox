@@ -13,4 +13,3 @@ The equinox platform may be useful to portfolio managers in financial industry o
 
 .. note:: equinox is still in active development. The functionality of the platform will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository.
 
-

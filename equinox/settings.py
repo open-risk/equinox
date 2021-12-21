@@ -40,7 +40,7 @@ SECRET_KEY = '3i=clc#nog3a2v__q9n89wak2#p54mfs(*-x)oj7+1)igkmylf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.equinoxpoint.org', 'localhost']
 
 # Application definition
 
@@ -155,7 +155,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = (
-   os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 TIME_ZONE = 'UTC'
@@ -224,10 +224,10 @@ JAZZMIN_SETTINGS = {
         # {"app": "portfolio"},
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Shape", "url": "/asset_manager", "permissions": ["auth.view_user"]},
+        # {"name": "Shape", "url": "/asset_manager", "permissions": ["auth.view_user"]},
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Analyse", "url": "/asset_manager", "permissions": ["auth.view_user"]},
+        # {"name": "Analyse", "url": "/asset_manager", "permissions": ["auth.view_user"]},
 
     ],
 
@@ -258,7 +258,7 @@ JAZZMIN_SETTINGS = {
     "hide_models": [],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["portfolio", "auth"],
+    "order_with_respect_to": ["start", "portfolio", "risk_analysis", "reporting", "auth"],
 
     # Custom links to append to app groups, keyed on app name
     # "custom_links": {
@@ -294,7 +294,6 @@ JAZZMIN_SETTINGS = {
     "custom_css": "./start/css/jazzmin.css",
     "custom_js": None,
 
-
     ###############
     # Change view #
     ###############
@@ -314,7 +313,7 @@ JAZZMIN_SETTINGS = {
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
-    "body_small_text": False,
+    "body_small_text": True,
     "brand_small_text": False,
     "brand_colour": False,
     "accent": "accent-warning",
@@ -325,10 +324,10 @@ JAZZMIN_UI_TWEAKS = {
     "footer_fixed": False,
     "sidebar_fixed": False,
     "sidebar": "sidebar-dark-primary",
-    "sidebar_nav_small_text": False,
+    "sidebar_nav_small_text": True,
     "sidebar_disable_expand": False,
-    "sidebar_nav_child_indent": True,
-    "sidebar_nav_compact_style": True,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
     "theme": "slate",

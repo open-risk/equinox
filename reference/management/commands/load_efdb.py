@@ -4,7 +4,7 @@ from reference.EmissionFactor import EmissionFactor
 
 
 class Command(BaseCommand):
-    help = 'Load an emissions factor csv file into equinox'
+    help = 'Load an emissions factor csv file into equinox. Currently the only format supported is the IPCC EFDB database (exported as | -separated CSV file)'
 
     def add_arguments(self, parser):
         parser.add_argument('--path', type=str)
@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         path = kwargs['path']
         with open(path, 'rt') as f:
-            reader = csv.reader(f, delimiter='\t')
+            reader = csv.reader(f, delimiter='|')
             next(reader)
             for row in reader:
                 EmissionFactor.objects.create(

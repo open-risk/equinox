@@ -18,7 +18,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -38,12 +37,12 @@ class ResultGroup(models.Model):
 
     # The number of results include in the group
     # Must be manually augmented whenever there is a result added or deleted
-    # mirrors self.runs in Contoller/Results.py
+
     calculation_count = models.IntegerField(default=0)
 
     # the playbook that created this result group (if available)
     # ATTN result groups can also be formed in ad-hoc ways (e.g. user defined collections)
-    # in that case there is no playbook associated and thus standardardized reports
+    # in that case there is no playbook associated and thus standardized reports
     # and visualization are not available
 
     playbook = models.ForeignKey(Playbook, on_delete=models.CASCADE, null=True, blank=True,
@@ -66,13 +65,11 @@ class ResultGroup(models.Model):
 
 class Calculation(models.Model):
     """
-    Data object holds the complete outcome of a workflow calculation as returned by model server
+    Data object holds the complete outcome of a workflow calculation as returned by model server. Includes reference to user initiating calculation and the submitted workflow. Logfile holds a logstring
+    Result is json object with flexible structure. Typically:
+    'Graph'     : json object (different types)
+    'Statistics': json object (tabular)
 
-    Includes reference to user initiating calculation and the submitted workflow
-    Logfile holds a logstring
-    Results is json object with flexible structure. Typical
-        'Graph'     : json object (different types)
-        'Statistics': json object (tabular)
     """
 
     result_group = models.ForeignKey(ResultGroup, on_delete=models.CASCADE, null=True, blank=True,
@@ -146,7 +143,7 @@ class Visualization(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('results_explorer:Visualization_view', kwargs={'pk': self.pk})
+        return reverse('results_explorer:visualization_view', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Visualization"

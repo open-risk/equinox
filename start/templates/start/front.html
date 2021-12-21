@@ -4,6 +4,9 @@
 
 {% block extrastyle %}
     <link href="{% static 'start/css/styling.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,6 +19,7 @@
             <h3>{% trans "Equinox is an open source platform that supports the holistic risk management of sustainable finance projects" %}</h3>
         </div>
     </div>
+
 
     <div class="card card-primary card-outline">
 
@@ -32,7 +36,8 @@
 
                     <p>Sustainability (both environmental and social) is a major issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is an important objective and Equinox aims to help carry out this process as optimally as possible.</p>
 
-                    <p>Equinox is a both <i>a database and a web application</i> that works together with a tailored <i>data schema</i> to provide easy access to sustainability data adhering to both regulatory requirements, protocols and recommendations and financial industry initiatives.
+                    <p>Equinox is a both <i>a database and a web application</i> that works together with a tailored
+                        <i>data schema</i> to provide easy access to sustainability data adhering to both regulatory requirements, protocols and recommendations and financial industry initiatives.
                     </p>
                 </div>
             </div>
@@ -42,7 +47,8 @@
                     <h4>How does it work?</h4>
                 </div>
                 <div class="card card-body">
-                    <p>Running the application creates a <i>server</i> that can then be accessed via any regular web browser. NB: For easy installation and testing the current release uses a self-contained sqlite database instead of a production database server
+                    <p>Running the application creates a
+                        <i>server</i> that can then be accessed via any regular web browser. NB: For easy installation and testing the current release uses a self-contained sqlite database instead of a production database server
                     </p>
 
                     <p>The initial functionality of Equinox focuses on integrating the following concepts</p>

@@ -37,6 +37,7 @@ class ProjectActivity(models.Model):
 
 
     """
+    # IDENTIFICATION
 
     project_activity_identifier = models.CharField(max_length=80, blank=True, null=True,
                                                    help_text='A unique identification of a Project Activity for internal use')
@@ -47,13 +48,22 @@ class ProjectActivity(models.Model):
 
     text_rendered = RenderedMarkdownField()
 
-    project_activity_role = models.IntegerField(blank=True, null=True, choices=PROJECT_ACTIVITY_ROLE,
-                                              help_text='Select whether the activity role is baseline or target')
+
 
     # LINKS
 
     project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE,
                                 help_text="The Project to which this Activity belongs")
+
+    # DATA
+
+    project_activity_emissions = models.FloatField(blank=True, null=True, help_text="Emissions expressed in t CO2 eq/year")
+
+    baseline_activity_emissions = models.FloatField(blank=True, null=True, help_text="Emissions expressed in t CO2 eq/year")
+
+    project_activity_role = models.IntegerField(blank=True, null=True, choices=PROJECT_ACTIVITY_ROLE,
+                                              help_text='Select whether the activity role is baseline or target')
+
 
     baseline_estimation = models.IntegerField(blank=True, null=True, choices=BASELINE_ESTIMATION_PROCEDURE,
                                               help_text='Baseline procedures are methods used to estimate baseline emissions <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Baseline_Emissions">Documentation</a>')

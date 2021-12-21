@@ -1,4 +1,4 @@
-NPL REST API
+REST API
 ================
 
 .. image:: ./screenshots/API.png

@@ -67,11 +67,11 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 class PointSourceAdmin(admin.OSMGeoAdmin):
     """Point Source admin."""
 
-    list_display = ("name", "location")
+    list_display = ("name",)
     view_on_site = False
     save_as = True
     search_fields = ['name']
-    list_filter = ('location',)
+    # list_filter = ('location',)
     date_hierarchy = ('creation_date')
 
 
@@ -79,11 +79,10 @@ class PointSourceAdmin(admin.OSMGeoAdmin):
 class AreaSourceAdmin(admin.OSMGeoAdmin):
     """Project Region admin."""
 
-    list_display = ("name", "location")
+    list_display = ("name",)
     view_on_site = False
     save_as = True
     search_fields = ['name']
-    list_filter = ('location',)
     date_hierarchy = ('creation_date')
 
 

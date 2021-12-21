@@ -10,11 +10,10 @@ from reference.GPCSector import GPCSector
 class EmissionFactorAdmin(admin.ModelAdmin):
     """Emission Factor admin"""
     view_on_site = False
-    search_fields = ['Description', 'Gases', 'Fuel']
-    list_display = ('EF_ID', 'IPCC_Category', 'Gases', 'Fuel', 'Parameter_Type', 'Description')
-    list_filter = ('Gases', 'Fuel', 'Parameter_Type')
+    search_fields = ['Description', 'Gases', 'Fuel', 'Technology_Practices', 'Regional_Conditions', 'IPCC_Category']
+    list_display = ('EF_ID', 'IPCC_Category', 'Gases', 'Fuel', 'Value', 'Unit', 'Parameter_Type', 'Description', 'Data_Source')
+    list_filter = ('Parameter_Type',)
     save_as = True
-    date_hierarchy = ('creation_date')
 
     fieldsets = (
         ('Identification', {

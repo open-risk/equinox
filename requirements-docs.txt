@@ -9,3 +9,4 @@ sphinxcontrib-serializinghtml==1.1.4
 Django==3.2.9
 django-jazzmin==2.4.8
 django-json-widget==1.1.1
+djangorestframework==3.12.4

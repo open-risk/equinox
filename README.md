@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/equinox-server/badge/?version=latest)](https://equinox-server.readthedocs.io/en/latest/?badge=latest)
+
 # Equinox Overview
 ![Equinox Logo](/docs/source/equinox-logo.png) Equinox is an open source platform that supports the holistic risk management and reporting of major sustainable finance projects (the financing of projects with material physical footprint) such as project finance.
 

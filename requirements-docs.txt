@@ -12,3 +12,4 @@ django-json-widget==1.1.1
 djangorestframework==3.12.4
 drf-yasg==1.20.0
 django-treebeard==4.5.1
+django-geojson==3.2.0

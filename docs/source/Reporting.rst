@@ -3,9 +3,11 @@ Reporting
 
 Reports are the primary means to disseminate results of analyses outside the Equinox environment
 
-The Objectives and Results Explorer provides the functionality for extracting business information from the Equinox system. This page provides a basic introduction. Further information is available in the user manuals
+Topbar Navigation
+-------------------
+Reporting functionality is accessed via the topbar menu system. This is defined as part of the core Start app. in the topbar template.
 
-The type of analysis and reporting provided in this section is linked to the objectives set out in the Sustainable Portfolio Management mandate. In its simplest, the end point of an interaction with Equinox is the production of a set of numbers (a Report) about various aspects of the portfolio.
+
 
 Report Types
 ~~~~~~~~~~~~~~~~~

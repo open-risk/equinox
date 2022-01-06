@@ -126,3 +126,7 @@ Playbooks
 Reporting Pages
 -----------------
 Reporting Pages are where portfolio managers generate information material to communicate to other stakeholders.
+
+Reports are the primary means to disseminate results of analyses outside the Equinox environment
+
+The Objectives and Results Explorer provides the functionality for extracting business information from the Equinox system. The type of analysis and reporting provided in this section is linked to the objectives set out in the Sustainable Portfolio Management mandate.

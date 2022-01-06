@@ -4,7 +4,7 @@
 {% load humanize %}
 
 {% block title %}
-    {{ title }} GHG Reduction
+    {{ title }} GPC Report
 {% endblock %}
 
 {% block extrahead %}
@@ -20,7 +20,7 @@
 
 {% block messages %}
     <div class="helpblock">
-        <p>Catalog of GHG reduction per Project</p>
+        <p>GPC Report</p>
     </div>
 {% endblock %}
 
@@ -33,7 +33,7 @@
 
             <div class="card card-info">
                 <div class="card-header">
-                    <h4> GHG Reduction from all Project Activities</h4>
+                    <h4> GPC Report of GHG Inventory Emissions</h4>
                 </div>
 
                 <div class="card card-body">
@@ -74,18 +74,7 @@
                 "bSort": true,
                 "displayLength": 50,
                 "autoWidth": true,
-                "searching": false,
-                "columnDefs": [
-                    {"visible": true, "targets": [0, 1, 2, 3, 4]},
-                    {targets: '_all', visible: false}
-                ],
-                "columns": [
-                    {"width": "20%"},
-                    {"width": "20%"},
-                    {"width": "20%"},
-                    {"width": "20%"},
-                    {"width": "20%"}
-                ],
+                "searching": false
             });
         </script>
 

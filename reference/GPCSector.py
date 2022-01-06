@@ -22,16 +22,23 @@ from django.db import models
 
 from treebeard.mp_tree import MP_Node
 
+GPC_SCOPES = [(0, 'Scope 1'), (1, 'Scope 2'), (2, 'Scope 3')]
+
 
 class GPCSector(MP_Node):
     """
-    GPC Sector Category
+    GPC Sector Category Tree
 
 
     """
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50, help_text="A concise name")
 
-    description = models.CharField(max_length=200)
+    gpc_ref_no = models.CharField(max_length=10, help_text="The GPC Reference number")
+
+    gpc_scope = models.IntegerField(blank=True, null=True, choices=GPC_SCOPES,
+                                    help_text="Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number")
+
+    description = models.TextField(blank=True, null=True, help_text="Detailed Sectoral Description")
 
     node_order_by = ['name']
 

@@ -2,11 +2,9 @@ import json
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from django.views.generic import DetailView
 
 from results_explorer.models import Calculation, Visualization
 
@@ -16,6 +14,7 @@ from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
 
 from portfolio.ProjectActivity import ProjectActivity
+from portfolio.EmissionsSource import GPCEmissionsSource
 
 
 @login_required(login_url='/login/')
@@ -39,6 +38,68 @@ def ghg_reduction(request):
         value.append(pa.project_activity_emissions)
         value.append(pa.baseline_activity_emissions)
         value.append(pa.baseline_activity_emissions - pa.project_activity_emissions)
+        table_rows[key] = value
+        key += 1
+        print(key, value)
+
+    context.update({'TableHeader': table_header})
+    context.update({'TableRows': table_rows})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def gpc_report(request):
+    t = loader.get_template('gpc_report.html')
+    context = RequestContext(request, {})
+
+    """
+    1. GPC Reference Number in the format: I.X.X which identifies the GHG Emissions Sources at the level of granularity required by the GPC
+    2. Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number
+    (Emissions) Sector/Subsector classifying GHG Emissions Sources according the GPC GHG Emissions Taxonomy (Stationary Energy, Transportation, etc)
+    3. GHG Notation Keys (NO, IE, etc. providing context for the included or missing data)
+    4. Mass of Greenhouse Gas Emissions per Gas Species (and total CO2e)
+    CO2
+    CH4
+    N2O
+    HFC
+    PFC
+    SF6
+    NF3
+    Total CO2e
+    CO2(b)
+    5. Data Quality assessment for both Activity Data and GHG Emission Factor (H, M, L Scale)
+    AD
+    EFD
+    6. Explanatory comments (i.e. description of methods or notation keys used)
+    """
+
+    table_header = []
+    table_header.append('GPC Ref No')
+    table_header.append('Scope')
+    table_header.append('Name')
+    table_header.append('Notation Key')
+    table_header.append('GHG Reduction')
+
+    table_rows = {}
+    key = 0
+    for pa in GPCEmissionsSource.objects.all():
+        value = []
+        value.append(pa.gpc_subsector.gpc_ref_no)
+        value.append(pa.gpc_subsector.gpc_scope)
+        value.append(pa.gpc_subsector.name)
+        value.append(pa.notation_key)
+        value.append(pa.co2_amount)
+        value.append(pa.ch4_amount)
+        value.append(pa.n2o_amount)
+        value.append(pa.hfc_amount)
+        value.append(pa.pfc_amount)
+        value.append(pa.sf6_amount)
+        value.append(pa.nf3_amount)
+        value.append(pa.tco2e_amount)
+        value.append(pa.co2b_amount)
+        value.append(pa.AD_DQ)
+        value.append(pa.EF_DQ)
+        value.append(pa.comments)
         table_rows[key] = value
         key += 1
         print(key, value)

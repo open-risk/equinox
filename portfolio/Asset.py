@@ -24,6 +24,7 @@ from django.contrib.gis.db.models import PointField, PolygonField
 from django.urls import reverse
 from datetime import datetime
 
+
 ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
                        (1, '(b) CRE'),
                        (2, '(c) SME/Corporate'),

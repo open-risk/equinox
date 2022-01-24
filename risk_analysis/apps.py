@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2021 - 2022 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,7 @@
 # SOFTWARE.
 
 from django.apps import AppConfig
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class RiskAnalysisConfig(AppConfig):

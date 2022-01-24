@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2021 - 2022 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ Django settings for the Equinox platform.
 """
 
 from pathlib import Path
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +40,7 @@ SECRET_KEY = '3i=clc#nog3a2v__q9n89wak2#p54mfs(*-x)oj7+1)igkmylf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.equinoxpoint.org', 'localhost']
+ALLOWED_HOSTS = ['www.equinoxpoint.org', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -84,10 +84,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'equinox.urls'
 
-ROOT_VIEW = "http://localhost:8080"
+ROOT_VIEW = "http://localhost:8000"
 
 SITE_ID = 1
-SITE_URL = "http://equinoxpoint.org"
+# SITE_URL = "https://equinoxpoint.org"
+SITE_URL = "http://127.0.0.1:8000/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/uploads/'
@@ -184,6 +185,9 @@ JAZZMIN_SETTINGS = {
 
     # Title on the brand, and login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_header": "Equinox",
+
+    # Title on the brand, and login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "Equinox",
 
     # square logo to use for your site, must be present in static files, used for favicon and brand on top left
     "site_logo": "start/img/equinox.png",

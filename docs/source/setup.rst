@@ -72,8 +72,8 @@ The manual installation path is recommended if you want to dig into and inspect 
 
 
 
-Manual installation procedure
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Manual installation procedure (Linux only)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Step 1. Download the github sources to your preferred directory:
 
@@ -88,13 +88,25 @@ Step 2. Create a virtualenv. It is advisable to install the platform in a virtua
     virtualenv -p python3 venv
     source venv/bin/activate
 
-Step 3. Install the required dependencies (The core dependency is Django and its own dependencies, in addition the Grappelli skin as the admin interface)
+Step 3. Install the required python dependencies (The core dependency is Django and its own dependencies, in addition the Jazzmin skin as the admin interface)
 
 .. code:: bash
 
     pip3 install -r requirements.txt
 
-Step 4. Make the required django migrations. The project is setup to use sqlite3 (spatialite). This step will ensure the database has the right tables.
+Step 4. Install the required system wide dependencies (to support geospatial data)
+
+.. code:: bash
+
+    sudo apt-get update && sudo apt-get install -y \
+    gdal-bin \
+    proj-bin \
+    libgdal-dev \
+    libproj-dev \
+    spatialite-bin\
+    libsqlite3-mod-spatialite
+
+Step 5. Make the required django migrations. The project is setup to use sqlite3 (spatialite). This step will ensure the database has the right tables.
 
 .. code:: bash
 
@@ -102,31 +114,33 @@ Step 4. Make the required django migrations. The project is setup to use sqlite3
     python manage.py makemigrations
     python manage.py migrate
 
-Step 5. Create a superuser. Suggestion: Use admin/admin as login/password as a reminder that this instance of equinox should NOT be used for sensitive!
+Step 6. Create a superuser. Suggestion: Use admin/admin as login/password as a reminder that this instance of equinox should NOT be used for sensitive!
 
 .. code:: bash
 
-    python3 manage.py createsuperuser
+    python3 createadmin
 
-Step 6. Collect static files (to ensure the interface will render properly)
+Step 7. Collect static files (to ensure the interface will render properly)
 
 .. code:: bash
 
     python3 manage.py collectstatic --no-input
 
-Step 7. Insert some dummy data (optional). Without this the database will be empty.
+Step 8. Insert some dummy data (optional). Without this the database will be completely empty.
 
 .. code:: bash
 
-    bash loadfixtures.sh
+    python createcategories.py
+    python createsectors.py
+    bash load_doc_fixtures.sh
 
-Step 8. Run the server. The default port is 8000 but if (by any chance) this port is already used in your computer there will be another assigned. Be sure to note the assigned port and use it instead.
+Step 9. Run the server. The default port is 8000 but if (by any chance) this port is already used in your computer there will be another assigned. Be sure to note the assigned port and use it instead.
 
 .. code:: bash
 
     python3 manage.py runserver
 
-Step 9. Login with your browser. Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8001`` and login with admin/admin credentials.
+Step 10. Login with your browser. Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8001`` and login with admin/admin credentials.
 
 .. note:: 8000 is the default port, if that is already in use, you can select an alternative one as follows:
 

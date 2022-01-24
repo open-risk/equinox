@@ -1,13 +1,13 @@
 from django.urls import path
-from django.conf.urls import url
+from django.urls import re_path
 from . import views
 
 app_name = 'start'
 
 urlpatterns = [
     path('', views.Front.as_view(), name='Front'),
-    url(r'^documentation/(?P<slug>[-\w]+)$', views.documentation, name='documentation'),
-    url(r'^documentation$', views.Documentation.as_view(), name='DocList'),
+    re_path(r'^documentation/(?P<slug>[-\w]+)$', views.documentation, name='documentation'),
+    re_path(r'^documentation$', views.Documentation.as_view(), name='DocList'),
 ]
 
 # url(r'^generic$', views.Generic.as_view(), name='Generic'),

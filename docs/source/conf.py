@@ -14,25 +14,28 @@
 #
 import sys
 import os
-sys.path.insert(0, os.path.abspath('../../'))
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
+sys.path.append(os.path.abspath('../../'))
+
+# os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equinox.settings')
+
 import django
+
 django.setup()
 
-__version__ = '0.2'
+__version__ = '0.3'
 
 # -- Project information -----------------------------------------------------
 
 project = 'equinox'
-copyright = '2021, Open Risk'
+copyright = '2021 - 2022, Open Risk'
 author = 'Open Risk'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
 release = __version__
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -81,7 +84,6 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -111,7 +113,6 @@ html_theme_options = {
     'titles_only': False
 }
 
-
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -133,7 +134,6 @@ html_static_path = []
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'equinoxdoc'
-
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -163,7 +163,6 @@ latex_documents = [
      'Open Risk', 'manual'),
 ]
 
-
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
@@ -172,7 +171,6 @@ man_pages = [
     (master_doc, 'equinox', 'Equinox Documentation',
      [author], 1)
 ]
-
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -185,11 +183,10 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-
 # -- Extension configuration -------------------------------------------------
 
 extensions.append('sphinx.ext.todo')
-todo_include_todos=True
+todo_include_todos = True
 
 # extensions.append('sphinx_automodapi.automodapi')
 # numpydoc_show_class_members = False

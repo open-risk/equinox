@@ -1,15 +1,2 @@
-Sphinx==3.5.4
-sphinx-rtd-theme==0.5.2
-sphinxcontrib-applehelp==1.0.2
-sphinxcontrib-devhelp==1.0.2
-sphinxcontrib-htmlhelp==1.0.3
-sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.3
-sphinxcontrib-serializinghtml==1.1.4
-Django==3.2.9
-django-jazzmin==2.4.8
-django-json-widget==1.1.1
-djangorestframework==3.12.4
-drf-yasg==1.20.0
-django-treebeard==4.5.1
-django-geojson==3.2.0
+Sphinx>=4.4.0
+sphinx-rtd-theme>=1.0.0

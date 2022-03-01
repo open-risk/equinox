@@ -22,7 +22,7 @@ Overview
 * Author: `Open Risk <http://www.openriskmanagement.com>`_
 * License: MIT
 * Development Website: `Github <https://github.com/open-risk/equinox>`_
-* Online Code Documentation: `Read The Docs <https://equinox.readthedocs.io/en/latest/>`_
+* Online Code Documentation: `Read The Docs <https://equinox-server.readthedocs.io/en/latest/>`_
 * Project Discussion: `Open Risk Commons <https://www.openriskcommons.org/c/sustainable-finance>`_
 * Docker Image: Coming
 * Training: Coming: `Open Risk Academy <https://www.openriskacademy.com/>`_

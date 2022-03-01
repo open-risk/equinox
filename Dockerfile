@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.9-slim
 MAINTAINER Open Risk <www.openriskmanagement.com>
 LABEL maintainer="info@openrisk.eu"
 EXPOSE 8080

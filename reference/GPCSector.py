@@ -27,7 +27,7 @@ GPC_SCOPES = [(0, 'Scope 1'), (1, 'Scope 2'), (2, 'Scope 3')]
 
 class GPCSector(MP_Node):
     """
-    GPC Sector Category Tree
+    The GPC Sector model implmenents a Category Tree for GPC Sectors
 
 
     """

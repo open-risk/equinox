@@ -1,9 +1,10 @@
 ChangeLog
 ===========================
 
-v0.3 (xx-xx-xxxx)
+v0.3 (01-03-2022)
 -----------------
-
+* Release on PyPI
+* Release Docs on Read The Docs
 
 v0.2 (22-04-2021)
 -----------------

@@ -25,7 +25,7 @@ from treebeard.mp_tree import MP_Node
 
 class ProjectCategory(MP_Node):
     """
-    GHG Mitigation Projects are classified in categories of similar characteristics
+    GHG Mitigation Projects are classified in categories of similar characteristics. ProjectCategory is the model that implements the Category tree
 
 
     """

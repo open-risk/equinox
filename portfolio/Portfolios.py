@@ -8,7 +8,7 @@ from reference.nuts3_list import NUTS3_CHOICES
 
 class Portfolio(models.Model):
     """
-    The Portfolio object holds a collection of projects
+    The Portfolio object holds a collection of Projects
 
     Includes reference to user creating the data set (portfolio manager)
 

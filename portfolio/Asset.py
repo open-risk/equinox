@@ -36,7 +36,9 @@ ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
 
 class Asset(models.Model):
     """
-    The Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Portfolio or Inventory or a Project - which may or may not be financed. An asset will involve one more emissions sources.
+    The Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Portfolio or Inventory or a Project - which may or may not be financed.
+
+    An Asset will involve one or more emissions sources.
 
     An Asset participates in only one Project at a time (if linked to a project object)
 

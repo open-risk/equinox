@@ -29,7 +29,7 @@ from markdownfield.validators import VALIDATOR_STANDARD
 
 class Project(models.Model):
     """
-    The Project model holds data for a general sustainability Project (irrespective of financial aspects)
+    The Project model holds data for a general sustainability Project (irrespective of financial attributes)
 
 
     """

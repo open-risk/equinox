@@ -25,7 +25,7 @@ from django.urls import reverse
 
 class Contractor(models.Model):
     """
-    The Contractor model holds data for each for each Contractor involved in the construction of the Project
+    The Contractor model holds data for each Contractor involved in the construction of the Project
 
 
     """

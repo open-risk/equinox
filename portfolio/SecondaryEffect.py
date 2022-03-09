@@ -30,7 +30,7 @@ from portfolio.ghg_choices import SECONDARY_GHG_EFFECTS
 
 class SecondaryEffect(models.Model):
     """
-    The Secondary Effect model holds data for effects of Project Activities that are classified as secondary
+    The Secondary Effect model holds (optional) data for effects of Project Activities that are classified as Secondary.
 
 
     """

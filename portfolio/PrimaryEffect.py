@@ -29,7 +29,7 @@ from portfolio.ghg_choices import PRIMARY_GHG_EFFECTS
 
 class PrimaryEffect(models.Model):
     """
-    The Primary Effect model holds data for effects of Project Activities that are classified as primary
+    The Primary Effect model holds data for effects of Project Activities that are classified as Primary
 
 
     """

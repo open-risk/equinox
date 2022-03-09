@@ -46,6 +46,7 @@ Overview
    applications
    api
    api_docs
+   internationalization
    changelog
    contributing
 

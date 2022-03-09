@@ -20,9 +20,12 @@
 
 
 from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
 
-""" The main portfolio management app
+""" Portfolio: The main portfolio management app
+
 """
 
 class PortfolioConfig(AppConfig):
     name = 'portfolio'
+    verbose_name = _('Portfolio')

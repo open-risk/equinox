@@ -26,7 +26,8 @@ from risk_analysis.Scorecard import Scorecard
 
 class ScorecardSerializer(serializers.ModelSerializer):
     """
-    Serialize Scorecard Inventory
+    Serialize Scorecard Inventory (list of Scorecards)
+
     """
     link = serializers.SerializerMethodField()
 
@@ -41,7 +42,8 @@ class ScorecardSerializer(serializers.ModelSerializer):
 
 class ScorecardDetailSerializer(serializers.ModelSerializer):
     """
-    Serialize Scorecard Data
+    Serialize Individual Scorecard Data
+
     """
 
     class Meta:

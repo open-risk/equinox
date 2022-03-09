@@ -25,7 +25,7 @@ from django.urls import reverse
 
 class Operator(models.Model):
     """
-    The Operator model holds data for each for each Operator involved in the operation of the Project
+    The Operator model holds data for each Operator involved in the operation of a Project
 
 
     """

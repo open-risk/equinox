@@ -24,6 +24,10 @@ from django.contrib.gis.db.models import PointField, PolygonField
 from django.urls import reverse
 from portfolio.Asset import Asset
 
+"""
+General Data Models
+
+"""
 
 class PointSource(models.Model):
     """A point marker with name and location (to create elementary geospatial reference)."""

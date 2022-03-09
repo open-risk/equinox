@@ -33,7 +33,9 @@ PROJECT_ACTIVITY_ROLE = [(0, 'Target'),
 
 class ProjectActivity(models.Model):
     """
-    The Project Activity model holds data for specific activities associated with a Project. It acts as a container for both the target activity and alternative "baseline candidates"
+    The Project Activity model holds data for specific sustainability activities associated with a Project.
+
+    The model acts as a container for both the target activity and alternative "baseline candidates"
 
 
     """

@@ -25,7 +25,9 @@ from django.urls import reverse
 
 class Stakeholders(models.Model):
     """
-    The stakeholders model holds data documenting project stakeholders and the relevant social / political environment in which a Project is pursued. These data aim to support compliance assessment according to Equator Principles and political risk analysis
+    The Stakeholders model holds data documenting project stakeholders and the relevant social / political environment in which a Project is pursued.
+
+    These data aim to support compliance assessment according to Equator Principles and political risk analysis
 
     """
     # IDENTITY

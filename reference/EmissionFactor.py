@@ -24,7 +24,7 @@ from django.urls import reverse
 
 class EmissionFactor(models.Model):
     """
-    The Emissions Factor model holds IPCC reference data about activity emission factors
+    The Emissions Factor model holds IPCC reference data (EFDB database) about activity emission factors
 
 
     """

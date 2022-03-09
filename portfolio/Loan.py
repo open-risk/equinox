@@ -35,7 +35,9 @@ ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
 
 class Loan(models.Model):
     """
-    The Loan model holds data for each for each loan (or other credit facility / financial instrument) that provides financing to a Project. It is a liability of a ProjectCompany (which may be a special purpose entity or a regular company)
+    The Loan model holds data for each loan (or other credit facility / financial instrument) that provides financing to a Project.
+
+    A Loan is a liability of a ProjectCompany (which may be a special purpose entity or a regular company)
 
 
     """

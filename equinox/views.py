@@ -34,6 +34,7 @@ from portfolio.Operator import Operator
 from portfolio.Stakeholders import Stakeholders
 from portfolio.Loan import Loan
 
+
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def api_root(request, format=None):

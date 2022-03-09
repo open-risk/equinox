@@ -29,7 +29,8 @@ from risk_analysis.Objectives import Playbook
 
 class ResultGroup(models.Model):
     """
-    Data object holds a group of calculation results
+    The ResultGroup Data object holds a group of calculation results
+
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -46,8 +47,7 @@ class ResultGroup(models.Model):
     # and visualization are not available
 
     playbook = models.ForeignKey(Playbook, on_delete=models.CASCADE, null=True, blank=True,
-                               help_text="Playbook that created this ResultGroup (if any)")
-
+                                 help_text="Playbook that created this ResultGroup (if any)")
 
     # TODO Does not make strict sense for a collection
     calculation_timestamp = models.DateTimeField(default=now)
@@ -65,7 +65,9 @@ class ResultGroup(models.Model):
 
 class Calculation(models.Model):
     """
-    Data object holds the complete outcome of a workflow calculation as returned by model server. Includes reference to user initiating calculation and the submitted workflow. Logfile holds a logstring
+    The Calculation Data object holds the complete outcome of a workflow calculation as returned by model server.
+
+    It includes reference to user initiating calculation and the submitted workflow. Logfile holds a logstring
     Result is json object with flexible structure. Typically:
     'Graph'     : json object (different types)
     'Statistics': json object (tabular)
@@ -73,7 +75,7 @@ class Calculation(models.Model):
     """
 
     result_group = models.ForeignKey(ResultGroup, on_delete=models.CASCADE, null=True, blank=True,
-                               help_text="Result Group to which this Calculation belong (if any)")
+                                     help_text="Result Group to which this Calculation belong (if any)")
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
@@ -84,14 +86,14 @@ class Calculation(models.Model):
     # In principle starting with the base workflow, performing all the FK embeddings
     # and applying the workflow delta should reproduce the workflow data stored here
     workflow_data = models.JSONField(null=True, blank=True, help_text="Verbatim storage of the calculation input "
-                                                              "in JSON format")
+                                                                      "in JSON format")
 
     # The result object creation time (may differ from the server execution time)
     creation_date = models.DateTimeField(auto_now_add=True)
 
     logfile = models.TextField(null=True, blank=True, help_text="Verbatim storage of the calculation logfile")
     results_data = models.JSONField(null=True, blank=True, help_text="Verbatim storage of the calculation results "
-                                                              "in JSON format")
+                                                                     "in JSON format")
     calculation_timestamp = models.DateTimeField(default=now)
 
     def __str__(self):
@@ -107,7 +109,7 @@ class Calculation(models.Model):
 
 class Visualization(models.Model):
     """
-    Data object holds the structural Vega / Vega-Lite specification of a visualization
+    The Visualization Data object holds the structural Vega / Vega-Lite specification of a visualization
 
     Includes reference to user creating the Visualization
     """

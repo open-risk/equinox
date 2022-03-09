@@ -48,6 +48,7 @@ NOTATION_KEYS = [(0, 'NO'), (1, 'IE'), (2, 'C'),
 
 DQ_KEYS = [(0, 'L'), (1, 'M'), (2, 'H')]
 
+
 class EmissionsSource(models.Model):
     """
     The Emission Source model holds granular activity and emissions type data that characterize and quantify the emissions of an Asset.
@@ -123,12 +124,13 @@ class GPCEmissionsSource(models.Model):
     co2b_amount = models.FloatField(null=True, blank=True, help_text='CO2 (b) amount in tonnes')
 
     AD_DQ = models.IntegerField(null=True, blank=True, choices=DQ_KEYS,
-                                       help_text='Activity Data Quality Key (L, M, H)')
+                                help_text='Activity Data Quality Key (L, M, H)')
 
     EF_DQ = models.IntegerField(null=True, blank=True, choices=DQ_KEYS,
                                 help_text='Emission Factor Data Quality Key (L, M, H)')
 
-    comments = models.TextField(null=True, blank=True, help_text="Explanatory comments (i.e. description of methods or notation keys used)")
+    comments = models.TextField(null=True, blank=True,
+                                help_text="Explanatory comments (i.e. description of methods or notation keys used)")
     #
     # BOOKKEEPING FIELDS
     #

@@ -25,7 +25,7 @@ from django.urls import reverse
 
 class Sponsor(models.Model):
     """
-    The Sponsor model holds data about the entity that principally supports the Project. Depending on context it may be the only or largest shareholder, a guarantor or similar.
+    The Sponsor model holds data about the entity that principally supports a Project. Depending on context it may be the only or largest shareholder, a guarantor or similar.
 
 
     """

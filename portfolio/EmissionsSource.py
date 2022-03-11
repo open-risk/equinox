@@ -46,12 +46,18 @@ GHG_GAS_CHOICES = [(0, 'CO2e'),
 NOTATION_KEYS = [(0, 'NO'), (1, 'IE'), (2, 'C'),
                  (3, 'NE'), (4, 'NA')]
 
-DQ_KEYS = [(0, 'L'), (1, 'M'), (2, 'H')]
+# GPC Data Quality Categories
+GPC_DQ_KEYS = [(0, 'L'), (1, 'M'), (2, 'H')]
+
+# PCAF Data Quality Categories
+PCAF_DQ_KEYS = [(1, 'Score 1'), (2, 'Score 2'), (3, 'Score 3'), (4, 'Score 4'), (5, 'Score 5')]
 
 
 class EmissionsSource(models.Model):
     """
     The Emission Source model holds granular activity and emissions type data that characterize and quantify the emissions of an Asset.
+
+    An asset may involve multiple emissions sources
 
 
     """
@@ -123,10 +129,10 @@ class GPCEmissionsSource(models.Model):
     tco2e_amount = models.FloatField(null=True, blank=True, help_text='Total CO2 equivalent amount in tonnes')
     co2b_amount = models.FloatField(null=True, blank=True, help_text='CO2 (b) amount in tonnes')
 
-    AD_DQ = models.IntegerField(null=True, blank=True, choices=DQ_KEYS,
+    AD_DQ = models.IntegerField(null=True, blank=True, choices=GPC_DQ_KEYS,
                                 help_text='Activity Data Quality Key (L, M, H)')
 
-    EF_DQ = models.IntegerField(null=True, blank=True, choices=DQ_KEYS,
+    EF_DQ = models.IntegerField(null=True, blank=True, choices=GPC_DQ_KEYS,
                                 help_text='Emission Factor Data Quality Key (L, M, H)')
 
     comments = models.TextField(null=True, blank=True,
@@ -146,3 +152,48 @@ class GPCEmissionsSource(models.Model):
     class Meta:
         verbose_name = "GPC Emissions Source"
         verbose_name_plural = "GPC Emissions Sources"
+
+
+class BuildingEmissionsSource(models.Model):
+    """
+    The Building Emission Source model holds granular activity and emissions type data that characterize and quantify the emissions of a Building. A building is either a residential or commercial Asset.
+
+    The implemented approach is the PCAF methodology for Mortgages
+
+
+    """
+
+    # IDENTITY
+
+    source_identifier = models.CharField(max_length=80, null=True,
+                                         help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # LINKS
+
+    asset = models.ForeignKey('Asset', blank=True, null=True, on_delete=models.CASCADE,
+                              help_text="The Asset (Building) to which this emissions source belongs")
+
+    emissions_factor = models.ForeignKey('reference.EmissionFactor', blank=True, null=True, on_delete=models.CASCADE,
+                                         help_text="The Applicable Emissions Factor")
+
+    # CHARACTERISTICS
+
+    emitted_gas = models.IntegerField(blank=True, null=True,
+                                      choices=GHG_GAS_CHOICES,
+                                      help_text='Type of GHG Emission. Choose CO2e if already aggregated')
+
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.source_identifier
+
+    def get_absolute_url(self):
+        return reverse('portfolio:BuildingEmissionsSource_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Building Emissions Source"
+        verbose_name_plural = "Building Emissions Sources"

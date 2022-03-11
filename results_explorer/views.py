@@ -6,15 +6,68 @@ from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 
+from model_server.models import ReportingModeDescription, ReportingModeMatch, \
+    ReportingModeName, ModelModes, ModelModesShort
+from portfolio.EmissionsSource import GPCEmissionsSource
+from portfolio.ProjectActivity import ProjectActivity
 from results_explorer.models import Calculation, Visualization
 
 root_view = settings.ROOT_VIEW
 
-from model_server.models import ReportingModeDescription, ReportingModeMatch, \
-    ReportingModeName, ModelModes, ModelModesShort
 
-from portfolio.ProjectActivity import ProjectActivity
-from portfolio.EmissionsSource import GPCEmissionsSource
+@login_required(login_url='/login/')
+def pcaf_mortgage_report(request):
+    t = loader.get_template('pcaf_mortgage_report.html')
+    context = RequestContext(request, {})
+
+    """ Construct a PCAF Mortgage Emissions report and a Portfolio Carbon Footprint
+    
+    Select Emissions Sources where the asset is Residential Building
+    asset.asset_class = 0
+    
+    Aggregate total emission per asset (sum of emissions sources, weighted average DQ score)
+    
+    
+    Select Loans that are 
+    - Residential Mortgages (asset_class == 0)
+    - with total_balance > 0
+
+    """
+
+    table_header = []
+    table_header.append('GPC Ref No')
+    table_header.append('Scope')
+    table_header.append('Name')
+    table_header.append('Notation Key')
+    table_header.append('GHG Reduction')
+
+    table_rows = {}
+    key = 0
+    for pa in GPCEmissionsSource.objects.all():
+        value = []
+        value.append(pa.gpc_subsector.gpc_ref_no)
+        value.append(pa.gpc_subsector.gpc_scope)
+        value.append(pa.gpc_subsector.name)
+        value.append(pa.notation_key)
+        value.append(pa.co2_amount)
+        value.append(pa.ch4_amount)
+        value.append(pa.n2o_amount)
+        value.append(pa.hfc_amount)
+        value.append(pa.pfc_amount)
+        value.append(pa.sf6_amount)
+        value.append(pa.nf3_amount)
+        value.append(pa.tco2e_amount)
+        value.append(pa.co2b_amount)
+        value.append(pa.AD_DQ)
+        value.append(pa.EF_DQ)
+        value.append(pa.comments)
+        table_rows[key] = value
+        key += 1
+        print(key, value)
+
+    context.update({'TableHeader': table_header})
+    context.update({'TableRows': table_rows})
+    return HttpResponse(t.template.render(context))
 
 
 @login_required(login_url='/login/')
@@ -54,23 +107,13 @@ def gpc_report(request):
 
     """
     1. GPC Reference Number in the format: I.X.X which identifies the GHG Emissions Sources at the level of granularity required by the GPC
-    2. Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number
-    (Emissions) Sector/Subsector classifying GHG Emissions Sources according the GPC GHG Emissions Taxonomy (Stationary Energy, Transportation, etc)
+    2. Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number (Emissions) Sector/Subsector classifying GHG Emissions Sources according the GPC GHG Emissions Taxonomy (Stationary Energy, Transportation, etc)
     3. GHG Notation Keys (NO, IE, etc. providing context for the included or missing data)
     4. Mass of Greenhouse Gas Emissions per Gas Species (and total CO2e)
-    CO2
-    CH4
-    N2O
-    HFC
-    PFC
-    SF6
-    NF3
-    Total CO2e
-    CO2(b)
-    5. Data Quality assessment for both Activity Data and GHG Emission Factor (H, M, L Scale)
-    AD
-    EFD
+    CO2, CH4,  N2O,  HFC,  PFC,  SF6,  NF3, Total CO2e,  CO2(b)
+    5. Data Quality assessment for both Activity Data and GHG Emission Factor (H, M, L Scale), AD,  EFD
     6. Explanatory comments (i.e. description of methods or notation keys used)
+    
     """
 
     table_header = []

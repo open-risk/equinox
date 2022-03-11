@@ -20,8 +20,8 @@ sys.path.append(os.path.abspath('../../'))
 # os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equinox.settings')
 
+# ATTN Do not reformat file, django import must here
 import django
-
 django.setup()
 
 __version__ = '0.3'

@@ -4,6 +4,10 @@ from . import views
 
 app_name = 'start'
 
+""" Custom URL's in addition to the admin url's
+
+"""
+
 urlpatterns = [
     path('', views.Front.as_view(), name='Front'),
     re_path(r'^documentation/(?P<slug>[-\w]+)$', views.documentation, name='documentation'),

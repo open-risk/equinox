@@ -37,7 +37,7 @@ from portfolio.Loan import Loan
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
-def api_root(request, format=None):
+def api_root(request, _format=None):
     """
     Returns a list of all active API endpoints in the Equinox installation, grouped by functionality
 
@@ -47,7 +47,7 @@ def api_root(request, format=None):
     data = [
         {'Scorecard Data Endpoints':
             [
-                {'scorecard': reverse('portfolio:scorecard_api', request=request, format=format)},
+                {'scorecard': reverse('portfolio:scorecard_api', request=request, format=_format)},
             ]},
     ]
 

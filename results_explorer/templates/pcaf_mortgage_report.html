@@ -1,0 +1,83 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} PCAF Mortgage Report
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'results_explorer/js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'results_explorer/css/table.css' %}">
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <p>PCAF Mortgage Report</p>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+
+        <div class="card-body pad table-responsive">
+
+
+            <div class="card card-info">
+                <div class="card-header">
+                    <h4> PCAF Report of Mortgage GHG Inventory Emissions</h4>
+                </div>
+
+                <div class="card card-body">
+                    <table id="data_list">
+                        <thead>
+                        <tr>
+                            {% for entry in TableHeader %}
+                                <th>
+                                    {{ entry }}
+                                </th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for key, value in TableRows.items %}
+                            <tr>
+                                {% for c in value %}
+                                    <td>
+                                        {{ c }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            $('#data_list').DataTable({
+                "pagingType": "full_numbers",
+                "responsive": true,
+                "bSort": true,
+                "displayLength": 50,
+                "autoWidth": true,
+                "searching": false
+            });
+        </script>
+
+
+
+{% endblock %}

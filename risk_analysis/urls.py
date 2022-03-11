@@ -3,6 +3,10 @@ import views
 
 app_name = 'workflow_explorer'
 
+""" Custom URL's in addition to the admin url's
+
+"""
+
 urlpatterns = [
     url(r'^workflow_list$', views.WorkflowList.as_view(), name='workflow_list'),
     url(r'^playbook_list$', views.PlaybookList.as_view(), name='playbook_list'),

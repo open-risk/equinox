@@ -26,6 +26,10 @@ from portfolio.views import AssetMapView
 
 app_name = "portfolio"
 
+""" Custom URL's in addition to the admin url's
+
+"""
+
 urlpatterns = [
     path('', AssetList.as_view(), name='Asset Manager'),
     path('map', AssetMapView.as_view(), name='Map'),

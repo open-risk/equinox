@@ -27,7 +27,7 @@ from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import Asset
-from portfolio.EmissionsSource import EmissionsSource
+from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource, GPCEmissionsSource
 from portfolio.Contractor import Contractor
 from portfolio.Loan import Loan
 from portfolio.Operator import Operator
@@ -110,7 +110,7 @@ class AssetAdmin(admin.ModelAdmin):
             'fields': ('asset_ghg_emissions',),
         }),
         ('Financial', {
-            'fields': ('latest_valuation_amount',),
+            'fields': ('initial_valuation_amount', 'latest_valuation_amount',),
         }),
         ('Other', {
             'classes': ('collapse',),
@@ -121,6 +121,20 @@ class AssetAdmin(admin.ModelAdmin):
 
 @admin.register(EmissionsSource)
 class EmissionsSourceAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(BuildingEmissionsSource)
+class BuildingEmissionsSourceAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(GPCEmissionsSource)
+class GPCEmissionsSourceAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
     date_hierarchy = ('creation_date')

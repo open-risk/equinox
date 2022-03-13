@@ -26,18 +26,19 @@ from django.urls import reverse
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
-from portfolio.Asset import Asset
+from portfolio.Asset import ProjectAsset, Building
 from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource, GPCEmissionsSource
 from portfolio.Contractor import Contractor
+from portfolio.Borrower import Borrower
 from portfolio.Loan import Loan
 from portfolio.Operator import Operator
 from portfolio.Portfolios import Portfolio, PortfolioData, LimitStructure
-from portfolio.PrimaryEffect import PrimaryEffect
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
 from portfolio.ProjectCategory import ProjectCategory
 from portfolio.ProjectCompany import ProjectCompany
 from portfolio.Revenue import Revenue
+from portfolio.PrimaryEffect import PrimaryEffect
 from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
@@ -90,7 +91,7 @@ class AreaSourceAdmin(admin.OSMGeoAdmin):
 # Regular Objects
 #
 
-@admin.register(Asset)
+@admin.register(ProjectAsset)
 class AssetAdmin(admin.ModelAdmin):
     """Project Asset admin"""
     view_on_site = False
@@ -117,6 +118,20 @@ class AssetAdmin(admin.ModelAdmin):
             'fields': ('activation_of_guarantee',),
         }),
     )
+
+
+@admin.register(Borrower)
+class BorrowerAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(Building)
+class BuildingAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 @admin.register(EmissionsSource)
@@ -262,8 +277,8 @@ class LimitStructureAdmin(admin.ModelAdmin):
 
 class PortfolioAdmin(admin.ModelAdmin):
     search_fields = ['notes']
-    list_display = ('name', 'portfolio_type', 'generation', 'creation_date', 'notes')
-    list_filter = ('portfolio_type', 'generation')
+    list_display = ('name', 'portfolio_type', 'creation_date', 'notes')
+    list_filter = ('portfolio_type',)
     save_as = True
     view_on_site = False
     date_hierarchy = ('creation_date')

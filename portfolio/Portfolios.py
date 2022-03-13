@@ -26,7 +26,6 @@ class Portfolio(models.Model):
     """
 
     PORTFOLIO_TYPES = [(0, 'Performing'), (1, 'Historical')]
-    GENERATION_TYPES = [(0, 'Actual'), (1, 'Synthetic'), (2, 'External')]
 
     name = models.CharField(max_length=200, help_text="An assigned name to help identify the portfolio")
     user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="The user that created the portfolio")
@@ -35,10 +34,7 @@ class Portfolio(models.Model):
     portfolio_type = models.IntegerField(default=0, choices=PORTFOLIO_TYPES,
                                          help_text='0=Performing Book, 1=Historical Book')
 
-    generation = models.IntegerField(default=0, choices=GENERATION_TYPES,
-                                     help_text='0=Actual, 1=Synthetic, 2=External')
-
-    # portfolio shape parameters
+    # portfolio shape parameters (statistics)
 
     max_rating = models.IntegerField(null=True, blank=True, help_text="Maximum rating")
     min_rating = models.IntegerField(null=True, blank=True, help_text="Minimum rating")
@@ -76,6 +72,35 @@ class Portfolio(models.Model):
     class Meta:
         verbose_name = "Portfolio"
         verbose_name_plural = "Portfolios"
+
+
+class PortfolioSnapshot(models.Model):
+    """
+    The Portfolio_Snapshot object groups Portfolio for a given cutoff date. The Snapshot may be named to facilitate recognition.
+
+    .. note:: The actual Snapshot data are stored in the various Models (with foreign key to a snapshot)
+
+    """
+
+    creation_date = models.DateTimeField(auto_now_add=True,
+        help_text="Date at which the snapshot has been created. Different from the cutoff date")
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    cutoff_date = models.DateTimeField(blank=True, null=True,
+                                       help_text="Portfolio Cutoff Date (If available). Different from the creation date")
+
+    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
+
+
+    def __str__(self):
+        return str(self.name)
+
+    def get_absolute_url(self):
+        return reverse('portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Portfolio Snapshot"
+        verbose_name_plural = "Portfolio Snapshots"
 
 
 class PortfolioData(models.Model):

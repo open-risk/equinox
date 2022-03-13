@@ -56,19 +56,21 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.staticfiles',
     'django_json_widget',
+    'import_export',
     'rest_framework',
     'drf_yasg',
     'treebeard',
-    "django.contrib.gis",
-    "djgeojson",
-    "markdownfield",
-    "leaflet",
-    "start",
-    "reference",
-    "portfolio",
-    "risk_analysis",
-    "results_explorer",
-    "debug_toolbar"
+    'django.contrib.gis',
+    'djgeojson',
+    'markdownfield',
+    'leaflet',
+    'django_countries',
+    'start',
+    'reference',
+    'portfolio',
+    'risk_analysis',
+    'results_explorer',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [

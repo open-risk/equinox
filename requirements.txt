@@ -5,7 +5,9 @@ django-jazzmin
 django-json-widget
 django-leaflet
 django-markdownfield
+django-countries
 django-treebeard
+django-import-export
 djangorestframework
 drf-yasg
 jsonfield

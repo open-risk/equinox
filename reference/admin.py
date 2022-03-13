@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.core import serializers
 from django.http import HttpResponse
+from import_export import resources, fields
+from import_export.admin import ImportExportModelAdmin
+
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
-from reference.EmissionFactor import EmissionFactor
+from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.GPCSector import GPCSector
 
 actions = ['export']
@@ -17,6 +20,36 @@ def export(self, request, queryset):
 
 
 admin.site.add_action(export)
+
+
+class BuildingEmissionFactorResource(resources.ModelResource):
+    class Meta:
+        model = BuildingEmissionFactor
+        exclude = ('creation_date', 'last_change_date')
+        # TODO fix choice fields
+        # Emission_factor_type = fields.Field(attribute='get_Emission_factor_type_display')
+        # Emission_factor_year_1 = fields.Field(attribute='get_Emission_factor_year_1_display')
+        # Emission_factor_year_2 = fields.Field(attribute='get_Emission_factor_year_2_display')
+        # Emission_factor_year_3 = fields.Field(attribute='get_Emission_factor_year_3_display')
+        # Emission_factor_year_4 = fields.Field(attribute='get_Emission_factor_year_4_display')
+
+
+@admin.register(BuildingEmissionFactor)
+class BuildingEmissionFactorAdmin(ImportExportModelAdmin):
+    search_fields = ['Emission_factor_methodology_description']
+    list_display = ('Emission_factor_name', 'Emission_factor', 'Country', 'EPC_Rating', 'Emission_factor_functional_unit_name', 'PCAF_data_quality_score')
+    list_filter = ('Emission_factor_type', 'Country', )
+    resource_class = BuildingEmissionFactorResource
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+# @admin.register(BuildingEmissionFactor)
+# class BuildingEmissionFactorAdmin(admin.ModelAdmin):
+#     view_on_site = False
+#     save_as = True
+#     date_hierarchy = ('creation_date')
 
 
 @admin.register(EmissionFactor)

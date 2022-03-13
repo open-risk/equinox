@@ -22,7 +22,7 @@
 from django.db import models
 from django.contrib.gis.db.models import PointField, PolygonField
 from django.urls import reverse
-from portfolio.Asset import Asset
+from portfolio.Asset import ProjectAsset
 
 """
 General Data Models
@@ -35,7 +35,7 @@ class PointSource(models.Model):
     name = models.CharField(max_length=255)
     location = PointField()
 
-    asset = models.ForeignKey('Asset', null=True, blank=True, on_delete=models.CASCADE)
+    asset = models.ForeignKey('portfolio.ProjectAsset', null=True, blank=True, on_delete=models.CASCADE)
 
     #
     # BOOKKEEPING FIELDS
@@ -60,7 +60,7 @@ class AreaSource(models.Model):
     name = models.CharField(max_length=255)
     location = PolygonField()
 
-    asset = models.ForeignKey('Asset', null=True, blank=True, on_delete=models.CASCADE)
+    asset = models.ForeignKey('portfolio.ProjectAsset', null=True, blank=True, on_delete=models.CASCADE)
 
     #
     # BOOKKEEPING FIELDS
@@ -78,12 +78,4 @@ class AreaSource(models.Model):
         verbose_name = "Area Source"
         verbose_name_plural = "Area Sources"
 
-# from portfolio.ProjectCompany import ProjectCompany
-# from portfolio.Revenue import Revenue
-# from portfolio.Loan import Loan
-# from portfolio.Stakeholders import Stakeholders
-# from portfolio.Sponsor import Sponsor
-# from portfolio.Asset import Asset
-# from portfolio.Contractor import Contractor
-# from portfolio.Operator import Operator
-# from portfolio.Swap import Swap
+

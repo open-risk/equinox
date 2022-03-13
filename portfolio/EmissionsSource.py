@@ -69,7 +69,7 @@ class EmissionsSource(models.Model):
 
     # LINKS
 
-    asset = models.ForeignKey('Asset', blank=True, null=True, on_delete=models.CASCADE,
+    asset = models.ForeignKey('portfolio.ProjectAsset', blank=True, null=True, on_delete=models.CASCADE,
                               help_text="Asset to which this source belongs")
 
     emissions_factor = models.ForeignKey('reference.EmissionFactor', blank=True, null=True, on_delete=models.CASCADE,
@@ -170,11 +170,10 @@ class BuildingEmissionsSource(models.Model):
 
     # LINKS
 
-    asset = models.ForeignKey('Asset', blank=True, null=True, on_delete=models.CASCADE,
+    asset = models.ForeignKey('portfolio.Building', blank=True, null=True, on_delete=models.CASCADE,
                               help_text="The Asset (Building) to which this emissions source belongs")
 
-    emissions_factor = models.ForeignKey('reference.EmissionFactor', blank=True, null=True, on_delete=models.CASCADE,
-                                         help_text="The Applicable Emissions Factor")
+    emissions_factor = models.ForeignKey('reference.EmissionFactor', blank=True, null=True, on_delete=models.CASCADE, help_text="The Applicable Emissions Factor")
 
     # CHARACTERISTICS
 

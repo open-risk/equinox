@@ -173,7 +173,7 @@ class BuildingEmissionsSource(models.Model):
     asset = models.ForeignKey('portfolio.Building', blank=True, null=True, on_delete=models.CASCADE,
                               help_text="The Asset (Building) to which this emissions source belongs")
 
-    emissions_factor = models.ForeignKey('reference.EmissionFactor', blank=True, null=True, on_delete=models.CASCADE, help_text="The Applicable Emissions Factor")
+    emissions_factor = models.ForeignKey('reference.BuildingEmissionFactor', blank=True, null=True, on_delete=models.CASCADE, help_text="The Applicable Building Emissions Factor (From PCAF Database)")
 
     # CHARACTERISTICS
 

@@ -49,7 +49,6 @@ class DocPage(models.Model):
     def get_absolute_url(self):
         return reverse('start:documentation', kwargs={'slug': self.slug})
 
-
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)

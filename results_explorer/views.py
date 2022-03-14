@@ -8,7 +8,7 @@ from django.template import RequestContext, loader
 
 from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
-from portfolio.EmissionsSource import GPCEmissionsSource
+from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
 from portfolio.ProjectActivity import ProjectActivity
 from results_explorer.models import Calculation, Visualization
 
@@ -34,33 +34,39 @@ def pcaf_mortgage_report(request):
 
     """
 
+    for be in BuildingEmissionsSource.objects.all():
+        print(80*'=')
+        print(be.asset.loan_identifier.counterparty_identifier)
+        print(be.asset.loan_identifier)
+        print(be.asset.loan_identifier.legal_balance)
+        print(be.asset.initial_valuation_amount)
+        print(be.asset.building_area_m2)
+        print(be.emissions_factor.Emission_factor)
+
     table_header = []
-    table_header.append('GPC Ref No')
-    table_header.append('Scope')
-    table_header.append('Name')
-    table_header.append('Notation Key')
-    table_header.append('GHG Reduction')
+    table_header.append('Borrower')
+    table_header.append('Loan')
+    table_header.append('Legal Balance')
+    table_header.append('Building')
+    table_header.append('Initial Valuation')
+    table_header.append('Area')
+    table_header.append('Emission Factor')
+    table_header.append('Attribution Factor')
+    table_header.append('Financed Emissions')
 
     table_rows = {}
     key = 0
-    for pa in GPCEmissionsSource.objects.all():
+    for be in BuildingEmissionsSource.objects.all():
         value = []
-        value.append(pa.gpc_subsector.gpc_ref_no)
-        value.append(pa.gpc_subsector.gpc_scope)
-        value.append(pa.gpc_subsector.name)
-        value.append(pa.notation_key)
-        value.append(pa.co2_amount)
-        value.append(pa.ch4_amount)
-        value.append(pa.n2o_amount)
-        value.append(pa.hfc_amount)
-        value.append(pa.pfc_amount)
-        value.append(pa.sf6_amount)
-        value.append(pa.nf3_amount)
-        value.append(pa.tco2e_amount)
-        value.append(pa.co2b_amount)
-        value.append(pa.AD_DQ)
-        value.append(pa.EF_DQ)
-        value.append(pa.comments)
+        value.append(be.asset.loan_identifier.counterparty_identifier)
+        value.append(be.asset.loan_identifier)
+        value.append(be.asset.loan_identifier.legal_balance)
+        value.append(be.asset_id)
+        value.append(be.asset.initial_valuation_amount)
+        value.append(be.asset.building_area_m2)
+        value.append(be.emissions_factor.Emission_factor)
+        value.append(be.asset.loan_identifier.legal_balance / be.asset.initial_valuation_amount)
+        value.append(be.asset.building_area_m2 * be.emissions_factor.Emission_factor)
         table_rows[key] = value
         key += 1
         print(key, value)

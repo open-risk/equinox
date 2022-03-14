@@ -20,17 +20,18 @@
 
 
 from django.db import models
-from django.contrib.gis.db.models import PointField, PolygonField
+from django.contrib.gis.db.models import PointField, MultiPolygonField, PolygonField
 from django.urls import reverse
 from portfolio.Asset import ProjectAsset
 
 """
-General Data Models
+General Geospatial Models
 
 """
 
+
 class PointSource(models.Model):
-    """A point marker with name and location (to create elementary geospatial reference)."""
+    """A point marker with name and location (to create an elementary geospatial reference)."""
 
     name = models.CharField(max_length=255)
     location = PointField()
@@ -55,12 +56,18 @@ class PointSource(models.Model):
 
 
 class AreaSource(models.Model):
-    """A polygon geometry demarcating the area of a Project (if applicable)"""
+    """A simple polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)"""
+
+    # IDENTIFICATION
 
     name = models.CharField(max_length=255)
-    location = PolygonField()
+
+    # LINKS
 
     asset = models.ForeignKey('portfolio.ProjectAsset', null=True, blank=True, on_delete=models.CASCADE)
+
+    # ATTRIBUTES
+    location = PolygonField()
 
     #
     # BOOKKEEPING FIELDS
@@ -79,3 +86,32 @@ class AreaSource(models.Model):
         verbose_name_plural = "Area Sources"
 
 
+class MultiAreaSource(models.Model):
+    """A multi-polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)"""
+
+    # IDENTIFICATION
+
+    name = models.CharField(max_length=255)
+
+    # LINKS
+
+    asset = models.ForeignKey('portfolio.ProjectAsset', null=True, blank=True, on_delete=models.CASCADE)
+
+    # ATTRIBUTES
+    location = MultiPolygonField()
+
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('portfolio:MultiAreaSource_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Multi Area Source"
+        verbose_name_plural = "Multi Area Sources"

@@ -76,21 +76,21 @@ class Portfolio(models.Model):
 
 class PortfolioSnapshot(models.Model):
     """
-    The Portfolio_Snapshot object groups Portfolio for a given cutoff date. The Snapshot may be named to facilitate recognition.
+    The Portfolio_Snapshot object groups Portfolio data for a given cutoff date. The Snapshot may be named to facilitate recognition.
 
-    .. note:: The actual Snapshot data are stored in the various Models (with foreign key to a snapshot)
+    .. note:: The actual Snapshot data are stored in the various Models (with foreign key to a portfolio snapshot)
 
     """
 
     creation_date = models.DateTimeField(auto_now_add=True,
-        help_text="Date at which the snapshot has been created. Different from the cutoff date")
+                                         help_text="Date at which the snapshot has been created. Different from the cutoff date")
     last_change_date = models.DateTimeField(auto_now=True)
 
     cutoff_date = models.DateTimeField(blank=True, null=True,
                                        help_text="Portfolio Cutoff Date (If available). Different from the creation date")
 
-    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
-
+    name = models.CharField(blank=True, null=True, max_length=200,
+                            help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
 
     def __str__(self):
         return str(self.name)

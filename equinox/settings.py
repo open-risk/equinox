@@ -21,7 +21,6 @@
 """
 Django settings for the Equinox platform.
 
-
 """
 
 from pathlib import Path

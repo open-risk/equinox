@@ -216,11 +216,11 @@ class ProjectAsset(models.Model):
         return self.asset_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Asset_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:ProjectAsset_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Asset"
-        verbose_name_plural = "Assets"
+        verbose_name = "Project Asset"
+        verbose_name_plural = "Project Assets"
 
 
 class Building(models.Model):
@@ -241,7 +241,7 @@ class Building(models.Model):
     # FOREIGN KEYS
     #
 
-    loan_identifier = models.ForeignKey('portfolio.Loan', on_delete=models.CASCADE, null=True, blank=True)
+    loan_identifier = models.ForeignKey('portfolio.Mortgage', on_delete=models.CASCADE, null=True, blank=True)
 
     #
     # DATA PROPERTIES
@@ -430,7 +430,7 @@ class Building(models.Model):
         return self.protection_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:building_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:Building_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Building"

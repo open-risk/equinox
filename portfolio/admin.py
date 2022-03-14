@@ -31,8 +31,9 @@ from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource, 
 from portfolio.Contractor import Contractor
 from portfolio.Borrower import Borrower
 from portfolio.Loan import Loan
+from portfolio.Mortgage import Mortgage
 from portfolio.Operator import Operator
-from portfolio.Portfolios import Portfolio, PortfolioData, LimitStructure
+from portfolio.Portfolios import Portfolio, PortfolioData, PortfolioSnapshot, LimitStructure
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
 from portfolio.ProjectCategory import ProjectCategory
@@ -43,7 +44,7 @@ from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
 from portfolio.Swap import Swap
-from portfolio.models import PointSource, AreaSource
+from portfolio.models import PointSource, AreaSource, MultiAreaSource
 
 
 #
@@ -78,7 +79,7 @@ class PointSourceAdmin(admin.OSMGeoAdmin):
 
 @admin.register(AreaSource)
 class AreaSourceAdmin(admin.OSMGeoAdmin):
-    """Project Region admin."""
+    """Project Region admin. (Simple Polygon) """
 
     list_display = ("name",)
     view_on_site = False
@@ -87,12 +88,22 @@ class AreaSourceAdmin(admin.OSMGeoAdmin):
     date_hierarchy = ('creation_date')
 
 
+@admin.register(MultiAreaSource)
+class MultiAreaSourceAdmin(admin.OSMGeoAdmin):
+    """Project Region admin. (Multi Polygon) """
+
+    list_display = ("name",)
+    view_on_site = False
+    save_as = True
+    search_fields = ['name']
+    date_hierarchy = ('creation_date')
+
 #
 # Regular Objects
 #
 
 @admin.register(ProjectAsset)
-class AssetAdmin(admin.ModelAdmin):
+class ProjectAssetAdmin(admin.ModelAdmin):
     """Project Asset admin"""
     view_on_site = False
     save_as = True
@@ -207,6 +218,11 @@ class LoanAdmin(admin.ModelAdmin):
     save_as = True
     date_hierarchy = ('creation_date')
 
+@admin.register(Mortgage)
+class MortgageAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 @admin.register(Stakeholders)
 class StakeholdersAdmin(admin.ModelAdmin):
@@ -273,6 +289,13 @@ class LimitStructureAdmin(admin.ModelAdmin):
             'message': 'LimitStructure Administration: Overview of User Generated Limit Structures and their Properties',
         }
         return super(LimitStructureAdmin, self).changelist_view(request, extra_context=extra_context)
+
+
+@admin.register(PortfolioSnapshot)
+class PortfolioSnapshot(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
 
 
 class PortfolioAdmin(admin.ModelAdmin):

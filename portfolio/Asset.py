@@ -24,7 +24,7 @@ from django.urls import reverse
 from portfolio.model_choices import *
 from portfolio.property_collateral_choices import *
 
-# To classify assets, the EBA Loan Asset Classes are used for correspondence, but not all of these involve collateral assets
+
 
 ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
                        (1, '(b) CRE'),
@@ -39,11 +39,11 @@ class ProjectAsset(models.Model):
     """
     The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Portfolio or Inventory or a Project - which may or may not be financed.
 
-    An Asset will in general be associated with one or more emissions sources.
+    A Project Asset will in general be associated with one or more emissions sources.
 
-    An Asset participates in only one Project at a time (if linked to a project object)
+    A Project Asset participates in only one Project at a time (if linked to a project object)
 
-    An Asset may be part of the Collateral securing a Loan or Other Contract
+    A Project Asset may be part of the Collateral securing a Loan or Other Contract
 
 
     """

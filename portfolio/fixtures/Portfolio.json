@@ -1,0 +1,28 @@
+[
+{
+  "model": "portfolio.portfolio",
+  "pk": 1,
+  "fields": {
+    "name": "PiDay2022",
+    "user": 1,
+    "notes": "Test Portfolio",
+    "portfolio_type": 0,
+    "max_rating": null,
+    "min_rating": null,
+    "mean_rating": null,
+    "max_lgd": null,
+    "min_lgd": null,
+    "mean_lgd": null,
+    "max_ead": null,
+    "min_ead": null,
+    "mean_ead": null,
+    "max_tenor": null,
+    "min_tenor": null,
+    "mean_tenor": null,
+    "country_no": null,
+    "sector_no": null,
+    "creation_date": "2022-03-14T14:54:15.669Z",
+    "last_change_date": "2022-03-14T14:54:15.669Z"
+  }
+}
+]

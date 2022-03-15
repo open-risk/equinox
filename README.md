@@ -1,9 +1,9 @@
 [![Documentation Status](https://readthedocs.org/projects/equinox-server/badge/?version=latest)](https://equinox-server.readthedocs.io/en/latest/?badge=latest)
 
 # Equinox Overview
-![Equinox Logo](/docs/source/equinox-logo.png) Equinox is an open source platform that supports the holistic risk management and reporting of major sustainable finance projects (the financing of projects with material physical footprint) such as project finance.
+![Equinox Logo](docs/source/equinox-logo.png) Equinox is an open source platform for sustainable portfolio management. It supports the holistic risk management and reporting of sustainable finance projects in accordance with industry standards.
 
-## The Challenge of Project Finance and Sustainability
+## The Challenge of Sustainable Finance
 Sustainability (understood both in environmental and social terms) is a serious and ongoing issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is thus an important objective
 
 ## What exactly is Equinox?
@@ -20,10 +20,26 @@ The initial functionality of Equinox focuses on integrating the following concep
 * Equator Principles for Project Finance
 * GHG Accounting Protocol for Projects
 
+## Screenshots
+
+The landing page of a working equinox instance:
+
+![Landing Page](docs/source/screenshots/landing.png)
+
+
+To get anything done we need to login! (admin/admin would be the credentials in a local demo instance)
+
+![Login Page](docs/source/screenshots/login.png)
+
+Once you login successfully you'd be greeted by the admin area
+
+![Admin Page](docs/source/screenshots/admin.png)
+
+The admin is our main workbench
 
 ## Credits
-* Django
-* Jazzmin
-* European Banking Authority
-* Partnership for Carbon Accounting Financials  
-* Equator Principles
+* The Python and Django ecosystems and the many powerful software components (Geodjango, Jazzmin, ... full list coming) 
+* The GHG Protocol
+* The European Banking Authority
+* The Partnership for Carbon Accounting Financials  
+* The Equator Principles Alliance

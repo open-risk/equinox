@@ -8,12 +8,12 @@ equinox Documentation
   :alt: equinox Logo
   :align: left
 
-**Equinox** is an open source platform for collecting and reporting risk and sustainability information about project finance. Equinox implements and integrates a number of regulatory or industry standards that cover the space of GHG emissions attribution and reporting and ESG risk analysis.
+**Equinox** is an open source platform for sustainable portfolio management. Equinox implements and integrates a number of regulatory or industry standards that cover the space of GHG emissions attribution and reporting and ESG risk analysis.
 
 The full list of implemented standards is in :ref:`References`
 
 
-.. note:: The equinox project is still in its early phases and is not yet suitable for deployment.
+.. note:: The equinox project is still in its development phase and is not yet suitable for production deployments.
 
 
 Overview
@@ -24,9 +24,9 @@ Overview
 * Development Website: `Github <https://github.com/open-risk/equinox>`_
 * Online Code Documentation: `Read The Docs <https://equinox-server.readthedocs.io/en/latest/>`_
 * Project Discussion: `Open Risk Commons <https://www.openriskcommons.org/c/sustainable-finance>`_
-* Docker Image: Coming
-* Training: Coming: `Open Risk Academy <https://www.openriskacademy.com/>`_
-
+* Docker Image: `Docker Hub <https://hub.docker.com/repository/docker/openrisk/equinox>`_
+* Training: `Open Risk Academy <https://www.openriskacademy.com/>`_
+* Showcase: `Equinox Point <https://www.equinoxpoint.org/>`_
 
 .. toctree::
    :maxdepth: 2
@@ -57,7 +57,7 @@ Overview
    getting_started
    pages
    reference_data
-   GHG_Project
+   GHG_Project_Workflow
    PCAF
    CIRIS
    EBA_Scorecard

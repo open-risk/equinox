@@ -1,0 +1,12 @@
+[
+{
+  "model": "start.ormkeyword",
+  "pk": 1,
+  "fields": {
+    "keyword": "Sustainable Finance",
+    "slug": "Sustainable_Finance",
+    "link": "https://www.openriskmanual.org/wiki",
+    "tooltip": ""
+  }
+}
+]

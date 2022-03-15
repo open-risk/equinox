@@ -1,0 +1,12 @@
+[
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 1,
+  "fields": {
+    "creation_date": "2022-03-14T15:01:54.457Z",
+    "last_change_date": "2022-03-14T15:01:54.457Z",
+    "cutoff_date": "2022-03-14T15:01:33Z",
+    "name": "PiDay2022 Snapshot"
+  }
+}
+]

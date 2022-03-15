@@ -1,0 +1,167 @@
+[
+{
+        "model": "reference.gpcsector",
+        "pk": 1,
+        "fields": {
+            "path": "0001",
+            "depth": 1,
+            "numchild": 6,
+            "name": "GPC Sector",
+            "gpc_ref_no": "0",
+            "gpc_scope": null,
+            "description": "",
+            "creation_date": "2021-12-20T10:59:45.377Z",
+            "last_change_date": "2021-12-20T10:59:45.383Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 8,
+        "fields": {
+            "path": "00010007",
+            "depth": 2,
+            "numchild": 0,
+            "name": "Agriculture (AFOLU)",
+            "gpc_ref_no": "V",
+            "gpc_scope": null,
+            "description": "Agriculture, Forestry and Other Land Use (AFOLU)",
+            "creation_date": "2022-01-06T17:05:32.577Z",
+            "last_change_date": "2022-01-06T17:05:32.770Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 7,
+        "fields": {
+            "path": "00010008",
+            "depth": 2,
+            "numchild": 0,
+            "name": "Industrial Processes (IPPU)",
+            "gpc_ref_no": "IV",
+            "gpc_scope": null,
+            "description": "Industrial Processes and Product Uses (IPPU)",
+            "creation_date": "2022-01-06T17:04:44.250Z",
+            "last_change_date": "2022-01-06T17:04:44.318Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 9,
+        "fields": {
+            "path": "0001000A",
+            "depth": 2,
+            "numchild": 0,
+            "name": "Other Scope 3",
+            "gpc_ref_no": "VI",
+            "gpc_scope": null,
+            "description": "Other Scope 3",
+            "creation_date": "2022-01-06T17:05:50.290Z",
+            "last_change_date": "2022-01-06T17:05:50.396Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 2,
+        "fields": {
+            "path": "0001000C",
+            "depth": 2,
+            "numchild": 1,
+            "name": "Stationary Energy",
+            "gpc_ref_no": "I",
+            "gpc_scope": null,
+            "description": "GHG emissions come from fuel combustion, as well as fugitive emissions released in the process of generating, delivering, and consuming useful forms of energy (such as electricity or heat).",
+            "creation_date": "2021-12-20T10:59:45.377Z",
+            "last_change_date": "2022-01-06T17:11:00.296Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 10,
+        "fields": {
+            "path": "0001000C0002",
+            "depth": 3,
+            "numchild": 3,
+            "name": "Residential Buildings",
+            "gpc_ref_no": "I.1",
+            "gpc_scope": 0,
+            "description": "Residential Buildings",
+            "creation_date": "2022-01-06T17:07:49.786Z",
+            "last_change_date": "2022-01-06T17:07:49.844Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 11,
+        "fields": {
+            "path": "0001000C00020002",
+            "depth": 4,
+            "numchild": 0,
+            "name": "Res. Buildings Fuel Combustion",
+            "gpc_ref_no": "I.1.1",
+            "gpc_scope": 1,
+            "description": "Emissions from fuel combustion within the city boundary",
+            "creation_date": "2022-01-06T17:09:29.806Z",
+            "last_change_date": "2022-01-06T17:09:29.850Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 13,
+        "fields": {
+            "path": "0001000C00020005",
+            "depth": 4,
+            "numchild": 0,
+            "name": "Res. Buildings Grid Losses",
+            "gpc_ref_no": "I.1.3",
+            "gpc_scope": 2,
+            "description": "Emissions from transmission and distribution losses from grid-supplied energy consumption",
+            "creation_date": "2022-01-06T17:10:37.537Z",
+            "last_change_date": "2022-01-06T17:10:37.599Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 12,
+        "fields": {
+            "path": "0001000C00020007",
+            "depth": 4,
+            "numchild": 0,
+            "name": "Res. Buildings Grid Supplied",
+            "gpc_ref_no": "I.1.2",
+            "gpc_scope": 1,
+            "description": "Emissions from grid-supplied energy consumed within the city boundary",
+            "creation_date": "2022-01-06T17:10:04.684Z",
+            "last_change_date": "2022-01-06T17:11:18.538Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 5,
+        "fields": {
+            "path": "0001000D",
+            "depth": 2,
+            "numchild": 0,
+            "name": "Transportation",
+            "gpc_ref_no": "II",
+            "gpc_scope": null,
+            "description": "City transportation systems are designed to move people and goods within and beyond city borders. Transport vehicles and mobile equipment or machinery produce GHG emissions directly by combusting fuel",
+            "creation_date": "2021-12-20T10:59:45.377Z",
+            "last_change_date": "2022-01-06T17:02:31.460Z"
+        }
+    },
+    {
+        "model": "reference.gpcsector",
+        "pk": 6,
+        "fields": {
+            "path": "0001000E",
+            "depth": 2,
+            "numchild": 0,
+            "name": "Waste",
+            "gpc_ref_no": "III",
+            "gpc_scope": null,
+            "description": "",
+            "creation_date": "2022-01-06T17:03:41.265Z",
+            "last_change_date": "2022-01-06T17:03:41.318Z"
+        }
+    }
+  ]

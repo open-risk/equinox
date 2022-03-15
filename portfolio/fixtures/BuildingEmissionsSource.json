@@ -1,0 +1,14 @@
+[
+{
+  "model": "portfolio.buildingemissionssource",
+  "pk": 1,
+  "fields": {
+    "source_identifier": "Heating0",
+    "asset": 0,
+    "emissions_factor": 217,
+    "emitted_gas": 0,
+    "creation_date": "2022-03-14T16:22:42.708Z",
+    "last_change_date": "2022-03-14T16:25:14.850Z"
+  }
+}
+]

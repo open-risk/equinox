@@ -21,10 +21,16 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
+    - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Install Linux Dependencies
+      run: |
+        sudo apt-get -y install gdal-bin
+        sudo apt-get -y install libgdal-dev
+        sudo apt-get -y install spatialite-bin
+        sudo apt-get -y install libsqlite3-mod-spatialite
     - name: Run Tests
       run: |
-        python manage.py test
+        python manage.py check

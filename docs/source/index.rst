@@ -10,11 +10,11 @@ equinox Documentation
 
 **Equinox** is an open source platform for sustainable portfolio management. Equinox implements and integrates a number of regulatory or industry standards that cover the space of GHG emissions attribution and reporting and ESG risk analysis.
 
+These pages serve as the online documentation of the equinox platform.
+
 The full list of implemented standards is in :ref:`References`
 
-
-.. note:: The equinox project is still in its development phase and is not yet suitable for production deployments.
-
+.. note:: The equinox project is still in its development phase and is not yet suitable for production deployments. Feel free to contact us for the roadmap and any requests / feedback.
 
 Overview
 -----------
@@ -36,7 +36,6 @@ Overview
    setup
    requirements
    loading_sample_data
-
 
 .. toctree::
    :maxdepth: 2

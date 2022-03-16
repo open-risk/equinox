@@ -1,4 +1,4 @@
-Contractor
+Borrower
 ------------------------------
 
 .. automodule:: portfolio.Borrower

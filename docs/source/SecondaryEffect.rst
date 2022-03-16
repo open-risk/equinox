@@ -1,4 +1,4 @@
-Operator
+Secondary Effect
 ------------------------------
 
 .. automodule:: portfolio.SecondaryEffect

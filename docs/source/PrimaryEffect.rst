@@ -1,4 +1,4 @@
-Operator
+Primary Effect
 ------------------------------
 
 .. automodule:: portfolio.PrimaryEffect

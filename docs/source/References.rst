@@ -6,12 +6,13 @@ Standards
 
 The set of standards currently implemented is based on the following references:
 
-
-* BIS/EBA Standardized Credit Risk assessment of Project Finance
-* Equator Principles for Project Finance
-* PCAF Emissions Accounting and Reporting for Project Finance
 * GHG Protocol for Projects
 * GHG Protocol for Community-scale Emissions
+* PCAF Emissions Accounting and Reporting for Residential Mortgages
+* PCAF Emissions Accounting and Reporting for Project Finance
+* BIS/EBA Standardized Credit Risk assessment of Project Finance
+* Equator Principles for Project Finance
+
 
 
 Publications

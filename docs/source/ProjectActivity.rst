@@ -1,4 +1,4 @@
-Operator
+Project Activity
 ------------------------------
 
 .. automodule:: portfolio.ProjectActivity

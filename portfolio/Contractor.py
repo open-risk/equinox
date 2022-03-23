@@ -30,6 +30,7 @@ class Contractor(models.Model):
 
     """
 
+
     # IDENTITY
 
     contractor_identifier = models.CharField(max_length=80, null=True,

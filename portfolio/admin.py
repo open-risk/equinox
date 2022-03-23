@@ -33,7 +33,9 @@ from portfolio.Borrower import Borrower
 from portfolio.Loan import Loan
 from portfolio.Mortgage import Mortgage
 from portfolio.Operator import Operator
-from portfolio.Portfolios import Portfolio, PortfolioData, PortfolioSnapshot, LimitStructure
+from portfolio.Portfolios import Portfolio, PortfolioData
+from portfolio.PortfolioManager import PortfolioManager
+from portfolio.Portfolios import PortfolioSnapshot, LimitStructure
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
 from portfolio.ProjectCategory import ProjectCategory
@@ -98,6 +100,7 @@ class MultiAreaSourceAdmin(admin.OSMGeoAdmin):
     search_fields = ['name']
     date_hierarchy = ('creation_date')
 
+
 #
 # Regular Objects
 #
@@ -135,6 +138,14 @@ class ProjectAssetAdmin(admin.ModelAdmin):
 class BorrowerAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(PortfolioManager)
+class PortfolioManagerAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    list_display = ('name_of_manager', 'address', 'town', 'region', 'country', 'website')
     date_hierarchy = ('creation_date')
 
 
@@ -218,11 +229,13 @@ class LoanAdmin(admin.ModelAdmin):
     save_as = True
     date_hierarchy = ('creation_date')
 
+
 @admin.register(Mortgage)
 class MortgageAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
     date_hierarchy = ('creation_date')
+
 
 @admin.register(Stakeholders)
 class StakeholdersAdmin(admin.ModelAdmin):

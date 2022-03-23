@@ -26,7 +26,7 @@ from django.urls import reverse
 
 class ProjectCompany(models.Model):
     """
-    The Project Company model holds data for a sustainability oriented Project Finance entity. A Project Company always refers to a Project
+    The Project Company model holds data for a sustainability oriented Project Finance entity. A Project Company always refers to a Project but a Project may not involve a special company
 
 
     """

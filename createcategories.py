@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#!/usr/bin/env python
+# !/usr/bin/env python
 import os
 import django
 
@@ -28,12 +28,24 @@ django.setup()
 from portfolio.ProjectCategory import ProjectCategory
 
 get = lambda node_id: ProjectCategory.objects.get(pk=node_id)
-root = ProjectCategory.add_root(name='GHG Project')
-node = get(root.pk).add_child(name='Wind Power')
+
+# GHG Protocol Project Categories
+root = ProjectCategory.add_root(name='Generic Project')
+ghg_node = get(root.pk).add_child(name='GHG Protocol Project')
+ted_node = get(root.pk).add_child(name='Procurement Project')
+
+node = get(ghg_node.pk).add_child(name='Wind Power')
 get(node.pk).add_sibling(name='Landfill Gas')
 get(node.pk).add_sibling(name='Afforestation')
 get(node.pk).add_sibling(name='Energy Efficiency')
 get(node.pk).add_sibling(name='Transportation Fuel Switch')
 get(node.pk).add_sibling(name='Industrial Fuel Switch')
 get(node.pk).add_sibling(name='Agricultural Tillage')
-# get(node.pk).add_child(name='Sub Category Project')
+
+# Procurement Project Categories
+
+node = get(ted_node.pk).add_child(name='WORKS')
+get(node.pk).add_sibling(name='SERVICES')
+get(node.pk).add_sibling(name='SUPPLIES')
+
+

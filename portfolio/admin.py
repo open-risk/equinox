@@ -182,6 +182,7 @@ class ProjectAdmin(admin.ModelAdmin):
     """Project admin"""
     view_on_site = False
     save_as = True
+    list_display = ('project_title', 'cpv_code', 'project_budget', 'project_category')
     date_hierarchy = ('creation_date')
 
 

@@ -20,17 +20,29 @@
 
 
 from django.db import models
-from portfolio.ProjectCategory import ProjectCategory
-from portfolio.model_choices import *
 from django.urls import reverse
 from markdownfield.models import MarkdownField, RenderedMarkdownField
 from markdownfield.validators import VALIDATOR_STANDARD
+
+from portfolio.model_choices import *
 
 
 class Project(models.Model):
     """
     The Project model holds data for a general sustainability Project (irrespective of financial attributes)
 
+    project_identifier         varchar(80),  -> REFERENCE_NUMBER
+    project_description        text, -> SHORT_DESCR
+    project_visualization      varchar(100),
+    design_and_technology_risk integer,
+    completion_risk            integer,
+    construction_risk          real,
+
+    references portfolio_projectcategory  -> TYPE_CONTRACT (Works, Supplies, Services)
+
+    NEW project_title
+    NEW cpv_code
+    NEW project_budget
 
     """
 
@@ -39,21 +51,33 @@ class Project(models.Model):
     project_identifier = models.CharField(max_length=80, blank=True, null=True,
                                           help_text='A unique identification of the Project for internal use')
 
-    project_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',
-                                        validator=VALIDATOR_STANDARD,
-                                        help_text='Textual description of a  Project. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/GHG_Project">Documentation</a>')
-
-    # text = MarkdownField(rendered_field='text_rendered', validator=VALIDATOR_STANDARD)
-    text_rendered = RenderedMarkdownField()
+    project_title = models.CharField(max_length=160, blank=True, null=True,
+                                     help_text='The title of the project')
 
     project_visualization = models.ImageField(upload_to='project_files', blank=True, null=True,
                                               help_text='Visual representation of a  Project')
 
+    # PROJECT DATA
+
+    project_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',
+                                        validator=VALIDATOR_STANDARD,
+                                        help_text='Textual description of a Project. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/GHG_Project">Documentation</a>')
+
+    # text = MarkdownField(rendered_field='text_rendered', validator=VALIDATOR_STANDARD)
+    text_rendered = RenderedMarkdownField()
+
+    cpv_code = models.CharField(max_length=20, blank=True, null=True,
+                                help_text="The Common Procurement Vocabulary Code")
+
+    project_budget = models.IntegerField(blank=True, null=True, help_text="The Project Budget")
+
+    project_currency = models.CharField(max_length=4, blank=True, null=True,
+                                        help_text="The currency code in which the project is accounted for")
     # LINKS
 
     project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.CASCADE)
 
-    # SCORECARD
+    # PROJECT SCORECARD DATA
 
     design_and_technology_risk = models.IntegerField(blank=True, null=True, choices=DESIGN_AND_TECHNOLOGY_RISK_CHOICES,
                                                      help_text='Risk Factor. EBA 3.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Technology_Risk">Documentation</a>')

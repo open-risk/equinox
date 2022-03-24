@@ -6,6 +6,8 @@ from reference.nace_list import NACE_CHOICES
 from reference.nuts3_list import NUTS3_CHOICES
 
 
+# TODO Link to Portfolio Manager
+
 class Portfolio(models.Model):
     """
     The Portfolio object holds a collection of Projects

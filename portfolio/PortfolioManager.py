@@ -24,7 +24,7 @@ from django.urls import reverse
 
 class PortfolioManager(models.Model):
     """
-    The PortfolioManager model holds data for each Portfolio Manager that is using an equinox instance. A Portfolio Manger may be a Loan Portfolio manager a Procurement portfolio manager etc
+    The PortfolioManager model holds data for each Portfolio Manager that is using an equinox instance. A Portfolio Manger may be a Loan Portfolio manager a Procurement contracts portfolio manager etc
 
     All Portfolios must belong to one (and only one) Portfolio Manager
 

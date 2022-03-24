@@ -255,6 +255,7 @@ class SponsorAdmin(admin.ModelAdmin):
 class ContractorAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
+    list_display = ('name_of_contractor', 'is_sme', 'address', 'town', 'region', 'country')
     date_hierarchy = ('creation_date')
 
 

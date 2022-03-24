@@ -21,28 +21,30 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 
-from portfolio.PortfolioManager import PortfolioManager
+from portfolio.Contractor import Contractor
 
 
 class Command(BaseCommand):
     help = 'Imports portfolio manager data'
 
     # Delete existing objects
-    PortfolioManager.objects.all().delete()
+    Contractor.objects.all().delete()
 
     # Import data from file
-    data = pd.read_csv("pm.csv", header='infer', delimiter=',')
+    data = pd.read_csv("co.csv", header='infer', delimiter=',')
 
     """
-    OFFICIALNAME,ADDRESS,TOWN,POSTAL_CODE,COUNTRY,PHONE,E_MAIL,FAX,NUTS,URL_GENERAL,URL_BUYER,CONTACT_POINT,NATIONALID
+    SME,OFFICIALNAME,NATIONALID,ADDRESS,TOWN,POSTAL_CODE,COUNTRY,NUTS,PHONE,E_MAIL,URL,FAX
+
     """
     indata = []
     serial = 10000
     for index, entry in data.iterrows():
-        pm = PortfolioManager(
-            manager_identifier=str(serial),
-            manager_legal_entity_identifier=entry['NATIONALID'],
-            name_of_manager=entry['OFFICIALNAME'],
+        co = Contractor(
+            contractor_identifier=str(serial),
+            is_sme=entry['SME'],
+            contractor_legal_entity_identifier=entry['NATIONALID'],
+            name_of_contractor=entry['OFFICIALNAME'],
             address=entry['ADDRESS'],
             town=entry['TOWN'],
             postal_code=entry['POSTAL_CODE'],
@@ -51,14 +53,12 @@ class Command(BaseCommand):
             email=entry['E_MAIL'],
             fax=entry['FAX'],
             region=entry['NUTS'],
-            website=entry['URL_GENERAL'],
-            pm_website=entry['URL_BUYER'],
-            contact_point=entry['CONTACT_POINT'])
+            website=entry['URL'])
         serial += 1
 
-        indata.append(pm)
+        indata.append(co)
 
-    PortfolioManager.objects.bulk_create(indata)
+    Contractor.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Successfully inserted data into db'))

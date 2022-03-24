@@ -25,8 +25,14 @@ from django.urls import reverse
 
 class Contractor(models.Model):
     """
-    The Contractor model holds data for each Contractor involved in the construction of the Project
+    The Contractor model holds data for each Contractor involved in the construction of the Project or the fulfillment of a Procurement contract
 
+    Is a type of Counterparty
+
+    The Contractor data fields cover
+    - identity, type, address
+    - links to contracts and buyers
+    - EBA scorecard fields
 
     """
 
@@ -42,6 +48,42 @@ class Contractor(models.Model):
     name_of_contractor = models.TextField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    is_sme = models.BooleanField(blank=True, null=True, help_text="Whether the entity is an SME or not")
+
+    # ADDRESS
+
+    address = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='Street Address <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    postal_code = models.CharField(max_length=20, null=True, blank=True,
+                                   help_text='The Postal Code <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    town = models.CharField(max_length=20, null=True, blank=True,
+                            help_text='Town / City Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    region = models.CharField(max_length=10, null=True, blank=True,
+                              help_text='NUTS Code of Region. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    country = models.CharField(max_length=20, null=True, blank=True,
+                               help_text='Country Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # CONTACT
+
+    phone = models.CharField(max_length=20, null=True, blank=True,
+                             help_text='Phone Number <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    fax = models.CharField(max_length=20, null=True, blank=True,
+                           help_text='Fax Number <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    email = models.CharField(max_length=20, null=True, blank=True,
+                             help_text='Email Address <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    contact_point = models.CharField(max_length=10, null=True, blank=True,
+                                     help_text='Contact Point. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    website = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='Website URL. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     # LINKS
 
     project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="Project Company that sourced this contractor")
@@ -53,7 +95,7 @@ class Contractor(models.Model):
 
     completion_guarantees_and_liquidated_damages = models.IntegerField(blank=True, null=True,
                                                                        choices=COMPLETION_GUARANTEES_AND_LIQUIDATED_DAMAGES_CHOICES,
-                                                                       help_text='SRisk SubFactor. EBA 3.2.4. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                                       help_text='Risk SubFactor. EBA 3.2.4. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     type_of_construction_contract = models.IntegerField(blank=True, null=True,
                                                         choices=TYPE_OF_CONSTRUCTION_CONTRACT_CHOICES,
@@ -66,11 +108,11 @@ class Contractor(models.Model):
     # OTHER
 
     completion_guarantees = models.BooleanField(blank=True, null=True,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                help_text='Whether there are completion guarantees for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
     liquidated_damages = models.BooleanField(blank=True, null=True,
-                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                             help_text='Whether there are liquidated damages for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
 
 

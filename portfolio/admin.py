@@ -207,6 +207,7 @@ class ProjectActivityAdmin(admin.ModelAdmin):
     """Project Activity admin"""
     view_on_site = False
     save_as = True
+    list_display = ('project_activity_title', 'region', 'main_site')
     date_hierarchy = ('creation_date')
 
 

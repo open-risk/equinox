@@ -35,7 +35,23 @@ class ProjectActivity(models.Model):
     """
     The Project Activity model holds data for specific sustainability activities associated with a Project.
 
-    The model acts as a container for both the target activity and alternative "baseline candidates"
+    The model acts as a container for both target activities and potentially alternative "baseline candidates"
+
+    A Project will have at least one Project Activity
+
+    project_activity_identifier      varchar(80),
+    project_activity_description     text, -> SHORT_DESCR
+    project_activity_emissions       real,
+    baseline_activity_emissions      real,
+    project_activity_role            integer,
+    baseline_estimation              integer,
+    baseline_procedure_justification text,
+
+    references portfolio_project
+
+    NEW project_activity_title
+    NEW region
+    NEW main_site
 
 
     """
@@ -44,28 +60,36 @@ class ProjectActivity(models.Model):
     project_activity_identifier = models.CharField(max_length=80, blank=True, null=True,
                                                    help_text='A unique identification of a Project Activity for internal use')
 
+    project_activity_title = models.CharField(max_length=160, blank=True, null=True,
+                                              help_text='The title of the project activity')
+
     project_activity_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',
                                                  validator=VALIDATOR_STANDARD,
                                                  help_text='Textual description of a Project Activity. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/GHG_Project_Activity">Documentation</a>')
 
     text_rendered = RenderedMarkdownField()
 
-
-
     # LINKS
 
     project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE,
                                 help_text="The Project to which this Activity belongs")
 
-    # DATA
+    # PROJECT ACTIVITY DATA
 
-    project_activity_emissions = models.FloatField(blank=True, null=True, help_text="Emissions expressed in t CO2 eq/year")
+    region = models.CharField(max_length=10, null=True, blank=True,
+                              help_text='NUTS Code of Region. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    baseline_activity_emissions = models.FloatField(blank=True, null=True, help_text="Emissions expressed in t CO2 eq/year")
+    main_site = models.CharField(max_length=160, blank=True, null=True,
+                                 help_text='The main site of the project activity (if applicable)')
+
+    project_activity_emissions = models.FloatField(blank=True, null=True,
+                                                   help_text="Emissions expressed in t CO2 eq/year")
+
+    baseline_activity_emissions = models.FloatField(blank=True, null=True,
+                                                    help_text="Emissions expressed in t CO2 eq/year")
 
     project_activity_role = models.IntegerField(blank=True, null=True, choices=PROJECT_ACTIVITY_ROLE,
-                                              help_text='Select whether the activity role is baseline or target')
-
+                                                help_text='Select whether the activity role is baseline or target')
 
     baseline_estimation = models.IntegerField(blank=True, null=True, choices=BASELINE_ESTIMATION_PROCEDURE,
                                               help_text='Baseline procedures are methods used to estimate baseline emissions <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Baseline_Emissions">Documentation</a>')

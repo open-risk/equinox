@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="card card-body">
-                    <table id="data_list">
+                    <table id="data_list" class="display responsive" width="100%">
                         <thead>
                         <tr>
                             {% for entry in TableHeader %}
@@ -74,18 +74,7 @@
                 "bSort": true,
                 "displayLength": 50,
                 "autoWidth": true,
-                "searching": false,
-                "columnDefs": [
-                    {"visible": true, "targets": [0, 1, 2, 3, 4]},
-                    {targets: '_all', visible: false}
-                ],
-                "columns": [
-                    {"width": "20%"},
-                    {"width": "20%"},
-                    {"width": "20%"},
-                    {"width": "20%"},
-                    {"width": "20%"}
-                ],
+                "searching": false
             });
         </script>
 

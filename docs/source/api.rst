@@ -1,7 +1,7 @@
 REST API
 ================
 
-.. image:: ./screenshots/API.png
+.. image:: ./API.png
 
 equinox exposes a standard REST API via the Django DRF framework.
 
@@ -10,7 +10,7 @@ API Root
 -----------------------
 The root of the equinox API is accessed by by pointing your browser to ``http://localhost:8001/api``
 
-.. image:: ./screenshots/api1.png
+.. image:: ./api1.png
 
 We see here the available API endpoints, which enumerate the different portfolio data categories that are being exposed
 
@@ -24,12 +24,12 @@ We are now one level deeper into the API structure, where we can see all the dis
 
 Each entry displays its unique identifier and a further link which will take us to the data of an individual entry
 
-.. image:: ./screenshots/api2.png
+.. image:: ./api2.png
 
 Individual Entries
 ------------------
 
-.. image:: ./screenshots/api3.png
+.. image:: ./api3.png
 
 .. TODO:: Missing are the following: the Lease Table and the Schedule tables (Swap cashflows and Historical Repayments)
 

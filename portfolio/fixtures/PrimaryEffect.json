@@ -1,0 +1,41 @@
+[
+{
+  "model": "portfolio.primaryeffect",
+  "pk": 1,
+  "fields": {
+    "primary_effect_identifier": "Clinker X 2 PE 1",
+    "primary_effect_description": "Reduction in industrial process emissions from the calcination process",
+    "text_rendered": "<p>Reduction in industrial process emissions from the calcination process</p>",
+    "project_activity": 2,
+    "effect_category": null,
+    "creation_date": "2021-11-05T14:36:09.482Z",
+    "last_change_date": "2022-03-28T11:07:27.896Z"
+  }
+},
+{
+  "model": "portfolio.primaryeffect",
+  "pk": 2,
+  "fields": {
+    "primary_effect_identifier": "Clinker X 1 PE 2",
+    "primary_effect_description": "Reduction in combustion emissions from generating energy for pyro-processing",
+    "text_rendered": "<p>Reduction in combustion emissions from generating energy for pyro-processing</p>",
+    "project_activity": 1,
+    "effect_category": null,
+    "creation_date": "2021-11-05T14:36:09.482Z",
+    "last_change_date": "2022-03-28T11:07:09.327Z"
+  }
+},
+{
+  "model": "portfolio.primaryeffect",
+  "pk": 3,
+  "fields": {
+    "primary_effect_identifier": "Clinker X 2 PE 1",
+    "primary_effect_description": "Reduction in combustion emissions from generating energy, due to the switch from coal to biofuels",
+    "text_rendered": "<p>Reduction in combustion emissions from generating energy, due to the switch from coal to biofuels</p>",
+    "project_activity": 2,
+    "effect_category": null,
+    "creation_date": "2021-11-05T14:36:09.482Z",
+    "last_change_date": "2022-03-28T11:07:35.464Z"
+  }
+}
+]

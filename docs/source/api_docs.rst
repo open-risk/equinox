@@ -1,7 +1,7 @@
 REST API Documentation
 ============================
 
-This page documents the current views implementing the REST endpoints of the equinox server. The overall structure is as follows:
+This page documents the current views implementing the REST endpoints of the equinox server. The overall structure of the API is as follows:
 
 * api_root (overall API root)
 * data_api_root (data API root)

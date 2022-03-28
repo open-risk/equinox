@@ -44,7 +44,7 @@ class SecondaryEffect(models.Model):
                                                  help_text='Textual description of a Secondary Effect. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Secondary_GHG_Effects">Documentation</a>')
 
     # text = MarkdownField(rendered_field='text_rendered', validator=VALIDATOR_STANDARD)
-    text_rendered = RenderedMarkdownField()
+    text_rendered = RenderedMarkdownField(blank=True, null=True)
 
     # LINKS
 

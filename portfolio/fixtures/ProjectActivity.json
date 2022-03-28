@@ -1,0 +1,44 @@
+[
+{
+  "model": "portfolio.projectactivity",
+  "pk": 3410,
+  "fields": {
+    "project_activity_identifier": "Cement X 1",
+    "project_activity_title": "Cement X 1",
+    "project_activity_description": "## Activity Summary\r\nReducing clinker content in cement production by increasing material additives.\r\n\r\n## Activity Description\r\nCurrently, Company X produces OPC clinker with a clinker-to-cement ratio of 95 percent. Company X proposes to manufacture blended cement, which uses increased proportions of limestone and pozzolan additives in the fine-grinding process. The result is cement with a lower clinker fraction (81 percent) with a strength comparable to that of OPC. \r\n\r\nLowering the clinker-to-cement ratio reduces both process emissions and associated fuel-related GHG emissions. \r\n\r\nThe pozzolanic additives used include coal fly ash and volcanic ash (trass). The use of these materials will require investment in new equipment to improve clinker\r\nquality. With its existing equipment, Company X can only slightly reduce its clinker-to-cement ratio (from 95 percent to 91 percent).",
+    "text_rendered": "<h2>Activity Summary</h2>\n<p>Reducing clinker content in cement production by increasing material additives.</p>\n<h2>Activity Description</h2>\n<p>Currently, Company X produces OPC clinker with a clinker-to-cement ratio of 95 percent. Company X proposes to manufacture blended cement, which uses increased proportions of limestone and pozzolan additives in the fine-grinding process. The result is cement with a lower clinker fraction (81 percent) with a strength comparable to that of OPC. </p>\n<p>Lowering the clinker-to-cement ratio reduces both process emissions and associated fuel-related GHG emissions. </p>\n<p>The pozzolanic additives used include coal fly ash and volcanic ash (trass). The use of these materials will require investment in new equipment to improve clinker\nquality. With its existing equipment, Company X can only slightly reduce its clinker-to-cement ratio (from 95 percent to 91 percent).</p>",
+    "project": 1573,
+    "region": null,
+    "main_site": null,
+    "project_activity_emissions": null,
+    "baseline_activity_emissions": null,
+    "project_activity_role": null,
+    "baseline_estimation": 0,
+    "baseline_procedure_justification": "The project-specific procedure was preferred over a performance standard approach because of difficulties in obtaining performance data on individual cement kilns  in Indonesia. \r\n\r\nFurther, the total number of comparable cement kilns in Indonesia is small, making it difficult to develop a robust statistical performance standard.",
+    "text_rendered2": "<p>The project-specific procedure was preferred over a performance standard approach because of difficulties in obtaining performance data on individual cement kilns  in Indonesia. </p>\n<p>Further, the total number of comparable cement kilns in Indonesia is small, making it difficult to develop a robust statistical performance standard.</p>",
+    "creation_date": "2022-03-28T10:44:46.133Z",
+    "last_change_date": "2022-03-28T10:45:11.475Z"
+  }
+},
+{
+  "model": "portfolio.projectactivity",
+  "pk": 3411,
+  "fields": {
+    "project_activity_identifier": "Cement X 2",
+    "project_activity_title": "Cement X 2",
+    "project_activity_description": "## Activity Summary\r\nSwitching fuels from coal to biofuels (palm kernel and rice husk) in kiln burning.\r\n\r\n## Activity Description\r\nAll of Company X’s cement kilns use coal as fuel for clinker burning. Company X intends to replace a portion of the coal with biofuels found near its plants, and consequently to reduce GHG emissions.",
+    "text_rendered": "<h2>Activity Summary</h2>\n<p>Switching fuels from coal to biofuels (palm kernel and rice husk) in kiln burning.</p>\n<h2>Activity Description</h2>\n<p>All of Company X’s cement kilns use coal as fuel for clinker burning. Company X intends to replace a portion of the coal with biofuels found near its plants, and consequently to reduce GHG emissions.</p>",
+    "project": 1573,
+    "region": null,
+    "main_site": null,
+    "project_activity_emissions": null,
+    "baseline_activity_emissions": null,
+    "project_activity_role": null,
+    "baseline_estimation": null,
+    "baseline_procedure_justification": "## Activity Summary\r\nSwitching fuels from coal to biofuels (palm kernel and rice husk) in kiln burning.\r\n\r\n## Activity Description\r\nAll of Company X’s cement kilns use coal as fuel for clinker burning. Company X intends to replace a portion of the coal with biofuels found near its plants, and consequently to reduce GHG emissions.",
+    "text_rendered2": "<h2>Activity Summary</h2>\n<p>Switching fuels from coal to biofuels (palm kernel and rice husk) in kiln burning.</p>\n<h2>Activity Description</h2>\n<p>All of Company X’s cement kilns use coal as fuel for clinker burning. Company X intends to replace a portion of the coal with biofuels found near its plants, and consequently to reduce GHG emissions.</p>",
+    "creation_date": "2022-03-28T10:46:16.713Z",
+    "last_change_date": "2022-03-28T10:46:16.713Z"
+  }
+}
+]

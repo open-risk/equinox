@@ -1,0 +1,22 @@
+[
+{
+  "model": "portfolio.project",
+  "pk": 1573,
+  "fields": {
+    "project_identifier": "Cement X",
+    "project_title": "Cement X",
+    "project_visualization": "project_files/process_CvxtdDp.png",
+    "project_description": "## Background\r\nThis project is intended to reduce GHG emissions: \r\n* by reducing process GHG emissions associated with cement clinker production and\r\n* by reducing GHG emissions associated with energy production and consumption\r\n\r\nPortland cement is manufactured by a complex process of “burning” (pyro-processing) selected raw materials and then fine-grinding the resulting clinker. The process entails the conversion of a chemically designed and physically prepared raw material mixture into cement clinker. \r\n\r\nIn Company X’s facilities, this is done in a rotary kiln through the controlled combustion of coal.\r\n\r\n## Emissions Sources\r\n\r\nGHG emissions from cement manufacturing depend on the fuel mix, energy consumption, plant technology, and other variables, and are plant-specific. The two main GHG emission sources are:\r\n\r\n* Calcination/pyro-processing, which is generally the largest source of GHG emissions. (CaCO3+ heat = > CaO+CO2 ). The GHG emissions from this source are categorized as industrial process emissions, which can generate 50 percent or more of total cement manufac- turing GHG emissions (OECD/IEA 2000).\r\n* Fuel burning in pyro-processing, which requires flame temperatures above 2,000 ̊C and large quantities of fuels. Depending on the raw materials and the actual production process, a cement plant consumes\r\nfuel at a rate between 3,200 and 5,500 megajoules per tonne (MJ/t) of clinker.",
+    "text_rendered": "<h2>Background</h2>\n<p>This project is intended to reduce GHG emissions: \n* by reducing process GHG emissions associated with cement clinker production and\n* by reducing GHG emissions associated with energy production and consumption</p>\n<p>Portland cement is manufactured by a complex process of “burning” (pyro-processing) selected raw materials and then fine-grinding the resulting clinker. The process entails the conversion of a chemically designed and physically prepared raw material mixture into cement clinker. </p>\n<p>In Company X’s facilities, this is done in a rotary kiln through the controlled combustion of coal.</p>\n<h2>Emissions Sources</h2>\n<p>GHG emissions from cement manufacturing depend on the fuel mix, energy consumption, plant technology, and other variables, and are plant-specific. The two main GHG emission sources are:</p>\n<ul>\n<li>Calcination/pyro-processing, which is generally the largest source of GHG emissions. (CaCO3+ heat = &gt; CaO+CO2 ). The GHG emissions from this source are categorized as industrial process emissions, which can generate 50 percent or more of total cement manufac- turing GHG emissions (OECD/IEA 2000).</li>\n<li>Fuel burning in pyro-processing, which requires flame temperatures above 2,000 ̊C and large quantities of fuels. Depending on the raw materials and the actual production process, a cement plant consumes\nfuel at a rate between 3,200 and 5,500 megajoules per tonne (MJ/t) of clinker.</li>\n</ul>",
+    "cpv_code": "44111200-3",
+    "project_budget": 100000,
+    "project_currency": "EUR",
+    "project_category": 10,
+    "design_and_technology_risk": 1,
+    "completion_risk": 2,
+    "construction_risk": 3.0,
+    "creation_date": "2022-03-28T10:17:44.050Z",
+    "last_change_date": "2022-03-28T10:27:05.919Z"
+  }
+}
+]

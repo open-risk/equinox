@@ -1,0 +1,132 @@
+[
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 1,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 1 SE 1",
+    "secondary_effect_description": "<p>Reduction in combustion emissions from reduced electricity use during the clinker production process (e.g., in the operation of the rotary kiln, raw material grinding, and fuel preparation). This positive secondary effect is smaller than the two primary effects. In the interest of being conservative, it will not be included in the GHG assessment boundary.</p>",
+    "text_rendered": null,
+    "project_activity": 1,
+    "effect_category": null,
+    "creation_date": "2021-11-05T15:22:54.719Z",
+    "last_change_date": "2021-11-05T15:28:11.062Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 2,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 1 SE 2",
+    "secondary_effect_description": "<p>Reduction in combustion emissions from the reduced transport and preparation of raw materials. This positive secondary effect is expected to be small. As a conservative measure, it will be excluded from the GHG assessment boundary</p>",
+    "text_rendered": "Cement X 1 SE 2",
+    "project_activity": 1,
+    "effect_category": 1,
+    "creation_date": "2021-11-05T15:28:11.061Z",
+    "last_change_date": "2021-11-05T15:28:11.062Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 3,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 1 SE 3",
+    "secondary_effect_description": "<p>Increased combustion emissions from the transportation of additives (e.g., fly ash and trass) to the plant site. The increase in GHG emissions is expected to be small compared to the primary effects (less than one percent). Because this secondary effect will be counterbalanced by GHG reductions from the reduced transport and preparation of the raw materials, it is considered insignificant and will not be included in the GHG assessment boundary.</p>",
+    "text_rendered": "Cement X 1 SE 3",
+    "project_activity": 1,
+    "effect_category": 3,
+    "creation_date": "2021-11-05T15:29:23.797Z",
+    "last_change_date": "2021-11-05T15:29:23.797Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 4,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 1 SE 4",
+    "secondary_effect_description": "<p>Increased combustion emissions from additional electricity required for the preparation of additive materials. The increase in GHG emissions is expected to be small compared to the primary effects (less than half a percent). Because this secondary effect is\ncounterbalanced by the reduction in GHG emissions from reduced electricity use in clinker production and is not expected to change over time, it is considered insignificant and will not be included in the GHG assessment boundary.</p>",
+    "text_rendered": "Cement X 1 SE 4",
+    "project_activity": 1,
+    "effect_category": 3,
+    "creation_date": "2021-11-05T15:30:03.775Z",
+    "last_change_date": "2021-11-05T15:30:03.775Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 5,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 1 SE 5",
+    "secondary_effect_description": "<p>Possible increase in GHG emissions at other cement companies, who also use fly ash and trass. This could result from the decreased availability of these inputs because of Company X’s GHG project (i.e., a market response). A feasibility study on the availability of additive materials suggests that these additive materials are abundant. Thus, this market response is considered insignificant.</p>",
+    "text_rendered": "Cement X 1 SE 5",
+    "project_activity": 1,
+    "effect_category": 3,
+    "creation_date": "2021-11-05T15:31:18.894Z",
+    "last_change_date": "2021-11-05T15:31:18.894Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 6,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 2 SE 1",
+    "secondary_effect_description": "<p>Increased combustion emissions associated with the\ntransportation of biofuels</p>",
+    "text_rendered": "Cement X 2 SE 1",
+    "project_activity": 2,
+    "effect_category": 1,
+    "creation_date": "2021-11-05T15:32:15.889Z",
+    "last_change_date": "2021-11-05T15:32:15.889Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 7,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 2 SE 2",
+    "secondary_effect_description": "<p>Reduced combustion emissions associated with the transportation of coal</p>",
+    "text_rendered": "Cement X 2 SE 2",
+    "project_activity": 2,
+    "effect_category": 1,
+    "creation_date": "2021-11-05T15:32:47.020Z",
+    "last_change_date": "2021-11-05T15:32:47.020Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 8,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 2 SE 3",
+    "secondary_effect_description": "<p>Reduced waste emissions due to less waste materials being burned or anaerobically decomposing in landfills (the biofuel would have otherwise been disposed of in landfills)</p>",
+    "text_rendered": "Cement X 2 SE 3",
+    "project_activity": 2,
+    "effect_category": 2,
+    "creation_date": "2021-11-05T15:33:33.011Z",
+    "last_change_date": "2021-11-05T15:33:33.011Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 9,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 2 SE 4",
+    "secondary_effect_description": "<p>Reduced combustion emissions from using less electricity for coal preparation</p>",
+    "text_rendered": "Cement X 2 SE 4",
+    "project_activity": 2,
+    "effect_category": 1,
+    "creation_date": "2021-11-05T15:34:31.831Z",
+    "last_change_date": "2021-11-05T15:34:31.831Z"
+  }
+},
+{
+  "model": "portfolio.secondaryeffect",
+  "pk": 10,
+  "fields": {
+    "secondary_effect_identifier": "Cement X 2 SE 5",
+    "secondary_effect_description": "<p>Possible increase in combustion emissions from generating energy caused by the reduced availability of biofuels (i.e., a market response)</p>\n<h2>Note</h2>\n<p>Other users of rice husks and palm kernels may need to increase their consumption of fossil fuels to generate energy, thereby\nincreasing GHG emissions. However, preliminary research indicates that rice husks and palm kernel shells are available in abundance. Based on current demand, the supply of these materials is approximately 1.5 times greater than the expected demand. Therefore, this secondary effect is considered insignificant and is\nexcluded from the GHG assessment boundary.</p>",
+    "text_rendered": "Cement X 2 SE 5",
+    "project_activity": 2,
+    "effect_category": 3,
+    "creation_date": "2021-11-05T15:35:05.276Z",
+    "last_change_date": "2021-11-05T15:36:42.226Z"
+  }
+}
+]

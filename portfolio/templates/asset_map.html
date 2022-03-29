@@ -6,7 +6,7 @@
     {{ block.super }}
     <title>Asset Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'asset_manager/map.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'portfolio/map.css' %}">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 {% endblock %}
@@ -28,7 +28,7 @@
             <div class="row">
                 {% block content %}
                     <div id="map"></div>
-                    <script src="{% static 'asset_manager/map.js' %}"></script>
+                    <script src="{% static 'portfolio/map.js' %}"></script>
                 {% endblock %}
             </div>
         </div>

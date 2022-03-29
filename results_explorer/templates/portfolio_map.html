@@ -1,0 +1,62 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+{% load leaflet_tags %}
+
+{% block title %}
+    {{ title }} Portfolio Map
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% leaflet_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'portfolio/map.css' %}">
+    {% leaflet_js %}
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+{% endblock %}
+
+{% block messages %}
+    <div class="content-header">
+        <div class="row mb-2">
+            <div class="col-auto col-sm-3">
+                <h1 class="m-0"> Portfolio Map</h1>
+            </div>
+            <div class="col-auto col-sm-9">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/admin/" class="active"><i
+                            class="fa fa-tachometer-alt"></i> Home</a></li>
+                    <li class="breadcrumb-item">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-12">
+
+
+        <div class="card card-primary card-outline">
+
+
+            <div class="card-header">
+                <h4>Map of Area Sources</h4>
+            </div>
+
+            <div class="card-body">
+                {{ geometry|json_script:"geometry" }}
+                <div id="map"></div>
+                <script src="{% static 'portfolio/map.js' %}"></script>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

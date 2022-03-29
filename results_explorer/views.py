@@ -1,5 +1,7 @@
 import json
 
+from django.core.serializers import serialize
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -10,6 +12,7 @@ from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
 from portfolio.ProjectActivity import ProjectActivity
+from portfolio.models import AreaSource, PointSource
 from results_explorer.models import Calculation, Visualization
 
 root_view = settings.ROOT_VIEW
@@ -103,6 +106,23 @@ def ghg_reduction(request):
 
     context.update({'TableHeader': table_header})
     context.update({'TableRows': table_rows})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def portfolio_map(request):
+    t = loader.get_template('portfolio_map.html')
+    context = RequestContext(request, {})
+
+    """
+    Compile a portfolio map
+
+    """
+
+    # geometry = json.loads(serialize("geojson", PointSource.objects.all()))
+    geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
+    context.update({'geometry': geometry})
+
     return HttpResponse(t.template.render(context))
 
 

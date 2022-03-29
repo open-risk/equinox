@@ -107,7 +107,7 @@ class GPCEmissionsSource(models.Model):
     # IDENTITY
 
     source_identifier = models.CharField(max_length=80, null=True,
-                                         help_text='An internal identifier for the source')
+                                         help_text='An internal identifier for the GHG emissions source')
 
     # LINKS
 

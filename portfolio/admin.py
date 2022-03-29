@@ -174,6 +174,7 @@ class BuildingEmissionsSourceAdmin(admin.ModelAdmin):
 class GPCEmissionsSourceAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
+    list_display = ('source_identifier', 'gpc_subsector', 'co2_amount')
     date_hierarchy = ('creation_date')
 
 

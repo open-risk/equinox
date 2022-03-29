@@ -3,7 +3,7 @@ html, body {
   margin: 0;
 }
 #map {
-  position: inherit !important;
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 600px;
 }

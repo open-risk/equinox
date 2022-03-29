@@ -25,7 +25,7 @@ from portfolio.Contractor import Contractor
 
 
 class Command(BaseCommand):
-    help = 'Imports portfolio manager data'
+    help = 'Imports Contractor data'
 
     # Delete existing objects
     Contractor.objects.all().delete()

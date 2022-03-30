@@ -31,18 +31,6 @@ class Project(models.Model):
     """
     The Project model holds data for a general sustainability Project (irrespective of financial attributes)
 
-    project_identifier         varchar(80),  -> REFERENCE_NUMBER
-    project_description        text, -> SHORT_DESCR
-    project_visualization      varchar(100),
-    design_and_technology_risk integer,
-    completion_risk            integer,
-    construction_risk          real,
-
-    references portfolio_projectcategory  -> TYPE_CONTRACT (Works, Supplies, Services)
-
-    NEW project_title
-    NEW cpv_code
-    NEW project_budget
 
     """
 

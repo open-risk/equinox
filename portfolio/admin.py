@@ -27,7 +27,8 @@ from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import ProjectAsset, Building
-from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource, GPCEmissionsSource
+from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource
+from portfolio.EmissionsSource import GPCEmissionsSource, GPPEmissionsSource
 from portfolio.Contractor import Contractor
 from portfolio.Borrower import Borrower
 from portfolio.Loan import Loan
@@ -176,6 +177,20 @@ class GPCEmissionsSourceAdmin(admin.ModelAdmin):
     save_as = True
     list_display = ('source_identifier', 'gpc_subsector', 'co2_amount')
     date_hierarchy = ('creation_date')
+
+
+@admin.register(GPPEmissionsSource)
+class GPPEmissionsSourceAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    list_display = ('source_identifier', 'project', 'project__cpv_code', 'project__budget', 'co2_amount')
+    date_hierarchy = ('creation_date')
+
+    def project__cpv_code(self, obj):
+        return obj.project.cpv_code
+
+    def project__budget(self, obj):
+        return obj.project.project_budget
 
 
 @admin.register(Project)

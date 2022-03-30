@@ -1,6 +1,10 @@
 ChangeLog
 ===========================
 
+v0.32 (31-03-2022)
+-----------------
+* Integration of Procurement data models / workflows
+
 v0.314 (14-03-2022)
 -------------------
 * Pi Day pre-release

@@ -10,8 +10,9 @@ from django.template import RequestContext, loader
 
 from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
-from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
+from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource, GPPEmissionsSource
 from portfolio.ProjectActivity import ProjectActivity
+from portfolio.Project import Project
 from portfolio.models import AreaSource, PointSource
 from results_explorer.models import Calculation, Visualization
 
@@ -123,6 +124,38 @@ def portfolio_map(request):
     geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
     context.update({'geometry': geometry})
 
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def gpp_report(request):
+    t = loader.get_template('gpp_report.html')
+    context = RequestContext(request, {})
+
+    """
+
+    """
+
+    table_header = []
+    table_header.append('Project Title')
+    table_header.append('Budget (EUR)')
+    table_header.append('CPV')
+    table_header.append('CO2 (Tonnes)')
+
+    table_rows = {}
+    key = 0
+    for source in GPPEmissionsSource.objects.all():
+        pr = source.project
+        value = []
+        value.append(pr.project_title)
+        value.append(pr.project_budget)
+        value.append(pr.cpv_code)
+        value.append(source.co2_amount)
+        table_rows[key] = value
+        key += 1
+
+    context.update({'TableHeader': table_header})
+    context.update({'TableRows': table_rows})
     return HttpResponse(t.template.render(context))
 
 

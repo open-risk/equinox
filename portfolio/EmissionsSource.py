@@ -196,3 +196,53 @@ class BuildingEmissionsSource(models.Model):
     class Meta:
         verbose_name = "Building Emissions Source"
         verbose_name_plural = "Building Emissions Sources"
+
+
+class GPPEmissionsSource(models.Model):
+    """
+    The GPP Emission Source model holds aggregated emissions data per procurement contract
+
+    """
+
+    # IDENTITY
+
+    source_identifier = models.CharField(max_length=80, null=True,
+                                         help_text='An internal identifier for the GHG emissions source')
+
+    # LINKS
+
+    project = models.ForeignKey('portfolio.Project', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Project to which this source belongs")
+
+    # CHARACTERISTICS
+
+    # Kyoto Gases
+
+    co2_amount = models.FloatField(null=True, blank=True, help_text='CO2 amount in tonnes')
+    ch4_amount = models.FloatField(null=True, blank=True, help_text='CH4 amount in tonnes')
+    n2o_amount = models.FloatField(null=True, blank=True, help_text='N2O amount in tonnes')
+    hfc_amount = models.FloatField(null=True, blank=True, help_text='HFC amount in tonnes')
+    pfc_amount = models.FloatField(null=True, blank=True, help_text='PFC amount in tonnes')
+    sf6_amount = models.FloatField(null=True, blank=True, help_text='SF6 amount in tonnes')
+    nf3_amount = models.FloatField(null=True, blank=True, help_text='NF3 amount in tonnes')
+    tco2e_amount = models.FloatField(null=True, blank=True, help_text='Total CO2 equivalent amount in tonnes')
+    co2b_amount = models.FloatField(null=True, blank=True, help_text='CO2 (b) amount in tonnes')
+
+    comments = models.TextField(null=True, blank=True,
+                                help_text="Explanatory comments (i.e. description of methods used)")
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.source_identifier
+
+    def get_absolute_url(self):
+        return reverse('portfolio:GPPEmissionsSource_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "GPP Emissions Source"
+        verbose_name_plural = "GPP Emissions Sources"
+

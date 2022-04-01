@@ -29,21 +29,22 @@ The initial functionality of Equinox focuses on integrating the following concep
 
 The landing page of a working equinox instance:
 
-![Landing Page](docs/source/screenshots/landing.png)
+![Landing Page](docs/source/landing.png)
 
 To get anything done we need to login! (admin/admin would be the credentials in a local demo instance)
 
-![Login Page](docs/source/screenshots/login.png)
+![Login Page](docs/source/login.png)
 
 Once you login successfully you'd be greeted by the admin area
 
-![Admin Page](docs/source/screenshots/admin.png)
+![Admin Page](docs/source/admin.png)
 
 The admin is our main workbench
 
 ## Credits
 * The Python and Django ecosystems and the many powerful software components (Geodjango, Jazzmin, ... full list coming) 
 * The GHG Protocol
-* The European Banking Authority
 * The Partnership for Carbon Accounting Financials  
+* The European Banking Authority
+* The EU Open Data Portal and the EU Publications Office 
 * The Equator Principles Alliance

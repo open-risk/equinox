@@ -18,24 +18,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.core.management.base import BaseCommand
-from portfolio.EmissionsSource import GPPEmissionsSource
-from reference.intensity import intensity
+import csv
+from django.core.management import BaseCommand
+from reference.CPVData import CPVData, CPV_LEVEL_DICT
+import pandas as pd
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        gpp_set = GPPEmissionsSource.objects.all()
+    help = 'Load common procurement vocabulary as a csv file into equinox'
+
+    def handle(self, *args, **kwargs):
+        # Delete existing objects
+        CPVData.objects.all().delete()
+
+        # Import data from file
+        data = pd.read_csv("cpvdata.csv", header='infer', delimiter=',')
 
         """
-          iterate over procurement portfolio
-          read emissions intensity from cpv_code dictionary
-          set co2_amount as emissions intensity times project budget
-          save update source data     
+        CPV_ID, short_code, level, description
+    
         """
+        indata = []
 
-        for source in gpp_set.iterator():
-            if source.project.cpv_code[:2] in intensity and source.project.project_budget > 0:
-                multiplier = intensity[source.project.cpv_code[:2]]
-                source.co2_amount = round(source.project.project_budget * multiplier / 1000000, 1)
-                source.save()
+        for index, entry in data.iterrows():
+            co = CPVData(
+                CPV_ID=entry['CPV_ID'],
+                description=entry['description'],
+                short_code=entry['short_code'],
+                level=CPV_LEVEL_DICT[entry['level']])
+
+            indata.append(co)
+
+        CPVData.objects.bulk_create(indata)

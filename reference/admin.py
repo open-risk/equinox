@@ -8,6 +8,7 @@ from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.GPCSector import GPCSector
+from reference.CPVData import CPVData
 
 actions = ['export']
 
@@ -37,8 +38,10 @@ class BuildingEmissionFactorResource(resources.ModelResource):
 @admin.register(BuildingEmissionFactor)
 class BuildingEmissionFactorAdmin(ImportExportModelAdmin):
     search_fields = ['Emission_factor_methodology_description']
-    list_display = ('Emission_factor_name', 'Emission_factor', 'Country', 'EPC_Rating', 'Emission_factor_functional_unit_name', 'PCAF_data_quality_score')
-    list_filter = ('Emission_factor_type', 'Country', )
+    list_display = (
+    'Emission_factor_name', 'Emission_factor', 'Country', 'EPC_Rating', 'Emission_factor_functional_unit_name',
+    'PCAF_data_quality_score')
+    list_filter = ('Emission_factor_type', 'Country',)
     resource_class = BuildingEmissionFactorResource
     view_on_site = False
     save_as = True
@@ -94,3 +97,12 @@ class GPCSectorAdmin(TreeAdmin):
 
 
 admin.site.register(GPCSector, GPCSectorAdmin)
+
+
+@admin.register(CPVData)
+class CPVDataAdmin(admin.ModelAdmin):
+    search_fields = ['description']
+    list_display = ('CPV_ID', 'short_code', 'level', 'description')
+    list_filter = ('level',)
+    view_on_site = False
+    save_as = True

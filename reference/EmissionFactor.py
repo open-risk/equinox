@@ -20,7 +20,7 @@
 
 from django.db import models
 from django.urls import reverse
-from django_countries.fields import CountryField
+# from django_countries.fields import CountryField
 
 
 class EmissionFactor(models.Model):

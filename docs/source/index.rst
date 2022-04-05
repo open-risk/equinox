@@ -47,6 +47,7 @@ Overview
    api_docs
    internationalization
    changelog
+   conventions
    contributing
 
 

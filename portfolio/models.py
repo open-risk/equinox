@@ -25,7 +25,10 @@ from django.urls import reverse
 from portfolio.Asset import ProjectAsset
 
 """
-General Geospatial Models
+The main Portfolio models are defined in individual files for readability
+Use models.py for any additional / auxiliary models
+
+* General Geospatial Models
 
 """
 

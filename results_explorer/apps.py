@@ -22,7 +22,7 @@
 from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
-""" Results Explorer: Application for the management of results and reports
+""" Results Explorer: Equinox application for the management of results and reports
 
 """
 

@@ -1,12 +1,15 @@
 The equinox platform at a glance
 ============================================
-**equinox** is a Python / Django powered sustainable portfolio management platform that allows the collection and reporting of sustainable finance risk and sustainability characteristics
+**equinox** is a Python / Django powered sustainable portfolio management platform. It allows the collection and reporting of information relating to sustainable finance and any portfolio that has material sustainability characteristics
+
+This documentation focuses on technical (software, installation, devops) characteristics of the equinox platform. Documentation of the user perspective (Functionality, workflows etc is provided `here <https://www.openriskmanagement.com/equinox>`_
 
 Architecture
 -------------
 
-- At the core of equinox are a number of **data models** that capture information about the different entities and concepts involved in Sustainable Finance and more specifically *Sustainable Portfolio Management*. These data models follow a logical pattern that is independent of any of the reference standards that are being implemented.
-- The platform functionality is delivered via a number of **apps** that process user inputs and portfolio data and deliver analyses and reports
+- Equinox is built as a web application framework adhering to REST principles. It make heavy use of Django's admin functionality.
+- At the core of equinox are a number of **data models** that capture (allow persistence storage) of information about the different entities and concepts involved in Sustainable Finance and more specifically *Sustainable Portfolio Management*. These data models follow a logical pattern that is independent of any of the reference standards that are being implemented. This conceptual framework is documented in a number of `Open Risk White Papers <https://www.openriskmanagement.com/open-risk-white-papers/>`_.
+- The platform functionality is delivered via a number of **apps** that process user inputs and portfolio data and deliver the required analyses and reports.
 
 Data Layers
 ---------------
@@ -40,7 +43,6 @@ Project Management Data Layer
 - A Project Activity is any activity with specific Sustainability impact (eg GHG reduction)
 - A Primary Effect is the GHG impact of a Project Activity
 - A Secondary Effect is the GHG impact of a Project Activity
-
 
 Application Layer
 ------------------

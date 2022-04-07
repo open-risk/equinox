@@ -42,6 +42,7 @@ Once you login successfully you'd be greeted by the admin area
 The admin is our main workbench
 
 ## Credits
+
 * The Python and Django ecosystems and the many powerful software components (Geodjango, Jazzmin, ... full list coming) 
 * The GHG Protocol
 * The Partnership for Carbon Accounting Financials  

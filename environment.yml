@@ -1,3 +1,4 @@
+name: base
 channels:
   - defaults
   - conda-forge
@@ -19,7 +20,7 @@ dependencies:
   - conda-content-trust=0.1.1=pyhd3eb1b0_0
   - conda-package-handling=1.7.3=py39h8cc25b3_1
   - console_shortcut=0.1.1=4
-  - coreapi=2.3.3=pyh9f0ad1d_0
+  - coreapi=2.3.3=pyh9f0ad1d_s0
   - coreschema=0.0.4=pyh9f0ad1d_0
   - cryptography=36.0.0=py39h21b164f_0
   - curl=7.82.0=h789b8ee_0

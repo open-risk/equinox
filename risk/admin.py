@@ -22,16 +22,16 @@ from django.contrib import admin
 from django.db import models
 from django_json_widget.widgets import JSONEditorWidget
 
-from risk_analysis.ActivityBarrier import ActivityBarrier
-from risk_analysis.Scorecard import Scorecard
-from risk_analysis.Objectives import Playbook, Objective
-from risk_analysis.Workflows import Workflow, Limitflow
+from risk.ActivityBarrier import ActivityBarrier
+from risk.Scorecard import Scorecard
+from risk.Objectives import Playbook, Objective
+from risk.Workflows import Workflow, Limitflow
 
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from risk_analysis.Scenarios import Scenario
+from risk.Scenarios import Scenario
 
 
 class ScenarioAdmin(admin.ModelAdmin):
@@ -45,7 +45,7 @@ class ScenarioAdmin(admin.ModelAdmin):
 
     # def response_change(self, request, obj, post_url_continue=None):
     #     """This makes the response after adding go to another apps changelist for some model"""
-    #     return HttpResponseRedirect(reverse("risk_analysis:scenario_list"))
+    #     return HttpResponseRedirect(reverse("risk:scenario_list"))
 
 
 admin.site.register(Scenario, ScenarioAdmin)

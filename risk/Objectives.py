@@ -23,8 +23,8 @@ from django.db import models
 from django.urls import reverse
 # from model_explorer.models import ModelDefinition, ModelConfiguration, ModelData
 from portfolio.Portfolios import Portfolio, LimitStructure
-from risk_analysis.Scenarios import Scenario
-from risk_analysis.Workflows import Workflow
+from risk.Scenarios import Scenario
+from risk.Workflows import Workflow
 
 # Global specification of the objective categories (used by both Objective and Workflow Models)
 

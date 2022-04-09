@@ -24,7 +24,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_json_widget.widgets import JSONEditorWidget
 
-from results_explorer.models import Calculation, ResultGroup, Visualization
+from reporting.models import Calculation, ResultGroup, Visualization
 
 
 #
@@ -71,7 +71,7 @@ class VisualizationAdmin(admin.ModelAdmin):
 
     def response_change(self, request, obj, post_url_continue=None):
         """This makes the response after adding go to another apps changelist for some model"""
-        return HttpResponseRedirect(reverse("results_explorer:Visualization_list"))
+        return HttpResponseRedirect(reverse("reporting:Visualization_list"))
 
 
 admin.site.register(Calculation, CalculationAdmin)

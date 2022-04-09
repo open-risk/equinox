@@ -18,35 +18,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django import forms
-from django.forms import ModelForm
+from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
 
-from risk_analysis.Objectives import Playbook
-from risk_analysis.Scenarios import Scenario
-from risk_analysis.Workflows import Workflow
+""" Risk Analysis: Equinox application for performing risk analysis
 
-
-class ScenarioForm(ModelForm):
-    class Meta:
-        model = Scenario
-        exclude = None
-        fields = '__all__'
+"""
 
 
-class WorkflowInteractiveForm(ModelForm):
-    class Meta:
-        model = Workflow
-        fields = ['portfolio', 'results_list']
-        widgets = {'results_list': forms.TextInput(attrs={'style': 'width:200px; height:50px;'})}
-
-
-class WorkflowBatchForm(ModelForm):
-    class Meta:
-        model = Workflow
-        fields = ['name']
-
-
-class PlaybookBatchForm(ModelForm):
-    class Meta:
-        model = Playbook
-        fields = ['name']
+class RiskAnalysisConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'risk'
+    verbose_name = _('Risk Analysis')

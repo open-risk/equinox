@@ -23,8 +23,8 @@ from django.db import models
 from django.urls import reverse
 # from model_explorer.models import ModelDefinition, ModelConfiguration, ModelData
 from portfolio.Portfolios import Portfolio, LimitStructure
-from risk_analysis.Scenarios import Scenario
-from risk_analysis.models import ModelDefinition, ModelData, ModelConfiguration
+from risk.Scenarios import Scenario
+from risk.models import ModelDefinition, ModelData, ModelConfiguration
 
 OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'), (3, 'Risk Appetite'), (4, 'Risk Capital'), (5, 'Other')]
 

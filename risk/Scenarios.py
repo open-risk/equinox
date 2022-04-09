@@ -51,7 +51,7 @@ class Scenario(models.Model):
 
     def get_absolute_url(self):
         # return reverse('DataSeries_list', kwargs={'name': self.name})
-        return reverse('risk_analysis:Scenario', kwargs={'pk': self.pk})
+        return reverse('risk:Scenario', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Scenario"

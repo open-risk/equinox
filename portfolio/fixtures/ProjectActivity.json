@@ -1,7 +1,7 @@
 [
 {
   "model": "portfolio.projectactivity",
-  "pk": 3410,
+  "pk": 1,
   "fields": {
     "project_activity_identifier": "Cement X 1",
     "project_activity_title": "Cement X 1",
@@ -22,7 +22,7 @@
 },
 {
   "model": "portfolio.projectactivity",
-  "pk": 3411,
+  "pk": 2,
   "fields": {
     "project_activity_identifier": "Cement X 2",
     "project_activity_title": "Cement X 2",

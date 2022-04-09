@@ -52,7 +52,7 @@ class Scorecard(models.Model):
         return self.scorecard_identifier
 
     def get_absolute_url(self):
-        return reverse('risk_analysis:Scorecard_edit', kwargs={'pk': self.pk})
+        return reverse('risk:Scorecard_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Scorecard"

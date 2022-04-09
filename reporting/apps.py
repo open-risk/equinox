@@ -18,11 +18,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.forms import ModelForm
-from results_explorer.models import Visualization
+
+from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
+
+""" Results Explorer: Equinox application for the management of results and reports
+
+"""
 
 
-class VisualizationInteractiveForm(ModelForm):
-    class Meta:
-        model = Visualization
-        fields = ['name']
+class ResultsExplorerConfig(AppConfig):
+    name = 'reporting'
+    verbose_name = _('Reporting')

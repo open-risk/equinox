@@ -4,23 +4,23 @@
 {% load humanize %}
 
 {% block title %}
-    {{ title }} PCAF Mortgage Report
+    {{ title }} GHG Reduction
 {% endblock %}
 
 {% block extrahead %}
     {{ block.super }}
     <script type="text/javascript" charset="utf-8"
-            src="{% static 'results_explorer/js/jquery.dataTables.js' %}"></script>
+            src="{% static 'reporting/js/jquery.dataTables.js' %}"></script>
 {% endblock %}
 
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'results_explorer/css/table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'reporting/css/table.css' %}">
 {% endblock %}
 
 {% block messages %}
     <div class="helpblock">
-        <p>PCAF Mortgage Report</p>
+        <p>Catalog of GHG reduction per Project</p>
     </div>
 {% endblock %}
 
@@ -33,7 +33,7 @@
 
             <div class="card card-info">
                 <div class="card-header">
-                    <h4> PCAF Report of Mortgage GHG Inventory Emissions</h4>
+                    <h4> GHG Reduction from all Project Activities</h4>
                 </div>
 
                 <div class="card card-body">

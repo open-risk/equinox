@@ -20,12 +20,12 @@ from django.views.generic.edit import UpdateView
 
 from equinox.serializers import WorkflowDetailSerializer
 from rest_framework_jwt.settings import api_settings
-from risk_analysis.forms import PlaybookBatchForm
-from risk_analysis.forms import WorkflowDebugForm, WorkflowInteractiveForm, WorkflowBatchForm
-from risk_analysis.forms import creditNetInteractiveForm
-from risk_analysis.Objectives import OBJECTIVE_CHOICE, Playbook
-from risk_analysis.Workflows import Workflow, Limitflow
-from risk_analysis.playbook_run_loop import run_loop
+from risk.forms import PlaybookBatchForm
+from risk.forms import WorkflowDebugForm, WorkflowInteractiveForm, WorkflowBatchForm
+from risk.forms import creditNetInteractiveForm
+from risk.Objectives import OBJECTIVE_CHOICE, Playbook
+from risk.Workflows import Workflow, Limitflow
+from risk.playbook_run_loop import run_loop
 
 root_view = settings.ROOT_VIEW
 cgi_url = settings.CGI_URL
@@ -471,9 +471,9 @@ def playbook_calculate(request, pk):
         current_user = request.user
         calculation_output = run_loop(playbook, auth, current_user)
         context.update({'root_view': root_view})
-        t = loader.get_template('results_explorer/calculation_list.html')
+        t = loader.get_template('reporting/calculation_list.html')
         return HttpResponse(t.template.render(context))
-        # return HttpResponseRedirect(reverse("results_explorer:results_view", args=[calculation_output['result_pk']]))
+        # return HttpResponseRedirect(reverse("reporting:results_view", args=[calculation_output['result_pk']]))
 
 
 from django.conf import settings

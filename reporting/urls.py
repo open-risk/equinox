@@ -19,9 +19,9 @@
 # SOFTWARE.
 
 from django.urls import re_path
-from results_explorer import views
+from reporting import views
 
-app_name = 'results_explorer'
+app_name = 'reporting'
 
 """ Custom URL's in addition to the admin url's
 

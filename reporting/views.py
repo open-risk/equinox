@@ -14,7 +14,7 @@ from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSourc
 from portfolio.ProjectActivity import ProjectActivity
 from portfolio.Project import Project
 from portfolio.models import AreaSource, PointSource
-from results_explorer.models import Calculation, Visualization
+from reporting.models import Calculation, Visualization
 
 root_view = settings.ROOT_VIEW
 
@@ -268,11 +268,11 @@ def visualization_view(request, pk):
     **Context**
 
     ``Visualization``
-        An instance of :model:`results_explorer.Visualization`.
+        An instance of :model:`reporting.Visualization`.
 
     **Template:**
 
-    :template:`results_explorer/Visualization_interactive.html`
+    :template:`reporting/Visualization_interactive.html`
     """
 
     # get the Visualization object

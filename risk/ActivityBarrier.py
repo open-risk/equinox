@@ -58,7 +58,7 @@ class ActivityBarrier(models.Model):
         return self.barrier_identifier
 
     def get_absolute_url(self):
-        return reverse('risk_analysis:ActivityBarrier_edit', kwargs={'pk': self.pk})
+        return reverse('risk:ActivityBarrier_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Activity Barrier"

@@ -23,8 +23,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.timezone import now
 
-from risk_analysis.Workflows import Workflow
-from risk_analysis.Objectives import Playbook
+from risk.Workflows import Workflow
+from risk.Objectives import Playbook
 
 
 class ResultGroup(models.Model):
@@ -56,7 +56,7 @@ class ResultGroup(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('admin:results_explorer_result_group_change', kwargs={'pk': self.pk})
+        return reverse('admin:reporting_result_group_change', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Result Group"
@@ -100,7 +100,7 @@ class Calculation(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('admin:results_explorer_calculation_change', kwargs={'pk': self.pk})
+        return reverse('admin:reporting_calculation_change', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Result"
@@ -145,7 +145,7 @@ class Visualization(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('results_explorer:visualization_view', kwargs={'pk': self.pk})
+        return reverse('reporting:visualization_view', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Visualization"

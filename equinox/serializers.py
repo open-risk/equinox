@@ -21,7 +21,7 @@
 
 from rest_framework import serializers
 from equinox.settings import ROOT_VIEW
-from risk_analysis.Scorecard import Scorecard
+from risk.Scorecard import Scorecard
 
 
 class ScorecardSerializer(serializers.ModelSerializer):

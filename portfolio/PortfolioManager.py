@@ -24,7 +24,7 @@ from django.urls import reverse
 
 class PortfolioManager(models.Model):
     """
-    The PortfolioManager model holds data for each Portfolio Manager that is using an equinox instance. A Portfolio Manger may be a Loan Portfolio manager a Procurement contracts portfolio manager etc
+    The PortfolioManager model holds data for each Portfolio Manager that using or represented in an equinox instance. A Portfolio Manager may be a Loan Portfolio manager a Procurement contracts portfolio manager etc
 
     All Portfolios must belong to one (and only one) Portfolio Manager
 
@@ -34,14 +34,17 @@ class PortfolioManager(models.Model):
 
     # IDENTITY
 
-    manager_identifier = models.CharField(max_length=20, null=True,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    name_of_manager = models.CharField(primary_key=True, max_length=200,
+                                       help_text='Full Name of Manager')
+
+    manager_identifier = models.IntegerField(blank=True, null=True,
+                                          help_text='Unique (integer) internal identifier of the entity')
 
     manager_legal_entity_identifier = models.CharField(max_length=20, blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                       help_text='Legal Entity Identifier. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    name_of_manager = models.CharField(max_length=40, blank=True, null=True,
-                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    # name_of_manager = models.CharField(max_length=40, blank=True, null=True,
+    #                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # ADDRESS
 
@@ -89,7 +92,7 @@ class PortfolioManager(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.manager_identifier
+        return str(self.manager_identifier)
 
     def get_absolute_url(self):
         return reverse('portfolio:PortfolioManager_edit', kwargs={'pk': self.pk})

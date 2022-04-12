@@ -48,6 +48,7 @@ schema_view = get_schema_view(
 urlpatterns = [
                   path('', include('start.urls')),  # Equinox Start Page URLS
                   path('reporting/', include('reporting.urls')),  # Results Explorer URLS
+                  path('policy/', include('policy.urls')),  # Results Explorer URLS
                   path('admin/doc/', include('django.contrib.admindocs.urls')),  #
                   path('admin/', admin.site.urls),  # Equinox Admin URL's
                   path(r'api/', views.api_root, name='api_root'),  # API root

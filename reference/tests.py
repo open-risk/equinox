@@ -1,3 +1,12 @@
 from django.test import TestCase
 
-# Create your tests here.
+from reference.EmissionFactor import EmissionFactor
+
+
+class BaseModelTestCase(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super(BaseModelTestCase, cls).setUpClass()
+        cls.emissionsfactor = EmissionFactor()
+        cls.emissionsfactor.save()

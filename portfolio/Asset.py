@@ -37,7 +37,8 @@ ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
 
 class ProjectAsset(models.Model):
     """
-    The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that is part of a Portfolio or Inventory or a Project - which may or may not be financed.
+    The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that
+    is part of a Portfolio or Inventory or a Project - which may or may not be financed.
 
     A Project Asset will in general be associated with one or more emissions sources.
 

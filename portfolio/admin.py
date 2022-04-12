@@ -34,7 +34,7 @@ from portfolio.Borrower import Borrower
 from portfolio.Loan import Loan
 from portfolio.Mortgage import Mortgage
 from portfolio.Operator import Operator
-from portfolio.Portfolios import Portfolio, PortfolioData
+from portfolio.Portfolios import ProjectPortfolio, PortfolioTable
 from portfolio.PortfolioManager import PortfolioManager
 from portfolio.Portfolios import PortfolioSnapshot, LimitStructure
 from portfolio.Project import Project
@@ -146,8 +146,9 @@ class BorrowerAdmin(admin.ModelAdmin):
 class PortfolioManagerAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
-    list_display = ('name_of_manager', 'address', 'town', 'region', 'country', 'website')
-    date_hierarchy = ('creation_date')
+    search_fields = ['name_of_manager']
+    list_display = ('manager_identifier', 'name_of_manager', 'address', 'town', 'region', 'country', 'website')
+
 
 
 @admin.register(Building)
@@ -291,17 +292,17 @@ class SwapAdmin(admin.ModelAdmin):
     date_hierarchy = ('creation_date')
 
 
-class PortfolioDataAdminForm(forms.ModelForm):
+class PortfolioTableAdminForm(forms.ModelForm):
     EAD = forms.fields.FloatField(min_value=0, widget=NumberInput(attrs={'step': 0.01}), label="EAD",
                                   help_text="Exposure at Default")
     LGD = forms.fields.IntegerField(min_value=0, max_value=5, label="LGD", help_text="Loss Given Default Class (0 - 5)")
     Tenor = forms.fields.IntegerField(min_value=1, max_value=10, help_text="Tenor (Maturity) in Integer Years")
 
     def __init__(self, *args, **kwargs):
-        super(PortfolioDataAdminForm, self).__init__(*args, **kwargs)
+        super(PortfolioTableAdminForm, self).__init__(*args, **kwargs)
 
     class Meta:
-        model = PortfolioData
+        model = PortfolioTable
         fields = '__all__'
         # exclude = ('portfolio_id', 'Obligor_ID')
         # widgets = {
@@ -330,7 +331,7 @@ class PortfolioSnapshot(admin.ModelAdmin):
     date_hierarchy = ('creation_date')
 
 
-class PortfolioAdmin(admin.ModelAdmin):
+class ProjectPortfolioAdmin(admin.ModelAdmin):
     search_fields = ['notes']
     list_display = ('name', 'portfolio_type', 'creation_date', 'notes')
     list_filter = ('portfolio_type',)
@@ -342,16 +343,16 @@ class PortfolioAdmin(admin.ModelAdmin):
         extra_context = {
             'message': 'Portfolio Administration: Overview of User Generated Portfolios and their Properties',
         }
-        return super(PortfolioAdmin, self).changelist_view(request, extra_context=extra_context)
+        return super(ProjectPortfolioAdmin, self).changelist_view(request, extra_context=extra_context)
 
     def response_delete(self, request, obj_display, obj_id):
-        return HttpResponseRedirect(reverse("portfolio_explorer:portfolio_list"))
+        return HttpResponseRedirect(reverse("portfolio:ProjectPortfolio_list"))
 
 
-class PortfolioDataAdmin(admin.ModelAdmin):
+class PortfolioTableAdmin(admin.ModelAdmin):
     # readonly_fields = ('portfolio_id')
     fields = ('portfolio_id', 'Obligor_ID', 'EAD', 'LGD', 'Tenor', 'Sector', 'Country')
-    form = PortfolioDataAdminForm
+    form = PortfolioTableAdminForm
     list_display = ('Obligor_ID', 'EAD', 'LGD', 'Tenor', 'Sector', 'Country')
     list_filter = ('portfolio_id',)
     save_as = True
@@ -367,21 +368,21 @@ class PortfolioDataAdmin(admin.ModelAdmin):
 
     def changelist_view(self, request, extra_context=None):
         extra_context = {
-            'message': 'Portfolio Data Administration: Overview of User Generated Portfolio Data',
+            'message': 'Portfolio Table Data Administration: Overview of User Generated Portfolio Data',
         }
-        return super(PortfolioDataAdmin, self).changelist_view(request, extra_context=extra_context)
+        return super(PortfolioTableAdmin, self).changelist_view(request, extra_context=extra_context)
 
     # Hack to be able to return to parent portfolio after item delete
     deleted_fk = None
 
     def delete_view(self, request, object_id, extra_context=None):
-        self.deleted_fk = PortfolioData.objects.get(id=object_id).portfolio_id.pk
-        return super(PortfolioDataAdmin, self).delete_view(request, object_id, extra_context)
+        self.deleted_fk = PortfolioTable.objects.get(id=object_id).projectportfolio_id.pk
+        return super(PortfolioTableAdmin, self).delete_view(request, object_id, extra_context)
 
     def response_delete(self, request, obj_display, obj_id):
-        return HttpResponseRedirect(reverse("portfolio_explorer:portfolio_view", args=[self.deleted_fk]))
+        return HttpResponseRedirect(reverse("portfolio:ProjectPortfolio_edit", args=[self.deleted_fk]))
 
 
-admin.site.register(Portfolio, PortfolioAdmin)
-admin.site.register(PortfolioData, PortfolioDataAdmin)
+admin.site.register(ProjectPortfolio, ProjectPortfolioAdmin)
+admin.site.register(PortfolioTable, PortfolioTableAdmin)
 admin.site.register(LimitStructure, LimitStructureAdmin)

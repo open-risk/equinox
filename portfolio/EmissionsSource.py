@@ -100,7 +100,8 @@ class EmissionsSource(models.Model):
 
 class GPCEmissionsSource(models.Model):
     """
-    The GPC Emission Source model holds aggregated emission data per source that conforms to the GPC reporting recommendations
+    The GPC Emission Source model holds aggregated emission data per source that conforms to the GPC reporting
+    recommendations
 
     """
 
@@ -212,7 +213,7 @@ class GPPEmissionsSource(models.Model):
     # LINKS
 
     project = models.ForeignKey('portfolio.Project', blank=True, null=True, on_delete=models.CASCADE,
-                                      help_text="Project to which this source belongs")
+                                      help_text="Project to which this emissions source belongs")
 
     # CHARACTERISTICS
 

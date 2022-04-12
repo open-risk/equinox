@@ -22,7 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from portfolio.counterparty_choices import *
-from portfolio.Portfolios import PortfolioSnapshot, Portfolio
+from portfolio.Portfolios import PortfolioSnapshot, ProjectPortfolio
 
 
 class Borrower(models.Model):
@@ -55,7 +55,7 @@ class Borrower(models.Model):
     #                                                   blank=True)
 
     # Portfolio ID Foreign Key
-    portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE, blank=True, null=True,
+    portfolio_id = models.ForeignKey(ProjectPortfolio, on_delete=models.CASCADE, blank=True, null=True,
                                      help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
 
     # Snapshot ID  Foreign Key

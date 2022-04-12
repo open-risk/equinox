@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'treebeard',
     'django.contrib.gis',
     'djgeojson',
+    'prettyjson',
     'markdownfield',
     'leaflet',
     'django_countries',
@@ -70,11 +71,11 @@ INSTALLED_APPS = [
     'policy',
     'risk',
     'reporting',
-    # 'debug_toolbar'
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -147,13 +148,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'nl'
+LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'nl'
 # LANGUAGE_CODE = 'el'
 
 LANGUAGES = [
-    ('nl', _('Dutch')),
     ('en', _('English')),
+    ('nl', _('Dutch')),
     ('es', _('Spanish')),
     ('el', _('Greek')),
 ]

@@ -17,7 +17,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
 from django.test import TestCase
 
-# Create your tests here.
+from django.test import Client
+
+#
+# class SimpleTest(TestCase):
+#
+#     def test_logged(self):
+#         client = Client()
+#         client.login(username='admin', password='admin')
+#         response = client.get('/portfolio/api_root')
+#         self.assertEqual(response.status_code, 200)

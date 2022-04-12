@@ -21,47 +21,35 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 
-from portfolio.ProjectActivity import ProjectActivity
-from portfolio.ProjectCategory import ProjectCategory
-from portfolio.Project import Project
+from portfolio.Portfolios import ProjectPortfolio, PortfolioManager
 
 
 class Command(BaseCommand):
-    help = 'Imports project activity data'
+    help = 'Imports (project) portfolio data'
 
     # Delete existing objects
-    ProjectActivity.objects.all().delete()
+    ProjectPortfolio.objects.all().delete()
 
-    # Import data from file
-    data = pd.read_csv("pa.csv", header='infer', delimiter=',')
-
-    """
-    TITLE,NUTS,MAIN_SITE,SHORT_DESCR
+    # Import portfolio manager data from file
+    # NB: For now we do 1-1 portfolio - portfolio manager
 
     """
+    OFFICIALNAME,ADDRESS,TOWN,POSTAL_CODE,COUNTRY,PHONE,E_MAIL,FAX,NUTS,URL_GENERAL,URL_BUYER,CONTACT_POINT,NATIONALID
+    """
+
+    serial = 1
     indata = []
-    serial = 10000
-
-    for index, entry in data.iterrows():
-
-        pr = Project.objects.get(project_identifier=entry['PROJECT'])
-
-        # TODO fix null issue with markdown field
-        pa = ProjectActivity(
-            project_activity_identifier=str(serial),
-            project_activity_title=entry['TITLE'],
-            project_activity_description=entry['SHORT_DESCR'],
-            project=pr,
-            region=entry['NUTS'],
-            baseline_procedure_justification="",
-            main_site=entry['MAIN_SITE'])
-
+    for pm in PortfolioManager.objects.all():
+        po = ProjectPortfolio(
+            name='Portfolio ' + str(serial),
+            manager=pm,
+            notes='The Portfolio of ' + pm.name_of_manager,
+            portfolio_type=0)
         serial += 1
 
-        indata.append(pa)
-        # pa.save()
+        indata.append(po)
 
-    ProjectActivity.objects.bulk_create(indata)
+    ProjectPortfolio.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted project activity data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted portfolio data into db'))

@@ -42,8 +42,17 @@ class Project(models.Model):
     project_title = models.CharField(max_length=160, blank=True, null=True,
                                      help_text='The title of the project')
 
-    project_visualization = models.ImageField(upload_to='project_files', blank=True, null=True,
-                                              help_text='Visual representation of a  Project')
+
+    project_reference = models.CharField(max_length=160, blank=True, null=True,
+                                     help_text='Manager reference for the project')
+
+
+    # LINKS
+
+    project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.SET_NULL, help_text="The project category to which this project is best classified")
+
+    portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
+                                         help_text="The portfolio to which this project belongs")
 
     # PROJECT DATA
 
@@ -61,9 +70,7 @@ class Project(models.Model):
 
     project_currency = models.CharField(max_length=4, blank=True, null=True,
                                         help_text="The currency code in which the project is accounted for")
-    # LINKS
 
-    project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.CASCADE)
 
     # PROJECT SCORECARD DATA
 
@@ -78,6 +85,8 @@ class Project(models.Model):
     construction_risk = models.FloatField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    project_visualization = models.ImageField(upload_to='project_files', blank=True, null=True,
+                                              help_text='Visual representation of a  Project')
     #
     # BOOKKEEPING FIELDS
     #

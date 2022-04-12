@@ -22,7 +22,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 # from model_explorer.models import ModelDefinition, ModelConfiguration, ModelData
-from portfolio.Portfolios import Portfolio, LimitStructure
+from portfolio.Portfolios import ProjectPortfolio, LimitStructure
 from risk.Scenarios import Scenario
 from risk.models import ModelDefinition, ModelData, ModelConfiguration
 
@@ -95,7 +95,7 @@ class Limitflow(models.Model):
     workflow_model = models.ForeignKey(ModelDefinition, on_delete=models.CASCADE, null=True, blank=True,
                                        help_text="The Model on which the workflow is based")
 
-    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, null=True, blank=True,
+    portfolio = models.ForeignKey(ProjectPortfolio, on_delete=models.CASCADE, null=True, blank=True,
                                   help_text="The Portfolio to use with the Workflow")
 
     limit_structure = models.ForeignKey(LimitStructure, on_delete=models.CASCADE, null=True, blank=True,
@@ -237,7 +237,7 @@ class Workflow(models.Model):
     # These foreign keys are provided as API URL's
     #
 
-    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, null=True, blank=True,
+    portfolio = models.ForeignKey(ProjectPortfolio, on_delete=models.CASCADE, null=True, blank=True,
                                   help_text="The Portfolio to use with the Workflow")
 
 

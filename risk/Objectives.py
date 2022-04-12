@@ -22,7 +22,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 # from model_explorer.models import ModelDefinition, ModelConfiguration, ModelData
-from portfolio.Portfolios import Portfolio, LimitStructure
+from portfolio.Portfolios import ProjectPortfolio, LimitStructure
 from risk.Scenarios import Scenario
 from risk.Workflows import Workflow
 

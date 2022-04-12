@@ -25,9 +25,10 @@ from django.urls import reverse
 
 class Contractor(models.Model):
     """
-    The Contractor model holds data for each Contractor involved in the construction of the Project or the fulfillment of a Procurement contract
+    The Contractor model holds data for each Contractor with an existing contract (e..g, involved in the construction
+    of a Project, or the fulfillment of a Procurement contract)
 
-    Is a type of Counterparty
+    A Contractor is a type of Counterparty
 
     The Contractor data fields cover
     - identity, type, address
@@ -39,16 +40,20 @@ class Contractor(models.Model):
 
     # IDENTITY
 
-    contractor_identifier = models.CharField(max_length=80, null=True,
-                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    contractor_identifier = models.IntegerField(null=True, blank=True,
+                                             help_text='Unique Internal Integer Identifier')
 
-    contractor_legal_entity_identifier = models.TextField(blank=True, null=True,
+    contractor_legal_entity_identifier = models.CharField(max_length=200, blank=True, null=True,
                                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    name_of_contractor = models.TextField(blank=True, null=True,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    name_of_contractor = models.CharField(max_length=200, primary_key=True,
+                                          help_text='Full Name of Contractor')
 
-    is_sme = models.BooleanField(blank=True, null=True, help_text="Whether the entity is an SME or not")
+    # LINKS
+
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
+                                        help_text="Project Company that sourced the Contractor (Optional)")
+
 
     # ADDRESS
 
@@ -84,9 +89,6 @@ class Contractor(models.Model):
     website = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Website URL. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    # LINKS
-
-    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="Project Company that sourced this contractor")
 
     # SCORECARD
 
@@ -106,6 +108,7 @@ class Contractor(models.Model):
 
 
     # OTHER
+    is_sme = models.BooleanField(blank=True, null=True, help_text="Whether the entity is an SME or not")
 
     completion_guarantees = models.BooleanField(blank=True, null=True,
                                                 help_text='Whether there are completion guarantees for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -125,7 +128,7 @@ class Contractor(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.contractor_identifier
+        return str(self.contractor_identifier)
 
     def get_absolute_url(self):
         return reverse('portfolio:Contractor_edit', kwargs={'pk': self.pk})

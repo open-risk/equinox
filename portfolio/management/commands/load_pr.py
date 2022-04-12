@@ -23,6 +23,7 @@ from django.core.management.base import BaseCommand
 
 from portfolio.Project import Project
 from portfolio.ProjectCategory import ProjectCategory
+from portfolio.Portfolios  import ProjectPortfolio
 
 
 class Command(BaseCommand):
@@ -35,7 +36,8 @@ class Command(BaseCommand):
     data = pd.read_csv("pr.csv", header='infer', delimiter=',')
 
     """
-    TITLE,REFERENCE_NUMBER,CPV_CODE,TYPE_CONTRACT,SHORT_DESCR,VAL_TOTAL,CURRENCY
+    TITLE,REFERENCE_NUMBER,CPV_CODE,TYPE_CONTRACT,
+    SHORT_DESCR,VAL_TOTAL,CURRENCY
 
     """
     indata = []
@@ -44,6 +46,7 @@ class Command(BaseCommand):
     pk1 = ProjectCategory.objects.get(name="SUPPLIES")
     pk2 = ProjectCategory.objects.get(name="WORKS")
     pk3 = ProjectCategory.objects.get(name="SERVICES")
+    fk = None
 
     for index, entry in data.iterrows():
 
@@ -54,12 +57,16 @@ class Command(BaseCommand):
         elif entry['TYPE_CONTRACT'] == 'SERVICES':
             fk = pk3
 
+        po = ProjectPortfolio.objects.get(manager=entry['MANAGER'])
+
         pr = Project(
-            project_identifier=entry['REFERENCE_NUMBER'],
+            project_identifier=entry['DOCUMENT'],
+            project_reference=entry['REFERENCE_NUMBER'],
             project_title=entry['TITLE'],
             project_description=entry['SHORT_DESCR'],
             cpv_code=entry['CPV_CODE'],
             project_category=fk,
+            portfolio=po,
             project_budget=entry['VAL_TOTAL'],
             project_currency=entry['CURRENCY'])
         serial += 1
@@ -69,4 +76,4 @@ class Command(BaseCommand):
     Project.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted project data into db'))

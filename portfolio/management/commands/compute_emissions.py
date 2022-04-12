@@ -28,7 +28,7 @@ class Command(BaseCommand):
         gpp_set = GPPEmissionsSource.objects.all()
 
         """
-          iterate over procurement portfolio
+          iterate over procurement portfolio (project portfolio)
           read emissions intensity from cpv_code dictionary
           set co2_amount as emissions intensity times project budget
           save update source data     

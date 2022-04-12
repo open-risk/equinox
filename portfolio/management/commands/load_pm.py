@@ -37,10 +37,10 @@ class Command(BaseCommand):
     OFFICIALNAME,ADDRESS,TOWN,POSTAL_CODE,COUNTRY,PHONE,E_MAIL,FAX,NUTS,URL_GENERAL,URL_BUYER,CONTACT_POINT,NATIONALID
     """
     indata = []
-    serial = 10000
+    serial = 0
     for index, entry in data.iterrows():
         pm = PortfolioManager(
-            manager_identifier=str(serial),
+            manager_identifier=entry['PK'],
             manager_legal_entity_identifier=entry['NATIONALID'],
             name_of_manager=entry['OFFICIALNAME'],
             address=entry['ADDRESS'],
@@ -61,4 +61,4 @@ class Command(BaseCommand):
     PortfolioManager.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted portfolio manager data into db'))

@@ -10,14 +10,14 @@
     "project": 1573,
     "region": null,
     "main_site": null,
-    "project_activity_emissions": null,
-    "baseline_activity_emissions": null,
+    "project_activity_emissions": 159.0,
+    "baseline_activity_emissions": 45.0,
     "project_activity_role": null,
     "baseline_estimation": 0,
     "baseline_procedure_justification": "The project-specific procedure was preferred over a performance standard approach because of difficulties in obtaining performance data on individual cement kilns  in Indonesia. \r\n\r\nFurther, the total number of comparable cement kilns in Indonesia is small, making it difficult to develop a robust statistical performance standard.",
     "text_rendered2": "<p>The project-specific procedure was preferred over a performance standard approach because of difficulties in obtaining performance data on individual cement kilns  in Indonesia. </p>\n<p>Further, the total number of comparable cement kilns in Indonesia is small, making it difficult to develop a robust statistical performance standard.</p>",
     "creation_date": "2022-03-28T10:44:46.133Z",
-    "last_change_date": "2022-03-28T10:45:11.475Z"
+    "last_change_date": "2022-04-09T18:14:28.255Z"
   }
 },
 {
@@ -31,14 +31,14 @@
     "project": 1573,
     "region": null,
     "main_site": null,
-    "project_activity_emissions": null,
-    "baseline_activity_emissions": null,
+    "project_activity_emissions": 120.0,
+    "baseline_activity_emissions": 100.0,
     "project_activity_role": null,
     "baseline_estimation": null,
     "baseline_procedure_justification": "## Activity Summary\r\nSwitching fuels from coal to biofuels (palm kernel and rice husk) in kiln burning.\r\n\r\n## Activity Description\r\nAll of Company X’s cement kilns use coal as fuel for clinker burning. Company X intends to replace a portion of the coal with biofuels found near its plants, and consequently to reduce GHG emissions.",
     "text_rendered2": "<h2>Activity Summary</h2>\n<p>Switching fuels from coal to biofuels (palm kernel and rice husk) in kiln burning.</p>\n<h2>Activity Description</h2>\n<p>All of Company X’s cement kilns use coal as fuel for clinker burning. Company X intends to replace a portion of the coal with biofuels found near its plants, and consequently to reduce GHG emissions.</p>",
     "creation_date": "2022-03-28T10:46:16.713Z",
-    "last_change_date": "2022-03-28T10:46:16.713Z"
+    "last_change_date": "2022-04-09T18:14:09.339Z"
   }
 }
 ]

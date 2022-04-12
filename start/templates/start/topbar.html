@@ -16,3 +16,17 @@
         <li><a class="dropdown-item" href="/reporting/ghg_reduction">GHG Reduction</a></li>
     </ul>
 </li>
+
+<li class="nav-item d-none d-sm-inline-block dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false"> Policy Data<span
+            class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="dropdown-header">General</li>
+        <li class="navlist"><a href="{% url 'policy:policy_data_about' %}">About</a></li>
+        <li class="navlist"><a href="{% url 'policy:Latest' %}">Latest</a></li>
+        <li class="dropdown-header">Country Level Policies</li>
+        <li class="navlist"><a href="{% url 'policy:DataFlow_categories' %}">Catalog</a></li>
+
+    </ul>
+</li>

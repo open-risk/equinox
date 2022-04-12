@@ -85,6 +85,8 @@ def ghg_reduction(request):
     t = loader.get_template('ghg_reduction.html')
     context = RequestContext(request, {})
 
+    activities = ProjectActivity.objects.all()
+
     table_header = []
     table_header.append('Project')
     table_header.append('Project Activity')
@@ -94,16 +96,24 @@ def ghg_reduction(request):
 
     table_rows = {}
     key = 0
-    for pa in ProjectActivity.objects.all():
-        value = []
-        value.append(pa.project.project_identifier)
-        value.append(pa.project_activity_identifier)
-        value.append(pa.project_activity_emissions)
-        value.append(pa.baseline_activity_emissions)
-        value.append(pa.baseline_activity_emissions - pa.project_activity_emissions)
-        table_rows[key] = value
-        key += 1
-        print(key, value)
+
+    if len(activities) > 0:
+        for pa in ProjectActivity.objects.all():
+            value = []
+            if pa.project:
+                value.append(pa.project.project_identifier)
+            else:
+                value.append(None)
+            value.append(pa.project_activity_identifier)
+            value.append(pa.project_activity_emissions)
+            value.append(pa.baseline_activity_emissions)
+            if pa.baseline_activity_emissions and pa.project_activity_emissions:
+                value.append(pa.baseline_activity_emissions - pa.project_activity_emissions)
+            else:
+                value.append(None)
+            table_rows[key] = value
+            key += 1
+            # print(key, value)
 
     context.update({'TableHeader': table_header})
     context.update({'TableRows': table_rows})

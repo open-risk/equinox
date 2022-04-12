@@ -5,32 +5,44 @@ from django.urls import reverse
 from reference.nace_list import NACE_CHOICES
 from reference.nuts3_list import NUTS3_CHOICES
 
+from portfolio.PortfolioManager import PortfolioManager
 
-# TODO Link to Portfolio Manager
 
-class Portfolio(models.Model):
+class ProjectPortfolio(models.Model):
     """
-    The Portfolio object holds a collection of Projects
+    The ProjectPortfolio object holds a collection of Projects (Economic activities with defined environmental impact)
 
-    Includes reference to user creating the data set (portfolio manager)
+    Includes reference to the user creating the data set (portfolio manager)
 
     Portfolios are named to facilitate recognition
 
-    The actual Portfolio data stored in the PortfolioData model
+    Actual Portfolio data are optionally aggregated and stored in the PortfolioData model
+    Timed Portfolio data are tagged using the PortfolioSnapshot model
 
-    Notes is a user oriented field to allow storing human readable context about the portfolio
+    TODO "Notes" is a user oriented field to allow storing human readable context about the portfolio
 
     **Type** is an integer field representing the type of the portfolio
-    0 -> Performing Book (default)
+    0 -> Performing Book / Current Book
     1 -> Historical Book
 
 
     """
 
-    PORTFOLIO_TYPES = [(0, 'Performing'), (1, 'Historical')]
+    # IDENTITY
 
     name = models.CharField(max_length=200, help_text="An assigned name to help identify the portfolio")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="The user that created the portfolio")
+
+    # LINKS
+
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="The user that created the portfolio")
+
+    manager = models.ForeignKey(PortfolioManager, null=True, blank=True, on_delete=models.CASCADE,
+                                help_text="The portfolio manager that manages the portfolio")
+
+    # OTHER
+
+    PORTFOLIO_TYPES = [(0, 'Performing'), (1, 'Historical')]
+
     notes = models.TextField(blank=True, null=True,
                              help_text="Description of the purpose or other relevant information about the portfolio")
     portfolio_type = models.IntegerField(default=0, choices=PORTFOLIO_TYPES,
@@ -38,27 +50,27 @@ class Portfolio(models.Model):
 
     # portfolio shape parameters (statistics)
 
-    max_rating = models.IntegerField(null=True, blank=True, help_text="Maximum rating")
-    min_rating = models.IntegerField(null=True, blank=True, help_text="Minimum rating")
-    mean_rating = models.IntegerField(null=True, blank=True, help_text="Average rating")
-
-    max_lgd = models.IntegerField(null=True, blank=True, help_text="Maximum LGD")
-    min_lgd = models.IntegerField(null=True, blank=True, help_text="Minimum LGD")
-    mean_lgd = models.IntegerField(null=True, blank=True, help_text="Average LGD")
-
-    max_ead = models.IntegerField(null=True, blank=True, help_text="Maximum EAD")
-    min_ead = models.IntegerField(null=True, blank=True, help_text="Minimum EAD")
-    mean_ead = models.IntegerField(null=True, blank=True, help_text="Average EAD")
-
-    max_tenor = models.IntegerField(null=True, blank=True, help_text="Maximum Tenor")
-    min_tenor = models.IntegerField(null=True, blank=True, help_text="Minimum Tenor")
-    mean_tenor = models.IntegerField(null=True, blank=True, help_text="Average Tenor")
-
-    country_no = models.IntegerField(null=True, blank=True, help_text="Number of Countries")
-    sector_no = models.IntegerField(null=True, blank=True, help_text="Number of Sectors")
+    # max_rating = models.IntegerField(null=True, blank=True, help_text="Maximum rating")
+    # min_rating = models.IntegerField(null=True, blank=True, help_text="Minimum rating")
+    # mean_rating = models.IntegerField(null=True, blank=True, help_text="Average rating")
+    #
+    # max_lgd = models.IntegerField(null=True, blank=True, help_text="Maximum LGD")
+    # min_lgd = models.IntegerField(null=True, blank=True, help_text="Minimum LGD")
+    # mean_lgd = models.IntegerField(null=True, blank=True, help_text="Average LGD")
+    #
+    # max_ead = models.IntegerField(null=True, blank=True, help_text="Maximum EAD")
+    # min_ead = models.IntegerField(null=True, blank=True, help_text="Minimum EAD")
+    # mean_ead = models.IntegerField(null=True, blank=True, help_text="Average EAD")
+    #
+    # max_tenor = models.IntegerField(null=True, blank=True, help_text="Maximum Tenor")
+    # min_tenor = models.IntegerField(null=True, blank=True, help_text="Minimum Tenor")
+    # mean_tenor = models.IntegerField(null=True, blank=True, help_text="Average Tenor")
+    #
+    # country_no = models.IntegerField(null=True, blank=True, help_text="Number of Countries")
+    # sector_no = models.IntegerField(null=True, blank=True, help_text="Number of Sectors")
 
     # TODO disabled for now
-    # Reindroduce JSONField to hold flexible portolio metadata
+    # Reintroduce JSONField to hold flexible portfolio metadata
     # portfolio_data = JSONField()
 
     # bookkeeping
@@ -66,21 +78,22 @@ class Portfolio(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def get_absolute_url(self):
-        return reverse('portfolio_explorer:portfolio_view', kwargs={'pk': self.pk})
+        return reverse('portfolio:ProjectPortfolio_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Portfolio"
-        verbose_name_plural = "Portfolios"
+        verbose_name = "Project Portfolio"
+        verbose_name_plural = "Project Portfolios"
 
 
 class PortfolioSnapshot(models.Model):
     """
-    The Portfolio_Snapshot object groups Portfolio data for a given cutoff date. The Snapshot may be named to facilitate recognition.
+    The Portfolio_Snapshot object helps group time-sensitive Portfolio data for a given cutoff date. The Snapshot may
+    be named to facilitate recognition (E.g. Q1-2020).
 
-    .. note:: The actual Snapshot data are stored in the various Models (with foreign key to a portfolio snapshot)
+    .. note:: The actual Snapshot data are stored in the various Models (with foreign keys to a portfolio snapshot)
 
     """
 
@@ -105,15 +118,15 @@ class PortfolioSnapshot(models.Model):
         verbose_name_plural = "Portfolio Snapshots"
 
 
-class PortfolioData(models.Model):
+class PortfolioTable(models.Model):
     """
-    The PortfolioData object aggregates portfolio data in table format
+    The PortfolioData object aggregates (credit) portfolio data in a "master table" format to facilitate various quantiative portfolio analysis procedures
 
 
     """
     # TODO incorporate portfolio type based constraint
 
-    portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
+    portfolio_id = models.ForeignKey(ProjectPortfolio, on_delete=models.CASCADE)
 
     Obligor_ID = models.CharField(max_length=200)
     EAD = models.FloatField(blank=True, null=True, help_text="Exposure at Default")
@@ -135,7 +148,7 @@ class PortfolioData(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('portfolio_explorer:portfolio_data_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:portfolio_data_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Portfolio Data"
@@ -179,7 +192,7 @@ class LimitStructure(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio_explorer:limitstructure_view', kwargs={'pk': self.pk})
+        return reverse('portfolio:limitstructure_view', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Limit Structure"

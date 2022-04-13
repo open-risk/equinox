@@ -181,8 +181,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on the sidebar
-    # "show_ui_builder": False,
-    "show_ui_builder": True,
+    "show_ui_builder": False,
+    # "show_ui_builder": True,
 
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Equinox",
@@ -204,7 +204,7 @@ JAZZMIN_SETTINGS = {
 
     # The model admin to search from the search bar, search bar omitted if excluded
     # "search_model": "auth.User",
-    "search_model": "portfolio.project",
+    # "search_model": "portfolio.project",
 
     # Field name on user model that contains avatar image
     "user_avatar": None,
@@ -266,7 +266,7 @@ JAZZMIN_SETTINGS = {
     "hide_models": [],
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["start", "portfolio", "risk", "reporting", "auth"],
+    "order_with_respect_to": ["start", "portfolio", "policy", "risk", "reporting", "auth"],
 
     # Custom links to append to app groups, keyed on app name
     # "custom_links": {

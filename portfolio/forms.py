@@ -18,34 +18,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.http import HttpResponse
-from django.template import RequestContext, loader
-from django.urls import reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.base import TemplateView
+from django import forms
+from django.forms import ModelForm
 
-from portfolio.Asset import ProjectAsset
 from portfolio.Portfolios import ProjectPortfolio
-from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-import pandas as pd
-
-class AssetList(ListView):
-    """
-    List all assets sequentially with common action buttons
-    Also generation options at the end
-    """
-    model = ProjectAsset
-    template_name = 'asset_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ListView, self).get_context_data(**kwargs)
-        return context
 
 
-class AssetMapView(TemplateView):
-    """Asset Markers Map view."""
+class CreatePortfolioForm(ModelForm):
+    size = forms.IntegerField(label='Portfolio Size (N)')
 
-    template_name = "asset_map.html"
+    class Meta:
+        model = ProjectPortfolio
+        exclude = ('last_change_date', 'creation_date')
+
+
+class ClonePortfolioForm(forms.Form):
+    name = forms.CharField(label='Portfolio Name', max_length=100)
+
+
+class AssemblePortfolioForm(forms.Form):
+    name = forms.CharField(label='Portfolio Name', max_length=100)
+    size = forms.IntegerField(label='Portfolio Size')
+
+
+class ImportPortfolioForm(forms.Form):
+    name = forms.CharField(label='Portfolio Name', max_length=100)
+    file = forms.FileField(label='Select a file', help_text='max. 42 megabytes', widget=forms.FileInput)
 

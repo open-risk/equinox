@@ -1,0 +1,70 @@
+{% extends "start/generic.html" %}
+
+{% load i18n static %}
+
+{% block title %}
+    {{ title }} Concepts Page
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        This page collects documentation links to concepts relevant for sustainabl portfolio management. Short entries with definitions are found in the Open Risk Manual. Longer training material is found at the Open Risk Academy
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {#  include "start/root_breadcrumb.html" #}
+{% endblock %}
+
+
+{% block content %}
+
+    <div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="content-block">
+                    <h3>Relevant Concepts from the Open Risk Manual</h3>
+                    <p>
+                        The Open Risk Manual contains many entries that are useful for Portfolio Management. This list selects some of the most directly relevant concepts
+                    </p>
+                    <ul>
+                        {% for keyword in keywordlist %}
+                            <li><a title="{{ keyword.2 }}" href="{{ keyword.1 }}"> {{ keyword.0 }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="content-block">
+                    <h3>Relevant Courses in the Open Risk Academy</h3>
+                    <p>If you have an account with the Academy you will be directly led to the course</p>
+                    <ul>
+                        <li>
+                            <a href="https://www.openriskacademy.com/course/view.php?id=24">Introduction to Credit Concentration</a>
+                        </li>
+                        <li>
+                            <a href="https://www.openriskacademy.com/course/view.php?id=10">Measuring Name Concentrations</a>
+                        </li>
+                        <li>
+                            <a href="https://www.openriskacademy.com/course/view.php?id=22">Measuring Sector Concentrations</a>
+                        </li>
+                        <li>
+                            <a href="https://www.openriskacademy.com/course/view.php?id=26">Basel on Credit Concentration Risk</a>
+                        </li>
+                        <li>
+                            <a href="https://www.openriskacademy.com/course/view.php?id=28">Credit Concentration in the UK Pillar II</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

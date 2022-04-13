@@ -1,22 +1,212 @@
 import json
 
-from django.core.serializers import serialize
-
-from django.conf import settings
+import pandas as pd
 from django.contrib.auth.decorators import login_required
+from django.core.serializers import serialize
 from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.urls import reverse_lazy
 
 from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource, GPPEmissionsSource
+from portfolio.Portfolios import ProjectPortfolio
 from portfolio.ProjectActivity import ProjectActivity
-from portfolio.Project import Project
-from portfolio.models import AreaSource, PointSource
+from portfolio.models import AreaSource
+from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
 from reporting.models import Calculation, Visualization
 
-root_view = settings.ROOT_VIEW
+from portfolio.PortfolioManager import PortfolioManager
+from portfolio.Portfolios import ProjectPortfolio
+from portfolio.EmissionsSource import GPPEmissionsSource
+from portfolio.Contractor import Contractor
+from portfolio.Project import Project
+from portfolio.ProjectActivity import ProjectActivity
+
+"""
+
+## other
+
+*  Project Asset
+*  Building
+*  Point Source
+*  Area Source
+*  Multi Area Source
+*  Portfolio Snapshot
+*  Portfolio Data
+*  Limit Structure
+*  Emissions Source
+*  GPC Emissions Source
+*  Building Emissions Source
+*  Borrower
+*  Loan
+*  Mortgage
+*  Operator
+*  Project Category
+*  Project Company
+*  Revenue
+*  Primary Effect
+*  Secondary Effect
+*  Sponsor
+*  Stakeholder
+*  Swap
+
+"""
+
+
+@login_required(login_url='/login/')
+def portfolio_overview(request):
+    t = loader.get_template('portfolio_overview.html')
+    context = RequestContext(request, {})
+
+    """
+    Compile a global portfolio overview of all data sets available the database
+
+    ## procurement data
+    
+    *  Portfolio Manager
+    *  Project Portfolio
+    *  GPP Emissions Source
+    *  Contractor
+    *  Project Activity
+    *  Project
+
+    """
+
+    pm_count = PortfolioManager.objects.count()
+    po_count = ProjectPortfolio.objects.count()
+    gpp_count = GPPEmissionsSource.objects.count()
+    co_count = Contractor.objects.count()
+    pa_count = ProjectActivity.objects.count()
+    pr_count = Project.objects.count()
+
+    context.update({'pm_count': pm_count,
+                    'po_count': po_count,
+                    'gpp_count': gpp_count,
+                    'co_count': co_count,
+                    'pa_count': pa_count,
+                    'pr_count': pr_count})
+
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def portfolio_summary(request, pk):
+    """
+    Display an individual :model:`portfolio_explorer.Portfolio`.
+    Fetch additional data associated with the portfolio from :model:`portfolio_explorer.PortfolioData`
+    Invoke function to Compute Portfolio statistics
+    - Total number of rows
+    - Total exposure
+    - Average rating etc.
+
+    **Context**
+
+    ``Portfolio``
+        An instance of :model:`portfolio_explorer.Portfolio`.
+
+    ``Portfolio Data``
+        An instance of :model:`portfolio_explorer.PortfolioData`.
+
+    **Template:**
+
+    :template:`portfolio_explorer/portfolio_summary.html`
+    """
+
+    try:
+        p = ProjectPortfolio.objects.get(pk=pk)
+    except ProjectPortfolio.DoesNotExist:
+        raise Http404("Portfolio does not exist")
+
+    try:
+        portfolio_queryset = ProjectPortfolio.objects.filter(portfolio_id=pk)
+    except ProjectPortfolio.DoesNotExist:
+        raise Http404("PortfolioData does not exist")
+
+    # Insert into dataframe for statistics
+    portfolio_dataframe = pd.DataFrame.from_records(portfolio_queryset.values())
+
+    # Aggregates
+    obligor_count = portfolio_dataframe.shape[0]
+    total_exposure = portfolio_dataframe['EAD'].sum()
+
+    # TODO Round digits
+    pstats = portfolio_dataframe[['EAD', 'LGD', 'Tenor', 'Sector', 'Rating', 'Country', 'Stage']].describe().to_html()
+
+    t = loader.get_template('portfolio_summary.html')
+    context = RequestContext(request, {})
+    context.update({'portfolio': p, 'pstats': pstats})
+    context.update({'obligor_count': obligor_count, 'total_exposure': total_exposure})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def portfolio_aggregates(request):
+    """
+    Create a custom aggregation report on the basis of form input fields
+    Aggregation Function to Apply
+    Field to Aggregate
+
+    :param request:
+    :return:
+    """
+    success_url = reverse_lazy('portfolio_list')
+
+    result_data = {}
+    result_label = {}
+
+    if request.method == 'POST':
+
+        form = CustomPortfolioAggregatesForm(request.POST)
+        form.is_valid()
+        Attribute = portfolio_attributes[int(form.cleaned_data['attribute'])][1]
+        Aggregator_Function = aggregation_choices[int(form.cleaned_data['aggregator_function'])][1]
+        print('GLOBALS: ', globals())
+
+        # convert the aggregator function string to a class object
+        Method = globals()[Aggregator_Function]
+        # result_data = Portfolio.objects.aggregate(Avg('portfoliodata__EAD'))
+        #
+        aggregation_string = 'portfoliodata__' + Attribute
+        result_data = ProjectPortfolio.objects.annotate(aggregated=Method(aggregation_string))
+        result_label = Aggregator_Function + ' ' + Attribute
+
+    else:
+        form = CustomPortfolioAggregatesForm()
+
+
+@login_required(login_url='/login/')
+def portfolio_stats_view(request, pk):
+    """Generate aggregate statistics about the portfolio."""
+
+    try:
+        p = ProjectPortfolio.objects.get(pk=pk)
+    except ProjectPortfolio.DoesNotExist:
+        raise Http404("Portfolio does not exist")
+
+    try:
+        portfolio_queryset = ProjectPortfolio.objects.filter(portfolio_id=pk)
+    except ProjectPortfolio.DoesNotExist:
+        raise Http404("PortfolioData does not exist")
+
+    portfolio_dataframe = pd.DataFrame.from_records(portfolio_queryset.values())
+
+    # TODO Improve headers
+    stats_view = {}
+    for attr in ['Tenor', 'LGD', 'Rating', 'Stage', 'Country', 'Sector']:
+        # Group Count by attribute
+        pstats = portfolio_dataframe.groupby([attr], as_index=True).size().reset_index(name='Count')
+        N = pstats['Count'].sum()
+        # Calculate Percentage
+        pstats['%'] = pstats['Count'] / N
+        pstats.set_index(attr)
+        stats_view[attr] = pstats.to_html(index=False)
+
+    t = loader.get_template('portfolio_stats_view.html')
+    context = RequestContext(request, {})
+    context.update({'portfolio': p, 'stats_view': stats_view, 'portfolio_data': portfolio_queryset})
+    return HttpResponse(t.template.render(context))
 
 
 @login_required(login_url='/login/')
@@ -39,7 +229,7 @@ def pcaf_mortgage_report(request):
     """
 
     for be in BuildingEmissionsSource.objects.all():
-        print(80*'=')
+        print(80 * '=')
         print(be.asset.loan_identifier.counterparty_identifier)
         print(be.asset.loan_identifier)
         print(be.asset.loan_identifier.legal_balance)
@@ -289,5 +479,5 @@ def visualization_view(request, pk):
     visualization = Visualization.objects.get(pk=pk)
     t = loader.get_template('visualization.html')
     context = RequestContext(request, {})
-    context.update({'root_view': root_view, 'object': visualization})
+    context.update({'object': visualization})
     return HttpResponse(t.template.render(context))

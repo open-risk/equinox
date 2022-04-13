@@ -1,0 +1,117 @@
+{% extends "start/tabular.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Portfolio Overview
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <p>Portfolio Overview</p>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="card-info">
+        <div class="card-header">
+            <h4>Procurement Data</h4>
+        </div>
+        <div class="card-body">
+            <table id="data_list" class="display responsive">
+                <thead>
+                <tr>
+                    <th>Portfolio Element</th>
+                    <th>Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Portfolio Managers</td>
+                    <td>{{ pm_count }}</td>
+                </tr>
+                <tr>
+                    <td>Project Portfolios</td>
+                    <td>{{ po_count }}</td>
+                </tr>
+                <tr>
+                    <td>Emissions Sources</td>
+                    <td>{{ gpp_count }}</td>
+                </tr>
+                <tr>
+                    <td>Contractors</td>
+                    <td>{{ co_count }}</td>
+                </tr>
+                <tr>
+                    <td>Projects</td>
+                    <td>{{ pr_count }}</td>
+                </tr>
+                <tr>
+                    <td>Project Activities</td>
+                    <td>{{ pa_count }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-info">
+        <div class="card-header">
+            <h4>Financial Data</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr data-widget="expandable-table" aria-expanded="false">
+                    <td>183</td>
+                </tr>
+                <tr class="expandable-body">
+                    <td>
+                        <p>
+                            <!-- YOUR EXPANDABLE TABLE BODY HERE -->
+                        </p>
+                    </td>
+                </tr>
+                <tr data-widget="expandable-table" aria-expanded="true">
+                    <td>219</td>
+                </tr>
+                <tr class="expandable-body">
+                    <td>
+                        <p>
+                            <!-- YOUR EXPANDABLE TABLE BODY HERE -->
+                        </p>
+                    </td>
+                </tr>
+                <tr data-widget="expandable-table" aria-expanded="true">
+                    <td>657</td>
+                </tr>
+                <tr class="expandable-body">
+                    <td>
+                        <p>
+                            <!-- YOUR EXPANDABLE TABLE BODY HERE -->
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+    <script>
+        $('#data_list').DataTable({
+            "pagingType": "full_numbers",
+            "responsive": true,
+            "bSort": true,
+            "displayLength": 50,
+            "autoWidth": true,
+            "searching": false
+        });
+    </script>
+
+
+
+{% endblock %}

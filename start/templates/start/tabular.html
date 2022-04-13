@@ -1,0 +1,14 @@
+{% extends 'start/generic.html' %}
+
+{% load i18n static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables.min.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables.min.css' %}">
+{% endblock %}

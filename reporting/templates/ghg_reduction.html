@@ -1,21 +1,10 @@
-{% extends "start/generic.html" %}
+{% extends "start/tabule.html" %}
 {% load static %}
 {% load custom_tags %}
 {% load humanize %}
 
 {% block title %}
     {{ title }} GHG Reduction
-{% endblock %}
-
-{% block extrahead %}
-    {{ block.super }}
-    <script type="text/javascript" charset="utf-8"
-            src="{% static 'reporting/js/jquery.dataTables.js' %}"></script>
-{% endblock %}
-
-{% block extrastyle %}
-    {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'reporting/css/table.css' %}">
 {% endblock %}
 
 {% block messages %}
@@ -36,7 +25,7 @@
                     <h4> GHG Reduction from all Project Activities</h4>
                 </div>
 
-                <div class="card card-body">
+                <div class="card-body">
                     <table id="data_list" class="display responsive" width="100%">
                         <thead>
                         <tr>

@@ -1,26 +1,28 @@
 <li class="nav-item d-none d-sm-inline-block dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-       aria-expanded="false">Portfolio Status</a>
+       aria-expanded="false">Status</a>
     <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/reporting/portfolio_overview">Overview</a></li>
         <li><a class="dropdown-item" href="/reporting/gpc_report">GPC Report</a></li>
         <li><a class="dropdown-item" href="/reporting/pcaf_mortgage_report">PCAF Mortgage Report</a></li>
         <li><a class="dropdown-item" href="/reporting/portfolio_map">Portfolio Map</a></li>
         <li><a class="dropdown-item" href="/reporting/gpp_report">GPP Report</a></li>
+        <li><a class="dropdown-item" href="/reporting/portfolio_aggregates">Portfolio Aggregates</a></li>
+        <li><a class="dropdown-item" href="/reporting/portfolio_summary">Portfolio Summary</a></li>
     </ul>
 </li>
 
 <li class="nav-item d-none d-sm-inline-block dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-       aria-expanded="false">Portfolio Impact</a>
+       aria-expanded="false">Impact</a>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="/reporting/ghg_reduction">GHG Reduction</a></li>
     </ul>
 </li>
 
 <li class="nav-item d-none d-sm-inline-block dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-       aria-expanded="false"> Policy Data<span
-            class="caret"></span></a>
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+       aria-expanded="false">Policy</a>
     <ul class="dropdown-menu">
         <li class="dropdown-header">General</li>
         <li class="navlist"><a href="{% url 'policy:policy_data_about' %}">About</a></li>

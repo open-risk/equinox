@@ -11,112 +11,180 @@
 
 {% block content %}
 
-    <div class="container">
+    <div class="card card-primary card-outline">
         <div class="image">
             <img src="{% static 'start/img/equinox-large.png' %}" height="100" alt="Equinox Logo"/>
         </div>
         <div class="text">
-            <h3>{% trans "Equinox is an open source platform that supports the holistic risk management of sustainable finance projects" %}</h3>
+            <h3>{% trans "Equinox is an open source platform that supports the holistic risk management of sustainable finance portfolios" %}</h3>
         </div>
     </div>
-
 
     <div class="card card-primary card-outline">
-
         <div class="card-body pad table-responsive">
+            <ul>
+                <li>Equinox <a href="{% url 'start:DocList' %}">Documentation Pages</a></li>
+                <li>Sustainable Portfolio Management <a href="{% url 'start:Concepts' %}">Concepts</a></li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="card card-info">
+        <div class="card-header">
+            <h4>{% trans "Welcome to Equinox" %}</h4>
+        </div>
 
-            <div class="card card-info">
-                <div class="card-header">
-                    <h4>{% trans "Welcome to Equinox" %}</h4>
-                </div>
+        <div class="card-body">
+            <p>The Equinox platform focus on the challenge of Sustainable Portfolio Management</p>
 
-                <div class="card card-body">
-                    <p>The Equinox platform focus on the challenge of Sustainable Portfolio Management</p>
+            <p>Sustainability (both environmental and social) is a major issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is an important objective and Equinox aims to help carry out this process as optimally as possible.</p>
 
-                    <p>Sustainability (both environmental and social) is a major issue that affects all economies. Developing tools and methodologies that improve the ability of all stakeholders to assess and report risks is an important objective and Equinox aims to help carry out this process as optimally as possible.</p>
+            <p>Equinox is a both <i>a database and a web application</i> that works together with a tailored
+                <i>data schema</i> to provide easy access to sustainability data adhering to both regulatory requirements, protocols and recommendations and financial industry initiatives.
+            </p>
+        </div>
+        <div class="card-footer">
+            The footer of the card
+        </div>
+    </div>
 
-                    <p>Equinox is a both <i>a database and a web application</i> that works together with a tailored
-                        <i>data schema</i> to provide easy access to sustainability data adhering to both regulatory requirements, protocols and recommendations and financial industry initiatives.
-                    </p>
-                </div>
+    <div class="card card-info">
+        <div class="card-header">
+            <h4>How does it work?</h4>
+        </div>
+        <div class="card-body">
+            <p>Running the application creates a
+                <i>server</i> that can then be accessed via any regular web browser. NB: For easy installation and testing the current release uses a self-contained sqlite database instead of a production database server
+            </p>
+
+            <p>The initial functionality of Equinox focuses on integrating the following concepts</p>
+
+            <ul>
+                <li>Implementing the GHG Protocol for accounting for CO2 emissions via inventories, activities and emission factors</li>
+                <li>The PCAF accounting and reporting framework (currently for Project Finance and Mortgage Finance GHG emissions)</li>
+                <li>Support for Green Public Procurement through the integration of TED data models and associated ontologies</li>
+                <li>Holistic risk management with the integration of the European Banking Authority's Criteria (currently Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending)
+                </li>
+                <li>Support for monitoring the Equator Principles for Project Finance</li>
+            </ul>
+
+            <p>Once the platform is up and running a wealth of functionality is available.</p>
+        </div>
+        <div class="card-footer">
+            The footer of the card
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h4>User Functionality</h4>
+        </div>
+
+        <div class="card-body">
+            <ul>
+                <li>A user can log-in into the application with their credentials</li>
+                <li>Inspect available data sets (tables or relations) that capture the EBA / EP / PCAF / GHG Protocol Data requirements, including a variety of relevant reference data available as Open Data</li>
+                <li>Insert, Update or Delete records (e.g. new Project Data)</li>
+                <li>Consult the documentation as to the meaning and requirements of each data element</li>
+                <li>Create Reports about both current Portfolio Status versus environmental impact and assessing the Impact of activities (e.g., investment policies) planned for the future</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Administrator Functionality</h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>An administrator can create users and user groups and assign permissions</li>
+                <li>Perform bulk insertion or deletion of data sets</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Developer Functionality</h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li>Equinox is based on the well known and loved Python web framework Django</li>
+                <li>Developers can customize and adapt the platform in unlimited ways</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Join the Equinox community</h3>
+        </div>
+        <div class="card-body">
+            <p>The project aims to be driven by community needs. We welcome issues, code contributions and feature requests via
+                <a href="https://github.com/open-risk/equinox">github</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class="card bg-gradient-success card-info">
+        <div class="card-header">
+            <h3 class="card-title">Default Card Example</h3>
+            <div class="card-tools">
+                <!-- Buttons, labels, and many other things can be placed here! -->
+                <!-- Here is a label for example -->
+                <span class="badge badge-primary">Label</span>
             </div>
+            <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            The body of the card
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            The footer of the card
+        </div>
+        <!-- /.card-footer -->
+    </div>
 
-            <div class="card card-info">
-                <div class="card-header">
-                    <h4>How does it work?</h4>
+    <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Messages</span> <span class="info-box-number">1,410</span>
+        </div>
+    </div>
+
+
+    <div class="timeline">
+        <!-- Timeline time label -->
+        <div class="time-label">
+            <span class="bg-green">23 Aug. 2019</span>
+        </div>
+        <div>
+            <!-- Before each timeline item corresponds to one icon on the left scale -->
+            <i class="fas fa-envelope bg-blue"></i>
+            <!-- Timeline item -->
+            <div class="timeline-item">
+                <!-- Time -->
+                <span class="time"><i class="fas fa-clock"></i> 12:05</span>
+                <!-- Header. Optional -->
+                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                <!-- Body -->
+                <div class="timeline-body">
+                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly balihoo...
                 </div>
-                <div class="card card-body">
-                    <p>Running the application creates a <i>server</i> that can then be accessed via any regular web browser. NB: For easy installation and testing the current release uses a self-contained sqlite database instead of a production database server
-                    </p>
-
-                    <p>The initial functionality of Equinox focuses on integrating the following concepts</p>
-
-                    <ul>
-                        <li>Implementing the GHG Protocol for accounting for CO2 emissions via inventories, activities and emission factors</li>
-                        <li>The PCAF accounting and reporting framework (currently for Project Finance and Mortgage Finance GHG emissions)</li>
-                        <li>Support for Green Public Procurement through the integration of TED data models and associated ontologies</li>
-                        <li>Holistic risk management with the integration of the European Banking Authority's Criteria (currently Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending)
-                        </li>
-                        <li>Support for monitoring the Equator Principles for Project Finance</li>
-                    </ul>
-
-                    <p>Once the platform is up and running a wealth of functionality is available.</p>
-                </div>
-            </div>
-
-            <div class="card card-info">
-
-                <div class="card-header">
-                    <h4>User Functionality</h4>
-                </div>
-
-                <div class="card card-body">
-                    <ul>
-                        <li>A user can log-in into the application with their credentials</li>
-                        <li>Inspect available data sets (tables or relations) that capture the EBA / EP / PCAF / GHG Protocol Data requirements, including a variety of relevant reference data available as Open Data</li>
-                        <li>Insert, Update or Delete records (e.g. new Project Data)</li>
-                        <li>Consult the documentation as to the meaning and requirements of each data element</li>
-                        <li>Create Reports about both current Portfolio Status versus environmental impact and assessing the Impact of activities (e.g., investment policies) planned for the future</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3>Administrator Functionality</h3>
-                </div>
-                <div class="card card-body">
-                    <ul>
-                        <li>An administrator can create users and user groups and assign permissions</li>
-                        <li>Perform bulk insertion or deletion of data sets</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3>Developer Functionality</h3>
-                </div>
-                <div class="card card-body">
-                    <ul>
-                        <li>Equinox is based on the well known and loved Python web framework Django</li>
-                        <li>Developers can customize and adapt the platform in unlimited ways</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3>Join the Equinox community</h3>
-                </div>
-                <div class="card card-body">
-                    <p>The project aims to be driven by community needs. We welcome issues, code contributions and feature requests via <a href="https://github.com/open-risk/equinox">github</a>.
-                    </p>
+                <!-- Placement of additional controls. Optional -->
+                <div class="timeline-footer">
+                    <a class="btn btn-primary btn-sm">Read more</a> <a class="btn btn-danger btn-sm">Delete</a>
                 </div>
             </div>
         </div>
+        <!-- The last icon means the story is complete -->
+        <div>
+            <i class="fas fa-clock bg-gray"></i>
+        </div>
     </div>
+
 
 {% endblock %}

@@ -67,7 +67,7 @@ class DocPage(models.Model):
         return self.slug
 
     def get_absolute_url(self):
-        return reverse('start:documentation', kwargs={'slug': self.slug})
+        return reverse('start:Documentation', kwargs={'slug': self.slug})
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)

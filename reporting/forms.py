@@ -18,8 +18,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.forms import ModelForm
 from reporting.models import Visualization
+from django import forms
+from django.forms import ModelForm
+
+from portfolio.Portfolios import ProjectPortfolio
+
+aggregation_choices = [(0, 'Avg'), (1, 'Count'), (2, 'Max'), (3, 'Min'), (4, 'Sum'), (5, 'StdDev'), (6, 'Variance')]
+
+portfolio_attributes = [(0, 'EAD'), (1, 'LGD'), (2, 'Rating'), (3, 'Stage'),
+                        (4, 'Tenor'), (5, 'Sector'), (6, 'Country')]
+
+
+class CustomPortfolioAggregatesForm(forms.Form):
+    aggregator_function = forms.ChoiceField(label="The Aggregation Function to Apply", choices=aggregation_choices)
+    attribute = forms.ChoiceField(label='Field to Aggregate', choices=portfolio_attributes)
 
 
 class VisualizationInteractiveForm(ModelForm):

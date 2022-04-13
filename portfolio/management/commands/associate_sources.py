@@ -18,34 +18,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.http import HttpResponse
-from django.template import RequestContext, loader
-from django.urls import reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.base import TemplateView
+from django.core.management.base import BaseCommand
 
-from portfolio.Asset import ProjectAsset
-from portfolio.Portfolios import ProjectPortfolio
-from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-import pandas as pd
-
-class AssetList(ListView):
-    """
-    List all assets sequentially with common action buttons
-    Also generation options at the end
-    """
-    model = ProjectAsset
-    template_name = 'asset_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ListView, self).get_context_data(**kwargs)
-        return context
+from portfolio.EmissionsSource import GPPEmissionsSource
+from portfolio.Project import Project
 
 
-class AssetMapView(TemplateView):
-    """Asset Markers Map view."""
+class Command(BaseCommand):
+    help = 'Associate an emissions source with a project'
 
-    template_name = "asset_map.html"
+    indata = []
+    serial = 1
+    for pr in Project.objects.all():
+        source = GPPEmissionsSource(
+            source_identifier='GPP-' + str(serial),
+            project=pr,
+            comments='Created automatically')
 
+        serial += 1
+        indata.append(source)
+
+    GPPEmissionsSource.objects.bulk_create(indata)
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Successfully associated GPP emissions sources with Projects'))

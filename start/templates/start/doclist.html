@@ -1,0 +1,49 @@
+{% extends "start/tabular.html" %}
+
+{% load i18n static %}
+
+{% block title %}
+    {{ title }} Documentation Pages
+{% endblock %}
+
+
+{% block messages %}
+    <div class="helpblock">
+        This page collects links to contextual Equinox documentation. NB: Documentation concerns Equinox functionality, relevant concepts around Sustainable Portfolio Management are captured in the
+        <a href="{% url 'start:Concepts' %}">Concepts</a> collection, while technical documentation is provided elsewhere.
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <h3>Documentation Entries</h3>
+    <table id="data_list">
+        <thead>
+        <tr>
+            <th>Article</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for page in doclist %}
+            <tr>
+
+                <td><a href="{{ page.1 }}"> {{ page.0 }} </a></td>
+                <td> {{ page.2 }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        $('#data_list').DataTable({
+            "pagingType": "full_numbers",
+            "responsive": true,
+            "bSort": true,
+            "displayLength": 50,
+            "autoWidth": true
+        });
+    </script>
+
+{% endblock %}

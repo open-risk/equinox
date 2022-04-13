@@ -8,7 +8,7 @@ from django.template import RequestContext, loader
 from django.views.generic import TemplateView
 
 # Front View
-from start.models import DocPage
+from start.models import DocPage, ORMKeyword
 
 
 class Front(TemplateView):
@@ -20,9 +20,8 @@ class Front(TemplateView):
         return self.render_to_response(context)
 
 
-# Documentation View
-class Documentation(LoginRequiredMixin, TemplateView):
-    template_name = 'start/documentation.html'
+class DocList(LoginRequiredMixin, TemplateView):
+    template_name = 'start/doclist.html'
 
     def get_context_data(self, **kwargs):
         docpages = DocPage.objects.all()
@@ -50,3 +49,17 @@ def documentation(request, slug):
 
     t = loader.get_template('start/documentation_page.html')
     return HttpResponse(t.template.render(context))
+
+
+class Concepts(LoginRequiredMixin, TemplateView):
+    template_name = 'start/concepts.html'
+
+    def get_context_data(self, **kwargs):
+        concepts = ORMKeyword.objects.all()
+        keywordlist = []
+        for concept in concepts:
+            keywordlist.append((concept.keyword, concept.link + '/' + concept.slug, concept.tooltip))
+
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        context.update({'keywordlist': keywordlist})
+        return context

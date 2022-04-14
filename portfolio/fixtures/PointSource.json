@@ -1,0 +1,14 @@
+[
+{
+  "model": "portfolio.pointsource",
+  "pk": 1,
+  "fields": {
+    "name": "Test1",
+    "location": "SRID=4326;POINT (8.973633347692695 48.69096038578878)",
+    "asset": null,
+    "project": 7672,
+    "creation_date": "2022-04-14T08:49:02.863Z",
+    "last_change_date": "2022-04-14T08:49:02.863Z"
+  }
+}
+]

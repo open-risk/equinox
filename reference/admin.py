@@ -18,7 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib import admin
+# from django.contrib import admin
+from django.contrib.gis import admin
 from django.core import serializers
 from django.http import HttpResponse
 from import_export import resources, fields
@@ -29,6 +30,7 @@ from treebeard.forms import movenodeform_factory
 from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.GPCSector import GPCSector
 from reference.CPVData import CPVData
+from reference.NUTS3Data import NUTS3PointData
 
 actions = ['export']
 
@@ -41,6 +43,17 @@ def export(self, request, queryset):
 
 
 admin.site.add_action(export)
+
+
+@admin.register(NUTS3PointData)
+class NUTS3PointDataAdmin(admin.OSMGeoAdmin):
+    """NUTS3 Point Data admin."""
+
+    search_fields = ['nuts_id', 'nuts_name', 'name_latn']
+    list_display = ('nuts_id', 'nuts_name', 'cntr_code', 'mount_type', 'urbn_type', 'coast_type')
+    list_filter = ('cntr_code',)
+    view_on_site = False
+    save_as = True
 
 
 class BuildingEmissionFactorResource(resources.ModelResource):
@@ -59,8 +72,8 @@ class BuildingEmissionFactorResource(resources.ModelResource):
 class BuildingEmissionFactorAdmin(ImportExportModelAdmin):
     search_fields = ['Emission_factor_methodology_description']
     list_display = (
-    'Emission_factor_name', 'Emission_factor', 'Country', 'EPC_Rating', 'Emission_factor_functional_unit_name',
-    'PCAF_data_quality_score')
+        'Emission_factor_name', 'Emission_factor', 'Country', 'EPC_Rating', 'Emission_factor_functional_unit_name',
+        'PCAF_data_quality_score')
     list_filter = ('Emission_factor_type', 'Country',)
     resource_class = BuildingEmissionFactorResource
     view_on_site = False

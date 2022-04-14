@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     'drf_yasg',
     'treebeard',
     'django.contrib.gis',
-    'djgeojson',
     'prettyjson',
     'markdownfield',
     'leaflet',
@@ -162,6 +161,8 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 TIME_ZONE = 'UTC'
 

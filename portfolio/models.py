@@ -34,12 +34,18 @@ Use models.py for any additional / auxiliary models
 
 
 class PointSource(models.Model):
-    """A point marker with name and location (to create an elementary geospatial reference)."""
+    """
+    A point marker with name and location (supports an elementary geospatial reference).
+    """
 
-    name = models.CharField(max_length=255)
+    # data
+    name = models.CharField(max_length=255, null=True, blank=True)
     location = PointField()
 
+    # links
+
     asset = models.ForeignKey('portfolio.ProjectAsset', null=True, blank=True, on_delete=models.CASCADE)
+    project = models.ForeignKey('portfolio.Project', null=True, blank=True, on_delete=models.CASCADE)
 
     #
     # BOOKKEEPING FIELDS

@@ -8,7 +8,6 @@ django-debug-toolbar
 jsonfield
 Markdown
 Pillow
-django-geojson
 django-jazzmin
 django-json-widget
 django-markdownfield

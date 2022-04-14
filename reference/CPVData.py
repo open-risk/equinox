@@ -28,7 +28,8 @@ CPV_LEVEL_DICT = {'division': 0, 'group': 1, 'class': 2, 'category': 3, 'subcate
 
 class CPVData(models.Model):
     """
-    The CPVData model holds Common Procurement Vocabulary reference data about goods and services sectors used in Green Public Procurement
+    The CPVData model holds Common Procurement Vocabulary reference data about goods and services sectors used in
+    Green Public Procurement
 
 
     """

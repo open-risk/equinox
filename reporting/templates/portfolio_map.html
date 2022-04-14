@@ -42,11 +42,11 @@
         <div class="card card-primary card-outline">
 
             <div class="card-header">
-                <h4>Map of Area Sources</h4>
+                <h4>Map of Portfolio Sources</h4>
             </div>
 
             <div class="card-body">
-                {{ geometry|json_script:"geometry" }}
+                {{ geodata|json_script:"geodata" }}
                 <div id="map"></div>
                 <script src="{% static 'portfolio/js/map.js' %}"></script>
             </div>

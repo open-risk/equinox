@@ -29,8 +29,6 @@ class NUTS3PointData(models.Model):
 
     https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts
 
-    NUTS_LB_2021_3035.geojson
-
     {"type":"FeatureCollection",
     "features": [{"type":"Feature",
                   "geometry":  {"type":"Point",

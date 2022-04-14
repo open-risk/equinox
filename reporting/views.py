@@ -10,19 +10,16 @@ from django.urls import reverse_lazy
 
 from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
-from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource, GPPEmissionsSource
-from portfolio.Portfolios import ProjectPortfolio
-from portfolio.ProjectActivity import ProjectActivity
-from portfolio.models import AreaSource
-from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-from reporting.models import Calculation, Visualization
-
+from portfolio.Contractor import Contractor
+from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
+from portfolio.EmissionsSource import GPPEmissionsSource
 from portfolio.PortfolioManager import PortfolioManager
 from portfolio.Portfolios import ProjectPortfolio
-from portfolio.EmissionsSource import GPPEmissionsSource
-from portfolio.Contractor import Contractor
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
+from reference.NUTS3Data import NUTS3PointData
+from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
+from reporting.models import Calculation, Visualization
 
 """
 
@@ -94,8 +91,10 @@ def portfolio_overview(request):
 @login_required(login_url='/login/')
 def portfolio_summary(request, pk):
     """
-    Display an individual :model:`portfolio_explorer.Portfolio`.
-    Fetch additional data associated with the portfolio from :model:`portfolio_explorer.PortfolioData`
+    TODO
+
+    Display an individual :model:`portfolio.Portfolio`.
+    Fetch additional data associated with the portfolio
     Invoke function to Compute Portfolio statistics
     - Total number of rows
     - Total exposure
@@ -104,10 +103,7 @@ def portfolio_summary(request, pk):
     **Context**
 
     ``Portfolio``
-        An instance of :model:`portfolio_explorer.Portfolio`.
-
-    ``Portfolio Data``
-        An instance of :model:`portfolio_explorer.PortfolioData`.
+        An instance of :model:`portfolio.Portfolio`.
 
     **Template:**
 
@@ -120,7 +116,7 @@ def portfolio_summary(request, pk):
         raise Http404("Portfolio does not exist")
 
     try:
-        portfolio_queryset = ProjectPortfolio.objects.filter(portfolio_id=pk)
+        project_queryset = ProjectPortfolio.objects.filter(portfolio_id=pk)
     except ProjectPortfolio.DoesNotExist:
         raise Http404("PortfolioData does not exist")
 
@@ -144,6 +140,8 @@ def portfolio_summary(request, pk):
 @login_required(login_url='/login/')
 def portfolio_aggregates(request):
     """
+    TODO
+
     Create a custom aggregation report on the basis of form input fields
     Aggregation Function to Apply
     Field to Aggregate
@@ -178,7 +176,11 @@ def portfolio_aggregates(request):
 
 @login_required(login_url='/login/')
 def portfolio_stats_view(request, pk):
-    """Generate aggregate statistics about the portfolio."""
+    """
+    TODO
+
+    Generate aggregate statistics about the portfolio.
+    """
 
     try:
         p = ProjectPortfolio.objects.get(pk=pk)
@@ -316,13 +318,28 @@ def portfolio_map(request):
     context = RequestContext(request, {})
 
     """
-    Compile a portfolio map
+    Compile a global portfolio map of all point geometries
 
     """
 
     # geometry = json.loads(serialize("geojson", PointSource.objects.all()))
-    geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
-    context.update({'geometry': geometry})
+    # geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
+    # geodata = json.loads(serialize("geojson", NUTS3PointData.objects.all()))
+    portfolio_data = Contractor.objects.all()
+    nuts_data = []
+    iter = 1
+    for co in portfolio_data.iterator():
+        nuts = co.region
+        if iter < 100:
+            try:
+                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
+            except:
+                pass
+            iter += 1
+        else:
+            break
+    geodata = json.loads(serialize("geojson", nuts_data))
+    context.update({'geodata': geodata})
 
     return HttpResponse(t.template.render(context))
 

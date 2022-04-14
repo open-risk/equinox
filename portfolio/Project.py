@@ -42,17 +42,16 @@ class Project(models.Model):
     project_title = models.CharField(max_length=160, blank=True, null=True,
                                      help_text='The title of the project')
 
-
     project_reference = models.CharField(max_length=160, blank=True, null=True,
-                                     help_text='Manager reference for the project')
-
+                                         help_text='Manager reference for the project')
 
     # LINKS
 
-    project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.SET_NULL, help_text="The project category to which this project is best classified")
+    project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.SET_NULL,
+                                         help_text="The project category to which this project is best classified")
 
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
-                                         help_text="The portfolio to which this project belongs")
+                                  help_text="The portfolio to which this project belongs")
 
     # PROJECT DATA
 
@@ -70,7 +69,6 @@ class Project(models.Model):
 
     project_currency = models.CharField(max_length=4, blank=True, null=True,
                                         help_text="The currency code in which the project is accounted for")
-
 
     # PROJECT SCORECARD DATA
 

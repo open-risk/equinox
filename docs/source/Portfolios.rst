@@ -6,13 +6,13 @@ Portfolios
    :undoc-members:
    :noindex:
 
-   .. automethod:: portfolio.Portfolios.Portfolio
+   .. automethod:: portfolio.Portfolios.ProjectPortfolio
 
 
    .. automethod:: portfolio.Portfolios.PortfolioSnapshot
 
 
-   .. automethod:: portfolio.Portfolios.PortfolioData
+   .. automethod:: portfolio.Portfolios.PortfolioTable
 
 
    .. automethod:: portfolio.Portfolios.LimitStructure

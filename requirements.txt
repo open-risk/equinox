@@ -13,4 +13,5 @@ django-json-widget
 django-markdownfield
 django-treebeard
 django-import-export
+django-prettyjson
 django-countries

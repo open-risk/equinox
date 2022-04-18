@@ -19,6 +19,10 @@ class Front(TemplateView):
         context = super(TemplateView, self).get_context_data(**kwargs)
         return self.render_to_response(context)
 
+# Feedback View (for public endpoint)
+# class Feedback(ListView):
+#     template_name = 'start/feedback.html'
+
 
 class DocList(LoginRequiredMixin, TemplateView):
     template_name = 'start/doclist.html'

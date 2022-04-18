@@ -2,7 +2,9 @@
     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
        aria-expanded="false">Status</a>
     <ul class="dropdown-menu">
+        <li class="dropdown-header">General</li>
         <li><a class="dropdown-item" href="/reporting/portfolio_overview">Overview</a></li>
+        <li class="dropdown-header">Reports</li>
         <li><a class="dropdown-item" href="/reporting/gpc_report">GPC Report</a></li>
         <li><a class="dropdown-item" href="/reporting/pcaf_mortgage_report">PCAF Mortgage Report</a></li>
         <li><a class="dropdown-item" href="/reporting/portfolio_map">Portfolio Map</a></li>
@@ -11,7 +13,7 @@
         <li><a class="dropdown-item" href="/reporting/portfolio_aggregates">Portfolio Aggregates</a></li>
         <li><a class="dropdown-item" href="/reporting/portfolio_summary">Portfolio Summary</a></li>
         {% endcomment %}
-        </ul>
+    </ul>
 </li>
 
 <li class="nav-item d-none d-sm-inline-block dropdown">
@@ -27,10 +29,8 @@
        aria-expanded="false">Policy</a>
     <ul class="dropdown-menu">
         <li class="dropdown-header">General</li>
-        <li class="navlist"><a href="{% url 'policy:policy_data_about' %}">About</a></li>
-        <li class="navlist"><a href="{% url 'policy:Latest' %}">Latest</a></li>
-        <li class="dropdown-header">Country Level Policies</li>
-        <li class="navlist"><a href="{% url 'policy:DataFlow_categories' %}">Catalog</a></li>
-
+        <li class="dropdown-item"><a href="{% url 'policy:Policy_overview' %}">Overview</a></li>
+        <li class="dropdown-header">Country Level</li>
+        <li class="dropdown-item"><a href="{% url 'policy:DataFlow_categories' %}">Catalog</a></li>
     </ul>
 </li>

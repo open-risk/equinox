@@ -32,3 +32,21 @@ Portfolio Data Models
 
 Reference Data Models
 -----------------------------
+
+.. toctree::
+   :maxdepth: 4
+
+   EmissionsFactor
+
+Reporting Data Models
+-----------------------------
+
+Policy Data Models
+-----------------------------
+.. toctree::
+   :maxdepth: 4
+
+   Policy
+
+Risk Data Models
+-----------------------------

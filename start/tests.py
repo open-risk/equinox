@@ -18,21 +18,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-from django.contrib.auth.models import User
-from django.test import Client
 from django.test import TestCase
 
-"""
-    re_path(r'^ghg_reduction$', views.ghg_reduction, name='ghg_reduction'),
-    re_path(r'^gpc_report$', views.gpc_report, name='gpc_report'),
-    re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
-    re_path(r'^portfolio_map$', views.portfolio_map, name='portfolio_map'),
-    re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
-"""
+from django.test import Client
+from django.contrib.auth.models import User
 
 
-class SimpleTest(TestCase):
+class AdminTest(TestCase):
 
     def create_user(self):
         self.username = "admin"
@@ -45,35 +37,31 @@ class SimpleTest(TestCase):
         user.save()
         self.user = user
 
+    def test_logged(self):
+        client = Client()
+        client.login(username='admin', password='admin')
+        response = client.get('/')
+        self.assertEqual(response.status_code, 200)
+
     def test_not_logged(self):
         client = Client()
         response = client.get('/')
         self.assertEqual(response.status_code, 200)
 
-    def test_logged_admin(self):
+    def test_all_admin(self):
         self.create_user()
         client = Client()
         client.login(username=self.username, password=self.password)
-        response = client.get('/admin', follow=True)
-        self.assertEqual(response.status_code, 200)
-
-    # def test_ghg_reduction(self):
-    #     client = Client()
-    #     client.post('/admin/login/', {'username': 'admin', 'password': 'admin'})
-    #     response = client.get('/reporting/ghg_reduction', follow=True)
-    #     self.assertEqual(response.status_code, 200)
-
-    def test_reporting_urls(self):
-        self.create_user()
-        client = Client()
-        client.login(username=self.username, password=self.password)
-        reporting_pages = [
-            "/reporting/portfolio_overview",
-            "/reporting/ghg_reduction",
-            "/reporting/gpc_report",
-            "/reporting/gpp_report",
-            "/reporting/portfolio_map"
+        admin_pages = [
+            "/admin/",
+            "/admin/auth/",
+            "/admin/auth/group/",
+            "/admin/auth/group/add/",
+            "/admin/auth/user/",
+            "/admin/auth/user/add/",
+            "/admin/password_change/"
         ]
-        for page in reporting_pages:
+        for page in admin_pages:
             resp = client.get(page)
-            self.assertEqual(resp.status_code, 200, msg=page)
+            assert resp.status_code == 200
+            # assert "<!DOCTYPE html" in resp.content

@@ -1,5 +1,7 @@
 FROM python:3.9-slim
 MAINTAINER Open Risk <www.openriskmanagement.com>
+LABEL version="0.4"
+LABEL description="Equinox: Open Source Sustainable Porfolio Management"
 LABEL maintainer="info@openrisk.eu"
 EXPOSE 8080
 ENV PYTHONUNBUFFERED 1
@@ -24,5 +26,7 @@ RUN python /equinox/manage.py makemigrations
 RUN python /equinox/manage.py migrate
 RUN python /equinox/createadmin.py
 RUN python /equinox/createcategories.py
+RUN python /equinox/createsectors.py
+RUN bash loadfixtures.sh
 RUN python /equinox/manage.py collectstatic --no-input
 CMD [ "python", "./manage.py", "runserver", "127.0.0.1:8080"]

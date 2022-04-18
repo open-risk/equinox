@@ -1,0 +1,76 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Latest Policy Data News and Stats
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <p class="helpblocktext">This page lists latest datasets tracked and processed by the Policy Data Explorer and
+            as well code / functionality upgrades</p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/root_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="page" class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="intro">
+
+                            <h3><i class="fa fa-dashboard"></i> Current Statistics</h3>
+                            {% include "policy/tbl_statistics.html" %}
+
+                            <h3><i class="fa fa-download"></i> March 3 2021 - 0.2 Release</h3>
+                            <p>Updated data dictionary to reflect v2.7 Oxford codebook
+                            </p>
+
+                            <h3><i class="fa fa-download"></i> June 6 2020 - 0.1 Release</h3>
+                            <p>Release 0.1 features the basic functionality, incorporating only
+                                complete data series and minimal processing or other modelling work.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <h3><i class="fa fa-hand-o-right"></i> Getting Started</h3>
+                {% include "policy/starter_links.html" %}
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var statistics = {{ statistics | safe }};
+        var root_view = "{{ root_view }}";
+        $("#total_datasets").html(statistics['total_datasets']);
+        $("#tracked_datasets").html(statistics['tracked_datasets']);
+        $("#live_datasets").html(statistics['live_datasets']);
+    </script>
+
+
+{% endblock %}

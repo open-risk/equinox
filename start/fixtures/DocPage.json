@@ -278,5 +278,19 @@
     "creation_date": "2022-04-13T11:35:56.557Z",
     "last_change_date": "2022-04-13T11:37:24.527Z"
   }
+},
+{
+  "model": "start.docpage",
+  "pk": 22,
+  "fields": {
+    "slug": "about_policy",
+    "title": "About Policy",
+    "tooltip_message": "",
+    "content": "<h3><i class=\"fa fa-info-circle\"></i> Policy Datasets</h3>\r\n                <p><b>Why are some datasets missing?</b><br> Datasets might be missing if there are missing data points in the original (raw) data. </p>\r\n                <p><b>Can you include dataset X?</b><br> We'd be happy to prioritize a particular dataset for inclusion. Just let us know! </p>\r\n\r\n                <h3><i class=\"fa fa-dashboard\"></i> Policy Data Module Functionality</h3>\r\n                <p><b>Some functionality is missing on my tablet/mobile...</b><br> The Dashboard requires significant screen real-estate and is best used with a desktop computer. </p>\r\n\r\n                <p><b>Some graphics don't display properly</b><br> The Equinox platform is best explored with the latest versions of Firefox or Chrome browsers. Older versions of Microsoft browsers don't fully conform to graphics standards.</p>\r\n\r\n                <p><b>What is the difference between Target, Tracked and Live data sets? </b><br></p>\r\n                <ul>\r\n                    <li><i>Target datasets</i> are the in-principle available Open Data datasets available from the integrated repositories (currently the OxCGRT dataset - we are expanding to further depositories in the future).\r\n                    </li>\r\n                    <li><i>Tracked datasets</i> is the subset of the target datasets that are currently processed by the Policy Data Dashboard (passing the data cleaning pipeline). This may exclude discontinued series, missing data, short time series and other data quality criteria). We aim to eventually incorporate all datasets that are can be usefully included.\r\n                    </li>\r\n                    <li><i>Live datasets</i> is the subset of the tracked datasets that meet the criteria for significant change in recent measurements.\r\n                    </li>\r\n                </ul>\r\n\r\n                <p><b>What does \"Last Update\" mean?</b><br> It is the last time raw data have been fetched from sources. We aim to update the policy data dashboard whenever there is some material change but there is no guarantee that at any given moment that we include the very latest data.</p>\r\n\r\n                <h3><i class=\"fa fa-asterisk\"></i> SDMX Data Standard </h3>\r\n                <p><b>What is a Dataflow?</b><br/>Equinox follows (where applicable) the SDMX standard for statistical data representation. A dataflow in the SDMX nomenclature is a collection of similar datasets that is maintained and updated as a group.\r\n                </p>",
+    "doc_type": 0,
+    "category": 0,
+    "creation_date": "2022-04-18T15:09:54.366Z",
+    "last_change_date": "2022-04-18T15:09:54.366Z"
+  }
 }
 ]

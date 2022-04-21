@@ -1,0 +1,30 @@
+<div class="card card-primary card-outline">
+    <div class="card-body">
+
+<span
+        class="breadcrumb_button"><a style="color:white;" href="{% url 'policy:DataFlow_categories' %}"
+                                     target="_blank">All Data</a></span> <span class="breadcrumb_button">Source: </span><span
+            class="gray_no">Oxford</span> <span class="breadcrumb_button">Country:</span><span class="gray_no"><a
+            href="{% url 'policy:DataFlow_country_aggregate' object.df_name %}">  {{ object.df_name }} </a></span>
+        {% if object.region %}
+            <span class="breadcrumb_button">Region:</span>
+            <span class="gray_no"><a href="{% url 'policy:DataFlow_filter' object.df_name 'all' 'all' %}"
+                                     target="_blank"> {{ object.region }} </a></span>
+        {% else %}
+            <span class="breadcrumb_button">Region:</span>
+            <span class="gray_no"><a href="{% url 'policy:DataFlow_filter' object.df_name 'all' 'all' %}"
+                                     target="_blank"> All </a></span>
+        {% endif %}
+        <br>
+        <span class="breadcrumb_button">Last Update: </span><span class="gray_no">{{ object.last_change_date }}</span>
+        <span
+                style="display:inline-block; margin-left:5px;">
+     <span><a title="Data Table" href="{% url 'policy:DataSeries2' object.identifier %}"><i
+             class="fa fa-table fa-2x"></i></a></span>
+     <span><a title="Metrics" href="{% url 'policy:Metrics' object.identifier %}"><i
+             class="fa fa-thermometer fa-2x"></i></a></span>
+     <span><a title="Plot" href="{% url 'policy:Plot' object.identifier %}"><i
+             class="fa fa-area-chart fa-2x"></i></a></span>
+     </span>
+    </div>
+</div>

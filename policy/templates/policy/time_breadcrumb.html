@@ -1,0 +1,22 @@
+<div class="card card-primary card-outline">
+    <div class="card-body">
+    <span class="gray_feed"><a
+            style="color:white;" href="{% url 'policy:DataFlow_categories' %}" target="_blank">All Data</a>
+    </span> <span
+            id="red_feed" title="Major change"><a href="{% url 'policy:DataSeries_filter' 'red' %}" target="_blank"
+                                                  style="color:black">Major Change</a>
+    </span> <span id="red_no">1</span> <span id="orange_feed" title="Significant change"><a
+            href="{% url 'policy:DataSeries_filter' 'orange' %}"
+            target="_blank"
+            style="color:black">Significant Change</a>
+    </span> <span
+            id="orange_no">2
+    </span> <span id="yellow_feed" title="Material change"><a
+            href="{% url 'policy:DataSeries_filter' 'yellow' %}" target="_blank"
+            style="color:black">Some Change</a>
+    </span> <span id="yellow_no">3
+    </span> <span
+            class="gray_feed">Little Change</span><span id="gray_no">1
+    </span>
+    </div>
+</div>

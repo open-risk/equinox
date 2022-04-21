@@ -1,0 +1,71 @@
+{% extends "start/tabular.html" %}
+{% load i18n static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    {{ title }} Policy Data Table for {{ object.title }}
+{% endblock %}
+
+
+{% block content %}
+
+
+    {% include "policy/ds_breadcrumb.html" %}
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-table"></i> Policy Data: Tabular View</h4>
+            </div>
+            <div class="card-body">
+                <p class="helpblocktext">
+                    <b>Dataseries: {{ object.title }}.</b><br><i>Details: {{ object.title_long }}</i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-info-circle"></i> Dataseries Table </h4>
+            </div>
+            <div class="card-body">
+                <table id="dataseries"></table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var values = {{ object.values | safe }};
+        var values_diff = {{ object.values_diff | safe }};
+        var values_diff_p = {{ object.values_diff_p | safe }};
+        var units = "{{ object.unit }}";
+        var dates = {{ object.dates | safe }};
+        var metrics = {{ object.metrics | safe }};
+        var geometry_1D = {{ object.geometry_1D | safe }};
+        var root_view = "{{ root_view }}";
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/table_timeseries.js' %}"></script>
+
+
+    <script>
+        $(window).bind('resize', function (e) {
+            if (window.RT) clearTimeout(window.RT);
+            window.RT = setTimeout(function () {
+                this.location.reload(false);
+                /* false to get page from cache */
+            }, 100);
+        });
+    </script>
+
+
+{% endblock %}

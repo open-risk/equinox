@@ -26,12 +26,11 @@ app_name = 'policy'
 
 urlpatterns = [
     # HTML SINGLE PAGES
-    re_path(r'^$', views.DataFlowCategoriesView.as_view(), name='DataFlow_categories'),
-    re_path(r'^about$', views.About.as_view(), name='policy_data_about'),
     re_path(r'^policy_overview$', views.PolicyOverview.as_view(), name='Policy_overview'),
 
     # DATAFLOW VIEWS
     re_path(r'^dataflow/categories$', views.DataFlowCategoriesView.as_view(), name='DataFlow_categories'),
+
     re_path(r'^dataflow/(?P<pk>\d+)$', views.DataFlowListView.as_view(), name='DataFlow'),
     re_path(r'^dataflow/(?P<slug>[-\w]+)$', views.DataFlowListView.as_view(), name='DataFlow2'),
     re_path(r'^dataflow/slice/(?P<slug>[-\w]+)$', views.DataFlowSliceView.as_view(), name='DataFlow_slice'),

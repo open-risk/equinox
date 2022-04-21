@@ -145,56 +145,53 @@ li .list-unstyled {
     border-left: 1px solid white;
 }
 
-#content2
-{
-    width:100%;
-    text-align:left;
+#content2 {
+    width: 100%;
+    text-align: left;
     font-size: 14px;
     font-family: "Open Sans", sans-serif;
     padding: 10px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 10px;
-    float:left;
+    float: left;
 }
 
-#content3
-{
-    width:100%;
-    text-align:left;
+#content3 {
+    width: 100%;
+    text-align: left;
     font-family: "Open Sans", sans-serif;
-    font-size:14px;
+    font-size: 14px;
     padding: 10px;
     background-color: white;
     border-radius: 5px;
     margin-bottom: 10px;
-    float:left;
+    float: left;
 }
 
 #caption {
-    // font-size:10px;
+/ / font-size: 10 px;
 }
 
-#graph2
-{
+#graph2 {
     margin-bottom: 10px;
-    padding-top:10px;
+    padding-top: 10px;
     padding-left: 10px;
     margin-left: 20px;
     background-color: white;
     border-radius: 5px;
-    float:left;
+    float: left;
     width: 550px;
     /*width: 100%;*/
 }
 
 .chart2 {
-    margin-left:0px;
+    margin-left: 0px;
 }
 
 #variable1 {
     text-align: left;
-    overflow:scroll;
+    overflow: scroll;
 }
 
 #variable2 {
@@ -202,11 +199,11 @@ li .list-unstyled {
 }
 
 #var_def1 {
-    font-size:10px;
+    font-size: 10px;
 }
 
 #var_def2 {
-    font-size:10px;
+    font-size: 10px;
 }
 
 table.db_stats {
@@ -288,16 +285,13 @@ table.db_stats td:nth-of-type(2) {
 }
 
 table.display thead th {
-    border-bottom: none;
-    background-color: #f4c63d;
+  border-bottom: none;
+  background-color: #f4c63d;
+  color: black;
 }
 
-#category_list .even {
-    background-color: rgb(219, 219, 219)
-}
-
-#category_list .odd {
-    background-color: rgb(219, 219, 219)
+.dark-mode .card {
+  color: #000;
 }
 
 .category {
@@ -556,15 +550,14 @@ table.display thead th {
     padding: 3px;
 }
 
-#content1
-{
-    text-align:left;
+#content1 {
+    text-align: left;
     font-family: "Open Sans", sans-serif;
     height: 50px;
     padding: 5px;
     background-color: white;
     border-radius: 5px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 

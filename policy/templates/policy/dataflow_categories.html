@@ -1,0 +1,189 @@
+{% extends "start/tabular.html" %}
+{% load i18n static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}">
+{% endblock %}
+
+{% block title %}
+    {{ title }} Policy Overview
+{% endblock %}
+
+{% block content %}
+
+    {% include "policy/time_breadcrumb.html" %}
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="helpblock" id="page_content_front">
+                <p class="helpblocktext">
+                    SEARCH by keyword to narrow the selection. SELECT from the list of stored DataFlows (click on a country) to further explore the datasets.<br/> CLICK on the
+                    <b>Red Links</b> to focus on recent significant changes per country</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-primary card-outline">
+        <div class="pad table-responsive">
+            <div class="card-info">
+                <div class="card-header">
+                    <h4><i class="fa fa-info-circle"></i> Policy Overview</h4>
+                </div>
+                <div class="card-body">
+                    <table class="display responsive no-wrap" id="category_list">
+                        <thead>
+                        <tr>
+                            <th class="table_header">Country</th>
+                            <th class="table_header">All OxCGRT Data</th>
+                            <th class="table_header">Recently Changed</th>
+                            <th class="table_header">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for DataFlow in object_list %}
+                            <tr class="feed" id={{ DataFlow.id }}>
+
+                                <td>
+                                    <a title="Click through to explore the datasets per country"
+                                       style="color:orangered"
+                                       href="{% url 'policy:DataFlow_country_aggregate' DataFlow.identifier %}">{{ DataFlow.name }}</a>
+                                </td>
+
+                                <td>
+                                    <a title="Click through to explore all datasets for this country"
+                                       style="color:blue"
+                                       href="{% url 'policy:DataFlow_filter' DataFlow.identifier 'all' 'all' %}">{{ DataFlow.dashboard_n }}</a>
+                                </td>
+
+                                <td>
+                                    <a title="Click through to explore datasets that showed significant change recently"
+                                       style="color:red"
+                                       href="{% url 'policy:DataFlow_filter' DataFlow.identifier region 'active' %}">{{ DataFlow.live_n }}</a>
+                                </td>
+
+                                <td> {{ DataFlow.long_desc }}</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#category_list').DataTable({
+            "columnDefs": [
+                {"visible": true, "targets": [0, 1, 2, 3]},
+                {targets: '_all', visible: false}
+            ],
+            "columns": [
+                {"width": "20%"},
+                {"width": "20%"},
+                {"width": "20%"},
+                {"width": "40%"},
+            ],
+            "bPaginate": false,
+            "responsive": true,
+            "bSort": false
+        });
+
+        $('.table_header').off("click");
+    </script>
+
+    <script>
+        // var content_data = {{ content_data | safe }};
+        var freshness = {{ freshness | safe }};
+        var statistics = {{ statistics | safe }};
+        var root_view = "{{ root_view }}";
+        $("#red_no").html(freshness['red']);
+        $("#orange_no").html(freshness['orange']);
+        $("#yellow_no").html(freshness['yellow']);
+        $("#gray_no").html(freshness['gray']);
+        $("#total_datasets").html(statistics['total_datasets']);
+        $("#tracked_datasets").html(statistics['tracked_datasets']);
+        $("#live_datasets").html(statistics['live_datasets']);
+    </script>
+
+    <script>
+        $(".feed").css("background-color", "#DBDBDB");
+        var clicked = 0;
+        var newClickedId = null;
+        var oldClickedId = null;
+    </script>
+
+    <script>
+        $(".feed").click(
+            function () {
+                newClickedId = $(this).attr('id');
+                if (clicked === 0) {
+                    clicked = 1;
+                    clickedObj = $(this);
+                    $(this).css("background-color", "#8F9160");
+                    $("#page_content_front").html(content_data[newClickedId]);
+                    $("#page_content_front").css("background-color", "#E2E593");
+                    oldClickedId = newClickedId;
+                } else if (clicked === 1 && newClickedId !== oldClickedId) {
+                    clicked = 1;
+                    $(this).css("background-color", "#8F9160");
+                    clickedObj.css("background-color", "#DBDBDB");
+                    $("#page_content_front").html(content_data[newClickedId]);
+                    oldClickedId = newClickedId;
+                    $("#page_content_front").css("background-color", "#E2E593");
+                    clickedObj = $(this);
+                } else if (clicked === 1 && newClickedId === oldClickedId) {
+                    clicked = 0;
+                    $(this).css("background-color", "#DBDBDB");
+                    $("#page_content_front").html(content_data[newClickedId]);
+                    $("#page_content_front").css("background-color", "#F0F0E6");
+                    oldClickedId = newClickedId;
+                }
+            }
+        );
+    </script>
+
+    <script>
+        $(".feed").mouseover(
+            function () {
+                var currentId = $(this).attr('id');
+                if (clicked === 0 && currentId !== oldClickedId) {
+                    $(this).css("background-color", "#6FC8FC");
+                    $("#page_content_front").html(content_data[currentId]);
+                }
+                if (clicked === 0) {
+                    $("#page_content_front").html(content_data[currentId]);
+                }
+                if (clicked === 1 && currentId !== oldClickedId) {
+                    $(this).css("background-color", "#6FC8FC");
+                }
+                if (clicked === 1 && currentId === oldClickedId) {
+                    $(this).css("background-color", "#8F9160");
+                }
+            }
+        );
+    </script>
+
+    <script>
+        $(".feed").mouseleave(
+            function () {
+                var currentId = $(this).attr('id');
+                if (clicked === 0) {
+                    $(this).css("background-color", "#DBDBDB");
+                }
+                if (clicked === 1 && currentId !== oldClickedId) {
+                    $(this).css("background-color", "#DBDBDB");
+                }
+                if (clicked === 1 && currentId === oldClickedId) {
+                    $(this).css("background-color", "#E2E593");
+                }
+            }
+        );
+    </script>
+
+
+{% endblock %}

@@ -1,67 +1,60 @@
-{% extends "start/generic.html" %}
-{% load static %}
+{% extends "start/tabular.html" %}
+{% load i18n static %}
 {% load custom_tags %}
+{% load humanize %}
 
 {% block title %}
     {{ title }} Latest Policy Data News and Stats
 {% endblock %}
 
-{% block extrahead %}
-    {{ block.super }}
-    <script type="text/javascript" charset="utf-8"
-            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
-{% endblock %}
-
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
-{% endblock %}
-
-{% block messages %}
-    <div class="helpblock" id="page_content_front">
-        <p class="helpblocktext">This page lists latest datasets tracked and processed by the Policy Data Explorer and
-            as well code / functionality upgrades</p>
-    </div>
-{% endblock %}
-
-{% block breadcrumbs %}
-    {% include "policy/root_breadcrumb.html" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}">
 {% endblock %}
 
 {% block content %}
 
-    <div id="page" class="container-fluid">
-
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="intro">
-
-                            <h3><i class="fa fa-dashboard"></i> Current Statistics</h3>
-                            {% include "policy/tbl_statistics.html" %}
-
-                            <h3><i class="fa fa-download"></i> March 3 2021 - 0.2 Release</h3>
-                            <p>Updated data dictionary to reflect v2.7 Oxford codebook
-                            </p>
-
-                            <h3><i class="fa fa-download"></i> June 6 2020 - 0.1 Release</h3>
-                            <p>Release 0.1 features the basic functionality, incorporating only
-                                complete data series and minimal processing or other modelling work.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="helpblock" id="page_content_front">
+                <p class="helpblocktext">This page lists latest datasets tracked and processed by the Policy Data Explorer and as well code / functionality upgrades</p>
             </div>
+        </div>
+    </div>
 
-            <div class="col-sm-4">
+
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-info-circle"></i> Dataseries Table </h4>
+            </div>
+            <div class="card-body">
+
+                <h3><i class="fa fa-dashboard"></i> Current Statistics</h3>
+                {% include "policy/tbl_statistics.html" %}
+
+                <h3><i class="fa fa-download"></i> March 3 2021 - 0.2 Release</h3>
+                <p>Updated data dictionary to reflect v2.7 Oxford codebook
+                </p>
+
+                <h3><i class="fa fa-download"></i> June 6 2020 - 0.1 Release</h3>
+                <p>Release 0.1 features the basic functionality, incorporating only complete data series and minimal processing or other modelling work.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
                 <h3><i class="fa fa-hand-o-right"></i> Getting Started</h3>
+            </div>
+            <div class="card-body">
                 {% include "policy/starter_links.html" %}
             </div>
         </div>
-
     </div>
 
     <script>

@@ -10,6 +10,11 @@
     margin-left: 10px!important;
 }
 
+.dark-mode .navbar-navy {
+  background-color: #393e43;
+  color: #fff;
+}
+
 /*.select2-container--open .select2-dropdown {*/
 /*    display: inline !important;*/
 /*}*/

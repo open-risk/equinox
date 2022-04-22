@@ -4,3 +4,8 @@
 {% block branding %}
     <div id="grp-branding"><img src="{% static 'start/img/equinox.png' %}" height="24" alt="logo"/></div>
 {% endblock %}
+
+{% if jazzmin_ui.dark_mode_theme %}
+    <link rel="stylesheet" href="{% static "start/css/jazzmin.css" %}">
+{% endif %}
+

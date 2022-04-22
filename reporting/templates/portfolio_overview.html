@@ -7,13 +7,16 @@
     {{ title }} Portfolio Overview
 {% endblock %}
 
-{% block messages %}
-    <div class="helpblock">
-        <p>Portfolio Overview</p>
-    </div>
-{% endblock %}
 
 {% block content %}
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="helpblock">
+                <p>Portfolio Overview</p>
+            </div>
+        </div>
+    </div>
 
     <div class="card-info">
         <div class="card-header">
@@ -28,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr class="even">
                     <td>Portfolio Managers</td>
                     <td>{{ pm_count }}</td>
                 </tr>
@@ -58,14 +61,7 @@
     </div>
 
     <script>
-        $('#data_list').DataTable({
-            "pagingType": "full_numbers",
-            "responsive": true,
-            "bSort": true,
-            "displayLength": 50,
-            "autoWidth": true,
-            "searching": false
-        });
+        $('#data_list').DataTable();
     </script>
 
 {% endblock %}

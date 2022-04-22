@@ -1,0 +1,30 @@
+<div>
+    <table id="db_stats" class="display responsive">
+        <tbody>
+        <tr>
+            <td>Targeted Data Sets (Raw Sources)</td>
+            <td><span id="total_datasets">100000</span></td>
+        </tr>
+        <tr>
+            <td>Integrated Data Sets (After Data Cleaning)</td>
+            <td><span id="tracked_datasets">100000</span></td>
+        </tr>
+        <tr>
+            <td>Active Data Sets (Recently Changed)</td>
+            <td><span id="live_datasets">100000</span></td>
+        </tr>
+        <tr>
+            <td>Focus Metrics</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Visualization Types</td>
+            <td>3</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+    <script>
+        $('#db_stats').DataTable();
+    </script>

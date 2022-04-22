@@ -294,6 +294,10 @@ table.display thead th {
   color: #000;
 }
 
+.dark-mode .card .card {
+  color: #262323!important;
+}
+
 .category {
     padding: 7px;
 }

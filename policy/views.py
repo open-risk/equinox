@@ -400,7 +400,6 @@ class DSMetricsView(DetailView):
         dataflow = DataFlow.objects.get(identifier=dataseries.df_name)
         unit = dataseries.unit
         context.update({'unit': json.dumps(unit)})
-        # context.update({'root_view': root_view})
         context.update({'df_size': dataflow.dashboard_n})
         return context
 

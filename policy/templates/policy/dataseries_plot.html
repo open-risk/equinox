@@ -1,0 +1,99 @@
+{% extends "start/d3.html" %}
+{% load i18n static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'policy/js/timeseries_graph_numerical.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'policy/js/timeseries_graph_ordinal.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    {{ title }} Policy Data Plot for {{ object.title }}
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <h4><i class="fa fa-area-chart"></i> Policy Data: Timeseries Plot</h4>
+        <p class="helpblocktext"><b>Dataseries: {{ object.title }}</b><br><i>Details: {{ object.title_long }}</i></p>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {% include "policy/ds_breadcrumb.html" %}
+
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div id="timeseries_graph" style="background-color: white"></div>
+        </div>
+    </div>
+    <div class="card card-primary card-outline">
+    <div class="card-body">
+        {% if object.field_type == 'numerical' %}
+            <h3>Summary Statistics:</h3>
+            <table id="metrics" style="width:180px">
+                <tr class="even">
+                    <td>Maximum Value</td>
+                    <td>{{ maxval }}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Minimum Value</td>
+                    <td>{{ minval }}</td>
+                </tr>
+                <tr class="even">
+                    <td>Average Value</td>
+                    <td>{{ average }}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Latest Value</td>
+                    <td>{{ latest }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr class="odd">
+                    <td>Date</td>
+                    <td id="date_element">2020-01-05</td>
+                </tr>
+                <tr class="even">
+                    <td>Value</td>
+                    <td id="value_element">0</td>
+                </tr>
+            </table>
+        {% else %}
+            <h3>Policy Value Dictionary:</h3>
+            <table id="metrics">
+                {% for key, value in code_list.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+    <script>
+        let values = {{ object.values | safe }};
+        let units = "{{ object.unit }}";
+        let dates = {{ object.dates | safe }};
+        let metrics = {{ object.metrics | safe }};
+        let title = "{{ object.title_long }}";
+        console.log(title);
+        let datatype = "{{ object.field_type }}";
+        console.log(datatype);
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/plot.js' %}"></script>
+
+{% endblock %}

@@ -51,12 +51,12 @@
                                 <td>{{ DataSeries.title_long }}</td>
                                 <td>{{ DataSeries.last_observation_date }}</td>
                                 <td><a href="{% url 'policy:DataSeries2' DataSeries.identifier %}"
-                                       target="_blank"> <i
-                                        class="fa fa-table fa-2x"></i> </a> <a
-                                        href="{% url 'policy:Plot' DataSeries.identifier %}" target="_blank"> <i
-                                        class="fa fa-area-chart fa-2x"></i> </a> <a
-                                        href="{% url 'policy:Metrics' DataSeries.identifier %}" target="_blank"> <i
-                                        class="fa fa-thermometer fa-2x"></i> </a>
+                                       target="_blank"> <i class="fas fa-border-all fa-2x"></i> </a>
+                                    <a href="{% url 'policy:Plot' DataSeries.identifier %}" target="_blank">
+                                        <i class="fas fa-chart-area fa-2x"></i>
+                                    </a>
+                                    <a href="{% url 'policy:Metrics' DataSeries.identifier %}" target="_blank"> <i
+                                        class="fas fa-thermometer fa-2x"></i> </a>
                                 </td>
                             </tr>
                         {% endfor %}

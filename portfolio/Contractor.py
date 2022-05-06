@@ -25,8 +25,7 @@ from django.urls import reverse
 
 class Contractor(models.Model):
     """
-    The Contractor model holds data for each Contractor with an existing contract (e..g, involved in the construction
-    of a Project, or the fulfillment of a Procurement contract)
+    The Contractor model holds data for each Contractor with an existing contract (e..g, involved in the construction of a Project, or the fulfillment of a Procurement contract)
 
     A Contractor is a type of Counterparty
 
@@ -46,8 +45,7 @@ class Contractor(models.Model):
     contractor_legal_entity_identifier = models.CharField(max_length=200, blank=True, null=True,
                                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    name_of_contractor = models.CharField(max_length=200, primary_key=True,
-                                          help_text='Full Name of Contractor')
+    name_of_contractor = models.CharField(max_length=200, null=True, blank=True, help_text='Full Name of Contractor')
 
     # LINKS
 

@@ -24,17 +24,17 @@ from django.urls import reverse
 
 class PortfolioManager(models.Model):
     """
-    The PortfolioManager model holds data for each Portfolio Manager that using or represented in an equinox instance. A Portfolio Manager may be a Loan Portfolio manager a Procurement contracts portfolio manager etc
+    The PortfolioManager model holds data for each Portfolio Manager that is using (or is represented) in an equinox instance. A Portfolio Manager may be a Loan Portfolio manager in a Bank, a Procurement contracts portfolio manager in a Public Authority, a Project Finance manager etc
 
-    All Portfolios must belong to one (and only one) Portfolio Manager
+    All Portfolios belong to one (and only one) Portfolio Manager
 
-    The PM datafields cover identity, address, contact information and ad-hoc other
+    The PM datafields cover identity, address, contact information and ad-hoc other details
 
     """
 
-    # IDENTITY
+    # LEGAL IDENTITY
 
-    name_of_manager = models.CharField(primary_key=True, max_length=200,
+    name_of_manager = models.CharField(max_length=200, blank=True, null=True,
                                        help_text='Full Name of Manager')
 
     manager_identifier = models.IntegerField(blank=True, null=True,
@@ -46,7 +46,16 @@ class PortfolioManager(models.Model):
     # name_of_manager = models.CharField(max_length=40, blank=True, null=True,
     #                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    # ADDRESS
+    # ENTITY NATURE
+
+    entity_type = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='The type of the entity, e.g. from an applicable category list')
+
+
+    entity_activity = models.CharField(max_length=80, null=True, blank=True,
+                               help_text='The main activity the entity, e.g. from an applicable category list')
+
+    # ADDRESS INFORMATION
 
     address = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Street Address <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -63,7 +72,7 @@ class PortfolioManager(models.Model):
     country = models.CharField(max_length=20, null=True, blank=True,
                                help_text='Country Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    # CONTACT
+    # CONTACT INFORMATION
 
     phone = models.CharField(max_length=20, null=True, blank=True,
                              help_text='Phone Number <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

@@ -150,7 +150,6 @@ class PortfolioManagerAdmin(admin.ModelAdmin):
     list_display = ('manager_identifier', 'name_of_manager', 'address', 'town', 'region', 'country', 'website')
 
 
-
 @admin.register(Building)
 class BuildingAdmin(admin.ModelAdmin):
     view_on_site = False

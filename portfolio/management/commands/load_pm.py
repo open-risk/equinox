@@ -34,15 +34,18 @@ class Command(BaseCommand):
     data = pd.read_csv("pm.csv", header='infer', delimiter=',')
 
     """
-    OFFICIALNAME,ADDRESS,TOWN,POSTAL_CODE,COUNTRY,PHONE,E_MAIL,FAX,NUTS,URL_GENERAL,URL_BUYER,CONTACT_POINT,NATIONALID
+    
+    PK,OFFICIALNAME,ENTITY_TYPE,ENTITY_ACTIVITY,NATIONALID,ADDRESS,TOWN,POSTAL_CODE,COUNTRY,E_MAIL,NUTS,URL_GENERAL,URL_BUYER,CONTACT_POINT,PHONE,FAX
     """
     indata = []
     serial = 0
     for index, entry in data.iterrows():
         pm = PortfolioManager(
-            manager_identifier=entry['PK'],
+            manager_identifier=serial,
             manager_legal_entity_identifier=entry['NATIONALID'],
             name_of_manager=entry['OFFICIALNAME'],
+            entity_type=entry['ENTITY_TYPE'],
+            entity_activity=entry['ENTITY_ACTIVITY'],
             address=entry['ADDRESS'],
             town=entry['TOWN'],
             postal_code=entry['POSTAL_CODE'],

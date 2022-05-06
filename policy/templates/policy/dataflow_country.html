@@ -1,0 +1,182 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Policy Data Country Filter
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <h4><i class="fa fa-info-circle"></i> Country Regions Overview</h4>
+        <p class="helpblocktext">
+            SEARCH by keyword to narrow the selection. SELECT from the list of stored DataFlows (click on a region
+            NAME) to further explore the datasets.<br/>
+            CLICK on the <b>Active (Red) links</b> for recent significant changes per region</p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/df_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+    <div id="page" class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <table id="series_list" class="display responsive no-wrap" width="100%">
+                    <thead>
+                    <tr>
+                        <th class="table_header">Regional Code</th>
+                        <th class="table_header">Description</th>
+                        <th class="table_header">Tracked Datasets</th>
+                        <th class="table_header">Active Datasets</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for region in region_list %}
+                        <tr class="feed">
+                            <td>{{ region.title }}</td>
+                            <td>{{ region.title_long }}</td>
+                            {% if region.dashboard_n > 0 %}
+                                <td>
+                                    <a style="color:green"
+                                       href="{% url 'policy:DataFlow_filter' identifier region.title 'all' %}">{{ region.dashboard_n }}</a>
+                                </td>
+                            {% else %}
+                                <td> {{ region.dashboard_n }} </td>
+                            {% endif %}
+                            {% if region.live_n > 0 %}
+                                <td>
+                                    <a style="color:red"
+                                       href="{% url 'policy:DataFlow_filter' identifier region.title 'active' %}">{{ region.live_n }}</a>
+                                </td>
+                            {% else %}
+                                <td> {{ region.live_n }} </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $('#series_list').DataTable({
+            "responsive": true,
+            "bSort": false,
+            "bPaginate": false,
+            "displayLength": 50,
+            "autoWidth": true
+        });
+    </script>
+
+
+    <script>
+        var content_data = {{ content_data | safe }};
+        var root_view = "{{ root_view }}";
+        var freshness = {{ freshness | safe }};
+        $("#red_no").html(freshness['red']);
+        $("#orange_no").html(freshness['orange']);
+        $("#yellow_no").html(freshness['yellow']);
+        $("#gray_no").html(freshness['gray']);
+    </script>
+
+    <script>
+        $(".feed").css("background-color", "#DBDBDB");
+        var clicked = 0;
+        var newClickedId = null;
+        var oldClickedId = null;
+    </script>
+
+    <script>
+        $(".feed").click(
+            function () {
+                newClickedId = $(this).attr('id');
+                if (clicked === 0) {
+                    clicked = 1;
+                    clickedObj = $(this);
+                    $(this).css("background-color", "#8F9160");
+                    $("#page_content_front").html(content_data[newClickedId]);
+                    $("#page_content_front").css("background-color", "#E2E593");
+                    oldClickedId = newClickedId;
+                } else if (clicked === 1 && newClickedId !== oldClickedId) {
+                    clicked = 1;
+                    $(this).css("background-color", "#8F9160");
+                    clickedObj.css("background-color", "#DBDBDB");
+                    $("#page_content_front").html(content_data[newClickedId]);
+                    oldClickedId = newClickedId;
+                    $("#page_content_front").css("background-color", "#E2E593");
+                    clickedObj = $(this);
+                } else if (clicked === 1 && newClickedId === oldClickedId) {
+                    clicked = 0;
+                    $(this).css("background-color", "#DBDBDB");
+                    $("#page_content_front").html(content_data[newClickedId]);
+                    $("#page_content_front").css("background-color", "#F0F0E6");
+                    oldClickedId = newClickedId;
+                }
+            }
+        );
+    </script>
+
+    <script>
+        $(".feed").mouseover(
+            function () {
+                var currentId = $(this).attr('id');
+                if (clicked === 0 && currentId !== oldClickedId) {
+                    $(this).css("background-color", "#6FC8FC");
+                    $("#page_content_front").html(content_data[currentId]);
+                }
+                if (clicked === 0) {
+                    $("#page_content_front").html(content_data[currentId]);
+                }
+                if (clicked === 1 && currentId !== oldClickedId) {
+                    $(this).css("background-color", "#6FC8FC");
+                }
+                if (clicked === 1 && currentId === oldClickedId) {
+                    $(this).css("background-color", "#8F9160");
+                }
+            }
+        );
+    </script>
+
+    <script>
+        $(".feed").mouseleave(
+            function () {
+                var currentId = $(this).attr('id');
+                if (clicked === 0) {
+                    $(this).css("background-color", "#DBDBDB");
+                }
+                if (clicked === 1 && currentId !== oldClickedId) {
+                    $(this).css("background-color", "#DBDBDB");
+                }
+                if (clicked === 1 && currentId === oldClickedId) {
+                    $(this).css("background-color", "#E2E593");
+                }
+            }
+        );
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Dataflow Detail View
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+ <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+    <h4><i class="fa fa-list"></i> Dataflow Detail View</h4>
+    <p>
+        SEARCH for keywords in the DataSet descriptions<br>
+        CLICK on the Analysis icons to explore a DataSet further
+    </p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/df_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+<div id="page" class="container-non-responsive-wide">
+
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <table id="series_list">
+                <thead>
+                <tr>
+                    <th>Data Set</th>
+                    <th>Description</th>
+                    <th>Last Obs.</th>
+                    <th>Analysis</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for series in series_list %}
+                    <tr class="feed" id={{ series.id }}>
+                        <td><i>{{ series.title }}</i></td>
+                        <td> {{ series.title_long }} </td>
+                        <td> {{ series.last_observation_date }} </td>
+                        <td>
+                            <a title="Data Table" href="{% url 'policy:DataSeries2' series.identifier %}"
+                               target="_blank"><i class="fa fa-table fa-2x"></i></a>
+                            <a title="Metrics" href="{% url 'policy:Metrics' series.identifier %}" target="_blank"><i
+                                    class="fa fa-thermometer fa-2x"></i></a>
+                            <a title="Plot" href="{% url 'policy:Plot' series.identifier %}" target="_blank"><i
+                                    class="fa fa-area-chart fa-2x"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    $('#series_list').DataTable({
+        "bPaginate": false,
+        "responsive": true,
+        "bSort": false,
+        "displayLength": 50,
+        "columns": [
+            {"width": "20%"},
+            {"width": "50%"},
+            {"width": "12%"},
+            {"width": "18%"}
+        ]
+    });
+</script>
+
+
+<script>
+    var content_data = {{ content_data | safe }};
+    var root_view = "{{ root_view }}";
+</script>
+
+<script>
+    $(".feed").css("background-color", "#DBDBDB");
+    var clicked = 0;
+    var newClickedId = null;
+    var oldClickedId = null;
+</script>
+
+<script>
+    $(".feed").click(
+        function () {
+            newClickedId = $(this).attr('id');
+            if (clicked === 0) {
+                clicked = 1;
+                clickedObj = $(this);
+                $(this).css("background-color", "#8F9160");
+                $("#page_content").html(content_data[newClickedId]);
+                $("#page_content").css("background-color", "#E2E593");
+                oldClickedId = newClickedId;
+            }
+            else if (clicked === 1 && newClickedId !== oldClickedId) {
+                clicked = 1;
+                $(this).css("background-color", "#8F9160");
+                clickedObj.css("background-color", "#DBDBDB");
+                $("#page_content").html(content_data[newClickedId]);
+                oldClickedId = newClickedId;
+                $("#page_content").css("background-color", "#E2E593");
+                clickedObj = $(this);
+            }
+            else if (clicked === 1 && newClickedId === oldClickedId) {
+                clicked = 0;
+                $(this).css("background-color", "#DBDBDB");
+                $("#page_content").html(content_data[newClickedId]);
+                $("#page_content").css("background-color", "#F0F0E6");
+                oldClickedId = newClickedId;
+            }
+        }
+    );
+</script>
+
+<script>
+    $(".feed").mouseover(
+        function () {
+            var currentId = $(this).attr('id');
+            if (clicked === 0 && currentId !== oldClickedId) {
+                $(this).css("background-color", "#6FC8FC");
+                $("#page_content").html(content_data[currentId]);
+            }
+            if (clicked === 0) {
+                $("#page_content").html(content_data[currentId]);
+            }
+            if (clicked === 1 && currentId !== oldClickedId) {
+                $(this).css("background-color", "#6FC8FC");
+            }
+            if (clicked === 1 && currentId === oldClickedId) {
+                $(this).css("background-color", "#8F9160");
+            }
+        }
+    );
+</script>
+
+<script>
+    $(".feed").mouseleave(
+        function () {
+            var currentId = $(this).attr('id');
+            if (clicked === 0) {
+                $(this).css("background-color", "#DBDBDB");
+            }
+            if (clicked === 1 && currentId !== oldClickedId) {
+                $(this).css("background-color", "#DBDBDB");
+            }
+            if (clicked === 1 && currentId === oldClickedId) {
+                $(this).css("background-color", "#E2E593");
+            }
+        }
+    );
+</script>
+
+{% endblock %}

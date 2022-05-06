@@ -1,0 +1,200 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Overview of Policy Data Statistics
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <p class="helpblocktext"><i class="fa fa-info-circle"></i> This page organizes various <i>derived</i> statistics
+            calculated from the Policy data
+            database. For each one of the tracked Policy categories (Retail, Workplace, Residential etc.) the
+            <i>top level</i> country data of all countries are represented next to each other. Data are presented
+            in tabular form (the first cluster), as histograms showing the distributions (second cluster) and
+        as scatterplots exploring relations between observations (third cluster)</p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/stats_breadcrumb.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="page" class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3><i class="fa fa-hand-o-right"></i> Country Aggregates (Tables)</h3>
+                <table>
+                    <tr>
+                        <td class="roundtd">
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryTable' 'RR' %}">Retail and Recreation</a>
+                        </td>
+                        <td class="roundtd">
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryTable' 'GP' %}">Grocery and Pharmacy</a>
+                        </td>
+                        <td class="roundtd">
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryTable' 'PA' %}">Parks</a>
+                        </td>
+                        <td class="roundtd">
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryTable' 'TS' %}">Transit Stations</a>
+                        </td>
+                        <td class="roundtd">
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryTable' 'WO' %}">Workplaces</a>
+                        </td>
+                        <td class="roundtd">
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryTable' 'RE' %}">Residential</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3><i class="fa fa-hand-o-right"></i> Country Aggregates (Histograms)</h3>
+                <table>
+                    <tr>
+                        <td class="roundtd">
+                            <p> Retail and Recreation</p>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RR' 'Max' %}">Max, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RR' 'Min' %}">Min, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RR' 'Mean' %}">Average,</a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RR' 'T' %}">Latest</a>
+                        </td>
+                        <td class="roundtd">
+                            <p> Grocery and Pharmacy</p>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'GP' 'Max' %}">Max, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'GP' 'Min' %}">Min, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'GP' 'Mean' %}">Average,</a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'GP' 'T' %}">Latest</a>
+                        </td>
+                        <td class="roundtd">
+                            <p> Parks</p>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'PA' 'Max' %}">Max, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'PA' 'Min' %}">Min, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'PA' 'Mean' %}">Average,</a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'PA' 'T' %}">Latest</a>
+                        </td>
+                        <td class="roundtd">
+                            <p> Transit Stations</p>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'TS' 'Max' %}">Max, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'TS' 'Min' %}">Min, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'TS' 'Mean' %}">Average,</a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'TS' 'T' %}">Latest</a>
+                        </td>
+                        <td class="roundtd">
+                            <p> Workplaces</p>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'WO' 'Max' %}">Max, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'WO' 'Min' %}">Min, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'WO' 'Mean' %}">Average,</a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'WO' 'T' %}">Latest</a>
+                        </td>
+                        <td class="roundtd">
+                            <p> Residential</p>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RE' 'Max' %}">Max, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RE' 'Min' %}">Min, </a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RE' 'Mean' %}">Average,</a>
+                            <a class="blue_link" target="_blank"
+                               href="{% url 'policy:StatsCountryHistogram' 'RE' 'T' %}">Latest</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3><i class="fa fa-hand-o-right"></i> Country Aggregates (Correlations)</h3>
+
+                <h4>Legend of Activity Short Codes</h4>
+                <ol style="background-color: white">
+                    {% for key, value in activity_dict.items %}
+                        <li>{{ key }} : {{ value }}</li>
+                    {% endfor %}
+                </ol>
+
+                <h4>Comparing observed Policy levels for various type of Policy across all countries</h4>
+                <p>Select the pair of Policy type that you want to compare. The diagonal elements let you explore
+                different metrics applied to the same Policy type (e.g. the largest Policy decline versus the latest)</p>
+                <table style="background-color: white">
+                    {% for act1 in activity %}
+                        <tr>
+                            {% for act2 in activity %}
+                                {% if act1 != act2 %}
+                                    <td class="roundtd_small" style="padding:10px"><a class="blue_link" target="_blank"
+                                                                                      href="{% url 'policy:StatsCountryCorrelation' act1 act2 %}">{{ act1 }}-{{ act2 }} </a>
+                                    </td>
+                                {% else %}
+                                    <td class="roundtd_small" style="padding:10px"><a class="blue_link" target="_blank"
+                                                                                      href="{% url 'policy:StatsCountryCorrelation' act1 act2 %}">{{ act1 }} </a>
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+            <div class="row">
+            <div class="col-sm-12">
+                <h3><i class="fa fa-hand-o-right"></i> Geographical Representation (Europe)</h3>
+
+                <h4>Policy Maps Per Activity</h4>
+                <ol style="background-color: white">
+                    {% for key, value in activity_dict.items %}
+                        <li><a target="_blank" href="{% url 'policy:Map' 'EU.'|add:key %}">{{ value }}</a></li>
+                    {% endfor %}
+                </ol>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

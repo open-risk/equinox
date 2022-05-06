@@ -1,0 +1,99 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Policy Data Scatterplot (Country Data)
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'policy/js/generate_scatterplot.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'policy/js/update_dictionary.js' %}">
+    </script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'policy/js/scatterplot.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <h4><i class="fa fa-bar-chart"></i> Scatterplot of Policy Data Aggregates per Country</h4>
+        <p class="helpblocktext">
+            <b>{{ activity1 }} versus {{ activity2 }}</b>
+        </p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/stats_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="graph2">
+                    <svg version="1.1" viewBox="0 0 500 500" class="chart2"></svg>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div>
+                        <p id="content1">Country</p>
+                        <h4>Legend</h4>
+                        <div id="caption">
+                            <ul>
+                                <li>The central black dot represents 0% difference from the baseline (the old normal)
+                                </li>
+                                <li>Each disk represents a pair of reported Policy decline values for a
+                                    particular country (use the drop-down menus to select which metric to use (lowest reading, latest,
+                                    average etc)
+                                </li>
+                                <li>The disk area scales with population size</li>
+                                <li>The scale of the X and Y-axeds is the percentage points decline from the
+                                    baseline Policy observed before the pandemic (see documentation)
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div id="interface_buttons">
+            {{ activity1 }}
+            <select autocomplete="off" class="btn btn-default dropdown-toggle" id="variable1"
+                    onchange="generate_scatterplot()">
+                <option value="A1" selected="selected">A1: Minimum</option>
+                <option value="A2">A2: Maximum</option>
+                <option value="A3">A3: Average</option>
+                <option value="A4">A4: Latest</option>
+            </select>
+            {{ activity2 }}
+            <select autocomplete="off" class="btn btn-default dropdown-toggle" id="variable2"
+                    onchange="generate_scatterplot()">
+                <option value="A1">A1: Minimum</option>
+                <option value="A2" selected="selected">A2: Maximum</option>
+                <option value="A3">A3: Average</option>
+                <option value="A4">A4: Latest</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        let dict_data = {{ dict_data | safe }};
+        let policy1 = {{ policy1 | safe }};
+        let policy2 = {{ policy2 | safe }};
+        // console.log(policy1);
+        generate_scatterplot();
+    </script>
+
+{% endblock %}

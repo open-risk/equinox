@@ -1,0 +1,73 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Policy Data Disclaimers
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <p class="helpblocktext"><i class="fa fa-info-circle"></i> Please read these disclaimers carefully if you are planning to use this website.
+        </p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/root_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="intro">
+                    <h3><i class="fa fa-gavel"></i> Disclaimers</h3>
+                    <p>This web application is provided “as is” without any representations or warranties,
+                        express or implied. Open Risk makes no representations or warranties in relation
+                        to the information and materials provided on this website.</p>
+
+                    <p>Open Risk does not warrant that: this website will be constantly available, or available
+                        at all, that the analysis, opinions or other information available on this website is
+                        complete, true, accurate timely, or non-misleading. Nothing on this website constitutes,
+                        or is meant to constitute, legal, health or financial advice.</p>
+
+                    <p>The policy data are derived from published sources.
+                        If in doubt please refer to the original feeds (links provided within the application).
+                        Any copyright of these publications remains with the respective authoring institutions.</p>
+
+                    <p>Open Risk has no affiliation with any external data provider and no implicit or
+                        explicit endorsement.</p>
+
+                    <p>For a full list of terms and conditions while using this website please read our
+                        policy <a href="https://www.openriskmanagement.com/disclaimers/">here</a>.</p>
+
+                    <p>For our data privacy policy please read <a
+                            href="https://www.openriskmanagement.com/privacy-policy/">this</a>.</p>
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <h3><i class="fa fa-hand-o-right"></i> Getting Started</h3>
+                {% include "policy/starter_links.html" %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

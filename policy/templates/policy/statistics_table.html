@@ -1,0 +1,84 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Policy Data Statistic Table (All Countries)
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <h4><i class="fa fa-table"></i> Policy Data Country Statistics for {{ activity }} Activity</h4>
+        <p class="helpblocktext">For each country the table displays aggregate Policy versus
+            baseline (as defined by the documentation). Max, Min and Average are the corresponding
+            maximum, minimum and average activity values registered in the observation period.</p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/stats_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="data_list">
+                    <thead>
+                    <tr>
+                        <th>Country Name</th>
+                        <th>Max</th>
+                        <th>Min</th>
+                        <th>Average</th>
+                        <th>Vol</th>
+                        <th>Latest</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for entity in stats_list %}
+                        <tr>
+                            <td>{{ entity.name }}</td>
+                            <td>{{ entity.Max }}</td>
+                            <td>{{ entity.Min }}</td>
+                            <td>{{ entity.Average }}</td>
+                            <td>{{ entity.Vol }}</td>
+                            <td>{{ entity.Latest }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#data_list').DataTable({
+            "bPaginate": false,
+            "responsive": true,
+            "bSort": true,
+            "displayLength": 50,
+            "autoWidth": true
+        });
+    </script>
+
+
+
+{% endblock %}

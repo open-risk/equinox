@@ -1,0 +1,171 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} GeoSlice Map of Policy Data
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/jquery-ui/jquery-ui.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/slider.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/jquery-ui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <div class="col-sm-6">
+            <h4><i class="fa fa-map"></i> GeoSlice Map View for {{ activity }} Activity</h4>
+            <p class="helpblocktext"><i class="fa fa-info-circle"></i>
+                HOVER over the map to see individual values. USE the slider to select the observation time point.
+                CLICK on a country to go to a detailed graph view.
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <h4 id="data_date"></h4>
+            <ul>
+                <li style="list-style: none" id="data_name"></li>
+                <li style="list-style: none" id="data_value"></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/stats_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div id="map_slider">
+                        </div>
+                        <div id="legend">
+                        </div>
+                        <div id="map">
+                            {% include "policy/europe.svg" %}
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="background-color: white; padding-right:15px;">
+                        <h4>Legend and Explanations</h4>
+                        <div style="margin-right:5px">
+                            <ul>
+                                <li>The slider at the top of the map spans the currently available observation period.
+                                    The earliest reading (to the left) is generally February 15, 2020. The latest
+                                    observation (to the right) is changing with each data update.
+                                </li>
+                                <li>The color color captures the differences of country versus <i>their own baseline
+                                    </i> for each particular Policy metric. The baseline value (0%) is blue.
+                                    Changes from baseline are red. Increases from baseline
+                                    (e.g. increased Policy in Parks) is green.
+                                </li>
+                                <li><button style="background-color: red; width:80px">-100%</button>
+                                    <button style="background-color: blue; color:white; width:80px">0%</button>
+                                    <button style="background-color: green; width:80px">+100%</button>
+                                </li>
+                                <li>For some countries there are no data</li>
+                                <li>The actual timeseries are quite noisy (click through to see examples) and
+                                    may have various residual periodicities and spikes (see also the Help page) so
+                                    additional caution is required when interpreting the fine structure of Policy changes!
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h4>Policy Maps Per Activity</h4>
+                        <ol style="background-color: white">
+                            {% for key, value in activity_dict.items %}
+                                <li><a target="_blank"
+                                       href="{% url 'policy:Map' 'EU.'|add:key %}">{{ value }}</a></li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/map.js' %}"></script>
+
+    <script>
+
+        let dataset = {{ dataset | safe }};
+        let max_value = 0
+        let min_value = 0;
+        let max_obs = 0;
+        let ids = [];
+        for (let key in dataset) {
+            let entry = dataset[key];
+            ids.push(key);
+            let y = entry.values;
+            let new_obs = y.length;
+            let new_max = getMaxOfArray(y);
+            let new_min = getMinOfArray(y);
+            max_value = Math.max(max_value, new_max);
+            min_value = Math.min(min_value, new_min);
+            max_obs = Math.max(new_obs, max_obs);
+            entry.dates = JSON.parse(entry.dates);
+        }
+
+        let reference_dates;
+        for (let key in dataset) {
+            let entry = dataset[key];
+            if (entry.values.length == max_obs) {
+                reference_dates = entry.dates;
+                break;
+            }
+        }
+
+        let context = {};
+        context['max_value'] = max_value;
+        context['min_value'] = min_value;
+        context['ids'] = ids;
+        context['obs'] = max_obs;
+        context['max'] = max_obs;
+        context['dates'] = reference_dates;
+        console.log(context);
+
+        initializeMap(dataset, context);
+        let currentDate = context.dates[max_obs - 1];
+        $("#data_date").html("Date : " + currentDate);
+
+    </script>
+
+    <script>
+        $(".country").mouseover(
+            function () {
+                let currentId = $(this).attr('id');
+                let currentName = $(this).attr('data-name');
+                if (context.ids.indexOf(currentId) > -1) {
+                    let index = context.obs - context.max + dataset[currentId].dates.length;
+                    $("#data_name").html("Country : " + currentName);
+                    $("#data_value").html("Value : " + dataset[currentId].values[index - 1] + "% change versus baseline");
+                }
+            });
+        $(".country").click(
+            function () {
+                var currentId = $(this).attr('id');
+                var redirect = dataset[currentId].url
+                window.location.href = "/policy/dataseries/" + redirect;
+                return false;
+            });
+    </script>
+
+
+{% endblock %}

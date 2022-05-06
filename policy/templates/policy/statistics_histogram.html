@@ -1,0 +1,63 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    {{ title }} Policy Data Statistic Histogram (All Countries)
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'start/js/datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock" id="page_content_front">
+        <h4><i class="fa fa-bar-chart"></i> DataSeries Histogram</h4>
+        <b>{{ object.title }} :</b> <i>{{ object.title_long }}</i>
+    </div>
+        <div class="helpblock" id="page_content_front">
+        <h4><i class="fa fa-bar-chart"></i> Policy Data Country Histogram for {{ activity }} Activity</h4>
+        <p class="helpblocktext">The histogram displays the distribution of {{ stat }} Policy change versus
+            baseline as observed for different countries.
+            </p>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include "policy/stats_breadcrumb.html" %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="histogram"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+        var values = {{ values }};
+        var stat = "{{ stat }}";
+        console.log(stat);
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/histogram_full.js' %}"></script>
+
+{% endblock %}

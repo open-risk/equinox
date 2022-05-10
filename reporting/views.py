@@ -311,14 +311,42 @@ def ghg_reduction(request):
     context.update({'TableRows': table_rows})
     return HttpResponse(t.template.render(context))
 
-
 @login_required(login_url='/login/')
-def portfolio_map(request):
+def manager_nuts3_map(request):
     t = loader.get_template('portfolio_map.html')
     context = RequestContext(request, {})
 
     """
-    Compile a global portfolio map of all point geometries
+    Compile a global portfolio map of portfolio managing entities using their NUTS3 representative point geometries
+
+    """
+
+    portfolio_data = PortfolioManager.objects.all()
+    nuts_data = []
+    iter = 1
+    for co in portfolio_data.iterator():
+        nuts = co.region
+        if iter < 100:
+            try:
+                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
+            except:
+                pass
+            iter += 1
+        else:
+            break
+    geodata = json.loads(serialize("geojson", nuts_data))
+    context.update({'geodata': geodata})
+
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def contractor_nuts3_map(request):
+    t = loader.get_template('portfolio_map.html')
+    context = RequestContext(request, {})
+
+    """
+    Compile a global portfolio map of contractor entities using their NUTS3 representative point geometries
 
     """
 

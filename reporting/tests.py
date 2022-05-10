@@ -27,7 +27,7 @@ from django.test import TestCase
     re_path(r'^ghg_reduction$', views.ghg_reduction, name='ghg_reduction'),
     re_path(r'^gpc_report$', views.gpc_report, name='gpc_report'),
     re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
-    re_path(r'^portfolio_map$', views.portfolio_map, name='portfolio_map'),
+    re_path(r'^contractor_nuts3_map$', views.contractor_nuts3_map, name='contractor_nuts3_map'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
 """
 
@@ -72,7 +72,7 @@ class SimpleTest(TestCase):
             "/reporting/ghg_reduction",
             "/reporting/gpc_report",
             "/reporting/gpp_report",
-            "/reporting/portfolio_map"
+            "/reporting/contractor_nuts3_map"
         ]
         for page in reporting_pages:
             resp = client.get(page)

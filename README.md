@@ -24,6 +24,13 @@ The initial functionality of Equinox focuses on integrating the following concep
 * Equator Principles for Project Finance
 * The European Banking Authority's Criteria for Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending
 
+## Find out more:
+- For [User Documentation](https://www.openriskmanagement.com/equinox/)
+- For [Technical Documentation](https://equinox-server.readthedocs.io/en/latest/)
+- 💬 [Discussion at the Open Risk Commons](https://www.openriskcommons.org/c/equinox/27)
+- For broader sustainable finance knowledge base, consult the [Open Risk Manual](https://www.openriskmanual.org/wiki/Category:Sustainable_Finance)
+- 🌱 For training, head to the [Open Risk Academy](https://www.openriskacademy.com/)
+- For a [live demo](https://www.equinoxpoint.org/)
 
 ## Screenshots
 

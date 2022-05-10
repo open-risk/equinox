@@ -25,7 +25,7 @@ from django.contrib.gis.db.models import PointField
 
 class NUTS3PointData(models.Model):
     """
-    The NUTS3 Point Data model holds NUTS3 Data with a Point Geometry
+    The NUTS3 Point Data model holds NUTS3 Data represented as a Point Geometry
 
     https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts
 
@@ -63,5 +63,5 @@ class NUTS3PointData(models.Model):
         return reverse('reference:NUTS3PointData_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "NUT3 Point Geometry"
+        verbose_name = "NUTS3 Point Geometry"
         verbose_name_plural = "NUTS3 Point Geometries"

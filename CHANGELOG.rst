@@ -3,6 +3,9 @@ ChangeLog
 
 Changelog for overall Equinox platform and API changes. Individual apps have their own more detailed changelogs
 
+v0.4 (22-04-2022)
+------------------
+
 v0.32 (31-03-2022)
 -------------------
 * Integration of Procurement data models / workflows

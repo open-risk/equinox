@@ -28,6 +28,8 @@ Step 2: Pull the equinox image from Docker Hub
 
 You can pull and run the latest image from Docker Hub (This method is recommended if you do not want to mess at all with the source distribution).
 
+.. note:: The latest image is circa 1.5GB
+
 .. note:: We are also providing images also for the ARM/v7 architecture (Raspberry Pi). Check the root of our docker hub for what is `currently available <https://hub.docker.com/u/openrisk>`_
 
 Start by issuing a docker pull command:
@@ -45,7 +47,7 @@ The API endpoints are accessible at ``http://localhost:8001/api``
 
 Step 2 (Alternative): Building a local docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Alternatively you can build your own *local* docker image of the equinox platfom. After you fetch the distribution from the `github repository <https://github.com/open-risk/equinox>`_ (as per manual installation instructions below), in the root directory of the distribution issue:
+Alternatively you can build your own *local* docker image of the equinox platform. After you fetch the distribution from the `github repository <https://github.com/open-risk/equinox>`_ (as per manual installation instructions below), in the root directory of the distribution issue the following commands:
 
 .. code:: bash
 
@@ -58,8 +60,7 @@ Again, access the running instance of equinox by pointing your browser to ``http
 
 Manual installation from sources
 --------------------------------
-The manual installation path is recommended if you want to use the latest release, dig into and inspect the equinox code base or if you want to contribute to equinox.
-
+The manual installation path is recommended if you want to use the latest release, dig into and inspect the equinox code base and/or if you want to contribute to equinox development.
 
 
 Step 1: Download the github sources to your preferred directory
@@ -96,7 +97,7 @@ The core dependency is Django and its own dependencies. In addition equinox uses
 Step 4: Install the required system wide dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Equinox supports working with geospatial data and this requires some specific libraries
+Equinox supports working with geospatial data and this requires some specific libraries that must be installed system-wide. On a linux system with apt installed issue the following:
 
 .. code:: bash
 
@@ -107,7 +108,7 @@ Equinox supports working with geospatial data and this requires some specific li
     libsqlite3-mod-spatialite
 
 
-.. note:: These are various C/C++ libraries that get installed system-wide (not in the virtualenv we create above). If you *don't* want to modify the host system you should go down the Docker route.
+.. note:: The above are geospatial C/C++ libraries that get installed system-wide (not in the isolated virtualenv we created above). If you *don not* want to modify the host system on which you install equinox you should go down the Docker route describe above.
 
 Step 5: Make the required django migrations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -163,28 +164,33 @@ Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``ht
 Troubleshooting
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The above steps are typical Django project installation steps. If you experience trouble at any point, the `Django online FAQ <https://docs.djangoproject.com/en/3.1/faq/>`_ should help you out.
+The above steps are typical Django project installation steps. If you experience generic Django trouble at any point, the `Django online FAQ <https://docs.djangoproject.com/en/3.1/faq/>`_ should help you out.
 
-.. Note:: The project uses an sqlite3 database for good reason! If things go pear-shaped with your database simply remove the file and start again.
+.. Note:: The project uses an sqlite3 database for good reason! If things go pear-shaped with your database simply remove the sqlite file and start again.
+
+We welcome your feedback and support. Please raise a `github ticket <https://github.com/open-risk/equinox/issues>`_ if you want to report a bug or need a new feature.
 
 
-We welcome your feedback and support. Please raise a `github ticket <https://github.com/open-risk/equinox/issues>`_ if you want to report a bug or need a new feature. For contributions check our Contribution and Code of Conduct docs.
+For contributions check our Contribution and Code of Conduct docs.
 
 
 Setup (Initialization)
 =======================
 
+The basic installation of equinox creates an empty database. If you want to initialize the database with some indicative data follow the steps below:
+
 Creating the database
 ----------------------
 
-* load an emissions factor csv file into equinox
-* create Project categories
-* create GPC Sector categories
+* Create Project categories
+* Create GPC Sector categories
+* Load various fixtures with model data
+* Load an emissions factor csv file into equinox
 
 Let us insert some dummy data (optional). Without this the database will be completely empty.
 
 .. code:: bash
 
-
-    python createsectors.py
+    python3 createsectors.py
+    python3 createcategories.py
     bash loadfixtures.sh

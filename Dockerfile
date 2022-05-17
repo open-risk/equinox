@@ -29,4 +29,4 @@ RUN python /equinox/createcategories.py
 RUN python /equinox/createsectors.py
 RUN bash loadfixtures.sh
 RUN python /equinox/manage.py collectstatic --no-input
-CMD [ "python", "./manage.py", "runserver", "127.0.0.1:8080"]
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8080"]

@@ -25,9 +25,9 @@ from django.urls import reverse
 
 class Contractor(models.Model):
     """
-    The Contractor model holds data for each Contractor with an existing contract (e..g, involved in the construction of a Project, or the fulfillment of a Procurement contract)
+    The Contractor model holds data for each Contractor with an existing contract (e.g, involved in the construction of a Project, or the fulfillment of a Procurement contract)
 
-    A Contractor is a type of Counterparty
+    A Contractor is a type of Counterparty, typically a corporate entity (may be SME or large corporate)
 
     The Contractor data fields cover
     - identity, type, address
@@ -36,11 +36,10 @@ class Contractor(models.Model):
 
     """
 
-
     # IDENTITY
 
     contractor_identifier = models.IntegerField(null=True, blank=True,
-                                             help_text='Unique Internal Integer Identifier')
+                                                help_text='Unique Internal Integer Identifier')
 
     contractor_legal_entity_identifier = models.CharField(max_length=200, blank=True, null=True,
                                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -51,7 +50,6 @@ class Contractor(models.Model):
 
     project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
                                         help_text="Project Company that sourced the Contractor (Optional)")
-
 
     # ADDRESS
 
@@ -87,7 +85,6 @@ class Contractor(models.Model):
     website = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Website URL. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     # SCORECARD
 
     permitting_and_siting = models.IntegerField(blank=True, null=True, choices=PERMITTING_AND_SITING_CHOICES,
@@ -104,20 +101,14 @@ class Contractor(models.Model):
     contractor_track_record = models.IntegerField(blank=True, null=True, choices=CONTRACTOR_TRACK_RECORD_CHOICES,
                                                   help_text='Risk SubFactor. EBA 3.2.5. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     # OTHER
     is_sme = models.BooleanField(blank=True, null=True, help_text="Whether the entity is an SME or not")
 
     completion_guarantees = models.BooleanField(blank=True, null=True,
                                                 help_text='Whether there are completion guarantees for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     liquidated_damages = models.BooleanField(blank=True, null=True,
                                              help_text='Whether there are liquidated damages for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
-
-
 
     #
     # BOOKKEEPING FIELDS

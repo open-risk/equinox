@@ -18,18 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib.auth.decorators import login_required
-from django.http import Http404
-from django.http import HttpResponse
-from django.template import RequestContext, loader
-from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 
 from portfolio.Asset import ProjectAsset
-from portfolio.Portfolios import ProjectPortfolio
-from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-import pandas as pd
+
 
 class AssetList(ListView):
     """

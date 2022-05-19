@@ -32,7 +32,8 @@ class Revenue(models.Model):
 
     # LINKS
 
-    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company who's revenue is documented")
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
+                                        help_text="The Project Company who's revenue is documented")
 
     # SCORECARD
 
@@ -41,7 +42,6 @@ class Revenue(models.Model):
 
     stress_analysis = models.IntegerField(blank=True, null=True, choices=STRESS_ANALYSIS_CHOICES,
                                           help_text='Risk Factor. EBA 1.3. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/Scenario_Analysis">Documentation</a>')
-
 
     revenue_contract_robustness = models.IntegerField(blank=True, null=True,
                                                       choices=REVENUE_CONTRACT_ROBUSTNESS_CHOICES,
@@ -61,25 +61,17 @@ class Revenue(models.Model):
 
     # OTHER
 
-
     price_risk = models.FloatField(blank=True, null=True,
                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
 
     revenue_assessment = models.FloatField(blank=True, null=True,
                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
-
     revenue_group_identifier = models.TextField(blank=True, null=True,
                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     supplier_track_record = models.FloatField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
 
     supply_risk = models.FloatField(blank=True, null=True,
                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

@@ -34,6 +34,8 @@ class Project(models.Model):
 
     """
 
+    # TODO Project Status
+
     # IDENTIFICATION
 
     project_identifier = models.CharField(max_length=80, blank=True, null=True,

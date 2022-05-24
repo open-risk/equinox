@@ -26,7 +26,7 @@ from django.urls import reverse
 
 class ProjectCompany(models.Model):
     """
-    The Project Company model holds data for a sustainability oriented Project Finance entity. A Project Company always refers to a Project but a Project may not involve a special company
+    The Project Company model holds data for a large sustainability oriented Project (Project Finance) involving a special purpose entity. A Project Company always refers to a Project but a Project may not involve a special purpose company
 
 
     """
@@ -41,7 +41,7 @@ class ProjectCompany(models.Model):
 
     # LINKS
 
-    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company whos revenue is documented")
+    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company who's revenue is documented")
 
     # SCORECARD
 

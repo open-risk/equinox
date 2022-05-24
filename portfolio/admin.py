@@ -38,6 +38,7 @@ from portfolio.Portfolios import ProjectPortfolio, PortfolioTable
 from portfolio.PortfolioManager import PortfolioManager
 from portfolio.Portfolios import PortfolioSnapshot, LimitStructure
 from portfolio.Project import Project
+from portfolio.ProjectEvent import ProjectEvent
 from portfolio.ProjectActivity import ProjectActivity
 from portfolio.ProjectCategory import ProjectCategory
 from portfolio.ProjectCompany import ProjectCompany
@@ -202,6 +203,15 @@ class ProjectAdmin(admin.ModelAdmin):
     date_hierarchy = ('creation_date')
 
 
+@admin.register(ProjectEvent)
+class ProjectEventAdmin(admin.ModelAdmin):
+    """Project Event admin"""
+    view_on_site = False
+    save_as = True
+    list_display = ('project_event_identifier', 'project', 'project_event_date', 'project_event_type')
+    date_hierarchy = ('project_event_date')
+
+
 @admin.register(PrimaryEffect)
 class PrimaryEffectAdmin(admin.ModelAdmin):
     """Primary Effect admin"""
@@ -292,6 +302,10 @@ class SwapAdmin(admin.ModelAdmin):
 
 
 class PortfolioTableAdminForm(forms.ModelForm):
+    """
+    EAD, LGD, Tenor constraints
+
+    """
     EAD = forms.fields.FloatField(min_value=0, widget=NumberInput(attrs={'step': 0.01}), label="EAD",
                                   help_text="Exposure at Default")
     LGD = forms.fields.IntegerField(min_value=0, max_value=5, label="LGD", help_text="Loss Given Default Class (0 - 5)")

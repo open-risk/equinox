@@ -48,6 +48,9 @@ class Contractor(models.Model):
 
     # LINKS
 
+    project = models.ForeignKey('ProjectActivity', blank=True, null=True, on_delete=models.CASCADE,
+                                        help_text="Project Activity that engaged the Contractor (Optional)")
+
     project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
                                         help_text="Project Company that sourced the Contractor (Optional)")
 

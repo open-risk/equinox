@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 
 from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
+from portfolio.Asset import ProjectAsset
 from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
 from portfolio.EmissionsSource import GPPEmissionsSource
@@ -17,6 +18,7 @@ from portfolio.PortfolioManager import PortfolioManager
 from portfolio.Portfolios import ProjectPortfolio
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
+from portfolio.models import MultiAreaSource
 from reference.NUTS3Data import NUTS3PointData
 from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
 from reporting.models import Calculation, Visualization
@@ -77,12 +79,16 @@ def portfolio_overview(request):
     co_count = Contractor.objects.count()
     pa_count = ProjectActivity.objects.count()
     pr_count = Project.objects.count()
+    as_count = ProjectAsset.objects.count()
+    geo_count = MultiAreaSource.objects.count()
 
     context.update({'pm_count': pm_count,
                     'po_count': po_count,
                     'gpp_count': gpp_count,
                     'co_count': co_count,
+                    'as_count': as_count,
                     'pa_count': pa_count,
+                    'geo_count': geo_count,
                     'pr_count': pr_count})
 
     return HttpResponse(t.template.render(context))
@@ -110,6 +116,7 @@ def portfolio_summary(request, pk):
     :template:`portfolio_explorer/portfolio_summary.html`
     """
 
+    portfolio_queryset = None
     try:
         p = ProjectPortfolio.objects.get(pk=pk)
     except ProjectPortfolio.DoesNotExist:
@@ -311,6 +318,7 @@ def ghg_reduction(request):
     context.update({'TableRows': table_rows})
     return HttpResponse(t.template.render(context))
 
+
 @login_required(login_url='/login/')
 def manager_nuts3_map(request):
     t = loader.get_template('portfolio_map.html')
@@ -501,7 +509,7 @@ def results_view(request, pk):
 
     t = loader.get_template('result_view.html')
     context = RequestContext(request, {})
-    context.update({'root_view': root_view, 'Result': json.dumps(R.results_data)})
+    context.update({'Result': json.dumps(R.results_data)})
     return HttpResponse(t.template.render(context))
 
 

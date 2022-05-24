@@ -27,7 +27,7 @@ from portfolio.Portfolios  import ProjectPortfolio
 
 
 class Command(BaseCommand):
-    help = 'Imports project data'
+    help = 'Imports project data from csv file'
 
     # Delete existing objects
     Project.objects.all().delete()
@@ -57,10 +57,18 @@ class Command(BaseCommand):
         elif entry['TYPE_CONTRACT'] == 'SERVICES':
             fk = pk3
 
-        po = ProjectPortfolio.objects.get(manager=entry['MANAGER'])
+        if 'MANAGER' in entry.keys():
+            po = ProjectPortfolio.objects.get(manager=entry['MANAGER'])
+        else:
+            po = ProjectPortfolio.objects.first()
+
+        if 'DOCUMENT' in entry.keys():
+            project_identifier = entry['DOCUMENT']
+        else:
+            project_identifier = str(serial)
 
         pr = Project(
-            project_identifier=entry['DOCUMENT'],
+            project_identifier=project_identifier,
             project_reference=entry['REFERENCE_NUMBER'],
             project_title=entry['TITLE'],
             project_description=entry['SHORT_DESCR'],

@@ -120,18 +120,19 @@ class PortfolioSnapshot(models.Model):
 
 class PortfolioTable(models.Model):
     """
-    The PortfolioData object aggregates (credit) portfolio data in a "master table" format to facilitate various quantiative portfolio analysis procedures
+    The Portfolio Table object aggregates core (credit) portfolio data in a "master table" format to facilitate various quantitative portfolio analysis procedures
 
 
     """
-    # TODO incorporate portfolio type based constraint
+    # TODO incorporate portfolio type based constraints
 
     portfolio_id = models.ForeignKey(ProjectPortfolio, on_delete=models.CASCADE)
 
-    Obligor_ID = models.CharField(max_length=200)
-    EAD = models.FloatField(blank=True, null=True, help_text="Exposure at Default")
-    LGD = models.IntegerField(blank=True, null=True, help_text="Loss Given Default Class")
-    Tenor = models.IntegerField(blank=True, null=True, help_text="Tenor (integer years)")
+    Obligor_ID = models.CharField(max_length=200, blank=True, null=True, help_text="Obligor ID")
+
+    EAD = models.FloatField(blank=True, null=True)
+    LGD = models.IntegerField(blank=True, null=True)
+    Tenor = models.IntegerField(blank=True, null=True)
 
     # The field encodes using an integer key a dictionary of business (industry) sectors
     Sector = models.IntegerField(blank=True, null=True, choices=NACE_CHOICES, help_text="Business Sector")
@@ -148,11 +149,11 @@ class PortfolioTable(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('portfolio:portfolio_data_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:portfolio_table_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Portfolio Data"
-        verbose_name_plural = "Portfolio Data"
+        verbose_name = "Portfolio Table"
+        verbose_name_plural = "Portfolio Tables"
 
 
 class LimitStructure(models.Model):
@@ -166,7 +167,7 @@ class LimitStructure(models.Model):
     """
 
     name = models.CharField(max_length=200, help_text="An assigned name to help identify the limit structure")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, help_text="The user that created the limit structure")
+    portfolio = models.ForeignKey(ProjectPortfolio, null=True, blank=True, on_delete=models.CASCADE, help_text="The portfolio to which the limit structure applies")
     notes = models.TextField(blank=True, null=True,
                              help_text="Description of the purpose or other relevant information about the limit structure")
 

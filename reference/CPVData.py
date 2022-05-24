@@ -41,7 +41,7 @@ class CPVData(models.Model):
                                    help_text='The Textual Description of the CPV Code')
 
     short_code = models.CharField(max_length=10, blank=True, null=True,
-                                  help_text='The short version of the codeCode (without the trailing zeros and with the taxonomy split-out using dashes)')
+                                  help_text='The short version of the CPV Code (without the trailing zeros and with the taxonomy split-out using dashes)')
 
     level = models.IntegerField(blank=True, null=True,
                                 choices=CPV_LEVEL_CHOICES,

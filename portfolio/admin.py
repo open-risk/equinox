@@ -23,27 +23,28 @@ from django.contrib.gis import admin
 from django.forms.widgets import NumberInput
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.html import format_html
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import ProjectAsset, Building
+from portfolio.Borrower import Borrower
+from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource
 from portfolio.EmissionsSource import GPCEmissionsSource, GPPEmissionsSource
-from portfolio.Contractor import Contractor
-from portfolio.Borrower import Borrower
 from portfolio.Loan import Loan
 from portfolio.Mortgage import Mortgage
 from portfolio.Operator import Operator
-from portfolio.Portfolios import ProjectPortfolio, PortfolioTable
 from portfolio.PortfolioManager import PortfolioManager
 from portfolio.Portfolios import PortfolioSnapshot, LimitStructure
+from portfolio.Portfolios import ProjectPortfolio, PortfolioTable
+from portfolio.PrimaryEffect import PrimaryEffect
 from portfolio.Project import Project
-from portfolio.ProjectEvent import ProjectEvent
 from portfolio.ProjectActivity import ProjectActivity
 from portfolio.ProjectCategory import ProjectCategory
 from portfolio.ProjectCompany import ProjectCompany
+from portfolio.ProjectEvent import ProjectEvent
 from portfolio.Revenue import Revenue
-from portfolio.PrimaryEffect import PrimaryEffect
 from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
@@ -199,7 +200,7 @@ class ProjectAdmin(admin.ModelAdmin):
     """Project admin"""
     view_on_site = False
     save_as = True
-    list_display = ('project_title', 'cpv_code', 'project_budget', 'project_category')
+    list_display = ('pk', 'project_title', 'cpv_code', 'project_budget', 'project_category')
     date_hierarchy = ('creation_date')
 
 
@@ -231,9 +232,15 @@ class SecondaryEffectAdmin(admin.ModelAdmin):
 @admin.register(ProjectActivity)
 class ProjectActivityAdmin(admin.ModelAdmin):
     """Project Activity admin"""
+
+    def link_to_project(self, obj):
+        link = reverse("admin:portfolio_project_change", args=[obj.project.pk])
+        return format_html('<a href="{}">{}</a>', link, obj.project.pk)
+
+    link_to_project.short_description = 'Project'
     view_on_site = False
     save_as = True
-    list_display = ('project_activity_title', 'region', 'main_site')
+    list_display = ('pk', 'project_activity_title', 'link_to_project', 'region', 'main_site')
     date_hierarchy = ('creation_date')
 
 
@@ -281,9 +288,15 @@ class SponsorAdmin(admin.ModelAdmin):
 
 @admin.register(Contractor)
 class ContractorAdmin(admin.ModelAdmin):
+    def link_to_project(self, obj):
+        link = reverse("admin:portfolio_project_change", args=[obj.project.pk])
+        return format_html('<a href="{}">{}</a>', link, obj.project.pk)
+
+    link_to_project.short_description = 'Project'
+
     view_on_site = False
     save_as = True
-    list_display = ('name_of_contractor', 'is_sme', 'address', 'town', 'region', 'country')
+    list_display = ('pk', 'name_of_contractor', 'is_sme', 'link_to_project', 'address', 'town', 'region', 'country')
     date_hierarchy = ('creation_date')
 
 

@@ -23,7 +23,7 @@ from django.core.management.base import BaseCommand
 
 from portfolio.Project import Project
 from portfolio.ProjectCategory import ProjectCategory
-from portfolio.Portfolios  import ProjectPortfolio
+from portfolio.Portfolios import ProjectPortfolio
 
 
 class Command(BaseCommand):
@@ -41,7 +41,7 @@ class Command(BaseCommand):
 
     """
     indata = []
-    serial = 10000
+    serial = 0
 
     pk1 = ProjectCategory.objects.get(name="SUPPLIES")
     pk2 = ProjectCategory.objects.get(name="WORKS")
@@ -58,7 +58,8 @@ class Command(BaseCommand):
             fk = pk3
 
         if 'MANAGER' in entry.keys():
-            po = ProjectPortfolio.objects.get(manager=entry['MANAGER'])
+            # po = ProjectPortfolio.objects.get(manager=entry['MANAGER'])
+            po = ProjectPortfolio.objects.get(pk=entry['MANAGER'])
         else:
             po = ProjectPortfolio.objects.first()
 
@@ -68,6 +69,7 @@ class Command(BaseCommand):
             project_identifier = str(serial)
 
         pr = Project(
+            id=entry['PK'],
             project_identifier=project_identifier,
             project_reference=entry['REFERENCE_NUMBER'],
             project_title=entry['TITLE'],

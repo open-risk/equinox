@@ -22,6 +22,7 @@ import pandas as pd
 from django.core.management.base import BaseCommand
 
 from portfolio.Contractor import Contractor
+from portfolio.Project import Project
 
 
 class Command(BaseCommand):
@@ -40,8 +41,10 @@ class Command(BaseCommand):
     indata = []
     serial = 10000
     for index, entry in data.iterrows():
+        pr = Project.objects.get(pk=entry['PROJECT'])
         co = Contractor(
-            contractor_identifier=str(serial),
+            contractor_identifier=entry['PK'],
+            project=pr,
             is_sme=entry['SME'],
             contractor_legal_entity_identifier=entry['NATIONALID'],
             name_of_contractor=entry['OFFICIALNAME'],
@@ -61,4 +64,4 @@ class Command(BaseCommand):
     Contractor.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted contractor data into db'))

@@ -21,7 +21,7 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 
-from portfolio.ProjectActivity import ProjectActivity
+from portfolio.ProjectEvent import ProjectEvent
 from portfolio.ProjectCategory import ProjectCategory
 from portfolio.Project import Project
 
@@ -30,10 +30,10 @@ class Command(BaseCommand):
     help = 'Imports project activity data'
 
     # Delete existing objects
-    ProjectActivity.objects.all().delete()
+    ProjectEvent.objects.all().delete()
 
     # Import data from file
-    data = pd.read_csv("pa.csv", header='infer', delimiter=',')
+    data = pd.read_csv("pe.csv", header='infer', delimiter=',')
 
     """
     TITLE,NUTS,MAIN_SITE,SHORT_DESCR
@@ -46,22 +46,18 @@ class Command(BaseCommand):
 
         pr = Project.objects.get(pk=entry['PROJECT'])
 
-        # TODO fix null issue with markdown field
-        pa = ProjectActivity(
-            project_activity_identifier=entry['PK'],
+        pe = ProjectEvent(
+            project_event_identifier=entry['PK'],
             project=pr,
-            project_activity_title=entry['TITLE'],
-            project_activity_description=entry['SHORT_DESCR'],
-            region=entry['NUTS'],
-            baseline_procedure_justification="",
-            main_site=entry['MAIN_SITE'])
+            project_event_type=entry['TYPE'],
+            project_event_date=entry['PUB_DATE'],
+            project_event_description=entry['SHORT_DESCR'])
 
         serial += 1
 
-        indata.append(pa)
-        # pa.save()
+        indata.append(pe)
 
-    ProjectActivity.objects.bulk_create(indata)
+    ProjectEvent.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted project activity data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted project event data into db'))

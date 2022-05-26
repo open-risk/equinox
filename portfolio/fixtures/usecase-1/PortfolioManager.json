@@ -1,0 +1,26 @@
+[
+{
+  "model": "portfolio.portfoliomanager",
+  "pk": 10968,
+  "fields": {
+    "name_of_manager": "Gemeente Amsterdam",
+    "manager_identifier": 1,
+    "manager_legal_entity_identifier": "34366966",
+    "entity_type": "REGIONAL_AUTHORITY",
+    "entity_activity": "GENERAL_PUBLIC_SERVICES",
+    "address": "Anton de Komplein 150",
+    "postal_code": "1102 CW",
+    "town": "Amsterdam",
+    "region": "NL",
+    "country": "NL",
+    "phone": "+31 202517002",
+    "fax": null,
+    "email": "i.abdellaoui@amsterd",
+    "contact_point": null,
+    "website": "www.amsterdam.nl",
+    "pm_website": "https://platform.negometrix.com/PublishedTenders.aspx?tenderid=191139",
+    "creation_date": "2022-05-23T14:15:05.720Z",
+    "last_change_date": "2022-05-23T14:17:19.199Z"
+  }
+}
+]

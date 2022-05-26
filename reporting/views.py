@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 
 from model_server.models import ReportingModeDescription, ReportingModeMatch, \
     ReportingModeName, ModelModes, ModelModesShort
+from portfolio.ProjectEvent import ProjectEvent
 from portfolio.Asset import ProjectAsset
 from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
@@ -62,7 +63,7 @@ def portfolio_overview(request):
     """
     Compile a global portfolio overview of all data sets available the database
 
-    ## procurement data
+    ## Focus of this view is on procurement data
     
     *  Portfolio Manager
     *  Project Portfolio
@@ -75,16 +76,18 @@ def portfolio_overview(request):
 
     pm_count = PortfolioManager.objects.count()
     po_count = ProjectPortfolio.objects.count()
-    gpp_count = GPPEmissionsSource.objects.count()
-    co_count = Contractor.objects.count()
-    pa_count = ProjectActivity.objects.count()
     pr_count = Project.objects.count()
+    pe_count = ProjectEvent.objects.count()
+    pa_count = ProjectActivity.objects.count()
+    co_count = Contractor.objects.count()
+    gpp_count = GPPEmissionsSource.objects.count()
     as_count = ProjectAsset.objects.count()
     geo_count = MultiAreaSource.objects.count()
 
     context.update({'pm_count': pm_count,
                     'po_count': po_count,
                     'gpp_count': gpp_count,
+                    'pe_count': pe_count,
                     'co_count': co_count,
                     'as_count': as_count,
                     'pa_count': pa_count,

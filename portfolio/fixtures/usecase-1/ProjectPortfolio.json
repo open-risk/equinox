@@ -1,0 +1,14 @@
+[
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 1,
+  "fields": {
+    "name": "AMS Portfolio",
+    "manager": 10968,
+    "notes": "Case Study",
+    "portfolio_type": 0,
+    "creation_date": "2022-05-23T14:20:03.271Z",
+    "last_change_date": "2022-05-23T14:20:03.271Z"
+  }
+}
+]

@@ -114,8 +114,8 @@ class ProjectAssetAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
     search_fields = ['name']
+    list_display = ('asset_identifier', 'asset_class', 'asset_ghg_emissions', 'project')
     list_filter = ('asset_class', 'project')
-    date_hierarchy = ('creation_date')
 
     fieldsets = (
         ('Identification', {
@@ -195,13 +195,7 @@ class GPPEmissionsSourceAdmin(admin.ModelAdmin):
         return obj.project.project_budget
 
 
-@admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    """Project admin"""
-    view_on_site = False
-    save_as = True
-    list_display = ('pk', 'project_title', 'cpv_code', 'project_budget', 'project_category')
-    date_hierarchy = ('creation_date')
+
 
 
 @admin.register(ProjectEvent)
@@ -228,6 +222,15 @@ class SecondaryEffectAdmin(admin.ModelAdmin):
     save_as = True
     date_hierarchy = ('creation_date')
 
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    """Project admin"""
+    view_on_site = False
+    save_as = True
+    search_fields = ['project_title']
+    list_display = ('pk', 'project_title', 'cpv_code', 'project_budget', 'project_category')
+    list_filter = ('project_category',)
 
 @admin.register(ProjectActivity)
 class ProjectActivityAdmin(admin.ModelAdmin):

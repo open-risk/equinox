@@ -37,7 +37,7 @@ ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
 
 class ProjectAsset(models.Model):
     """
-    The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc) that
+    The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc.) that
     is part of a Portfolio or Inventory or a Project - which may or may not be financed.
 
     A Project Asset will in general be associated with one or more emissions sources.
@@ -68,7 +68,7 @@ class ProjectAsset(models.Model):
 
     # LINKS / RELATIONS
 
-    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE)
+    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE, help_text="The project to which this asset belongs")
 
     legal_owner = models.TextField(blank=True, null=True,
                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -78,7 +78,7 @@ class ProjectAsset(models.Model):
     #
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='This stores the aggregate current annualized emissions of an asset in GO2 equivalents')
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents')
 
     #
     # Geographic Information (Geometries stored separately)

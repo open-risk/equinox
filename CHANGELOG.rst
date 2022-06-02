@@ -1,10 +1,16 @@
 ChangeLog
 ===========================
 
-Changelog for overall Equinox platform and API changes. Individual apps have their own more detailed changelogs
+This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
+
+v0.5 (25-05-2022)
+-----------------
+* release 0.5 includes a complete data set to be used in testing use case 1 (featuring mock city-wide procurement portfolio)
 
 v0.4 (22-04-2022)
 ------------------
+* Earth Day 2022 Release
+* Major enhancements include procurement data framework and portfolio policy framework
 
 v0.32 (31-03-2022)
 -------------------

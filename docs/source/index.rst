@@ -8,15 +8,15 @@ equinox Documentation
   :alt: equinox Logo
   :align: left
 
-**Equinox** is an open source platform for sustainable portfolio management. Equinox implements and integrates a number of regulatory or industry standards that cover the space of GHG emissions attribution and reporting and ESG risk analysis.
+**Equinox** is an open source platform for sustainable portfolio management. Equinox implements and integrates a number of regulatory and/or industry standards that address GHG emissions attribution and reporting and associated ESG risk analysis.
 
-These pages serve as the online **technical documentation** of the equinox platform. For use documentation and supported workflows please consult the `Equinox User Manuals <https://www.openriskmanagement.com/equinox/>`_
+These pages serve as the online **technical documentation** of the equinox platform. For user documentation and supported workflows please consult the `Equinox User Manuals <https://www.openriskmanagement.com/equinox/>`_
 
 
-.. note:: The equinox project is still in the development phase and is not yet suitable for production deployments. Feel free to contact us for the roadmap and any requests / feedback.
+.. note:: The equinox project is still in the development phase and is not yet suitable for production deployments. Feel free to contact us for the development roadmap and any other requests / feedback.
 
-Overview
------------
+Overview and Quick Links
+--------------------------
 
 * Author: `Open Risk <http://www.openriskmanagement.com>`_
 * License: MIT
@@ -28,6 +28,9 @@ Overview
 * Discussion: `Forum <https://www.openriskcommons.org/c/sustainable-finance>`_
 * Training @: `Open Risk Academy <https://www.openriskacademy.com/>`_
 
+Table of Contents
+----------------------
+
 .. toctree::
    :maxdepth: 2
    :caption: Getting Started:
@@ -35,7 +38,7 @@ Overview
    description
    setup
    requirements
-   loading_sample_data
+   initialization
 
 .. toctree::
    :maxdepth: 2
@@ -47,13 +50,18 @@ Overview
    api_docs
    internationalization
    changelog
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Community:
+
    conventions
    contributing
+   code_of_conduct
 
 
 Indexes and Tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

@@ -2,6 +2,7 @@
 
 Conventions
 ==============================
+This page collect a number of conventions and design choices that might help anybody interested in contributing to the the further development of Equinox
 
 Data Models
 ---------------

@@ -24,7 +24,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equinox.settings')
 import django
 django.setup()
 
-__version__ = '0.3'
+__version__ = '0.5'
 
 # -- Project information -----------------------------------------------------
 
@@ -134,6 +134,8 @@ html_static_path = []
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'equinoxdoc'
+
+html_domain_indices = True
 
 # -- Options for LaTeX output ------------------------------------------------
 

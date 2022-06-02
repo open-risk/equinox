@@ -19,12 +19,30 @@
 # SOFTWARE.
 
 from django.contrib import admin
+from django.core import serializers
 from django.db import models
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_json_widget.widgets import JSONEditorWidget
 
 from reporting.models import Calculation, ResultGroup, Visualization
+
+actions = ['export2json', 'export2xml']
+
+
+@admin.action(description='Export Selected Entries as JSON')
+def export2json(self, request, queryset):
+    response = HttpResponse(content_type="application/json")
+    serializers.serialize("json", queryset, stream=response)
+    return response
+
+
+@admin.action(description='Export Selected Entries as XML')
+def export2xml(self, request, queryset):
+    response = HttpResponse(content_type="application/xml")
+    serializers.serialize("xml", queryset, stream=response)
+    return response
 
 
 #
@@ -77,4 +95,3 @@ class VisualizationAdmin(admin.ModelAdmin):
 admin.site.register(Calculation, CalculationAdmin)
 admin.site.register(ResultGroup, ResultGroupAdmin)
 admin.site.register(Visualization, VisualizationAdmin)
-

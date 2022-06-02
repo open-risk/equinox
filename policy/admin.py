@@ -19,7 +19,9 @@
 # SOFTWARE.
 
 from django.contrib import admin
+from django.core import serializers
 from django.db.models import JSONField
+from django.http import HttpResponse
 from prettyjson.widgets import PrettyJSONWidget
 
 from policy.models import DashBoardParams
@@ -27,6 +29,21 @@ from policy.models import DataFlow
 from policy.models import DataSeries
 from policy.models import GeoSlice
 
+actions = ['export2json', 'export2xml']
+
+
+@admin.action(description='Export Selected Entries as JSON')
+def export2json(self, request, queryset):
+    response = HttpResponse(content_type="application/json")
+    serializers.serialize("json", queryset, stream=response)
+    return response
+
+
+@admin.action(description='Export Selected Entries as XML')
+def export2xml(self, request, queryset):
+    response = HttpResponse(content_type="application/xml")
+    serializers.serialize("xml", queryset, stream=response)
+    return response
 
 class DataSeriesAdmin(admin.ModelAdmin):
     formfield_overrides = {

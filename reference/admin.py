@@ -22,27 +22,35 @@
 from django.contrib.gis import admin
 from django.core import serializers
 from django.http import HttpResponse
-from import_export import resources, fields
+from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
+
+from reference.CPVData import CPVData
 from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.GPCSector import GPCSector
-from reference.CPVData import CPVData
 from reference.NUTS3Data import NUTS3PointData
 
-actions = ['export']
+actions = ['export2json', 'export2xml']
 
 
-@admin.action(description='Export Selected Entries')
-def export(self, request, queryset):
+@admin.action(description='Export Selected Entries as JSON')
+def export2json(self, request, queryset):
     response = HttpResponse(content_type="application/json")
     serializers.serialize("json", queryset, stream=response)
     return response
 
 
-admin.site.add_action(export)
+@admin.action(description='Export Selected Entries as XML')
+def export2xml(self, request, queryset):
+    response = HttpResponse(content_type="application/xml")
+    serializers.serialize("xml", queryset, stream=response)
+    return response
+
+
+admin.site.add_action(export2json)
+admin.site.add_action(export2xml)
 
 
 @admin.register(NUTS3PointData)

@@ -18,20 +18,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib import admin
+from django.contrib.gis import admin
+from django.core import serializers
 from django.db import models
+from django.http import HttpResponse
 from django_json_widget.widgets import JSONEditorWidget
 
 from risk.ActivityBarrier import ActivityBarrier
-from risk.Scorecard import Scorecard
 from risk.Objectives import Playbook, Objective
+from risk.Scenarios import Scenario
+from risk.Scorecard import Scorecard
 from risk.Workflows import Workflow, Limitflow
 
-from django.contrib import admin
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+actions = ['export2json', 'export2xml']
 
-from risk.Scenarios import Scenario
+
+@admin.action(description='Export Selected Entries as JSON')
+def export2json(self, request, queryset):
+    response = HttpResponse(content_type="application/json")
+    serializers.serialize("json", queryset, stream=response)
+    return response
+
+
+@admin.action(description='Export Selected Entries as XML')
+def export2xml(self, request, queryset):
+    response = HttpResponse(content_type="application/xml")
+    serializers.serialize("xml", queryset, stream=response)
+    return response
 
 
 class ScenarioAdmin(admin.ModelAdmin):

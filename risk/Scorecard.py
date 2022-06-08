@@ -19,14 +19,14 @@
 # SOFTWARE.
 
 from django.db import models
-from portfolio.model_choices import *
 from django.urls import reverse
+
 from portfolio.ProjectCompany import ProjectCompany
 
 
 class Scorecard(models.Model):
     """
-    The Scorecard model holds data for defined scorecards. The current implementation is a Credit Scorecard of the ProjectCompany
+    The Scorecard data model holds data for defined scorecards. The current implementation is a Credit Scorecard of the ProjectCompany
 
 
     """

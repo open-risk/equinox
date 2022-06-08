@@ -19,29 +19,16 @@
 # SOFTWARE.
 
 from django.urls import re_path
-import views
 
-app_name = 'workflow_explorer'
+from risk.views import ScenarioEdit, scenario_editor
+
+app_name = 'risk'
 
 """ Custom URL's in addition to the admin url's
 
 """
 
 urlpatterns = [
-    re_path(r'^workflow_list$', views.WorkflowList.as_view(), name='workflow_list'),
-    re_path(r'^playbook_list$', views.PlaybookList.as_view(), name='playbook_list'),
-    re_path(r'^published$', views.PublishedWorkflowList.as_view(), name='published_workflow_list'),
-    re_path(r'^batch_jobs$', views.BatchWorkflowList.as_view(), name='batch_workflow_list'),
-    re_path(r'^objectives$', views.WorkflowObjectiveList.as_view(), name='workflow_objective_list'),
-    re_path(r'^workflow_interactive/(?P<pk>\d+)$', views.workflow_interactive, name='workflow_interactive'),
-    re_path(r'^workflow_debug/(?P<pk>\d+)$', views.workflow_cgi_debug, name='workflow_debug'),
-    re_path(r'^workflow_calculate/(?P<pk>\d+)$', views.workflow_batch, name='workflow_calculate'),
-    re_path(r'^workflow_view/(?P<pk>\d+)$', views.WorkflowView.as_view(), name='workflow_view'),
-    re_path(r'^workflow_clone/(?P<pk>\d+)$', views.WorkflowClone.as_view(), name='workflow_clone'),
-    re_path(r'^workflow_delete/(?P<pk>\d+)$', views.WorkflowDelete.as_view(), name='workflow_delete'),
-    re_path(r'^workflow_create$', views.WorkflowCreate.as_view(), name='workflow_create'),
-    re_path(r'^playbook_calculate/(?P<pk>\d+)$', views.playbook_calculate, name='playbook_calculate'),
-    re_path(r'^scenario_list$', views.ScenarioList.as_view(), name='scenario_list'),
-    re_path(r'^scenario_graphical_editor/(?P<pk>\d+)$', views.ScenarioEdit.as_view(), name='scenario_graphical_editor'),
-    re_path(r'^scenario_form_editor/(?P<pk>\d+)$', views.scenario_editor, name='scenario_form_editor'),
+    re_path(r'^scenario_graphical_editor/(?P<pk>\d+)$', ScenarioEdit.as_view(), name='scenario_graphical_editor'),
+    re_path(r'^scenario_form_editor/(?P<pk>\d+)$', scenario_editor, name='scenario_form_editor'),
 ]

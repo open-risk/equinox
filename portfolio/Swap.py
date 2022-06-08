@@ -75,7 +75,6 @@ class Swap(models.Model):
     start_date_of_swap = models.DateField(blank=True, null=True,
                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     type_of_interest_rate_institution = models.TextField(blank=True, null=True,
                                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 

@@ -20,7 +20,9 @@
 
 from django import forms
 from django.contrib.gis import admin
+from django.core import serializers
 from django.forms.widgets import NumberInput
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.html import format_html
@@ -50,6 +52,24 @@ from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
 from portfolio.Swap import Swap
 from portfolio.models import PointSource, AreaSource, MultiAreaSource
+
+
+@admin.action(description='Export Selected Entries as JSON')
+def export2json(self, request, queryset):
+    response = HttpResponse(content_type="application/json")
+    serializers.serialize("json", queryset, stream=response)
+    return response
+
+
+@admin.action(description='Export Selected Entries as XML')
+def export2xml(self, request, queryset):
+    response = HttpResponse(content_type="application/xml")
+    serializers.serialize("xml", queryset, stream=response)
+    return response
+
+
+admin.site.add_action(export2json)
+admin.site.add_action(export2xml)
 
 
 #
@@ -195,9 +215,6 @@ class GPPEmissionsSourceAdmin(admin.ModelAdmin):
         return obj.project.project_budget
 
 
-
-
-
 @admin.register(ProjectEvent)
 class ProjectEventAdmin(admin.ModelAdmin):
     """Project Event admin"""
@@ -231,6 +248,7 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ['project_title']
     list_display = ('pk', 'project_title', 'cpv_code', 'project_budget', 'project_category')
     list_filter = ('project_category',)
+
 
 @admin.register(ProjectActivity)
 class ProjectActivityAdmin(admin.ModelAdmin):

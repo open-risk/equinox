@@ -49,10 +49,11 @@ def export2xml(self, request, queryset):
 # TODO display of calculation timestamp interferes with JSON editor
 #
 class CalculationAdmin(admin.ModelAdmin):
-    fields = ('user', 'workflow', 'workflow_data', 'results_data', 'logfile', 'result_group')
+    # fields = ('user', 'workflow', 'workflow_data', 'results_data', 'logfile', 'result_group')
+    fields = ('user', 'workflow_data', 'results_data', 'logfile', 'result_group')
     search_fields = ['results_data', 'workflow_data']
     list_filter = ('user',)
-    list_display = ('workflow', 'result_group', 'creation_date', 'user')
+    list_display = ('result_group', 'creation_date', 'user')
     date_hierarchy = ('creation_date')
 
     formfield_overrides = {

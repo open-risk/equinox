@@ -13,6 +13,7 @@ function onEachFeature(feature, layer) {
         layer.bindPopup(feature.properties.nuts_id);
     }
 }
+
 L.geoJSON(geodata, {
     onEachFeature: onEachFeature
 }).addTo(map);

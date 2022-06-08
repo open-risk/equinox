@@ -1,6 +1,6 @@
 Emissions Factor
 ------------------------------
-Emissions Factor models hold granular emissions factors that characterize and quantify the emissions of an Asset.
+Emissions Factor data models hold granular emissions factors that characterize and quantify the emissions of an Asset.
 
 An asset may involve multiple emissions factors.
 

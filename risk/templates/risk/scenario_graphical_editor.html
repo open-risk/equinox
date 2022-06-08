@@ -1,0 +1,94 @@
+{% extends "start/generic.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Graphical Scenario Editor
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'scenario_explorer/js/xmlhttppost.js' %}"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="{% static 'scenario_explorer/js/timeseries_graph.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'scenario_explorer/css/scenario_editor.css' %}"/>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <div class="title">Graphical Scenario Editor</div>
+        <div class="subtitle">Adjust values and/or probabilities</div>
+    </div>
+{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-non-responsive">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <select>
+                    <option value="" disabled="disabled" selected="selected">Scenario</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+                <select>
+                    <option value="" disabled="disabled" selected="selected">Factor</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="timeseries_graph"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <ul id="timeseries_values"></ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <form method="post">{% csrf_token %}
+                    <div>
+                    </div>
+                    <input class="interface_buttons btn btn-default" type="submit" onclick='JavaScript:xmlhttpPost()'
+                           value="Update"/>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        var scenario_no = {{ object.scenario_no }};
+        var value_set = {{ object.factor_values | safe }};
+        var values = value_set[0]['Factor'];
+        var scenario_probabilities = {{ object.scenario_probabilities | safe }};
+        dates = [];
+        for (var k = 0; k < values.length; k++) {
+            dates.push(k);
+        }
+        // console.log(scenario_no, dates, values, scenario_probabilities);
+        timeseries_graph(dates, values);
+
+    </script>
+
+{% endblock %}

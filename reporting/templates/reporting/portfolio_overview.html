@@ -1,0 +1,79 @@
+{% extends "start/tabular.html" %}
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Portfolio Overview
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="helpblock">
+                <p>Portfolio Overview</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-info">
+        <div class="card-header">
+            <h4>Procurement Footprint Overview</h4>
+        </div>
+        <div class="card-body">
+            <table id="data_list" class="display responsive">
+                <thead>
+                <tr>
+                    <th>Portfolio Element</th>
+                    <th>Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="even">
+                    <td>Portfolio Managers</td>
+                    <td>{{ pm_count }}</td>
+                </tr>
+                <tr>
+                    <td>Project Portfolios</td>
+                    <td>{{ po_count }}</td>
+                </tr>
+                <tr>
+                    <td>Projects</td>
+                    <td>{{ pr_count }}</td>
+                </tr>
+                <tr>
+                    <td>Project Events</td>
+                    <td>{{ pe_count }}</td>
+                </tr>
+                <tr>
+                    <td>Project Activities</td>
+                    <td>{{ pa_count }}</td>
+                </tr>
+                <tr>
+                    <td>Project Assets</td>
+                    <td>{{ as_count }}</td>
+                </tr>
+                <tr>
+                    <td>Emissions Sources</td>
+                    <td>{{ gpp_count }}</td>
+                </tr>
+                <tr>
+                    <td>Spatial Sources</td>
+                    <td>{{ geo_count }}</td>
+                </tr>
+                <tr>
+                    <td>Contractors</td>
+                    <td>{{ co_count }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $('#data_list').DataTable();
+    </script>
+
+{% endblock %}

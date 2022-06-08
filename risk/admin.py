@@ -25,10 +25,9 @@ from django.http import HttpResponse
 from django_json_widget.widgets import JSONEditorWidget
 
 from risk.ActivityBarrier import ActivityBarrier
-from risk.Objectives import Playbook, Objective
 from risk.Scenarios import Scenario
 from risk.Scorecard import Scorecard
-from risk.Workflows import Workflow, Limitflow
+from risk.Workflows import Limitflow
 
 actions = ['export2json', 'export2xml']
 
@@ -51,14 +50,9 @@ class ScenarioAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget(attrs={'initiaĺ': 'parsed'})},
     }
-    list_display = ('name', 'scenario_no', 'description')
+    list_display = ('name', 'scenario_no', 'factor_no', 'timepoint_no', 'scenario_type')
     save_as = True
-    view_on_site = False
-    date_hierarchy = ('creation_date')
-
-    # def response_change(self, request, obj, post_url_continue=None):
-    #     """This makes the response after adding go to another apps changelist for some model"""
-    #     return HttpResponseRedirect(reverse("risk:scenario_list"))
+    view_on_site = True
 
 
 admin.site.register(Scenario, ScenarioAdmin)
@@ -83,21 +77,6 @@ class ActivityBarrierAdmin(admin.ModelAdmin):
     date_hierarchy = ('creation_date')
 
 
-class WorkflowAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.JSONField: {'widget': JSONEditorWidget(attrs={'initial': 'parsed'})}
-    }
-    #
-    # Searchable fields
-    #
-    search_fields = ['workflow_description']
-    list_display = ('workflow_id', 'name', 'objective', 'workflow_description', 'last_change_date',)
-    list_filter = ('objective', 'workflow_type', 'workflow_status', 'single_asset_flag')
-    save_as = True
-    view_on_site = False
-    date_hierarchy = ('creation_date')
-
-
 class LimitflowAdmin(admin.ModelAdmin):
     formfield_overrides = {
         # JSONField: {'widget': JSONEditor},
@@ -114,34 +93,4 @@ class LimitflowAdmin(admin.ModelAdmin):
     date_hierarchy = ('creation_date')
 
 
-class PlaybookAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.JSONField: {'widget': JSONEditorWidget(attrs={'initial': 'parsed'})}
-    }
-    #
-    # Searchable fields
-    #
-    search_fields = ['description']
-    list_display = ('pk', 'name', 'type', 'last_change_date',)
-    list_filter = ('type',)
-    save_as = True
-    view_on_site = False
-    date_hierarchy = ('creation_date')
-
-
-class ObjectiveAdmin(admin.ModelAdmin):
-    #
-    # Searchable fields
-    #
-    search_fields = ['description']
-    list_display = ('pk', 'name', 'category', 'last_change_date',)
-    list_filter = ('category',)
-    save_as = True
-    view_on_site = False
-    date_hierarchy = ('creation_date')
-
-
-admin.site.register(Workflow, WorkflowAdmin)
 admin.site.register(Limitflow, LimitflowAdmin)
-admin.site.register(Playbook, PlaybookAdmin)
-admin.site.register(Objective, ObjectiveAdmin)

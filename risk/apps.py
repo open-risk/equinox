@@ -26,7 +26,7 @@ from django.utils.translation import gettext_lazy as _
 """
 
 
-class RiskAnalysisConfig(AppConfig):
+class RiskConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'risk'
-    verbose_name = _('Risk Analysis')
+    verbose_name = _('Risk')

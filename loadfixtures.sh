@@ -11,3 +11,4 @@ python3 manage.py loaddata portfolio/fixtures/ProjectActivity.json
 python3 manage.py loaddata portfolio/fixtures/PrimaryEffect.json
 python3 manage.py loaddata portfolio/fixtures/SecondaryEffect.json
 python3 manage.py loaddata portfolio/fixtures/GPCEmissionsSource.json
+python3 manage.py loaddata risk/fixtures/Scenario.json

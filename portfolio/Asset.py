@@ -24,8 +24,6 @@ from django.urls import reverse
 from portfolio.model_choices import *
 from portfolio.property_collateral_choices import *
 
-
-
 ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
                        (1, '(b) CRE'),
                        (2, '(c) SME/Corporate'),
@@ -68,7 +66,8 @@ class ProjectAsset(models.Model):
 
     # LINKS / RELATIONS
 
-    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE, help_text="The project to which this asset belongs")
+    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE,
+                                help_text="The project to which this asset belongs")
 
     legal_owner = models.TextField(blank=True, null=True,
                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

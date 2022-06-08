@@ -15,6 +15,8 @@ python3 manage.py dumpdata --format=json --indent 2 portfolio.PrimaryEffect -o p
 python3 manage.py dumpdata --format=json --indent 2 portfolio.SecondaryEffect -o portfolio/fixtures/SecondaryEffect.json
 python3 manage.py dumpdata --format=json --indent 2 portfolio.GPCEmissionsSource -o portfolio/fixtures/GPCEmissionsSource.json
 
+python3 manage.py dumpdata --format=json --indent 2 risk.Scenario -o risk/fixtures/Scenario.json
+
 python3 manage.py dumpdata auth.User --indent 2 > start/fixtures/users.json
 python3 manage.py dumpdata auth.Group --indent 2 > start/fixtures/groups.json
 python3 manage.py dumpdata --format=json --indent 2 portfolio.PointSource -o portfolio/fixtures/PointSource.json

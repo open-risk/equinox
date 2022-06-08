@@ -23,9 +23,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils.timezone import now
 
-from risk.Workflows import Workflow
-from risk.Objectives import Playbook
-
 
 class ResultGroup(models.Model):
     """
@@ -46,8 +43,9 @@ class ResultGroup(models.Model):
     # in that case there is no playbook associated and thus standardized reports
     # and visualization are not available
 
-    playbook = models.ForeignKey(Playbook, on_delete=models.CASCADE, null=True, blank=True,
-                                 help_text="Playbook that created this ResultGroup (if any)")
+    # TODO reinstate once playbooks are implemented
+    # playbook = models.ForeignKey(Playbook, on_delete=models.CASCADE, null=True, blank=True,
+    #                              help_text="Playbook that created this ResultGroup (if any)")
 
     # TODO Does not make strict sense for a collection
     calculation_timestamp = models.DateTimeField(default=now)
@@ -79,8 +77,9 @@ class Calculation(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
+    # TODO reinstate once workflows are implemented
     # The Base Workflow object that was used for the calculation
-    workflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, default=1)
+    # workflow = models.ForeignKey(Workflow, on_delete=models.CASCADE, default=1)
 
     # The final workflow_data used for the calculation
     # In principle starting with the base workflow, performing all the FK embeddings

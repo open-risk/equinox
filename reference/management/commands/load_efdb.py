@@ -24,7 +24,7 @@ from reference.EmissionFactor import EmissionFactor
 
 
 class Command(BaseCommand):
-    help = 'Load an emissions factor csv file into equinox. Currently the only format supported is the IPCC EFDB database (exported as | -separated CSV file)'
+    help = 'Load an emissions factor csv file into equinox. Currently the only format supported is the IPCC EFDB database (exported as | separated CSV file)'
 
     def add_arguments(self, parser):
         parser.add_argument('--path', type=str)

@@ -31,6 +31,7 @@ from reference.CPVData import CPVData
 from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
+from reference.EmissionIntensity import ReferenceIntensity
 
 actions = ['export2json', 'export2xml']
 
@@ -145,5 +146,14 @@ class CPVDataAdmin(admin.ModelAdmin):
     search_fields = ['description']
     list_display = ('CPV_ID', 'short_code', 'level', 'description')
     list_filter = ('level',)
+    view_on_site = False
+    save_as = True
+
+
+@admin.register(ReferenceIntensity)
+class ReferenceIntensityAdmin(admin.ModelAdmin):
+    search_fields = ['description']
+    list_display = ('Sector', 'Region', 'Gases', 'Value', 'Unit')
+    list_filter = ('Region',)
     view_on_site = False
     save_as = True

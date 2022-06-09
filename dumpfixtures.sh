@@ -22,3 +22,4 @@ python3 manage.py dumpdata auth.Group --indent 2 > start/fixtures/groups.json
 python3 manage.py dumpdata --format=json --indent 2 portfolio.PointSource -o portfolio/fixtures/PointSource.json
 
 python3 manage.py dumpdata reference.NUTS3PointData --indent 2 > reference/fixtures/NUTS3PointData.json
+python3 manage.py dumpdata reference.ReferenceIntensity --indent 2 > reference/fixtures/ReferenceIntensity.json

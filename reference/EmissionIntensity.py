@@ -18,11 +18,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-Emissions Intensity (CO2 tonnes per mln EUR) per CPV dimension
+from django.db import models
+from django.urls import reverse
 
 """
+Emissions Intensity (CO2 tonnes (1000 x kg) per mln (1000000 EUR) per CPV dimension
 
+"""
 intensity = {'09': 348.9,
              '76': 348.9,
              '14': 40.4,
@@ -58,3 +60,51 @@ intensity = {'09': 348.9,
              '71': 20.3,
              '73': 20.3,
              '63': 20.3}
+
+
+class ReferenceIntensity(models.Model):
+    """
+    The Reference Emissions Intensity model holds reference emission intensities for comparison purposes. Usage: Internal (Portfolio). Intensities can be juxtaposed with these external / macro benchmarks
+
+
+    """
+
+    Sector = models.CharField(max_length=80, blank=True, null=True, help_text='Standard Description')
+
+    Gases = models.CharField(max_length=80, blank=True, null=True, help_text='Standard Description')
+
+    Fuel = models.CharField(max_length=80, blank=True, null=True, help_text='Standard Description')
+
+    Description = models.TextField(blank=True, null=True, help_text='Standard Description')
+
+    Region = models.CharField(max_length=80, blank=True, null=True, help_text='Standard Description')
+
+    Value = models.CharField(max_length=20, blank=True, null=True, help_text='Standard Description')
+
+    Unit = models.CharField(max_length=20, blank=True, null=True, help_text='Standard Description')
+
+    Data_Source = models.CharField(max_length=80, blank=True, null=True, help_text='Standard Description')
+
+    Lower_Bound = models.CharField(max_length=20, blank=True, null=True, help_text='Standard Description')
+
+    Upper_Bound = models.CharField(max_length=20, blank=True, null=True, help_text='Standard Description')
+
+    Data_Quality = models.CharField(max_length=80, blank=True, null=True, help_text='Standard Description')
+
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.pk)
+
+    def get_absolute_url(self):
+        return reverse('reference:ReferenceIntensity_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Reference Intensity"
+        verbose_name_plural = "Reference Intensities"
+
+

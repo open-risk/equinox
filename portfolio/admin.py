@@ -205,15 +205,28 @@ class GPCEmissionsSourceAdmin(admin.ModelAdmin):
 class GPPEmissionsSourceAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
-    list_display = ('source_identifier', 'project', 'project__cpv_code', 'project__budget', 'co2_amount')
-    date_hierarchy = ('creation_date')
+    list_display = ('source_identifier', 'link_to_project', 'project__cpa_code', 'project__budget', 'co2_amount')
+
+    def link_to_project(self, obj):
+        link = reverse("admin:portfolio_project_change", args=[obj.project.pk])
+        return format_html('<a href="{}">{}</a>', link, obj.project.pk)
+
+    link_to_project.short_description = 'Project'
+
+    def project__cpa_code(self, obj):
+        return obj.project.cpa_code
+
+    project__cpa_code.short_description = 'CPA Code'
 
     def project__cpv_code(self, obj):
         return obj.project.cpv_code
 
+    project__cpv_code.short_description = 'CPV Code'
+
     def project__budget(self, obj):
         return obj.project.project_budget
 
+    project__budget.short_descriont = 'Budget'
 
 @admin.register(ProjectEvent)
 class ProjectEventAdmin(admin.ModelAdmin):
@@ -246,8 +259,9 @@ class ProjectAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
     search_fields = ['project_title']
-    list_display = ('pk', 'project_title', 'cpv_code', 'project_budget', 'project_category')
-    list_filter = ('project_category',)
+    list_display = (
+    'pk', 'project_title', 'cpv_code', 'cpa_code', 'country', 'project_budget', 'project_currency', 'project_category')
+    list_filter = ('project_category', 'country', 'cpa_code')
 
 
 @admin.register(ProjectActivity)

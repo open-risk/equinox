@@ -18,41 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.core.management import BaseCommand
-
+from django.core.management.base import BaseCommand
 from portfolio.EmissionsSource import GPPEmissionsSource
-from portfolio.Project import Project
-from reference.EmissionIntensity import intensity
 
 
 class Command(BaseCommand):
-    help = 'parse projects and if applicable generate an associated emissions source'
-
-    def handle(self, *args, **kwargs):
-        pset = Project.objects.all()
-
-        """
-          iterate over procurement / project portfolio
-          read emissions intensity from cpv_code dictionary
-          set co2_amount as emissions intensity times project budget
-          save update source data
-          
-          mode = 0 is a testing mode
-
-        """
-        mode = 0
-
-        if mode == 0:
-            i = 1
-            for p in pset.iterator():
-                if p.cpv_code[:2] in intensity:
-                    print(p.cpv_code[:2], intensity[p.cpv_code[:2]])
-                    source = GPPEmissionsSource()
-                    source.source_identifier = 'GPP' + str(i)
-                    print(source.source_identifier)
-                    i += 1
-                    source.project = p
-                    source.comments = 'Testing the EEIO Method'
-                    source.save()
-
-
+    def handle(self, *args, **options):
+        GPPEmissionsSource.objects.all().delete()

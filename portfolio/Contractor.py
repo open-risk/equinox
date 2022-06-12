@@ -68,7 +68,7 @@ class Contractor(models.Model):
     region = models.CharField(max_length=10, null=True, blank=True,
                               help_text='NUTS Code of Region. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    country = models.CharField(max_length=20, null=True, blank=True,
+    country = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Country Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # CONTACT

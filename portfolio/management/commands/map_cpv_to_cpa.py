@@ -18,41 +18,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.core.management import BaseCommand
+import json
 
-from portfolio.EmissionsSource import GPPEmissionsSource
+from django.core.management.base import BaseCommand
+
 from portfolio.Project import Project
-from reference.EmissionIntensity import intensity
 
 
 class Command(BaseCommand):
-    help = 'parse projects and if applicable generate an associated emissions source'
+    help = 'Map a CPV Code to a CPA Code'
 
-    def handle(self, *args, **kwargs):
-        pset = Project.objects.all()
+    # Load the mapping table from disk
+    f = open('reference/cpv_cpa_dict.json', mode='r')
+    cpv_map = json.load(f)
+    # Update the CPA code for all projects
+    indata = []
+    for pr in Project.objects.all():
+        if len(pr.cpv_code) == 8:
+            pr.cpa_code = cpv_map[pr.cpv_code]
+        else:
+            cpv_code = '0' + pr.cpv_code
+            pr.cpa_code = cpv_map[cpv_code]
+        indata.append(pr)
 
-        """
-          iterate over procurement / project portfolio
-          read emissions intensity from cpv_code dictionary
-          set co2_amount as emissions intensity times project budget
-          save update source data
-          
-          mode = 0 is a testing mode
+    Project.objects.bulk_update(indata, ['cpa_code'])
+    f.close()
 
-        """
-        mode = 0
-
-        if mode == 0:
-            i = 1
-            for p in pset.iterator():
-                if p.cpv_code[:2] in intensity:
-                    print(p.cpv_code[:2], intensity[p.cpv_code[:2]])
-                    source = GPPEmissionsSource()
-                    source.source_identifier = 'GPP' + str(i)
-                    print(source.source_identifier)
-                    i += 1
-                    source.project = p
-                    source.comments = 'Testing the EEIO Method'
-                    source.save()
-
-
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Successfully mapped CPV codes to CPA codes'))

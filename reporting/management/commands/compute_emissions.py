@@ -20,22 +20,43 @@
 
 from django.core.management.base import BaseCommand
 from portfolio.EmissionsSource import GPPEmissionsSource
-from reference.intensity import intensity
+from reference.EmissionIntensity import intensity, ReferenceIntensity
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        gpp_set = GPPEmissionsSource.objects.all()
+    gpp_set = GPPEmissionsSource.objects.all()
 
-        """
-          iterate over procurement portfolio (project portfolio)
-          read emissions intensity from cpv_code dictionary
-          set co2_amount as emissions intensity times project budget
-          save update source data     
-        """
+    """
+      iterate over procurement portfolio (project portfolio)
+      read emissions intensity from cpv_code dictionary
+      set co2_amount as emissions intensity times project budget
+      save updated source data   
 
+      mode = 0 is a testing mode
+      mode = 1 uses Eurostat CPA based emissions intensities
+
+    """
+    mode = 1
+
+    if mode == 0:
         for source in gpp_set.iterator():
             if source.project.cpv_code[:2] in intensity and source.project.project_budget > 0:
                 multiplier = intensity[source.project.cpv_code[:2]]
                 source.co2_amount = round(source.project.project_budget * multiplier / 1000000, 1)
                 source.save()
+    elif mode == 1:
+        indata = []
+        for source in gpp_set.iterator():
+            cpa = source.project.cpa_code
+            qs = ReferenceIntensity.objects.filter(Sector=cpa)
+            if len(qs) > 0:
+                multiplier = float(qs[0].Value)
+                budget = source.project.project_budget
+                source.co2_amount = budget * multiplier
+                indata.append(source)
+        print('Computed Emissions')
+
+        GPPEmissionsSource.objects.bulk_update(indata, ['co2_amount'])
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Successfully computed CPA intensity based emissions'))

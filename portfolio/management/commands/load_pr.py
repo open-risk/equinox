@@ -27,7 +27,7 @@ from portfolio.Portfolios import ProjectPortfolio
 
 
 class Command(BaseCommand):
-    help = 'Imports project data from csv file'
+    help = 'Imports Project data from csv file'
 
     # Delete existing objects
     Project.objects.all().delete()
@@ -36,7 +36,7 @@ class Command(BaseCommand):
     data = pd.read_csv("pr.csv", header='infer', delimiter=',')
 
     """
-    TITLE,REFERENCE_NUMBER,CPV_CODE,TYPE_CONTRACT,
+    TITLE,REFERENCE_NUMBER,CPV_CODE, CPA_CODE, COUNTRY, TYPE_CONTRACT,
     SHORT_DESCR,VAL_TOTAL,CURRENCY
 
     """
@@ -68,13 +68,19 @@ class Command(BaseCommand):
         else:
             project_identifier = str(serial)
 
+        description = 'No Project Description is given'
+        if type(entry['SHORT_DESCR']) is str:
+            description = entry['SHORT_DESCR']
+
         pr = Project(
-            id=entry['PK'],
+            # id=entry['PK'],
             project_identifier=project_identifier,
             project_reference=entry['REFERENCE_NUMBER'],
             project_title=entry['TITLE'],
-            project_description=entry['SHORT_DESCR'],
+            project_description=description,
             cpv_code=entry['CPV_CODE'],
+            cpa_code=None,
+            country=entry['COUNTRY'],
             project_category=fk,
             portfolio=po,
             project_budget=entry['VAL_TOTAL'],

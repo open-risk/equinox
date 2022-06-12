@@ -367,7 +367,7 @@ class Building(models.Model):
     planned_capex_next_12m = models.FloatField(blank=True, null=True,
                                                help_text='Current planned CAPEX for the next 12 months. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Planned_Capex_next_12m">Documentation</a>')
 
-    property_country = models.TextField(blank=True, null=True,
+    property_country = models.CharField(max_length=40, blank=True, null=True,
                                         help_text='Country of residence where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Country">Documentation</a>')
 
     property_postcode = models.TextField(blank=True, null=True,

@@ -65,7 +65,13 @@ class Project(models.Model):
     text_rendered = RenderedMarkdownField()
 
     cpv_code = models.CharField(max_length=20, blank=True, null=True,
-                                help_text="The Common Procurement Vocabulary Code")
+                                help_text="The Common Procurement Vocabulary Code (Main Code)")
+
+    cpa_code = models.CharField(max_length=20, blank=True, null=True,
+                                help_text="The Classification of Products by Activity Code")
+
+    country = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='Country where the project is originated (not necessarily of performance')
 
     project_budget = models.IntegerField(blank=True, null=True, help_text="The Project Budget")
 

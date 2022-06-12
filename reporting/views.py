@@ -57,7 +57,7 @@ from reporting.models import Calculation, Visualization
 
 @login_required(login_url='/login/')
 def portfolio_overview(request):
-    t = loader.get_template('portfolio_overview.html')
+    t = loader.get_template('reporting/portfolio_overview.html')
     context = RequestContext(request, {})
 
     """
@@ -140,7 +140,7 @@ def portfolio_summary(request, pk):
     # TODO Round digits
     pstats = portfolio_dataframe[['EAD', 'LGD', 'Tenor', 'Sector', 'Rating', 'Country', 'Stage']].describe().to_html()
 
-    t = loader.get_template('portfolio_summary.html')
+    t = loader.get_template('reporting/portfolio_summary.html')
     context = RequestContext(request, {})
     context.update({'portfolio': p, 'pstats': pstats})
     context.update({'obligor_count': obligor_count, 'total_exposure': total_exposure})
@@ -159,7 +159,8 @@ def portfolio_aggregates(request):
     :param request:
     :return:
     """
-    success_url = reverse_lazy('portfolio_list')
+    # TODO
+    success_url = reverse_lazy('portfolio/portfolio_list')
 
     result_data = {}
     result_label = {}
@@ -215,7 +216,7 @@ def portfolio_stats_view(request, pk):
         pstats.set_index(attr)
         stats_view[attr] = pstats.to_html(index=False)
 
-    t = loader.get_template('portfolio_stats_view.html')
+    t = loader.get_template('reporting/portfolio_stats_view.html')
     context = RequestContext(request, {})
     context.update({'portfolio': p, 'stats_view': stats_view, 'portfolio_data': portfolio_queryset})
     return HttpResponse(t.template.render(context))
@@ -223,7 +224,7 @@ def portfolio_stats_view(request, pk):
 
 @login_required(login_url='/login/')
 def pcaf_mortgage_report(request):
-    t = loader.get_template('pcaf_mortgage_report.html')
+    t = loader.get_template('reporting/pcaf_mortgage_report.html')
     context = RequestContext(request, {})
 
     """ Construct a PCAF Mortgage Emissions report and a Portfolio Carbon Footprint
@@ -284,7 +285,7 @@ def pcaf_mortgage_report(request):
 
 @login_required(login_url='/login/')
 def ghg_reduction(request):
-    t = loader.get_template('ghg_reduction.html')
+    t = loader.get_template('reporting/ghg_reduction.html')
     context = RequestContext(request, {})
 
     activities = ProjectActivity.objects.all()
@@ -324,7 +325,7 @@ def ghg_reduction(request):
 
 @login_required(login_url='/login/')
 def manager_nuts3_map(request):
-    t = loader.get_template('portfolio_map.html')
+    t = loader.get_template('reporting/portfolio_map.html')
     context = RequestContext(request, {})
 
     """
@@ -353,7 +354,7 @@ def manager_nuts3_map(request):
 
 @login_required(login_url='/login/')
 def contractor_nuts3_map(request):
-    t = loader.get_template('portfolio_map.html')
+    t = loader.get_template('reporting/portfolio_map.html')
     context = RequestContext(request, {})
 
     """
@@ -385,7 +386,7 @@ def contractor_nuts3_map(request):
 
 @login_required(login_url='/login/')
 def gpp_report(request):
-    t = loader.get_template('gpp_report.html')
+    t = loader.get_template('reporting/gpp_report.html')
     context = RequestContext(request, {})
 
     """
@@ -417,7 +418,7 @@ def gpp_report(request):
 
 @login_required(login_url='/login/')
 def gpc_report(request):
-    t = loader.get_template('gpc_report.html')
+    t = loader.get_template('reporting/gpc_report.html')
     context = RequestContext(request, {})
 
     """
@@ -469,7 +470,7 @@ def gpc_report(request):
 
 @login_required(login_url='/login/')
 def result_types(request):
-    t = loader.get_template('result_types.html')
+    t = loader.get_template('reporting/result_types.html')
     context = RequestContext(request, {})
 
     # create a table with model result mode information
@@ -510,7 +511,7 @@ def results_view(request, pk):
     except Calculation.DoesNotExist:
         raise Http404("Calculation does not exist")
 
-    t = loader.get_template('result_view.html')
+    t = loader.get_template('reporting/result_view.html')
     context = RequestContext(request, {})
     context.update({'Result': json.dumps(R.results_data)})
     return HttpResponse(t.template.render(context))
@@ -533,7 +534,7 @@ def visualization_view(request, pk):
 
     # get the Visualization object
     visualization = Visualization.objects.get(pk=pk)
-    t = loader.get_template('visualization.html')
+    t = loader.get_template('reporting/visualization.html')
     context = RequestContext(request, {})
     context.update({'object': visualization})
     return HttpResponse(t.template.render(context))

@@ -229,6 +229,7 @@ class GPPEmissionsSource(models.Model):
     tco2e_amount = models.FloatField(null=True, blank=True, help_text='Total CO2 equivalent amount in tonnes')
     co2b_amount = models.FloatField(null=True, blank=True, help_text='CO2 (b) amount in tonnes')
 
+
     comments = models.TextField(null=True, blank=True,
                                 help_text="Explanatory comments (i.e. description of methods used)")
     #

@@ -22,6 +22,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equinox.settings')
 
 # ATTN Do not reformat file, django import must here
 import django
+
 django.setup()
 
 __version__ = '0.5'
@@ -74,7 +75,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

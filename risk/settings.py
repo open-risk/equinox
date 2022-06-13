@@ -18,9 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""
+App specific settings
 
-from django.apps import AppConfig
-
-
-class ModelServerConfig(AppConfig):
-    name = 'model_server'
+"""

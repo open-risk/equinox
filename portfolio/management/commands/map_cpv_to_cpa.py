@@ -19,24 +19,27 @@
 # SOFTWARE.
 
 import json
+import os
 
 from django.core.management.base import BaseCommand
 
 from portfolio.Project import Project
+from equinox.settings import BASE_DIR
 
 
 class Command(BaseCommand):
     help = 'Map a CPV Code to a CPA Code'
 
     # Load the mapping table from disk
-    f = open('reference/cpv_cpa_dict.json', mode='r')
+    FILE = os.path.join(BASE_DIR, 'reference/cpv_cpa_dict.json')
+    f = open(FILE, mode='r')
     cpv_map = json.load(f)
     # Update the CPA code for all projects
     indata = []
     for pr in Project.objects.all():
         if len(pr.cpv_code) == 8:
             pr.cpa_code = cpv_map[pr.cpv_code]
-        else:
+        else: # hack for string based definition of single digit division cpv codes (03, 09 etc)
             cpv_code = '0' + pr.cpv_code
             pr.cpa_code = cpv_map[cpv_code]
         indata.append(pr)

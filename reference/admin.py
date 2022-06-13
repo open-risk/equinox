@@ -152,7 +152,7 @@ class CPVDataAdmin(admin.ModelAdmin):
 
 @admin.register(ReferenceIntensity)
 class ReferenceIntensityAdmin(admin.ModelAdmin):
-    search_fields = ['description']
+    search_fields = ['Sector']
     list_display = ('Sector', 'Region', 'Gases', 'Value', 'Unit')
     list_filter = ('Region',)
     view_on_site = False

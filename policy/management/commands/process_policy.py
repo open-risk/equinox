@@ -14,21 +14,19 @@ Process data from local json files into json
 Updated at 3/2/21 (management command)
 """
 
-import os
-from datetime import datetime
 import json
 import math
 import time
+from datetime import datetime
+
 import numpy as np
-from scipy import stats
-from equinox.settings import BASE_DIR as datapath
-import policy.settings as settings
-
 from django.core.management.base import BaseCommand
+from scipy import stats
 
+import policy.settings as settings
+from equinox.settings import BASE_DIR as datapath
 # The field names as they are in the CSV header
-from policy.settings import field_names, field_codes, field_description, field_description_long, field_code_list, field_type
-
+from policy.settings import field_codes, field_description, field_description_long, field_code_list, field_type
 
 """
 Starting with downloaded data
@@ -65,6 +63,7 @@ STATUS INDICATORS
 - Insufficient -> insufficient data
 - Invalid -> Cannot parse
 """
+
 
 class Command(BaseCommand):
     help = 'Process policy dataseries'
@@ -141,7 +140,7 @@ class Command(BaseCommand):
         Data['Reference Area'] = series['REF_AREA']
 
         field_id = series['ID'][3:]
-        Data['Activity'] =field_id
+        Data['Activity'] = field_id
 
         field_index = field_codes.index(field_id)
 
@@ -345,11 +344,10 @@ class Command(BaseCommand):
     #     print("Processed :", len(download_list))
     #     print("Untouched :", len(static_list))
 
-
     if Logging:
         logfile.write("> Processed  Policy Data  \n")
         logfile.write("> Execution Time: %s seconds --- \n" % (time.time() - start_time))
-        logfile.write(80*'=' + '\n')
+        logfile.write(80 * '=' + '\n')
         logfile.close()
 
     def handle(self, *args, **options):

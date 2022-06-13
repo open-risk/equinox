@@ -18,25 +18,42 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-Created Tue Dec  8 20:54:39 CET 2020
-
-Modified from mobility data
-Updated at 3/3/21
-"""
 from django.core.management.base import BaseCommand
-from policy.models import DashBoardParams, GeoSlice
-from policy.models import DataSeries, DataFlow
+
+"""
+Get an overview of installed app information
+
+
+"""
 
 
 class Command(BaseCommand):
-    help = 'Deletes all policy data from the database (no backup!)'
-    Debug = False
-
-    DataFlow.objects.all().delete()
-    DataSeries.objects.all().delete()
-    DashBoardParams.objects.all().delete()
-    GeoSlice.objects.all().delete()
-
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Deleted all policy data. Good Luck!'))
+        from django.apps import apps
+
+        verbose = False
+
+        if verbose:
+            for app in apps.get_app_configs():
+                print(80*'-')
+                print('Name: ', app.name)
+                print('Label: ', app.label)
+                print('Verbose Name: ', app.verbose_name)
+                print('Path: ', app.path)
+                if 'site-packages' in app.path:
+                    print('Type: ', 'Third Party App')
+                else:
+                    print('Type: ', 'Equinox App')
+        else:
+            third_party = []
+            equinox = []
+            for app in apps.get_app_configs():
+                if 'site-packages' in app.path:
+                    third_party.append(app.verbose_name)
+                else:
+                    equinox.append(app.verbose_name)
+            print('==== Equinox Apps ====')
+            print(equinox)
+            print('==== Third Party Apps ====')
+            print(third_party)
+

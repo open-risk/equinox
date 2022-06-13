@@ -39,7 +39,7 @@ urlpatterns = [
     re_path(r'^portfolio_stats/(?P<pk>[-\w.]+)$', views.portfolio_stats_view, name='portfolio_stats'),
     re_path(r'^portfolio_aggregates$', views.portfolio_aggregates, name='portfolio_aggregates'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
-    re_path(r'^result_types$', views.result_types, name='result_types'),
+    # re_path(r'^result_types$', views.result_types, name='result_types'),
     re_path(r'^results_view/(?P<pk>\d+)$', views.results_view, name='results_view'),
     re_path(r'^visualization_view/(?P<pk>\d+)$', views.visualization_view, name='visualization_view'),
 ]

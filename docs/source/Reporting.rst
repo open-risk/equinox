@@ -1,12 +1,12 @@
 Reporting
 ------------------------------
 
-Reports are the primary means to disseminate results of analyses outside the Equinox environment
+Reports are the primary means to disseminate results of analyses outside the Equinox environment. The **Reporting App** is the primary means of generating reports.
+
 
 Topbar Navigation
--------------------
-Reporting functionality is accessed via the topbar menu system. This is defined as part of the core Start app. in the topbar template.
-
+~~~~~~~~~~~~~~~~~
+Reporting functionality is accessed via the *topbar menu system*. This is defined as part of the core Start (FrontPage) app in the topbar template.
 
 
 Report Types
@@ -28,3 +28,17 @@ Grouped Results
 ~~~~~~~~~~~~~~~~
 
 The Grouped Results List provides an overview of all available result groups. Results groups are typically (but not necessarily) created by Playbooks. In case they are the result of Playbook parametric surveys the Actions include tabular and graphical comparisons of the different results
+
+
+Reporting Views
+~~~~~~~~~~~~~~~
+.. automodule:: reporting.views
+   :members:
+   :undoc-members:
+   :noindex:
+
+
+Reporting Management Commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* compute_emissions

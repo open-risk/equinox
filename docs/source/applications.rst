@@ -2,11 +2,15 @@
 
 Equinox Applications
 ==============================
-The following pages document the Equinox applications
+The following pages document the builtin Equinox *applications*.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
-   Workflows
+   FrontPage
+   Portfolio
+   Reference
    Reporting
-
+   Risk
+   Policy
+   Workflows

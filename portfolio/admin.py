@@ -205,6 +205,7 @@ class GPCEmissionsSourceAdmin(admin.ModelAdmin):
 class GPPEmissionsSourceAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
+    list_filter = ('project__cpa_code',)
     list_display = ('source_identifier', 'link_to_project', 'project__cpa_code', 'project__budget', 'co2_amount')
 
     def link_to_project(self, obj):

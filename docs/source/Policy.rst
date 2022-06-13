@@ -1,15 +1,18 @@
 Policy
 ------------------------------
 
-This manual page provides information about the Equinox Policy Data module that helps collect and work with Covid-19 related policy data.
+The **Policy App** is the primary contained and functionality of portfolio *policy* information.
 
-.. automodule:: policy.models
+Policy Views
+~~~~~~~~~~~~~~~
+
+.. automodule:: policy.views
    :members:
    :undoc-members:
    :noindex:
 
-.. automethod:: policy.models.DataSeries
 
-.. automethod:: policy.models.DataFlow
+Policy Management Commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. automethod:: policy.models.GeoSlice
+* delete_all_policy_data

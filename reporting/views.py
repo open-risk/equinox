@@ -8,8 +8,6 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.urls import reverse_lazy
 
-from model_server.models import ReportingModeDescription, ReportingModeMatch, \
-    ReportingModeName, ModelModes, ModelModesShort
 from portfolio.ProjectEvent import ProjectEvent
 from portfolio.Asset import ProjectAsset
 from portfolio.Contractor import Contractor
@@ -102,7 +100,7 @@ def portfolio_summary(request, pk):
     """
     TODO
 
-    Display an individual :model:`portfolio.Portfolio`.
+    Display an individual `portfolio.Portfolio`.
     Fetch additional data associated with the portfolio
     Invoke function to Compute Portfolio statistics
     - Total number of rows
@@ -112,11 +110,11 @@ def portfolio_summary(request, pk):
     **Context**
 
     ``Portfolio``
-        An instance of :model:`portfolio.Portfolio`.
+        An instance of `portfolio.Portfolio`.
 
     **Template:**
 
-    :template:`portfolio_explorer/portfolio_summary.html`
+    `portfolio/portfolio_summary.html`
     """
 
     portfolio_queryset = None
@@ -396,17 +394,18 @@ def gpp_report(request):
     table_header = []
     table_header.append('Project Title')
     table_header.append('Budget (EUR)')
-    table_header.append('CPV')
+    table_header.append('Sector')
+    table_header.append('Country')
     table_header.append('CO2 (Tonnes)')
 
     table_rows = {}
     key = 0
-    for source in GPPEmissionsSource.objects.all():
-        pr = source.project
+    for source in GPPEmissionsSource.objects.all()[:100]:
         value = []
-        value.append(pr.project_title)
-        value.append(pr.project_budget)
-        value.append(pr.cpv_code)
+        value.append(source.project.project_title)
+        value.append(source.project.project_budget)
+        value.append(source.project.cpa_code)
+        value.append(source.project.country)
         value.append(source.co2_amount)
         table_rows[key] = value
         key += 1
@@ -468,40 +467,40 @@ def gpc_report(request):
     return HttpResponse(t.template.render(context))
 
 
-@login_required(login_url='/login/')
-def result_types(request):
-    t = loader.get_template('reporting/result_types.html')
-    context = RequestContext(request, {})
-
-    # create a table with model result mode information
-    # header row
-    table_header = []
-    table_header.append('Result Type ID')
-    table_header.append('Name')
-    for key, entry in ModelModesShort.items():
-        table_header.append(entry)
-    table_header.append('Description')
-
-    table_rows = {}
-    for key, entry in ReportingModeName.items():
-        value = []
-        value.append(key)
-        value.append(ReportingModeName[key])
-        matched_modes = ReportingModeMatch[key]
-        for i in range(len(matched_modes)):
-            if matched_modes[i] == 0:
-                value.append('N')
-            elif matched_modes[i] == 1:
-                value.append('Y')
-            else:
-                print('ERROR in MODE')
-        value.append(ReportingModeDescription[key])
-        table_rows[key] = value
-
-    context.update({'ModelModes': ModelModes})
-    context.update({'TableRows': table_rows})
-    context.update({'TableHeader': table_header})
-    return HttpResponse(t.template.render(context))
+# @login_required(login_url='/login/')
+# def result_types(request):
+#     t = loader.get_template('reporting/result_types.html')
+#     context = RequestContext(request, {})
+#
+#     # create a table with model result mode information
+#     # header row
+#     table_header = []
+#     table_header.append('Result Type ID')
+#     table_header.append('Name')
+#     for key, entry in ModelModesShort.items():
+#         table_header.append(entry)
+#     table_header.append('Description')
+#
+#     table_rows = {}
+#     for key, entry in ReportingModeName.items():
+#         value = []
+#         value.append(key)
+#         value.append(ReportingModeName[key])
+#         matched_modes = ReportingModeMatch[key]
+#         for i in range(len(matched_modes)):
+#             if matched_modes[i] == 0:
+#                 value.append('N')
+#             elif matched_modes[i] == 1:
+#                 value.append('Y')
+#             else:
+#                 print('ERROR in MODE')
+#         value.append(ReportingModeDescription[key])
+#         table_rows[key] = value
+#
+#     context.update({'ModelModes': ModelModes})
+#     context.update({'TableRows': table_rows})
+#     context.update({'TableHeader': table_header})
+#     return HttpResponse(t.template.render(context))
 
 
 @login_required(login_url='/login/')
@@ -525,11 +524,11 @@ def visualization_view(request, pk):
     **Context**
 
     ``Visualization``
-        An instance of :model:`reporting.Visualization`.
+        An instance of `reporting.Visualization`.
 
     **Template:**
 
-    :template:`reporting/Visualization_interactive.html`
+    `reporting/Visualization_interactive.html`
     """
 
     # get the Visualization object

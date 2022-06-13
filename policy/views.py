@@ -20,14 +20,13 @@
 
 import json
 
-from django.conf import settings
 from django.db.models import Q
 from django.views.generic import DetailView, ListView
+
 from policy.models import DashBoardParams
 from policy.models import DataFlow
 from policy.models import DataSeries
 from policy.models import GeoSlice
-
 from policy.settings import country_dict, activities_short, activities, stat_strings
 
 

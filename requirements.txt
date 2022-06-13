@@ -3,6 +3,7 @@ djangorestframework
 drf-yasg
 numpy
 pandas
+scipy
 django-leaflet
 django-debug-toolbar
 jsonfield

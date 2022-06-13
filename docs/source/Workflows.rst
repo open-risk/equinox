@@ -1,6 +1,6 @@
 Workflows
 -------------
-Workflows is how Equinox orchestrates any desired calculation. This page provides a basic introduction. Further information is available in the use manual
+**Workflows** is not a separate app but how Equinox *orchestrates any desired calculation*, e.g. for Risk or Reporting purposes. This page provides a basic introduction. Further information is available in the user manual
 
 Workflows are the primary means to get things done within Equinox. Each workflow is essentially a specification to get a set of data, perform some desired operations and do something with the output.
 

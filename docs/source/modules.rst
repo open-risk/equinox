@@ -2,7 +2,7 @@
 
 Equinox Data Models
 ==============================
-The following pages document the Equinox data models. In general each data model is implemented in a separate file TABLE_NAME.py in the portfolio directory.
+The following pages document the Equinox *data models*. In general each data model is implemented in a separate file TABLE_NAME.py in the corresponding app directory.
 
 .. note:: Variations of data models might be implemented together in the same file.
 
@@ -46,7 +46,7 @@ Policy Data Models
 .. toctree::
    :maxdepth: 4
 
-   Policy
+   PolicyModels
 
 Risk Data Models
 -----------------------------

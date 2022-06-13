@@ -46,14 +46,23 @@ class Command(BaseCommand):
                 source.save()
     elif mode == 1:
         indata = []
+        i = 0
         for source in gpp_set.iterator():
+            i += 1
             cpa = source.project.cpa_code
-            qs = ReferenceIntensity.objects.filter(Sector=cpa)
-            if len(qs) > 0:
-                multiplier = float(qs[0].Value)
+            region = source.project.country
+            ri = None
+            try:
+                ri = ReferenceIntensity.objects.get(Sector=cpa, Region=region)
+            except:
+                pass
+            if ri:
+                multiplier = float(ri.Value)
                 budget = source.project.project_budget
-                source.co2_amount = budget * multiplier
+                source.co2_amount = round(budget * multiplier, 1)
                 indata.append(source)
+            # if i > 100:
+            #     break
         print('Computed Emissions')
 
         GPPEmissionsSource.objects.bulk_update(indata, ['co2_amount'])

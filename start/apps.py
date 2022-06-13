@@ -28,4 +28,4 @@ from django.utils.translation import gettext_lazy as _
 
 class StartConfig(AppConfig):
     name = 'start'
-    verbose_name = _('Starting Page')
+    verbose_name = _('FrontPage')

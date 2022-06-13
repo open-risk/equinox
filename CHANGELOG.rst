@@ -3,9 +3,15 @@ ChangeLog
 
 This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
 
+v0.6 (XX-06-2022)
+-----------------
+* Enhancements: cpv / cpa mapping
+* Documentation: expand to cover app views
+* Dependencies: added scipy, bumped to latest versions
+
 v0.5 (25-05-2022)
 -----------------
-* release 0.5 includes a complete data set to be used in testing use case 1 (featuring mock city-wide procurement portfolio)
+* release 0.5 includes a complete data set to be used in testing "use case 1" (featuring mock city-wide procurement portfolio)
 
 v0.4 (22-04-2022)
 ------------------

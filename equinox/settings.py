@@ -70,7 +70,8 @@ INSTALLED_APPS = [
     'policy',
     'risk',
     'reporting',
-    'debug_toolbar'
+    'debug_toolbar',
+    'behave_django'
 ]
 
 MIDDLEWARE = [

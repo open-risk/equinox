@@ -66,7 +66,7 @@ class Contractor(models.Model):
                             help_text='Town / City Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     region = models.CharField(max_length=10, null=True, blank=True,
-                              help_text='NUTS Code of Region. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                              help_text='NUTS Code of Region where contractor is registered.')
 
     country = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Country Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

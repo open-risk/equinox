@@ -17,7 +17,7 @@ Workflow Types
 
 There are three key workflow types:
 
-* A batch workflow that performs a single calculation and permanently stores the result </li>
+* A batch workflow that performs a single calculation and permanently stores the result
 * An interactive workflow that allows interactively working with models and data without saving the results
 * A parametric batch workflow that performs a family of operations (for example a parameter space survey to allow some optimization) and stores the results
 

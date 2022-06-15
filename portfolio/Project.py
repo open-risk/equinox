@@ -41,7 +41,7 @@ class Project(models.Model):
     project_identifier = models.CharField(max_length=80, blank=True, null=True,
                                           help_text='A unique identification of the Project for internal use')
 
-    project_title = models.CharField(max_length=160, blank=True, null=True,
+    project_title = models.CharField(max_length=160, blank=True, null=True, verbose_name='Title',
                                      help_text='The title of the project')
 
     project_reference = models.CharField(max_length=160, blank=True, null=True,
@@ -49,7 +49,8 @@ class Project(models.Model):
 
     # LINKS
 
-    project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, on_delete=models.SET_NULL,
+    project_category = models.ForeignKey('ProjectCategory', blank=True, null=True, verbose_name='Category',
+                                         on_delete=models.SET_NULL,
                                          help_text="The project category to which this project is best classified")
 
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
@@ -64,18 +65,21 @@ class Project(models.Model):
     # text = MarkdownField(rendered_field='text_rendered', validator=VALIDATOR_STANDARD)
     text_rendered = RenderedMarkdownField()
 
-    cpv_code = models.CharField(max_length=20, blank=True, null=True,
+    cpv_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='CPV',
                                 help_text="The Common Procurement Vocabulary Code (Main Code)")
 
-    cpa_code = models.CharField(max_length=20, blank=True, null=True,
+    cpa_code = models.CharField(max_length=20, blank=True, null=True, verbose_name='CPA',
                                 help_text="The Classification of Products by Activity Code")
 
     country = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Country where the project is originated (not necessarily of performance')
 
-    project_budget = models.IntegerField(blank=True, null=True, help_text="The Project Budget")
+    region = models.CharField(max_length=10, null=True, blank=True, verbose_name='Region',
+                              help_text='NUTS Code of Region where the project takes place.')
 
-    project_currency = models.CharField(max_length=4, blank=True, null=True,
+    project_budget = models.IntegerField(blank=True, null=True, help_text="The Project Budget", verbose_name='Budget')
+
+    project_currency = models.CharField(max_length=4, blank=True, null=True, verbose_name='Currency',
                                         help_text="The currency code in which the project is accounted for")
 
     # PROJECT SCORECARD DATA

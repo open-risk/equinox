@@ -1,0 +1,75 @@
+{% extends "start/generic.html" %}
+{% load i18n static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'reporting/js/map.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    {{ title }} Visualization Country View
+{% endblock %}
+
+
+{% block messages %}
+    <div class="helpblock">
+        <p><i class="fa fa-hand-pointer-o"></i>Overall Statistics Visualization</p>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+
+        <div class="card-header">
+            <h4>EU Procurement Emissions Map 2017-2021 - Country View</h4>
+        </div>
+
+
+    </div>
+
+
+    <div class="card card-info">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+            <div id="map">
+                {% include 'reporting/europe_countries.svg' %}
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let dataset = {{ dataset | safe }};
+        let max_value = 0
+        let min_value = 0;
+        let ids = [];
+        for (let key in dataset) {
+            let entry = dataset[key];
+            ids.push(key);
+            let y = entry.values;
+            let new_obs = y.length;
+            {#let new_max = getMaxOfArray(y);#}
+            {#let new_min = getMinOfArray(y);#}
+            let new_max = 1000;
+            let new_min = 0;
+            max_value = Math.max(max_value, new_max);
+            min_value = Math.min(min_value, new_min);
+        }
+        let context = {};
+        context['max_value'] = max_value;
+        context['min_value'] = min_value;
+        context['ids'] = ids;
+        initializeMap(dataset, context);
+    </script>
+
+{% endblock %}
+

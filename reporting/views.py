@@ -1,14 +1,14 @@
 import json
-
+import pprint as pp
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
+from django.db.models import Sum
 from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.urls import reverse_lazy
 
-from portfolio.ProjectEvent import ProjectEvent
 from portfolio.Asset import ProjectAsset
 from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
@@ -17,10 +17,11 @@ from portfolio.PortfolioManager import PortfolioManager
 from portfolio.Portfolios import ProjectPortfolio
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
+from portfolio.ProjectEvent import ProjectEvent
 from portfolio.models import MultiAreaSource
 from reference.NUTS3Data import NUTS3PointData
 from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-from reporting.models import Calculation, Visualization
+from reporting.models import Calculation, SummaryStatistics
 
 """
 
@@ -322,6 +323,35 @@ def ghg_reduction(request):
 
 
 @login_required(login_url='/login/')
+def project_nuts3_map(request):
+    t = loader.get_template('reporting/portfolio_map.html')
+    context = RequestContext(request, {})
+
+    """
+    Compile a global portfolio map of portfolio projects using their NUTS3 representative point geometries
+
+    """
+
+    portfolio_data = Project.objects.all()
+    nuts_data = []
+    iter = 1
+    for co in portfolio_data.iterator():
+        nuts = co.region
+        if iter < 100:
+            try:
+                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
+            except:
+                pass
+            iter += 1
+        else:
+            break
+    geodata = json.loads(serialize("geojson", nuts_data))
+    context.update({'geodata': geodata})
+
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
 def manager_nuts3_map(request):
     t = loader.get_template('reporting/portfolio_map.html')
     context = RequestContext(request, {})
@@ -517,23 +547,70 @@ def results_view(request, pk):
 
 
 @login_required(login_url='/login/')
-def visualization_view(request, pk):
+def visualization_country(request):
     """
-    Interactive modification / calculation of Visualizations using Ajax calls
+    Visualization - Country View
 
-    **Context**
-
-    ``Visualization``
-        An instance of `reporting.Visualization`.
-
-    **Template:**
-
-    `reporting/Visualization_interactive.html`
     """
 
-    # get the Visualization object
-    visualization = Visualization.objects.get(pk=pk)
-    t = loader.get_template('reporting/visualization.html')
+    dataset = {}
+
+    # aggregate over sectors and years
+    entries = SummaryStatistics.objects.values('country').annotate(Sum('value_total'))
+
+    for full_entry in entries:
+        entry = {}
+        if full_entry['country']:
+            dataid = full_entry['country']
+            entry['values'] = full_entry['value_total__sum']
+            dataset[dataid] = entry
+
+    t = loader.get_template('reporting/visualization_country.html')
     context = RequestContext(request, {})
-    context.update({'object': visualization})
+    context.update({'dataset': json.dumps(dataset)})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def visualization_sector(request):
+    """
+    Visualization - Sector View
+
+    """
+    dataset = {}
+
+    # aggregate over countries and years
+    entries = SummaryStatistics.objects.values('sector').annotate(Sum('value_total'))
+
+    # aggregate further to top-level CPA/NACE sectors
+    # some ad-hoc scaling
+    top_level = {}
+    total = 0
+    for entry in entries:
+        dataid = entry['sector'][:1]
+        if dataid in top_level.keys():
+            top_level[dataid] += entry['value_total__sum']
+            total += entry['value_total__sum']
+        else:
+            top_level[dataid] = entry['value_total__sum']
+            total += entry['value_total__sum']
+
+    for entry in top_level:
+        top_level[entry] = top_level[entry] * 100 / total
+
+    img_list_raw = ['A_Agriculture.svg', 'I_Accommodation.svg', 'P_Education.svg',
+                    'B_Mining.svg', 'J_ICT.svg', 'Q_Health.svg',
+                    'C_Manufacture.svg', 'K_Finance.svg', 'R_Recreation.svg',
+                    'D_Electricity.svg', 'L_RealEstate.svg', 'S_OtherServices.svg',
+                    'E_Water.svg', 'M_Professional.svg', 'T_Households.svg',
+                    'F_Construction.svg', 'N_Administrative.svg', 'U_NGO.svg',
+                    'G_Trading.svg', 'O_PublicSector.svg', 'H_Transport.svg', 'Other.svg'
+                    ]
+
+    img_list = [(s, s[:1], s[2:-4]) for s in img_list_raw]
+
+    t = loader.get_template('reporting/visualization_sector.html')
+    context = RequestContext(request, {})
+    context.update({'img_list': img_list})
+    context.update({'dataset': top_level})
     return HttpResponse(t.template.render(context))

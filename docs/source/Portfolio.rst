@@ -16,3 +16,13 @@ Portfolio Management Commands
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * map_cpv_to_cpa
+
+
+
+Example Workflow with Management Commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* python3 manage.py load_pr
+* python3 manage.py associate_sources
+* python manage.py map_cpv_to_cpa
+* python manage.py compute_emissions

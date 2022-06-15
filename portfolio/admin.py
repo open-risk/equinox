@@ -227,7 +227,7 @@ class GPPEmissionsSourceAdmin(admin.ModelAdmin):
     def project__budget(self, obj):
         return obj.project.project_budget
 
-    project__budget.short_descriont = 'Budget'
+    project__budget.short_description = 'Budget'
 
 @admin.register(ProjectEvent)
 class ProjectEventAdmin(admin.ModelAdmin):
@@ -261,7 +261,7 @@ class ProjectAdmin(admin.ModelAdmin):
     save_as = True
     search_fields = ['project_title']
     list_display = (
-    'pk', 'project_title', 'cpv_code', 'cpa_code', 'country', 'project_budget', 'project_currency', 'project_category')
+    'pk', 'project_title', 'cpv_code', 'cpa_code', 'country', 'region', 'project_budget', 'project_currency', 'project_category')
     list_filter = ('project_category', 'country', 'cpa_code')
 
 

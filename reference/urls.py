@@ -19,11 +19,13 @@
 # SOFTWARE.
 
 from django.urls import re_path
+from reference.views import nace_list
 
 app_name = 'reference'
 
 """ Custom URL's in addition to the admin url's
 
 """
-
-urlpatterns = []
+urlpatterns = [
+    re_path(r'^nace_list$', nace_list, name='nace_list'),
+]

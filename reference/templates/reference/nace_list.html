@@ -1,0 +1,39 @@
+{% extends 'start/generic.html' %}
+
+{% load i18n static %}
+
+{% block extrastyle %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="attachment-block clearfix">
+                <div class="attachment-pushed">
+                    <h4 class="attachment-heading">NACE List</h4>
+                    <div class="attachment-text">
+                        {% trans "NACE Pictogram List" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for image in img_list %}
+
+        <div class="card card-info">
+            <div class="card-header">
+                <h4>{{ image }}</h4>
+            </div>
+
+            <div class="card-body">
+                <img src="{% static 'reporting/svg/nace_pictograms/'%}{{ image }}" alt="">
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}

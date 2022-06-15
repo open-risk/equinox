@@ -22,6 +22,31 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.timezone import now
+from django_countries.fields import CountryField
+
+
+class SummaryStatistics(models.Model):
+    """
+    A Container for global (portfolio-wide) statistics
+
+    """
+
+    year = models.IntegerField(null=True, blank=True, help_text='The period of the measurement')
+    country = CountryField(null=True, blank=True, help_text='The country of the measurement')
+    sector = models.CharField(max_length=20, blank=True, null=True, help_text="Business Sector (NACE, CPA etc)")
+    contracts = models.IntegerField(null=True, blank=True, help_text='The count of contracts')
+    currency = models.CharField(max_length=4, blank=True, null=True, help_text="The currency of the measurement")
+    value_total = models.FloatField(blank=True, null=True, help_text='The monetary value (in Currency units)')
+
+    def __str__(self):
+        return str(self.pk)
+
+    def get_absolute_url(self):
+        return reverse('admin:summary_statistics_change', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Summary Statistics"
+        verbose_name_plural = "Summary Statistics"
 
 
 class ResultGroup(models.Model):

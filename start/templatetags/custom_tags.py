@@ -7,6 +7,11 @@ register = template.Library()
 
 
 @register.filter()
+def get_value(dictionary, key):
+    return int(10 * float(dictionary.get(key)))
+
+
+@register.filter()
 def nbsp(value):
     if value:
         return mark_safe("&nbsp;".join(value.split(' ')))
@@ -42,11 +47,13 @@ def orm(url, name):
     url_text = format_html('<a href="https://www.openriskmanual.org/wiki/' + url + '">' + name + '</a>')
     return url_text
 
+
 # render a link to the Open Risk Blog
 @register.simple_tag()
 def blog(url, name):
     url_text = format_html('<a href="https://www.openriskmanagement.com/' + url + '">' + name + '</a>')
     return url_text
+
 
 @register.filter()
 def get_item(dictionary, key):

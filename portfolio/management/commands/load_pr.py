@@ -81,6 +81,7 @@ class Command(BaseCommand):
             cpv_code=entry['CPV_CODE'],
             cpa_code=None,
             country=entry['COUNTRY'],
+            region=entry['REGION'],
             project_category=fk,
             portfolio=po,
             project_budget=entry['VAL_TOTAL'],

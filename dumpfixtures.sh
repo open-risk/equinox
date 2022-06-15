@@ -23,3 +23,5 @@ python3 manage.py dumpdata --format=json --indent 2 portfolio.PointSource -o por
 
 python3 manage.py dumpdata reference.NUTS3PointData --indent 2 > reference/fixtures/NUTS3PointData.json
 python3 manage.py dumpdata reference.ReferenceIntensity --indent 2 > reference/fixtures/ReferenceIntensity.json
+
+python3 manage.py dumpdata reporting.SummaryStatistics --indent 2 > reporting/fixtures/SummaryStatistics.json

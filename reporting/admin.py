@@ -26,7 +26,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_json_widget.widgets import JSONEditorWidget
 
-from reporting.models import Calculation, ResultGroup, Visualization
+from reporting.models import Calculation, ResultGroup, Visualization, SummaryStatistics
 
 actions = ['export2json', 'export2xml']
 
@@ -59,6 +59,15 @@ class CalculationAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget(attrs={'initiaĺ': 'parsed'})},
     }
+    save_as = False
+    view_on_site = False
+
+
+class SummaryStatisticsAdmin(admin.ModelAdmin):
+    fields = ('year', 'country', 'sector', 'contracts', 'currency', 'value_total')
+    list_display = ('year', 'country', 'sector', 'contracts', 'currency', 'value_total')
+    list_filter = ('year', 'sector', 'country', 'currency')
+
     save_as = False
     view_on_site = False
 
@@ -96,3 +105,4 @@ class VisualizationAdmin(admin.ModelAdmin):
 admin.site.register(Calculation, CalculationAdmin)
 admin.site.register(ResultGroup, ResultGroupAdmin)
 admin.site.register(Visualization, VisualizationAdmin)
+admin.site.register(SummaryStatistics, SummaryStatisticsAdmin)

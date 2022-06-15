@@ -1,0 +1,53 @@
+{% extends "start/generic.html" %}
+{% load i18n static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Visualization Sector View
+{% endblock %}
+
+
+{% block messages %}
+    <div class="helpblock">
+        <p><i class="fa fa-hand-pointer-o"></i>Overall Statistics Visualization</p>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+
+        <div class="card-header">
+            <h4>EU Procurement Emissions Map 2017-2021 - Sector View</h4>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="card card-info">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+
+            {% for file, letter, name in img_list %}
+                <p> {{ name }} </p>
+                <div>
+                    <img style="margin-top:-45px" src="{% static 'reporting/svg/nace_pictograms/' %}{{ file }}" alt="">
+                    <label style="background-color: #31b131; height:40px; width:{{ dataset|get_value:letter }}px"></label>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="{% static 'reporting/js/map.js' %}"></script>
+
+{% endblock %}
+

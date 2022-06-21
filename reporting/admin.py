@@ -26,7 +26,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_json_widget.widgets import JSONEditorWidget
 
-from reporting.models import Calculation, ResultGroup, Visualization, SummaryStatistics
+from reporting.models import Calculation, ResultGroup, Visualization, SummaryStatistics, AggregatedStatistics
 
 actions = ['export2json', 'export2xml']
 
@@ -72,6 +72,15 @@ class SummaryStatisticsAdmin(admin.ModelAdmin):
     view_on_site = False
 
 
+class AggregatedStatisticsAdmin(admin.ModelAdmin):
+    fields = ('country', 'sector', 'currency', 'value_total')
+    list_display = ('country', 'sector', 'value_total')
+    list_filter = ('sector', 'country')
+
+    save_as = False
+    view_on_site = False
+
+
 class ResultGroupAdmin(admin.ModelAdmin):
     fields = ('user', 'group_type',)
     list_filter = ('user', 'group_type')
@@ -106,3 +115,4 @@ admin.site.register(Calculation, CalculationAdmin)
 admin.site.register(ResultGroup, ResultGroupAdmin)
 admin.site.register(Visualization, VisualizationAdmin)
 admin.site.register(SummaryStatistics, SummaryStatisticsAdmin)
+admin.site.register(AggregatedStatistics, AggregatedStatisticsAdmin)

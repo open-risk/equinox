@@ -35,19 +35,15 @@
         <div class="card-body">
 
             {% for file, letter, name in img_list %}
-                <p> {{ name }} </p>
-                <div>
-                    <img style="margin-top:-45px" src="{% static 'reporting/svg/nace_pictograms/' %}{{ file }}" alt="">
-                    <label style="background-color: #31b131; height:40px; width:{{ dataset|get_value:letter }}px"></label>
-                </div>
-
+                <span style="width:120px; display: inline-block; vertical-align: top;"> {{ name }} </span>
+                <img style="margin-top:-45px" src="{% static 'reporting/svg/nace_pictograms/' %}{{ file }}" alt="">
+                <label style="background-color: #31b131; height:40px; width:{{ dataset|get_value:letter }}px"></label>
+                <br>
             {% endfor %}
 
         </div>
 
     </div>
-
-    <script type="text/javascript" charset="utf-8" src="{% static 'reporting/js/map.js' %}"></script>
 
 {% endblock %}
 

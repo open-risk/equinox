@@ -44,4 +44,5 @@ urlpatterns = [
     re_path(r'^results_view/(?P<pk>\d+)$', views.results_view, name='results_view'),
     re_path(r'^visualization_country$', views.visualization_country, name='visualization_country'),
     re_path(r'^visualization_sector$', views.visualization_sector, name='visualization_sector'),
+    re_path(r'^visualization_grid$', views.visualization_grid, name='visualization_grid'),
 ]

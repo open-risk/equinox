@@ -1,6 +1,12 @@
 ChangeLog
 ===========================
 
+v0.5.0 (21-06-2022)
+-------------------
+* Aggregated Statistics Model
+* Country by Sector Grid visualization
+* Portfolio Map visualization with custom markers
+
 v0.4.0 (14-06-2022)
 -------------------
 * Summary Statistics Model

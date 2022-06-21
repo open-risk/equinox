@@ -31,6 +31,9 @@ class Command(BaseCommand):
         # Delete existing objects
         SummaryStatistics.objects.all().delete()
 
+        mode = 'Multicurrency'
+        mode = 'Singlecurrency'
+
         # Import data from file
         data = pd.read_csv("reporting/fixtures/country_summary_statistics.csv", header='infer', delimiter=',')
 
@@ -40,15 +43,31 @@ class Command(BaseCommand):
         """
         indata = []
 
-        for index, entry in data.iterrows():
-            co = SummaryStatistics(
-                year=entry['year'],
-                country=entry['country'],
-                sector=entry['cpa'],
-                contracts=entry['contracts'],
-                currency=entry['currency'],
-                value_total=entry['value_total'])
+        if mode == 'Multicurrency':
+            for index, entry in data.iterrows():
+                co = SummaryStatistics(
+                    year=entry['year'],
+                    country=entry['country'],
+                    sector=entry['cpa'],
+                    contracts=entry['contracts'],
+                    currency=entry['currency'],
+                    value_total=entry['value_total'])
+                indata.append(co)
 
-            indata.append(co)
+        elif mode == 'Singlecurrency':
+            for index, entry in data.iterrows():
+                country = None
+                if entry['country'] == 'UK':
+                    country = 'GB'
+                else:
+                    country = entry['country']
+                co = SummaryStatistics(
+                    year=entry['year'],
+                    country=country,
+                    sector=entry['cpa'],
+                    contracts=entry['contracts'],
+                    currency='EUR',
+                    value_total=entry['value_total'])
+                indata.append(co)
 
         SummaryStatistics.objects.bulk_create(indata)

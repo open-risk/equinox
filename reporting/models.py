@@ -49,6 +49,28 @@ class SummaryStatistics(models.Model):
         verbose_name_plural = "Summary Statistics"
 
 
+class AggregatedStatistics(models.Model):
+    """
+    A Simplified Container for aggregated statistics (no temporal or currency dimensions)
+    Can hold aggregations of more granular Summary Statistics
+
+    """
+
+    country = CountryField(null=True, blank=True, help_text='The Country of the measurement')
+    sector = models.CharField(max_length=20, blank=True, null=True, help_text="Business Sector")
+    value_total = models.FloatField(blank=True, null=True, help_text='The monetary value (in common currency units)')
+
+    def __str__(self):
+        return str(self.pk)
+
+    def get_absolute_url(self):
+        return reverse('admin:aggregated_statistics_change', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Aggregated Statistics"
+        verbose_name_plural = "Aggregated Statistics"
+
+
 class ResultGroup(models.Model):
     """
     The ResultGroup Data object holds a group of calculation results

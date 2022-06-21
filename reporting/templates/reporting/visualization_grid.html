@@ -1,0 +1,92 @@
+{% extends "start/generic.html" %}
+{% load i18n static %}
+{% load custom_tags %}
+{% load humanize %}
+{% load countries %}
+
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+{% endblock %}
+
+{% block title %}
+    {{ title }} Visualization Country / Sector Grid
+{% endblock %}
+
+
+
+{#{% block messages %}#}
+{#    <div class="helpblock">#}
+{#        <p><i class="fa fa-hand-pointer-o"></i>Country-Sector Visualization Grid</p>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+{% block content %}
+
+    <div class="card card-primary card-outline">
+
+        <div class="card-header">
+            <h4>Public Procurement Emissions (2017-2021) - Sector by Country Grid</h4>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="card card-info">
+        <div class="card-header">
+        </div>
+
+        <div class="card-body">
+
+            <table>
+                {# header row #}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    {% for my_country in my_countries %}
+                        <td style="writing-mode: vertical-rl;">{{ my_countries|get_item:my_country }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    {% for my_country in my_countries %}
+                        {% get_country my_countries|get_item:my_country as dcountry %}
+                        <td style="height:50px;"><i class="flag2x {{ dcountry.flag_css }}"></i></td>
+                    {% endfor %}
+                </tr>
+                {# data rows #}
+                {% for sector in sectors %}
+                    <tr>
+                        <td><span
+                                style="width:120px; display: inline-block; vertical-align: top;"> {{ name_list|get_list_item:sector }} </span>
+                        </td>
+                        <td style="height:50px;"><img style="margin-top:0px" src="
+                                {% static 'reporting/svg/nace_pictograms/' %}{{ img_list|get_list_item:sector }}"
+                                                      alt=""></td>
+
+                        {% for my_country in my_countries %}
+                            <td>
+                                <svg height="40" width="40">
+                                    <circle cx="20" cy="20" r="{% tuple_args values my_country sector %}" stroke="black" stroke-width="3" fill="red"></circle>
+                                </svg>
+{#                                <span>{% tuple_args values my_country sector %}</span>#}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+

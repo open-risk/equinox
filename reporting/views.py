@@ -21,7 +21,7 @@ from portfolio.ProjectEvent import ProjectEvent
 from portfolio.models import MultiAreaSource
 from reference.NUTS3Data import NUTS3PointData
 from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-from reporting.models import Calculation, SummaryStatistics
+from reporting.models import Calculation, SummaryStatistics, AggregatedStatistics
 
 """
 
@@ -361,12 +361,17 @@ def manager_nuts3_map(request):
 
     """
 
+    # ATTN this is not performant for interactive use due to the large number of lookups
+    # TODO pre-process geometric elements per mappable entity
+
     portfolio_data = PortfolioManager.objects.all()
     nuts_data = []
     iter = 1
+    marker_limit = 3000  # avoid loading huge datasets
+
     for co in portfolio_data.iterator():
         nuts = co.region
-        if iter < 100:
+        if iter < marker_limit:
             try:
                 nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
             except:
@@ -385,10 +390,15 @@ def contractor_nuts3_map(request):
     t = loader.get_template('reporting/portfolio_map.html')
     context = RequestContext(request, {})
 
+    # ATTN this is not performant for interactive use due to the large number of lookups
+    # TODO pre-process geometric elements per mappable entity
+
     """
     Compile a global portfolio map of contractor entities using their NUTS3 representative point geometries
 
     """
+
+    marker_limit = 3000  # avoid loading huge datasets
 
     # geometry = json.loads(serialize("geojson", PointSource.objects.all()))
     # geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
@@ -398,7 +408,7 @@ def contractor_nuts3_map(request):
     iter = 1
     for co in portfolio_data.iterator():
         nuts = co.region
-        if iter < 100:
+        if iter < marker_limit:
             try:
                 nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
             except:
@@ -547,6 +557,43 @@ def results_view(request, pk):
 
 
 @login_required(login_url='/login/')
+def visualization_grid(request):
+    """
+    Visualization - Country-Sector Grid View
+
+    """
+    img_list_raw = ['A_Agriculture.svg', 'I_Accommodation.svg', 'P_Education.svg',
+                    'B_Mining.svg', 'J_ICT.svg', 'Q_Health.svg',
+                    'C_Manufacture.svg', 'K_Finance.svg', 'R_Recreation.svg',
+                    'D_Electricity.svg', 'L_RealEstate.svg', 'S_OtherServices.svg',
+                    'E_Water.svg', 'M_Professional.svg', 'T_Households.svg',
+                    'F_Construction.svg', 'N_Administrative.svg', 'U_NGO.svg',
+                    'G_Trading.svg', 'O_PublicSector.svg', 'H_Transport.svg'
+                    ]
+
+    name_list = [s[2:-4] for s in img_list_raw]
+    entries = AggregatedStatistics.objects.all()
+    countryset = [x[0] for x in AggregatedStatistics.objects.all().values_list('country').distinct()]
+    sectorset = [x[0] for x in AggregatedStatistics.objects.all().values_list('sector').distinct()]
+
+    values = {}
+    my_countries = {}
+    sectors = {}
+    for entry in entries:
+        i = countryset.index(entry.country)
+        j = sectorset.index(entry.sector)
+        my_countries[i] = entry.country.code
+        sectors[j] = entry.sector
+        values[(i, j)] = entry.value_total
+
+    t = loader.get_template('reporting/visualization_grid.html')
+    context = RequestContext(request, {})
+    context.update({'img_list': img_list_raw, 'name_list': name_list})
+    context.update({'values': values, 'sectors': sectors, 'my_countries': my_countries})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
 def visualization_country(request):
     """
     Visualization - Country View
@@ -582,7 +629,7 @@ def visualization_sector(request):
     # aggregate over countries and years
     entries = SummaryStatistics.objects.values('sector').annotate(Sum('value_total'))
 
-    # aggregate further to top-level CPA/NACE sectors
+    # aggregate further EEIO sectors to top-level CPA/NACE sectors
     # some ad-hoc scaling
     top_level = {}
     total = 0
@@ -597,6 +644,7 @@ def visualization_sector(request):
 
     for entry in top_level:
         top_level[entry] = top_level[entry] * 100 / total
+    print(top_level)
 
     img_list_raw = ['A_Agriculture.svg', 'I_Accommodation.svg', 'P_Education.svg',
                     'B_Mining.svg', 'J_ICT.svg', 'Q_Health.svg',
@@ -604,7 +652,7 @@ def visualization_sector(request):
                     'D_Electricity.svg', 'L_RealEstate.svg', 'S_OtherServices.svg',
                     'E_Water.svg', 'M_Professional.svg', 'T_Households.svg',
                     'F_Construction.svg', 'N_Administrative.svg', 'U_NGO.svg',
-                    'G_Trading.svg', 'O_PublicSector.svg', 'H_Transport.svg', 'Other.svg'
+                    'G_Trading.svg', 'O_PublicSector.svg', 'H_Transport.svg'
                     ]
 
     img_list = [(s, s[:1], s[2:-4]) for s in img_list_raw]

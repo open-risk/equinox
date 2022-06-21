@@ -15,3 +15,4 @@ django-treebeard
 django-import-export
 django-prettyjson
 django-countries
+django-debug-toolbar

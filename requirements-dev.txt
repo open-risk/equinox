@@ -1,4 +1,3 @@
 Sphinx
 sphinx-rtd-theme
-behave-django
 selenium

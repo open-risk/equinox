@@ -16,3 +16,4 @@ django-import-export
 django-prettyjson
 django-countries
 django-debug-toolbar
+behave-django

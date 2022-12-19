@@ -59,6 +59,7 @@ class AggregatedStatistics(models.Model):
     country = CountryField(null=True, blank=True, help_text='The Country of the measurement')
     sector = models.CharField(max_length=20, blank=True, null=True, help_text="Business Sector")
     value_total = models.FloatField(blank=True, null=True, help_text='The monetary value (in common currency units)')
+    co2_amount = models.FloatField(null=True, blank=True, help_text='CO2 amount in tonnes')
 
     def __str__(self):
         return str(self.pk)

@@ -185,7 +185,41 @@ def portfolio_aggregates(request):
 
 
 @login_required(login_url='/login/')
-def portfolio_stats_view(request, pk):
+def portfolio_stats_view(request):
+    """
+
+    Generate aggregate statistics about the total portfolio.
+
+    year
+    country
+    sector
+    contracts
+    currency
+    value_total
+    """
+
+    portfolio_queryset = SummaryStatistics.objects.all()
+    portfolio_dataframe = pd.DataFrame.from_records(portfolio_queryset.values())
+    print(portfolio_dataframe.head())
+
+    stats_view = {}
+    for attr in ['year', 'country', 'sector', 'currency']:
+        # Group Count by attribute
+        pstats = portfolio_dataframe.groupby([attr], as_index=True).size().reset_index(name='value_total')
+        N = pstats['value_total'].sum()
+        # Calculate Percentage
+        pstats['%'] = round(100 * pstats['value_total'] / N, 1)
+        pstats.set_index(attr)
+        stats_view[attr] = pstats.to_html(index=False)
+
+    t = loader.get_template('reporting/portfolio_stats_view.html')
+    context = RequestContext(request, {})
+    context.update({'stats_view': stats_view, 'portfolio_data': portfolio_queryset})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def credit_portfolio_stats_view(request, pk):
     """
     TODO
 
@@ -215,7 +249,7 @@ def portfolio_stats_view(request, pk):
         pstats.set_index(attr)
         stats_view[attr] = pstats.to_html(index=False)
 
-    t = loader.get_template('reporting/portfolio_stats_view.html')
+    t = loader.get_template('reporting/credit_portfolio_stats_view.html')
     context = RequestContext(request, {})
     context.update({'portfolio': p, 'stats_view': stats_view, 'portfolio_data': portfolio_queryset})
     return HttpResponse(t.template.render(context))
@@ -428,7 +462,7 @@ def gpp_report(request):
     context = RequestContext(request, {})
 
     """
-
+    Create a report of all GPP emissions sources in the global portfolios
     """
 
     table_header = []
@@ -562,19 +596,35 @@ def visualization_grid(request):
     Visualization - Country-Sector Grid View
 
     """
-    img_list_raw = ['A_Agriculture.svg', 'I_Accommodation.svg', 'P_Education.svg',
-                    'B_Mining.svg', 'J_ICT.svg', 'Q_Health.svg',
-                    'C_Manufacture.svg', 'K_Finance.svg', 'R_Recreation.svg',
-                    'D_Electricity.svg', 'L_RealEstate.svg', 'S_OtherServices.svg',
-                    'E_Water.svg', 'M_Professional.svg', 'T_Households.svg',
-                    'F_Construction.svg', 'N_Administrative.svg', 'U_NGO.svg',
-                    'G_Trading.svg', 'O_PublicSector.svg', 'H_Transport.svg'
+    img_list_raw = ['A_Agriculture.svg',
+                    'B_Mining.svg',
+                    'C_Manufacture.svg',
+                    'D_Electricity.svg',
+                    'E_Water.svg',
+                    'F_Construction.svg',
+                    'G_Trading.svg',
+                    'H_Transport.svg',
+                    'I_Accommodation.svg',
+                    'J_ICT.svg',
+                    'K_Finance.svg',
+                    'L_RealEstate.svg',
+                    'M_Professional.svg',
+                    'N_Administrative.svg',
+                    'O_PublicSector.svg',
+                    'P_Education.svg',
+                    'Q_Health.svg',
+                    'R_Recreation.svg',
+                    'S_OtherServices.svg',
+                    'T_Households.svg',
+                    'U_NGO.svg'
                     ]
 
     name_list = [s[2:-4] for s in img_list_raw]
     entries = AggregatedStatistics.objects.all()
     countryset = [x[0] for x in AggregatedStatistics.objects.all().values_list('country').distinct()]
     sectorset = [x[0] for x in AggregatedStatistics.objects.all().values_list('sector').distinct()]
+    countryset.sort()
+    sectorset.sort()
 
     values = {}
     my_countries = {}
@@ -584,12 +634,27 @@ def visualization_grid(request):
         j = sectorset.index(entry.sector)
         my_countries[i] = entry.country.code
         sectors[j] = entry.sector
-        values[(i, j)] = entry.value_total
+        if entry.co2_amount:
+            values[(i, j)] = entry.co2_amount
+        else:
+            values[(i, j)] = 0
+
+    s_keys = list(my_countries.keys())
+    s_keys.sort()
+    s_countries = {}
+    for key in s_keys:
+        s_countries[key] = my_countries[key]
+
+    s_keys = list(sectors.keys())
+    s_keys.sort()
+    s_sectors = {}
+    for key in s_keys:
+        s_sectors[key] = sectors[key]
 
     t = loader.get_template('reporting/visualization_grid.html')
     context = RequestContext(request, {})
     context.update({'img_list': img_list_raw, 'name_list': name_list})
-    context.update({'values': values, 'sectors': sectors, 'my_countries': my_countries})
+    context.update({'values': values, 'sectors': s_sectors, 'my_countries': s_countries})
     return HttpResponse(t.template.render(context))
 
 

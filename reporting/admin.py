@@ -73,8 +73,8 @@ class SummaryStatisticsAdmin(admin.ModelAdmin):
 
 
 class AggregatedStatisticsAdmin(admin.ModelAdmin):
-    fields = ('country', 'sector', 'currency', 'value_total')
-    list_display = ('country', 'sector', 'value_total')
+    fields = ('country', 'sector', 'value_total', 'co2_amount')
+    list_display = ('country', 'sector', 'value_total', 'co2_amount')
     list_filter = ('sector', 'country')
 
     save_as = False

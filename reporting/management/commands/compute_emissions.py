@@ -21,10 +21,11 @@
 from django.core.management.base import BaseCommand
 from portfolio.EmissionsSource import GPPEmissionsSource
 from reference.EmissionIntensity import intensity, ReferenceIntensity
+from reporting.models import AggregatedStatistics
 
 
 class Command(BaseCommand):
-    gpp_set = GPPEmissionsSource.objects.all()
+
 
     """
       iterate over procurement portfolio (project portfolio)
@@ -33,12 +34,14 @@ class Command(BaseCommand):
       save updated source data   
 
       mode = 0 is a testing mode
-      mode = 1 uses Eurostat CPA based emissions intensities
+      mode = 1 uses Eurostat CPA based emissions intensities per GPP emissions source
+      mode = 2 uses Eurostat CPA based emissions intensities per CPA/Country Aggregate
 
     """
-    mode = 1
+    mode = 2
 
     if mode == 0:
+        gpp_set = GPPEmissionsSource.objects.all()
         for source in gpp_set.iterator():
             if source.project.cpv_code[:2] in intensity and source.project.project_budget > 0:
                 multiplier = intensity[source.project.cpv_code[:2]]
@@ -47,6 +50,7 @@ class Command(BaseCommand):
     elif mode == 1:
         indata = []
         i = 0
+        gpp_set = GPPEmissionsSource.objects.all()
         for source in gpp_set.iterator():
             i += 1
             cpa = source.project.cpa_code
@@ -61,11 +65,25 @@ class Command(BaseCommand):
                 budget = source.project.project_budget
                 source.co2_amount = round(budget * multiplier, 1)
                 indata.append(source)
-            # if i > 100:
-            #     break
-        print('Computed Emissions')
-
         GPPEmissionsSource.objects.bulk_update(indata, ['co2_amount'])
+
+    elif mode == 2:
+        indata = []
+        source_set = AggregatedStatistics.objects.all()
+        for source in source_set.iterator():
+            cpa = source.sector
+            region = source.country
+            ri = None
+            try:
+                ri = ReferenceIntensity.objects.get(Sector=cpa, Region=region)
+            except:
+                pass
+            if ri:
+                multiplier = float(ri.Value)
+                budget = source.value_total
+                source.co2_amount = round(budget * multiplier, 1)
+                indata.append(source)
+        AggregatedStatistics.objects.bulk_update(indata, ['co2_amount'])
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Successfully computed CPA intensity based emissions'))

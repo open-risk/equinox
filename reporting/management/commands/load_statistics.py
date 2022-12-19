@@ -49,7 +49,7 @@ class Command(BaseCommand):
                     year=entry['year'],
                     country=entry['country'],
                     sector=entry['cpa'],
-                    contracts=entry['contracts'],
+                    contracts=entry['contract_count'],
                     currency=entry['currency'],
                     value_total=entry['value_total'])
                 indata.append(co)
@@ -65,9 +65,9 @@ class Command(BaseCommand):
                     year=entry['year'],
                     country=country,
                     sector=entry['cpa'],
-                    contracts=entry['contracts'],
+                    contracts=entry['contract_count'],
                     currency='EUR',
-                    value_total=entry['value_total'])
+                    value_total=entry['total_value'])
                 indata.append(co)
 
         SummaryStatistics.objects.bulk_create(indata)

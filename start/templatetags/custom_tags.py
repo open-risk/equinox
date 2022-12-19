@@ -16,7 +16,7 @@ def get_flag(obj, attr):
 @register.simple_tag
 def tuple_args(dictionary, a, b):
     if (a, b) in dictionary.keys():
-        return math.sqrt(dictionary[(a, b)]/1000000000)
+        return math.sqrt(dictionary[(a, b)]/100000000)
     else:
         return 0
 

@@ -25,7 +25,7 @@ import pandas as pd
 import pprint as pp
 
 class Command(BaseCommand):
-    help = 'Aggregate summary statistics over time'
+    help = 'Aggregate summary statistics across time for top-level sectors'
 
     def handle(self, *args, **kwargs):
         # Delete existing objects

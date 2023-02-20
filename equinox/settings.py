@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.staticfiles',
     'django_json_widget',
+    'django_extensions',
     'import_export',
     'rest_framework',
     'drf_yasg',

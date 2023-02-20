@@ -1,3 +1,4 @@
+django-debug-toolbar
 Sphinx
 sphinx-rtd-theme
 selenium

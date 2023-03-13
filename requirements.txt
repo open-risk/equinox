@@ -17,3 +17,5 @@ django-prettyjson
 django-countries
 behave-django
 django-extensions
+django-htmx
+django-debug-toolbar

@@ -1,5 +1,5 @@
 FROM python:3.9-slim
-MAINTAINER Open Risk <www.openriskmanagement.com>
+LABEL author="Open Risk <www.openriskmanagement.com>"
 LABEL version="0.4"
 LABEL description="Equinox: Open Source Sustainable Porfolio Management"
 LABEL maintainer="info@openrisk.eu"

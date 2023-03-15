@@ -30,7 +30,7 @@ __version__ = '0.5'
 # -- Project information -----------------------------------------------------
 
 project = 'equinox'
-copyright = '2021 - 2022, Open Risk'
+copyright = '2021 - 2023, Open Risk'
 author = 'Open Risk'
 
 # The short X.Y version

@@ -21,8 +21,20 @@ COPY requirements.txt /equinox/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /equinox/
+RUN rm -f /equinox/venv
 RUN rm -f /equinox/db.sqlite3
-RUN python /equinox/manage.py makemigrations
+RUN rm -rf /equinox/portfolio/migrations/*
+RUN rm -rf /equinox/policy/migrations/*
+RUN rm -rf /equinox/reference/migrations/*
+RUN rm -rf /equinox/reporting/migrations/*
+RUN rm -rf /equinox/risk/migrations/*
+RUN rm -rf /equinox/start/migrations/*
+RUN python /equinox/manage.py makemigrations start
+RUN python /equinox/manage.py makemigrations portfolio
+RUN python /equinox/manage.py makemigrations policy
+RUN python /equinox/manage.py makemigrations reference
+RUN python /equinox/manage.py makemigrations reporting
+RUN python /equinox/manage.py makemigrations risk
 RUN python /equinox/manage.py migrate
 RUN python /equinox/createadmin.py
 RUN python /equinox/createcategories.py

@@ -25,7 +25,7 @@ from django.urls import reverse
 
 class Swap(models.Model):
     """
-    The Swap model holds data for each swap (if any) involved in mitigating project market risk (e.g. interest rate, FX risk etc)
+    The Swap model holds data for each swap (if any) involved in mitigating project market risk (e.g. interest rate, FX risk etc.)
 
 
     """

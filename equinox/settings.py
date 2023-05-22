@@ -95,7 +95,7 @@ ROOT_VIEW = "http://localhost:8000"
 
 SITE_ID = 1
 # SITE_URL = "https://equinoxpoint.org"
-SITE_URL = "http://127.0.0.1:8000/"
+SITE_URL = "http://127.0.0.1:8080/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/uploads/'

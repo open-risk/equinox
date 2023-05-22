@@ -37,6 +37,7 @@ Table of Contents
 
    description
    setup
+   testing
    requirements
    initialization
 

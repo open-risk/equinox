@@ -1,3 +1,24 @@
+# Copyright (c) 2020 - 2023 Open Risk (https://www.openriskmanagement.com)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+
 import os
 import django
 
@@ -12,7 +33,8 @@ from django.test.testcases import LiveServerTestCase
 class BaseTestCase(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
-        User.objects.create_superuser(username='admin', password='admin', email='admin@admin.com')
+        if not User.objects.filter(username='admin').first():
+            User.objects.create_superuser(username='admin', password='admin', email='admin@admin.com')
 
         User.objects.create(username='Bill', password='billgates@123', email='billgates@microsoft.com',
                             first_name='Bill', last_name='Gates', is_active=True, is_staff=True)

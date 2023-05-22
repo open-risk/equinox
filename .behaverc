@@ -1,2 +1,2 @@
 [behave]
-paths = tests/acceptance
+paths = tests/features

@@ -41,7 +41,6 @@ def api_root(request, _format=None):
     """
     Returns a list of all active API endpoints in the Equinox installation, grouped by functionality
 
-
     """
 
     data = [

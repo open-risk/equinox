@@ -57,7 +57,7 @@ class NUTS3PointData(models.Model):
     coast_type = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return str(self.pk)
+        return self.nuts_id
 
     def get_absolute_url(self):
         return reverse('reference:NUTS3PointData_edit', kwargs={'pk': self.pk})

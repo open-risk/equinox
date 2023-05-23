@@ -9,22 +9,22 @@ from portfolio.PortfolioManager import PortfolioManager
 
 
 class ProjectPortfolio(models.Model):
+
     """
-    The ProjectPortfolio object holds a collection of Projects (Economic activities with defined environmental impact)
+        The ProjectPortfolio object holds a collection of Projects (Economic activities with defined environmental impact)
 
-    Includes reference to the user creating the data set (portfolio manager)
+        Includes reference to the user creating the data set (portfolio manager)
 
-    Portfolios are named to facilitate recognition
+        Portfolios are named to facilitate recognition
 
-    Actual Portfolio data are optionally aggregated and stored in the PortfolioData model
-    Timed Portfolio data are tagged using the PortfolioSnapshot model
+        Actual Portfolio data are optionally aggregated and stored in the PortfolioData model
+        Timed Portfolio data are tagged using the PortfolioSnapshot model
 
-    TODO "Notes" is a user oriented field to allow storing human readable context about the portfolio
+        TODO "Notes" is a user oriented field to allow storing human readable context about the portfolio
 
-    **Type** is an integer field representing the type of the portfolio
-    0 -> Performing Book / Current Book
-    1 -> Historical Book
-
+        **Type** is an integer field representing the type of the portfolio
+        0 -> Performing Book / Current Book
+        1 -> Historical Book
 
     """
 
@@ -78,7 +78,7 @@ class ProjectPortfolio(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
     def get_absolute_url(self):
         return reverse('portfolio:ProjectPortfolio_edit', kwargs={'pk': self.pk})
@@ -96,19 +96,20 @@ class PortfolioSnapshot(models.Model):
     .. note:: The actual Snapshot data are stored in the various Models (with foreign keys to a portfolio snapshot)
 
     """
+    name = models.CharField(blank=True, null=True, max_length=200,
+                            help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
 
-    creation_date = models.DateTimeField(auto_now_add=True,
-                                         help_text="Date at which the snapshot has been created. Different from the cutoff date")
-    last_change_date = models.DateTimeField(auto_now=True)
 
     cutoff_date = models.DateTimeField(blank=True, null=True,
                                        help_text="Portfolio Cutoff Date (If available). Different from the creation date")
 
-    name = models.CharField(blank=True, null=True, max_length=200,
-                            help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
+    # BOOKKEEPING
+    creation_date = models.DateTimeField(auto_now_add=True,
+                                         help_text="Date at which the snapshot has been created. Different from the cutoff date")
+    last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
     def get_absolute_url(self):
         return reverse('portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})

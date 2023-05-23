@@ -30,6 +30,8 @@ class Revenue(models.Model):
 
     """
 
+    revenue_group_identifier = models.TextField(help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     # LINKS
 
     project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
@@ -66,9 +68,6 @@ class Revenue(models.Model):
 
     revenue_assessment = models.FloatField(blank=True, null=True,
                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    revenue_group_identifier = models.TextField(blank=True, null=True,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     supplier_track_record = models.FloatField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

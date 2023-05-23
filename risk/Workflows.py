@@ -63,7 +63,7 @@ class Limitflow(models.Model):
     name = models.CharField(default="Default Name", max_length=200,
                             help_text="Assigned name to help manage workflow collections")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1, help_text="The creator of the workflow")
-    workflow_type = models.CharField(max_length=2, choices=TYPE_CHOICES, default=INTERACTIVE)
+    workflow_type = models.CharField(null=True, blank=True, max_length=2, choices=TYPE_CHOICES, default=INTERACTIVE)
 
     # Default objective is risk appetite
     objective = models.IntegerField(default=3, null=True, blank=True, choices=OBJECTIVE_CHOICE,
@@ -72,14 +72,14 @@ class Limitflow(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
-    workflow_id = models.CharField(default='CN_0000', max_length=200, help_text="Serial Number Workflow"
+    workflow_id = models.CharField(null=True, blank=True, default='CN_0000', max_length=200, help_text="Serial Number Workflow"
                                                                                 "in the format MM_NNNN ")
 
     workflow_description = models.TextField(default="Default Description", null=True, blank=True,
                                             help_text="A description of the main purpose and "
                                                       "characteristics of the workflow")
 
-    workflow_status = models.IntegerField(default=0, choices=WORKFLOW_STATUS_CHOICE,
+    workflow_status = models.IntegerField(null=True, blank=True, default=0, choices=WORKFLOW_STATUS_CHOICE,
                                           help_text='Draft/Published Status (Default=Draft)')
 
     api_version = models.CharField(default="0.4", max_length=50, null=True, blank=True,

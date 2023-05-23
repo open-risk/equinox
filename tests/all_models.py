@@ -18,37 +18,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
+import os
+import django
+import pprint as pp
 
-from treebeard.mp_tree import MP_Node
+os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
+django.setup()
 
-GPC_SCOPES = [(0, 'Scope 1'), (1, 'Scope 2'), (2, 'Scope 3')]
+from django.apps import apps
 
+models = {
+    model.__name__: model for model in apps.get_models()
+}
 
-class GPCSector(MP_Node):
-    """
-    The GPC Sector model implements a Category Tree for GPC Sectors
-
-
-    """
-    name = models.CharField(blank=True, null=True,max_length=50, help_text="A concise name")
-
-    gpc_ref_no = models.CharField(blank=True, null=True, max_length=10, help_text="The GPC Reference number")
-
-    gpc_scope = models.IntegerField(blank=True, null=True, choices=GPC_SCOPES,
-                                    help_text="Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number")
-
-    description = models.TextField(blank=True, null=True, help_text="Detailed Sectoral Description")
-
-    node_order_by = ['name']
-
-    # bookkeeping
-    creation_date = models.DateTimeField(auto_now_add=True)
-    last_change_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return 'GPC Sector: {}'.format(self.name)
-
-    class Meta:
-        verbose_name = "GPC Sector"
-        verbose_name_plural = "GPC Sectors"
+pp.pprint(models)

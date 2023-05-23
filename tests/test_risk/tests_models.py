@@ -18,37 +18,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
 
-from treebeard.mp_tree import MP_Node
+from django.test import TestCase
+from django.contrib.auth.models import User
 
-GPC_SCOPES = [(0, 'Scope 1'), (1, 'Scope 2'), (2, 'Scope 3')]
-
-
-class GPCSector(MP_Node):
-    """
-    The GPC Sector model implements a Category Tree for GPC Sectors
+from risk.ActivityBarrier import ActivityBarrier
+from risk.Scenarios import Scenario
+from risk.Scorecard import Scorecard
+from risk.Workflows import Limitflow
 
 
-    """
-    name = models.CharField(blank=True, null=True,max_length=50, help_text="A concise name")
+class RiskModelTests(TestCase):
 
-    gpc_ref_no = models.CharField(blank=True, null=True, max_length=10, help_text="The GPC Reference number")
+    def test_activity_barrier_str(self):
+        ActivityBarrier.objects.create(barrier_identifier='test', barrier_description='')
+        instance = ActivityBarrier.objects.get()
+        self.assertEquals("test", str(instance))
 
-    gpc_scope = models.IntegerField(blank=True, null=True, choices=GPC_SCOPES,
-                                    help_text="Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number")
+    def test_scenario_str(self):
+        Scenario.objects.create(name='test')
+        instance = Scenario.objects.get()
+        self.assertEquals("test", str(instance))
 
-    description = models.TextField(blank=True, null=True, help_text="Detailed Sectoral Description")
+    def test_scorecard_str(self):
+        Scorecard.objects.create(scorecard_identifier='test')
+        instance = Scorecard.objects.get()
+        self.assertEquals("test", str(instance))
 
-    node_order_by = ['name']
-
-    # bookkeeping
-    creation_date = models.DateTimeField(auto_now_add=True)
-    last_change_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return 'GPC Sector: {}'.format(self.name)
-
-    class Meta:
-        verbose_name = "GPC Sector"
-        verbose_name_plural = "GPC Sectors"
+    def test_limitflow_str(self):
+        User.objects.create()
+        user = User.objects.get()
+        Limitflow.objects.create(name='test', user_id=user)
+        instance = Limitflow.objects.get()
+        self.assertEquals("test", str(instance))

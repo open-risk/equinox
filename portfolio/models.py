@@ -76,6 +76,8 @@ class AreaSource(models.Model):
     asset = models.ForeignKey('portfolio.ProjectAsset', null=True, blank=True, on_delete=models.CASCADE)
 
     # ATTRIBUTES
+
+    # ATTN location cannot be null
     location = PolygonField()
 
     #
@@ -96,6 +98,7 @@ class AreaSource(models.Model):
 
 
 class MultiAreaSource(models.Model):
+
     """A multi-polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)"""
 
     # IDENTIFICATION

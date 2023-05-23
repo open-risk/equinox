@@ -68,7 +68,7 @@ class Scenario(models.Model):
     scenario_probabilities = models.JSONField(blank=True, null=True, help_text="Scenario Probabilities (Optional). For mathematical consistency must add to unity")
 
     # number of factors projected per scenario. this supports multi-factor (multi-variable)
-    factor_no = models.IntegerField(default=1, help_text="The Number of Scenario Factors (Variables)")
+    factor_no = models.IntegerField(blank=True, null=True, default=1, help_text="The Number of Scenario Factors (Variables)")
 
     factor_values = models.JSONField(blank=True, null=True, help_text="Factor Values under the Projection as a Dict (See Docs)")
 

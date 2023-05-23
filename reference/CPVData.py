@@ -54,7 +54,7 @@ class CPVData(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.CPV_ID)
+        return self.CPV_ID
 
     def get_absolute_url(self):
         return reverse('reference:CPVData_edit', kwargs={'pk': self.pk})

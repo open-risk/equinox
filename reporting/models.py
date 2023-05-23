@@ -51,8 +51,9 @@ class SummaryStatistics(models.Model):
 
 class AggregatedStatistics(models.Model):
     """
-    A Simplified Container for aggregated statistics (no temporal or currency dimensions)
-    Can hold aggregations of more granular Summary Statistics
+    A Simplified Container for aggregated statistics of C02 / Value per country and sector
+    It provides no temporal or currency dimensions
+    It can hold aggregations of more granular Summary Statistics
 
     """
 
@@ -111,9 +112,11 @@ class ResultGroup(models.Model):
 
 class Calculation(models.Model):
     """
-    The Calculation Data object holds the complete outcome of a workflow calculation as returned by model server.
+    The Calculation Data object holds the complete outcome of a workflow calculation as returned by a model server.
 
-    It includes reference to user initiating calculation and the submitted workflow. Logfile holds a logstring
+    It includes reference to the user initiating the calculation and the submitted workflow.
+
+    The Logfile holds a logstring
     Result is json object with flexible structure. Typically:
     'Graph'     : json object (different types)
     'Statistics': json object (tabular)
@@ -132,6 +135,7 @@ class Calculation(models.Model):
     # The final workflow_data used for the calculation
     # In principle starting with the base workflow, performing all the FK embeddings
     # and applying the workflow delta should reproduce the workflow data stored here
+
     workflow_data = models.JSONField(null=True, blank=True, help_text="Verbatim storage of the calculation input "
                                                                       "in JSON format")
 

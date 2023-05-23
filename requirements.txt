@@ -18,3 +18,10 @@ django-countries
 django-extensions
 django-htmx
 django-debug-toolbar
+Sphinx
+sphinx-rtd-theme
+selenium
+behave-django
+pytest
+pytest-bdd
+coverage

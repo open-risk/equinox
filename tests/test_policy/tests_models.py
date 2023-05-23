@@ -18,37 +18,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
 
-from treebeard.mp_tree import MP_Node
-
-GPC_SCOPES = [(0, 'Scope 1'), (1, 'Scope 2'), (2, 'Scope 3')]
-
-
-class GPCSector(MP_Node):
-    """
-    The GPC Sector model implements a Category Tree for GPC Sectors
+from django.test import TestCase
+from policy.models import DashBoardParams,  DataFlow, DataSeries, GeoSlice
+class PolicyModelTests(TestCase):
 
 
-    """
-    name = models.CharField(blank=True, null=True,max_length=50, help_text="A concise name")
+    def test_contractor_str(self):
+        DashBoardParams.objects.create()
+        instance = DashBoardParams.objects.get()
+        self.assertEquals("1", str(instance))
 
-    gpc_ref_no = models.CharField(blank=True, null=True, max_length=10, help_text="The GPC Reference number")
+    def test_dataflow_str(self):
+        DataFlow.objects.create(name='test')
+        instance = DataFlow.objects.get()
+        self.assertEquals("test", str(instance))
 
-    gpc_scope = models.IntegerField(blank=True, null=True, choices=GPC_SCOPES,
-                                    help_text="Applicable GHG Emission Scope (Numerical: 1, 2, 3). This is linked to the GPC Reference Number")
+    def test_dataseries_str(self):
+        DataSeries.objects.create(identifier='test')
+        instance = DataSeries.objects.get()
+        self.assertEquals("test", str(instance))
 
-    description = models.TextField(blank=True, null=True, help_text="Detailed Sectoral Description")
-
-    node_order_by = ['name']
-
-    # bookkeeping
-    creation_date = models.DateTimeField(auto_now_add=True)
-    last_change_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return 'GPC Sector: {}'.format(self.name)
-
-    class Meta:
-        verbose_name = "GPC Sector"
-        verbose_name_plural = "GPC Sectors"
+    def test_geoslice_str(self):
+        GeoSlice.objects.create(identifier='test')
+        instance = GeoSlice.objects.get()
+        self.assertEquals("test", str(instance))

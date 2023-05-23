@@ -97,7 +97,7 @@ class PortfolioManager(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.name_of_manager)
+        return self.name_of_manager
 
     def get_absolute_url(self):
         return reverse('portfolio:PortfolioManager_edit', kwargs={'pk': self.pk})

@@ -64,7 +64,9 @@ intensity = {'09': 348.9,
 
 class ReferenceIntensity(models.Model):
     """
-    The Reference Emissions Intensity model holds reference emission intensities for comparison purposes. Usage: Internal (Portfolio). Intensities can be juxtaposed with these external / macro benchmarks
+    The Reference Emissions Intensity model holds reference emission intensities for comparison purposes.
+
+    Usage: Internal (Portfolio). Intensities can be juxtaposed with these external / macro benchmarks
 
 
     """

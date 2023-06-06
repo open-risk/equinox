@@ -23,36 +23,34 @@ from portfolio.model_choices import *
 from django.urls import reverse
 
 
-class Contractor(models.Model):
+class Counterparty(models.Model):
     """
-    The Contractor model holds data for each Contractor with an existing project related contract (e.g, involved in the construction of a Project, or the fulfillment of a Procurement contract)
-
-    A Contractor is a type of Counterparty, typically a corporate entity (maybe an SME or a large corporate)
-
-    The Contractor data fields cover
-    - identity, type, address
-    - links to contracts and buyers
-    - EBA scorecard fields
+    The Counterparty model holds data for a generic Counteparty to an EECS Contract. Can be a buyer or seller.
 
     """
 
     # IDENTITY
 
-    contractor_identifier = models.IntegerField(null=True, blank=True,
+    counterparty_identifier = models.IntegerField(null=True, blank=True,
                                                 help_text='Unique Internal Integer Identifier')
 
-    contractor_legal_entity_identifier = models.CharField(max_length=200, blank=True, null=True,
+    counterparty_legal_entity_identifier = models.CharField(max_length=200, blank=True, null=True,
                                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    name_of_contractor = models.CharField(max_length=200, null=True, blank=True, help_text='Full Name of Contractor')
+    name_of_counterparty = models.CharField(max_length=200, null=True, blank=True, help_text='Full Name of Counterparty')
 
     # LINKS
 
-    project = models.ForeignKey('Project', blank=True, null=True, on_delete=models.CASCADE,
-                                        help_text="Project that engaged the Contractor (Optional)")
+    # EECS REGISTRY
 
-    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
-                                        help_text="Project Company that sourced the Contractor (Optional)")
+    eecs_account_no = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='EECS Account No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    eecs_registration_database = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='EECS Registration Database. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Registration_Database">Documentation</a>')
+
+    eecs_registry_operator = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='EECS Registry Operator. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # ADDRESS
 
@@ -66,12 +64,12 @@ class Contractor(models.Model):
                             help_text='Town / City Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     region = models.CharField(max_length=10, null=True, blank=True,
-                              help_text='NUTS Code of Region where contractor is registered.')
+                              help_text='NUTS Code of Region where counterparty is registered.')
 
     country = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Country Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    # CONTACT
+    # CONTACT INFORMATION (PERSON)
 
     phone = models.CharField(max_length=20, null=True, blank=True,
                              help_text='Phone Number <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -88,30 +86,27 @@ class Contractor(models.Model):
     website = models.CharField(max_length=40, null=True, blank=True,
                                help_text='Website URL. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    # SCORECARD
+    # Bank Account Information
 
-    permitting_and_siting = models.IntegerField(blank=True, null=True, choices=PERMITTING_AND_SITING_CHOICES,
-                                                help_text='Risk SubFactor. EBA 3.2.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    bank_name = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='Bank Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    completion_guarantees_and_liquidated_damages = models.IntegerField(blank=True, null=True,
-                                                                       choices=COMPLETION_GUARANTEES_AND_LIQUIDATED_DAMAGES_CHOICES,
-                                                                       help_text='Risk SubFactor. EBA 3.2.4. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    bank_account_no = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='Bank Account No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    type_of_construction_contract = models.IntegerField(blank=True, null=True,
-                                                        choices=TYPE_OF_CONSTRUCTION_CONTRACT_CHOICES,
-                                                        help_text='Risk SubFactor. EBA 3.2.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    contractor_track_record = models.IntegerField(blank=True, null=True, choices=CONTRACTOR_TRACK_RECORD_CHOICES,
-                                                  help_text='Risk SubFactor. EBA 3.2.5. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    bic_swift_code = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='BIC-/Swift-code. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    # OTHER
-    is_sme = models.BooleanField(blank=True, null=True, help_text="Whether the entity is an SME or not")
 
-    completion_guarantees = models.BooleanField(blank=True, null=True,
-                                                help_text='Whether there are completion guarantees for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    iban = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='IBAN. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    liquidated_damages = models.BooleanField(blank=True, null=True,
-                                             help_text='Whether there are liquidated damages for the contract. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    vat_registration_no = models.CharField(max_length=40, null=True, blank=True,
+                               help_text='VAT Registration No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
 
     #
     # BOOKKEEPING FIELDS
@@ -120,11 +115,11 @@ class Contractor(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.contractor_identifier)
+        return str(self.counterparty_identifier)
 
     def get_absolute_url(self):
-        return reverse('portfolio:Contractor_edit', kwargs={'pk': self.pk})
+        return reverse('portfolio:counterparty_edit', kwargs={'pk': self.pk})
 
     class Meta:
-        verbose_name = "Contractor"
-        verbose_name_plural = "Contractors"
+        verbose_name = "Counterparty"
+        verbose_name_plural = "Counterparties"

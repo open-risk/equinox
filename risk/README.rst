@@ -1,6 +1,6 @@
 Equinox Risk
 ==========================================
-Risk is an Equinox app to perform Risk Analysis
+Risk is an Equinox app dedicated to performing various Risk Analysis tasks on the basis of Equinox data
 
 Quick start
 ---------------------

@@ -30,7 +30,7 @@ The initial functionality of Equinox focuses on integrating the following concep
 - 💬 [Discussion at the Open Risk Commons](https://www.openriskcommons.org/c/equinox/27)
 - For broader sustainable finance knowledge base, consult the [Open Risk Manual](https://www.openriskmanual.org/wiki/Category:Sustainable_Finance)
 - 🌱 For training, head to the [Open Risk Academy](https://www.openriskacademy.com/)
-- For a [live demo](https://www.equinoxpoint.org/)
+
 
 ## Screenshots
 

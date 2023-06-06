@@ -14,6 +14,7 @@ Portfolio Data Models
 
    Asset
    EmissionsSource
+   Certificate
    Project
    ProjectCompany
    ProjectActivity

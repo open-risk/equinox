@@ -1,0 +1,26 @@
+[
+{
+  "model": "portfolio.certificate",
+  "pk": 1,
+  "fields": {
+    "certificate_identifier": "C01251946",
+    "seller": 1,
+    "buyer": 2,
+    "production_device": 1,
+    "production_start": "2023-06-06",
+    "production_end": "2023-06-24",
+    "technology_code": "T020504",
+    "delivery_date": "2023-06-30",
+    "contract_quantity": 1,
+    "contract_price": 100.0,
+    "production_country": "Andromeda Galaxy",
+    "production_issuing_body": "EECS1-10",
+    "delivery_country": "Spiral Galaxy",
+    "deliver_issuing_body": "EECS1-11",
+    "support_type": "None",
+    "ics": "None",
+    "creation_date": "2023-06-06T15:41:32.449Z",
+    "last_change_date": "2023-06-06T15:41:32.449Z"
+  }
+}
+]

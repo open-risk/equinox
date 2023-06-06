@@ -35,8 +35,7 @@ ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
 
 class ProjectAsset(models.Model):
     """
-    The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc.) that
-    is part of a Portfolio or Inventory or a Project - which may or may not be financed.
+    The Project Asset model holds asset specific data for each real asset, facility (plant, infrastructure etc.) that is part of a Portfolio or Inventory or a Project - which may or may not be financed.
 
     A Project Asset will in general be associated with one or more emissions sources.
 
@@ -435,3 +434,54 @@ class Building(models.Model):
     class Meta:
         verbose_name = "Building"
         verbose_name_plural = "Buildings"
+
+
+class PowerPlant(models.Model):
+    """
+    The Power Plant Asset model holds power plant specific data for energy producing facilities
+
+    """
+
+    # IDENTIFICATION & CATEGORIZATION
+
+    production_device_number = models.CharField(max_length=80, blank=True, null=True,
+                                        help_text='Production Device Number (GSRN)')
+
+    production_device_name = models.CharField(max_length=80, blank=True, null=True,
+                                        help_text='Name of Production Device')
+
+    description = models.TextField(blank=True, null=True,
+                                   help_text='Additional information about the Asset')
+
+
+    #
+    # GHG Data
+    #
+
+    asset_ghg_emissions = models.FloatField(blank=True, null=True,
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents')
+
+    # OTHER
+
+
+    date_of_commisioning = models.DateField(blank=True, null=True,
+                                                 help_text='Commissioning date of the power plant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+
+
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.production_device_number
+
+    def get_absolute_url(self):
+        return reverse('portfolio:PowerPlant_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Power Plant"
+        verbose_name_plural = "Power Plants"

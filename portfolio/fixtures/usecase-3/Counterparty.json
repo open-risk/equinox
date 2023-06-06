@@ -1,0 +1,60 @@
+[
+{
+  "model": "portfolio.counterparty",
+  "pk": 1,
+  "fields": {
+    "counterparty_identifier": 123,
+    "counterparty_legal_entity_identifier": "A426",
+    "name_of_counterparty": "MyCounteraparty",
+    "eecs_account_no": "EECS1",
+    "eecs_registration_database": "Core Registry",
+    "eecs_registry_operator": "Core Registry Operator",
+    "address": "Moonbase 2",
+    "postal_code": "1023",
+    "town": "Utopia",
+    "region": "Andromeda",
+    "country": "No Worries",
+    "phone": "352364",
+    "fax": null,
+    "email": "me@equinox.org",
+    "contact_point": null,
+    "website": null,
+    "bank_name": null,
+    "bank_account_no": null,
+    "bic_swift_code": null,
+    "iban": null,
+    "vat_registration_no": null,
+    "creation_date": "2023-06-06T15:29:31.685Z",
+    "last_change_date": "2023-06-06T15:29:52.167Z"
+  }
+},
+{
+  "model": "portfolio.counterparty",
+  "pk": 2,
+  "fields": {
+    "counterparty_identifier": 124,
+    "counterparty_legal_entity_identifier": "A427",
+    "name_of_counterparty": "MyCounteparty2",
+    "eecs_account_no": "EECS2",
+    "eecs_registration_database": "Core Registry",
+    "eecs_registry_operator": "Core Registry Operator",
+    "address": "Moonbase 2",
+    "postal_code": "1024",
+    "town": "Utopia",
+    "region": "Andromeda",
+    "country": "No Worries",
+    "phone": "652364",
+    "fax": null,
+    "email": "me@equinox.org",
+    "contact_point": null,
+    "website": null,
+    "bank_name": null,
+    "bank_account_no": null,
+    "bic_swift_code": null,
+    "iban": null,
+    "vat_registration_no": null,
+    "creation_date": "2023-06-06T15:31:09.406Z",
+    "last_change_date": "2023-06-06T15:31:09.406Z"
+  }
+}
+]

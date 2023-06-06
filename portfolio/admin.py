@@ -32,6 +32,7 @@ from treebeard.forms import movenodeform_factory
 from portfolio.Asset import ProjectAsset, Building
 from portfolio.Borrower import Borrower
 from portfolio.Contractor import Contractor
+from portfolio.Counterparty import Counterparty
 from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource
 from portfolio.EmissionsSource import GPCEmissionsSource, GPPEmissionsSource
 from portfolio.Loan import Loan
@@ -51,6 +52,8 @@ from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
 from portfolio.Swap import Swap
+from portfolio.Certificate import Certificate
+from portfolio.Asset import PowerPlant
 from portfolio.models import PointSource, AreaSource, MultiAreaSource
 
 
@@ -229,6 +232,7 @@ class GPPEmissionsSourceAdmin(admin.ModelAdmin):
 
     project__budget.short_description = 'Budget'
 
+
 @admin.register(ProjectEvent)
 class ProjectEventAdmin(admin.ModelAdmin):
     """Project Event admin"""
@@ -261,7 +265,8 @@ class ProjectAdmin(admin.ModelAdmin):
     save_as = True
     search_fields = ['project_title']
     list_display = (
-    'pk', 'project_title', 'cpv_code', 'cpa_code', 'country', 'region', 'project_budget', 'project_currency', 'project_category')
+        'pk', 'project_title', 'cpv_code', 'cpa_code', 'country', 'region', 'project_budget', 'project_currency',
+        'project_category')
     list_filter = ('project_category', 'country', 'cpa_code')
 
 
@@ -345,6 +350,27 @@ class OperatorAdmin(admin.ModelAdmin):
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(PowerPlant)
+class PowerPlantAdmin(admin.ModelAdmin):
+    view_on_site = False
+    save_as = True
+    date_hierarchy = ('creation_date')
+
+
+@admin.register(Counterparty)
+class CounterpartyAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
     date_hierarchy = ('creation_date')

@@ -1,0 +1,15 @@
+[
+{
+  "model": "portfolio.powerplant",
+  "pk": 1,
+  "fields": {
+    "production_device_number": "A124",
+    "production_device_name": "Utopia Tidal Wave",
+    "description": "A tidal cycle collector",
+    "asset_ghg_emissions": 0.0,
+    "date_of_commisioning": "2024-04-24",
+    "creation_date": "2023-06-06T15:39:51.439Z",
+    "last_change_date": "2023-06-06T15:39:51.439Z"
+  }
+}
+]

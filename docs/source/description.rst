@@ -53,12 +53,12 @@ Application Layer
 -----------------------
 The application layer helps users extract useful information from the database and perform the required portfolio management analyses and reports. There are currently two major groups of application data:
 
-Risk Analysis
-~~~~~~~~~~~~~~
+Risk Analysis Layer
+~~~~~~~~~~~~~~~~~~~~
 
 The **Risk App** is the main interface for *risk analytics* functionality (the calculation or risk metrics, KPI's and other indicators on the basis of portfolio and potentially other external data)
 
-Reporting
-~~~~~~~~~~~
+Reporting Layer
+~~~~~~~~~~~~~~~~
 
 Reports are the primary means to disseminate results of analyses outside the Equinox environment. The **Reporting App** is the primary means of generating reports.

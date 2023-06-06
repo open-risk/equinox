@@ -70,7 +70,7 @@ class EmissionsSource(models.Model):
     # LINKS
 
     asset = models.ForeignKey('portfolio.ProjectAsset', blank=True, null=True, on_delete=models.CASCADE,
-                              help_text="Asset to which this source belongs")
+                              help_text="Asset to which this emissions source is attributed")
 
     emissions_factor = models.ForeignKey('reference.EmissionFactor', blank=True, null=True, on_delete=models.CASCADE,
                                          help_text="Applicable Emissions Factor")

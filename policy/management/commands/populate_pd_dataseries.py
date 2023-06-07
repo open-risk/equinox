@@ -38,10 +38,10 @@ class Command(BaseCommand):
     help = 'Imports dataseries data into the database (no backup!)'
     Debug = True
 
-    datapath = settings.ROOT_PATH + settings.DATA_PATH
+    datapath = settings.DATA_PATH
 
     # path = settings.DATA_PATH
-    dataseries_file = settings.ROOT_PATH + settings.dataseries_update_file
+    dataseries_file = settings.dataseries_update_file
 
     if Debug:
         print(dataseries_file)
@@ -54,7 +54,7 @@ class Command(BaseCommand):
     DataSeries.objects.all().delete()
 
     # Import metadata from file
-    metadata = json.load(open(settings.ROOT_PATH + settings.metadata_file))
+    metadata = json.load(open(settings.metadata_file))
 
     # Import valid dataseries METADATA from file
     dataseries = json.load(open(dataseries_file))

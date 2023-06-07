@@ -1,16 +1,9 @@
 #!/bin/bash
 set -e
 
-if [ $1 == 'local' ]
-then
-    DJANGO_DIR="/Equinox"
-    SCRIPT_DIR="/Equinox/policy/policy_data"
-    DATA_DIR="/Equinox/policy/policy_data/dataflows"
-else
-    DJANGO_DIR="/var/www/Equinox"
-    SCRIPT_DIR="/var/www/Equinox/mobility_data/datafiles"
-    DATA_DIR="/var/www/Equinox/mobility_data/datafiles/dataflows"
- fi
+DJANGO_DIR=$(cd ../../..; pwd)
+SCRIPT_DIR="/equinox/policy/fixtures/policy_data"
+DATA_DIR="/equinox/policy/fixtures/policy_data/dataflows"
 
 echo "-> Step 1: Extracting Dataflows to Dict"
 python3 $DJANGO_DIR/manage.py extract_policy_dataflows
@@ -32,7 +25,7 @@ echo "-> Step 5: Create Dimensions Dictionary"
 python3 $DJANGO_DIR/manage.py create_policy_dimension_dict
 echo "-> Step 5: Successful"
 
-echo "-> Step 6: Process Mobility Data"
+echo "-> Step 6: Process Policy Data"
 python3 $DJANGO_DIR/manage.py process_policy
 echo "-> Step 6: Successful"
 

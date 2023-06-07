@@ -24,7 +24,7 @@ from django.core.management.base import BaseCommand
 from scipy import stats
 
 import policy.settings as settings
-from equinox.settings import BASE_DIR as datapath
+
 # The field names as they are in the CSV header
 from policy.settings import field_codes, field_description, field_description_long, field_code_list, field_type
 
@@ -70,6 +70,8 @@ class Command(BaseCommand):
     Debug = True
     Logging = True
 
+    datapath = settings.DATA_PATH
+
     start_time = time.time()
     start_timestamp = datetime.isoformat(datetime.now())
     date = datetime.now().strftime('%Y-%m-%d %H:%M')
@@ -84,9 +86,8 @@ class Command(BaseCommand):
         print('> ' + str(date) + '\n')
 
     # Read the list of downloaded dataseries
-    dataseries_list_file = str(datapath) + settings.dataseries_file
-    dataseries_list_update_file = str(datapath) + settings.dataseries_update_file
-    print(dataseries_list_file, dataseries_list_update_file)
+    dataseries_list_file = settings.dataseries_file
+    dataseries_list_update_file =  settings.dataseries_update_file
 
     series_list = json.load(open(dataseries_list_file))
     if Debug:
@@ -271,7 +272,7 @@ class Command(BaseCommand):
                 if Logging:
                     logfile.write(dataflow + ' : ' + series_id + check2 + '\n')
 
-                # Compute Geometry (For Mobility Gauge Visualization)
+                # Compute Geometry (For Volatility Gauge Visualization)
 
                 # VOLATILITY GAUGE SETTINGS
                 # Map key values onto circle

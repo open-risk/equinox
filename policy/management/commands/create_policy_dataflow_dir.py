@@ -42,7 +42,7 @@ class Command(BaseCommand):
     start_timestamp = datetime.isoformat(datetime.now())
     date = datetime.now().strftime('%Y-%m-%d %H:%M')
 
-    datapath = settings.ROOT_PATH + settings.DATA_PATH
+    datapath = settings.DATA_PATH
 
     if Logging:
         logfile = open(settings.logfile_path, 'a')

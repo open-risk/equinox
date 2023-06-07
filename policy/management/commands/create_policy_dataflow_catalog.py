@@ -67,10 +67,10 @@ class Command(BaseCommand):
     dataflow_list_file = dataflows_file
 
     dataseries_list_file = settings.dataseries_file
-    series_list = json.load(open("./policy/policy_data/dataseries.latest.json"))
+    series_list = json.load(open(dataseries_list_file))
 
     dataseries_updated_file =  settings.dataseries_update_file
-    updated_list = json.load(open("./policy/policy_data/dataseries.update.json"))
+    updated_list = json.load(open(dataseries_updated_file))
 
     for key in dataflow_dict:
         print(key, dataflow_dict[key])

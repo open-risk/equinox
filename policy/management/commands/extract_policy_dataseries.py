@@ -56,6 +56,7 @@ class Command(BaseCommand):
     help = 'Extract policy dataseries metadata from csv'
     Debug = False
     Logging = True
+    dataflowpath = settings.DATA_PATH + 'dataflows/'
 
     start_time = time.time()
     start_timestamp = datetime.isoformat(datetime.now())
@@ -66,7 +67,7 @@ class Command(BaseCommand):
         logfile.write('> Extracting Dataseries \n')
         logfile.write('> Starting at: ' + str(date) + '\n')
 
-    dataseries_list_file = settings.ROOT_PATH + settings.dataseries_file
+    dataseries_list_file = settings.dataseries_file
 
     count = 0
     filepath = settings.CSV_FILE_PATH
@@ -91,7 +92,6 @@ class Command(BaseCommand):
         # Some type issues of pandas
         if type(country_region_code) is float:
             country_region_code = 'NA'
-
 
         # The dataseries data
 
@@ -157,7 +157,7 @@ class Command(BaseCommand):
 
     # Save the dataseries data into the dataflow directory structure
     for ds in dataseries_dict:
-        dataseries_file = settings.ROOT_PATH + '/policy/policy_data/dataflows/' + ds[:2] + '/' + ds + '.json'
+        dataseries_file = dataflowpath + ds[:2] + '/' + ds + '.json'
         json.dump(dataseries_dict[ds], open(dataseries_file, 'w'), sort_keys=True, indent=4, separators=(',', ': '))
         # print(dataseries_file)
 
@@ -184,7 +184,7 @@ class Command(BaseCommand):
 
     if Logging:
         logfile.write("> Execution Time: %s seconds --- \n" % (time.time() - start_time))
-        logfile.write(80*'=' + '\n')
+        logfile.write(80 * '=' + '\n')
         logfile.close()
 
     def handle(self, *args, **options):

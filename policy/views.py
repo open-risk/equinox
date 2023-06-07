@@ -517,7 +517,7 @@ class GSMapView(DetailView):
         dataseries = geoslice.dataset_id
         # print(dataseries)
         # construct the dataset to send to the template
-        # the dataset for the mobility type for each country
+        # the dataset for the policy type for each country
         dataset = {}
         query = Q()
         for ds in dataseries:

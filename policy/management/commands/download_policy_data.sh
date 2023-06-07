@@ -1,4 +1,4 @@
-                                             #!/bin/bash
+#!/bin/bash
 wget 'https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv'
 DAY=$(date -d "today" +"%d-%m-%Y")
 FILE="Oxford_Policies_Report_"$DAY".csv"

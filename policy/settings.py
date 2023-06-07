@@ -17,19 +17,24 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import os
+from pathlib import Path
 
 # Directories
-DATA_PATH = './policy/policy_data/'
+
+EQUINOX_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH = os.path.join(EQUINOX_DIR, 'policy/fixtures/policy_data/')
 ROOT_DIR = DATA_PATH
-ROOT_PATH = './'
+
+
 # Output files:
-dataseries_file = "/policy/policy_data/dataseries.latest.json"
-dimensions_file = ROOT_DIR + "dimensions.latest.json"
-dataseries_update_file = "/policy/policy_data/dataseries.update.json"
+dataseries_file = ROOT_DIR + "dataseries.latest.json"
+dimensions_file = ROOT_DIR  + "dimensions.latest.json"
+dataseries_update_file = ROOT_DIR + "dataseries.update.json"
 metadata_file = ROOT_DIR + 'wikidata_extract_19_05_2020.json'
 
-# DATA_FILE = 'Oxford_Policies_Report_Latest.csv'
-DATA_FILE = 'OxCGRT_latest.csv'
+DATA_FILE = 'Oxford_Policies_Report_Latest.csv'
+# DATA_FILE = 'OxCGRT_latest.csv'
 
 CSV_FILE_PATH = DATA_PATH + DATA_FILE
 

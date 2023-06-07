@@ -39,9 +39,9 @@ class Command(BaseCommand):
     Debug = False
 
     path = settings.DATA_PATH
-    dataflows_file = settings.ROOT_PATH + settings.dataflows_file
-    dimensions_file = settings.ROOT_PATH + settings.dimensions_file
-    dataseries_file = settings.ROOT_PATH + settings.dataseries_update_file
+    dataflows_file =  settings.dataflows_file
+    dimensions_file = settings.dimensions_file
+    dataseries_file = settings.dataseries_update_file
 
     # Do a backup (for emergency use only)
     # TODO Make readable by update workflow
@@ -54,8 +54,7 @@ class Command(BaseCommand):
     # Delete existing DataFlow objects
     DataFlow.objects.all().delete()
 
-    # Expand Mobility Categories with user-friendly menu labels
-    # Initially on the google category. May add apple
+    # Expand Policy Categories with user-friendly menu labels
     dictionary = {
         '1': 'OxCGRT Policy Data',
     }
@@ -129,7 +128,7 @@ class Command(BaseCommand):
                 long_desc=df['LONG_DESC'],
                 geo=df['GEO'],
                 geoslices=0,
-                node_url="https://www.equinox.com/mobility_data/",
+                node_url="https://localhost/api/",
                 dimensions=dimension_data,
                 dataset_id=dataset_id,
                 oxford_n=df['OXFORD_N'],

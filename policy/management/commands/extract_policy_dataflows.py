@@ -23,7 +23,7 @@
 
 Created Wed Jun 10 12:48:51 CEST 2020
 
-Input csv file
+Input csv file with policy data
 Output dataflow_dict.pkl, dataflow_dict.json
 
 0.1 version only dataflow data is country name
@@ -39,6 +39,8 @@ import json
 import pickle
 from datetime import datetime
 import time
+from pathlib import Path
+
 import pandas as pd
 import policy.settings as settings
 from django.core.management.base import BaseCommand
@@ -47,11 +49,13 @@ from policy.settings import countryISOMapping
 
 class Command(BaseCommand):
     help = 'Extract Dataflow metadata from csv into a pickle file'
-    Debug = False
+    Debug = True
     Logging = True
 
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
     filepath = settings.CSV_FILE_PATH
-    datapath = settings.ROOT_PATH + settings.DATA_PATH
+    datapath = settings.DATA_PATH
 
     start_time = time.time()
     start_timestamp = datetime.isoformat(datetime.now())
@@ -59,7 +63,7 @@ class Command(BaseCommand):
 
     if Logging:
         logfile = open(settings.logfile_path, 'a')
-        logfile.write('> Extracting Mobility Data Country Dataflows \n')
+        logfile.write('> Extracting Policy Data Country Dataflows \n')
         logfile.write('> Starting at: ' + str(date) + '\n')
 
     mydata = pd.read_csv(filepath)
@@ -101,7 +105,7 @@ class Command(BaseCommand):
     if Debug:
         print(country_dict)
 
-    json.dump(dataflow_dict, open(datapath + '/dataflow_dict' + '.json', 'w'), sort_keys=True, indent=4,
+    json.dump(dataflow_dict, open(datapath + 'dataflow_dict' + '.json', 'w'), sort_keys=True, indent=4,
               separators=(',', ': '))
 
     file = open(datapath + '/dataflow_dict' + '.pkl', 'wb')

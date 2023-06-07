@@ -68,8 +68,8 @@ class Command(BaseCommand):
 
     country_dict = settings.country_dict
 
-    datapath = settings.ROOT_PATH + settings.DATA_PATH
-    dimensions_dict_file = settings.ROOT_PATH + settings.dimensions_file
+    datapath = settings.DATA_PATH
+    dimensions_dict_file = settings.dimensions_file
 
     dimensions_dict = {}
     dataflow_dict = pickle.load(open(datapath + '/dataflow_dict' + '.pkl', 'rb'))

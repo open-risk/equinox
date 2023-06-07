@@ -36,10 +36,10 @@ from policy.settings import activities_short
 
 # ATTN This command must be executed before populate_db_dataflows (to ensure correct dates)
 
-# Hardwired to produce six geoslices for the different mobility data types for Europe
+# Hardwired to produce six geoslices for the different policy data types for Europe
 
 class Command(BaseCommand):
-    help = 'Create and insert mobility data geoslices into the database'
+    help = 'Create and insert policy data geoslices into the database'
     Debug = False
 
     # the 28 countries of EU (keeping UK in)

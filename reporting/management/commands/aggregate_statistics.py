@@ -18,11 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import csv
 from django.core.management import BaseCommand
+
 from reporting.models import SummaryStatistics, AggregatedStatistics
-import pandas as pd
-import pprint as pp
+
 
 class Command(BaseCommand):
     help = 'Aggregate summary statistics across time for top-level sectors'

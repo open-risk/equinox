@@ -33,6 +33,7 @@ urlpatterns = [
     re_path(r'^portfolio_overview$', views.portfolio_overview, name='portfolio_overview'),
     re_path(r'^portfolio_stats/$', views.portfolio_stats_view, name='portfolio_stats'),
     re_path(r'^ghg_reduction$', views.ghg_reduction, name='ghg_reduction'),
+    re_path(r'^scope_2_report$', views.scope_2_report, name='scope_2_report'),
     re_path(r'^gpc_report$', views.gpc_report, name='gpc_report'),
     re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),

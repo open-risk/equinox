@@ -2,7 +2,7 @@
 
 Equinox Applications
 ==============================
-The following pages document the built-in Equinox *applications*.
+The following pages document the built-in Equinox *applications* (apps).
 
 .. toctree::
    :maxdepth: 1

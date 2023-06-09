@@ -357,6 +357,46 @@ def ghg_reduction(request):
 
 
 @login_required(login_url='/login/')
+def scope_2_report(request):
+    t = loader.get_template('reporting/scope_2_report.html')
+    context = RequestContext(request, {})
+
+    activities = ProjectActivity.objects.all()
+
+    table_header = []
+    table_header.append('Project')
+    table_header.append('Project Activity')
+    table_header.append('Activity Emissions')
+    table_header.append('Baseline Emissions')
+    table_header.append('GHG Reduction')
+
+    table_rows = {}
+    key = 0
+
+    if len(activities) > 0:
+        for pa in ProjectActivity.objects.all():
+            value = []
+            if pa.project:
+                value.append(pa.project.project_identifier)
+            else:
+                value.append(None)
+            value.append(pa.project_activity_identifier)
+            value.append(pa.project_activity_emissions)
+            value.append(pa.baseline_activity_emissions)
+            if pa.baseline_activity_emissions and pa.project_activity_emissions:
+                value.append(pa.baseline_activity_emissions - pa.project_activity_emissions)
+            else:
+                value.append(None)
+            table_rows[key] = value
+            key += 1
+            # print(key, value)
+
+    context.update({'TableHeader': table_header})
+    context.update({'TableRows': table_rows})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
 def project_nuts3_map(request):
     t = loader.get_template('reporting/portfolio_map.html')
     context = RequestContext(request, {})

@@ -4,6 +4,7 @@ ChangeLog
 v0.6.0 (03-06-2023)
 -------------------
 * Model testing framework
+* Scope 2 Reporting
 
 v0.5.0 (21-06-2022)
 -------------------

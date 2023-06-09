@@ -3,6 +3,12 @@ ChangeLog
 
 This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
 
+v0.7 (09-06-2023)
+-----------------
+* Enhancements: New models supporting Scope 2 reporting
+* Fixtures for various use cases
+* Adopt pytest and basic coverage of all models
+
 v0.6 (15-06-2022)
 -----------------
 * Enhancements: cpv / cpa mapping
@@ -13,7 +19,7 @@ v0.6 (15-06-2022)
 
 v0.5 (25-05-2022)
 -----------------
-* release 0.5 includes a complete data set to be used in testing "use case 1" (featuring mock city-wide procurement portfolio)
+* Release 0.5 includes a complete data set to be used in testing "use case 1" (featuring mock city-wide procurement portfolio)
 
 v0.4 (22-04-2022)
 ------------------

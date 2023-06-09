@@ -15,8 +15,9 @@ NB: For easy installation and testing the current release uses an sqlite databas
 
 ## Functionality
 
-The initial functionality of Equinox focuses on integrating the following concepts:
+The functionality of Equinox focuses on integrating the following concepts:
 
+* Energy Accounting and in Particular Scope 2 Accounting and Reporting
 * Green Public Procurement (GPP) portfolio management
 * GHG Accounting Protocol for Projects
 * The PCAF coalition's approach to accounting and reporting **mortgage portfolio** GHG emissions

@@ -18,27 +18,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 from django.core.management.base import BaseCommand
 
-INSTALLED_APPS = [
-    'start',
-    'reference',
-    'portfolio',
-    'policy',
-    'risk',
-    'reporting'
-]
+from risk.ActivityBarrier import ActivityBarrier
+from risk.Scenarios import Scenario
+from risk.Scorecard import Scorecard
+from risk.Workflows import Limitflow
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        from django.apps import apps
+    help = 'Deletes all risk data from the database (no backup!)'
+    Debug = False
 
-        for app in INSTALLED_APPS:
-            app_models = apps.get_app_config(app).get_models()
-            print('## ', app)
-            print('')
-            for model in app_models:
-                # print('* ', model._meta.verbose_name)
-                print(model._meta.object_name + '.objects.all().delete()')
-            print('')
+    ActivityBarrier.objects.all().delete()
+    Scenario.objects.all().delete()
+    Scorecard.objects.all().delete()
+    Limitflow.objects.all().delete()
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Deleted all risk data. Good Luck!'))

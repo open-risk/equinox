@@ -18,27 +18,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 from django.core.management.base import BaseCommand
 
-INSTALLED_APPS = [
-    'start',
-    'reference',
-    'portfolio',
-    'policy',
-    'risk',
-    'reporting'
-]
+from reporting.models import SummaryStatistics, AggregatedStatistics, ResultGroup, Calculation, Visualization
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        from django.apps import apps
+    help = 'Deletes all reporting data from the database (no backup!)'
+    Debug = False
 
-        for app in INSTALLED_APPS:
-            app_models = apps.get_app_config(app).get_models()
-            print('## ', app)
-            print('')
-            for model in app_models:
-                # print('* ', model._meta.verbose_name)
-                print(model._meta.object_name + '.objects.all().delete()')
-            print('')
+    SummaryStatistics.objects.all().delete()
+    AggregatedStatistics.objects.all().delete()
+    ResultGroup.objects.all().delete()
+    Calculation.objects.all().delete()
+    Visualization.objects.all().delete()
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Deleted all reporting data. Good Luck!'))

@@ -3,6 +3,10 @@ ChangeLog
 
 This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
 
+v0.8 (Upcoming)
+-----------------
+* Scripts for deleting user data from database
+
 v0.7 (09-06-2023)
 -----------------
 * Enhancements: New models supporting Scope 2 reporting

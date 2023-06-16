@@ -1,0 +1,68 @@
+[
+{
+  "model": "portfolio.projectcategory",
+  "pk": 14,
+  "fields": {
+    "path": "0001",
+    "depth": 1,
+    "numchild": 5,
+    "name": "Equator Project",
+    "description": "Project Finance conforming to Equator Principles"
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 15,
+  "fields": {
+    "path": "00010009",
+    "depth": 2,
+    "numchild": 0,
+    "name": "Oil & Gas",
+    "description": "Oil and Gas Project"
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 16,
+  "fields": {
+    "path": "0001000D",
+    "depth": 2,
+    "numchild": 0,
+    "name": "Power",
+    "description": "Power Project"
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 17,
+  "fields": {
+    "path": "0001000B",
+    "depth": 2,
+    "numchild": 0,
+    "name": "Others",
+    "description": "Project that does not fall in a more specific category"
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 18,
+  "fields": {
+    "path": "00010005",
+    "depth": 2,
+    "numchild": 0,
+    "name": "Infrastructure",
+    "description": "Infrastructure Project"
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 19,
+  "fields": {
+    "path": "00010007",
+    "depth": 2,
+    "numchild": 0,
+    "name": "Mining",
+    "description": "Mining Project"
+  }
+}
+]

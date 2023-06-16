@@ -25,13 +25,15 @@ from treebeard.mp_tree import MP_Node
 
 class ProjectCategory(MP_Node):
     """
-    GHG Mitigation Projects are classified in categories of similar characteristics. ProjectCategory is the model that implements a flexible Category tree
+    Projects can optionally be classified in categories of similar characteristics. ProjectCategory is the model that implements a flexible Category tree
 
 
     """
     name = models.CharField(max_length=30)
 
     node_order_by = ['name']
+
+    description = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return 'Project Category: {}'.format(self.name)

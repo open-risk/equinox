@@ -18,27 +18,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 from django.core.management.base import BaseCommand
 
-INSTALLED_APPS = [
-    'start',
-    'reference',
-    'portfolio',
-    'policy',
-    'risk',
-    'reporting'
-]
+from reference.CPVData import CPVData
+from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
+from reference.EmissionIntensity import ReferenceIntensity
+from reference.GPCSector import GPCSector
+from reference.NUTS3Data import NUTS3PointData
+from reporting.models import SummaryStatistics, AggregatedStatistics, ResultGroup, Calculation, Visualization
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        from django.apps import apps
+    help = 'Deletes all reference data from the database (no backup!)'
+    Debug = False
 
-        for app in INSTALLED_APPS:
-            app_models = apps.get_app_config(app).get_models()
-            print('## ', app)
-            print('')
-            for model in app_models:
-                # print('* ', model._meta.verbose_name)
-                print(model._meta.object_name + '.objects.all().delete()')
-            print('')
+    CPVData.objects.all().delete()
+    EmissionFactor.objects.all().delete()
+    BuildingEmissionFactor.objects.all().delete()
+    GPCSector.objects.all().delete()
+    NUTS3PointData.objects.all().delete()
+    ReferenceIntensity.objects.all().delete()
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Deleted all reference data. Good Luck!'))

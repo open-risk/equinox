@@ -1,0 +1,92 @@
+[
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 2,
+  "fields": {
+    "name": "2022",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 3,
+  "fields": {
+    "name": "2021",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 4,
+  "fields": {
+    "name": "2019",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 5,
+  "fields": {
+    "name": "2018",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 6,
+  "fields": {
+    "name": "2017",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 7,
+  "fields": {
+    "name": "2016",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 8,
+  "fields": {
+    "name": "2020",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 9,
+  "fields": {
+    "name": "2014",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+},
+{
+  "model": "portfolio.portfoliosnapshot",
+  "pk": 10,
+  "fields": {
+    "name": "2015",
+    "cutoff_date": null,
+    "creation_date": "2023-06-18T19:17:40.584Z",
+    "last_change_date": "2023-06-18T19:17:40.584Z"
+  }
+}
+]

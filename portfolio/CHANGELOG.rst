@@ -3,6 +3,7 @@ ChangeLog
 
 v0.5.0 (Upcoming)
 ------------------
+* Project Add PortfolioSnapshot FK
 * Usecase 5 (Equator principles)
 
 v0.4.0 (03-06-2023)

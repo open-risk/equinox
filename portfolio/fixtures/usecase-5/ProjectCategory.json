@@ -1,7 +1,7 @@
 [
 {
   "model": "portfolio.projectcategory",
-  "pk": 14,
+  "pk": 1,
   "fields": {
     "path": "0001",
     "depth": 1,
@@ -12,7 +12,7 @@
 },
 {
   "model": "portfolio.projectcategory",
-  "pk": 15,
+  "pk": 2,
   "fields": {
     "path": "00010009",
     "depth": 2,
@@ -23,9 +23,9 @@
 },
 {
   "model": "portfolio.projectcategory",
-  "pk": 16,
+  "pk": 3,
   "fields": {
-    "path": "0001000D",
+    "path": "0001000E",
     "depth": 2,
     "numchild": 0,
     "name": "Power",
@@ -34,18 +34,18 @@
 },
 {
   "model": "portfolio.projectcategory",
-  "pk": 17,
+  "pk": 4,
   "fields": {
-    "path": "0001000B",
+    "path": "0001000D",
     "depth": 2,
     "numchild": 0,
-    "name": "Others",
+    "name": "Other",
     "description": "Project that does not fall in a more specific category"
   }
 },
 {
   "model": "portfolio.projectcategory",
-  "pk": 18,
+  "pk": 5,
   "fields": {
     "path": "00010005",
     "depth": 2,
@@ -56,7 +56,7 @@
 },
 {
   "model": "portfolio.projectcategory",
-  "pk": 19,
+  "pk": 6,
   "fields": {
     "path": "00010007",
     "depth": 2,

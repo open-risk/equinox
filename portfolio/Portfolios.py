@@ -46,7 +46,7 @@ class ProjectPortfolio(models.Model):
     notes = models.TextField(blank=True, null=True,
                              help_text="Description of the purpose or other relevant information about the portfolio")
     portfolio_type = models.IntegerField(default=0, choices=PORTFOLIO_TYPES,
-                                         help_text='0=Performing Book, 1=Historical Book')
+                                         help_text='0=Performing (Current) Book, 1=Historical Book')
 
     # portfolio shape parameters (statistics)
 

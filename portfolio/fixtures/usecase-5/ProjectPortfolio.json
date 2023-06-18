@@ -1,0 +1,1154 @@
+[
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 3,
+  "fields": {
+    "name": "Bank of Tokyo-Mitsubishi UFJ",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 4,
+  "fields": {
+    "name": "UK Export Finance",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 5,
+  "fields": {
+    "name": "Manulife",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 6,
+  "fields": {
+    "name": "Credit Suisse",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 7,
+  "fields": {
+    "name": "JPMorgan Chase",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 8,
+  "fields": {
+    "name": "Nordea",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 9,
+  "fields": {
+    "name": "Export Finance Australia",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.658Z",
+    "last_change_date": "2023-06-18T19:17:40.658Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 10,
+  "fields": {
+    "name": "National Australia Bank (NAB)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 11,
+  "fields": {
+    "name": "FMO",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 12,
+  "fields": {
+    "name": "Scandinaviska Enskilda Banken (SEB)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 13,
+  "fields": {
+    "name": "Sumitomo Mitsui Trust Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 14,
+  "fields": {
+    "name": "KfW IPEX-Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 15,
+  "fields": {
+    "name": "Banco Popular Espanol",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 16,
+  "fields": {
+    "name": "Korea Development Bank (KDB)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 17,
+  "fields": {
+    "name": "Standard Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 18,
+  "fields": {
+    "name": "CIFI (Corporacion Interamaricana Para El Financiamiento de Infraestructura S.A.)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 19,
+  "fields": {
+    "name": "Banco de Crédito",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 20,
+  "fields": {
+    "name": "Dekabank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 21,
+  "fields": {
+    "name": "Natwest",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 22,
+  "fields": {
+    "name": "Australia and New Zealand Banking Group Limited (ANZ)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 23,
+  "fields": {
+    "name": "Itaú-Unibanco",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 24,
+  "fields": {
+    "name": "First Abu Dhabi Bank (FAB)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 25,
+  "fields": {
+    "name": "Export-Import Bank of the United States (EXIM)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 26,
+  "fields": {
+    "name": "UniCredit",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 27,
+  "fields": {
+    "name": "Commonwealth Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 28,
+  "fields": {
+    "name": "DBS Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 29,
+  "fields": {
+    "name": "Bank of Huzhou",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 30,
+  "fields": {
+    "name": "Westpac",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 31,
+  "fields": {
+    "name": "Bank of America",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 32,
+  "fields": {
+    "name": "Sumitomo Mitsui Banking Corporation (SMBC)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 33,
+  "fields": {
+    "name": "BNP Paribas",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 34,
+  "fields": {
+    "name": "DZ Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 35,
+  "fields": {
+    "name": "Intesa Sanpaolo",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.659Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 36,
+  "fields": {
+    "name": "Standard Chartered",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.659Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 37,
+  "fields": {
+    "name": "Crédit Agricole",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 38,
+  "fields": {
+    "name": "Denmarks Export Credit Agency",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 39,
+  "fields": {
+    "name": "Barclays",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 40,
+  "fields": {
+    "name": "Bank of Jiangsu",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 41,
+  "fields": {
+    "name": "IDFC",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 42,
+  "fields": {
+    "name": "Caixabank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 43,
+  "fields": {
+    "name": "Instituto de Crédito Oficial (ICO)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 44,
+  "fields": {
+    "name": "Bank of Nova Scotia",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 45,
+  "fields": {
+    "name": "BMCE Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 46,
+  "fields": {
+    "name": "DNB",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 47,
+  "fields": {
+    "name": "Mizuho Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 48,
+  "fields": {
+    "name": "Fidelity Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 49,
+  "fields": {
+    "name": "NIBC",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 50,
+  "fields": {
+    "name": "Industrial Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 51,
+  "fields": {
+    "name": "Société Générale",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 52,
+  "fields": {
+    "name": "Bank Muscat",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 53,
+  "fields": {
+    "name": "Banco Sabadell",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 54,
+  "fields": {
+    "name": "Canadian Imperial Bank of Commerce (CIBC)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 55,
+  "fields": {
+    "name": "Banco do Brasil",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 56,
+  "fields": {
+    "name": "Banco Galicia y Buenos Aires",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 57,
+  "fields": {
+    "name": "Cathay United Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 58,
+  "fields": {
+    "name": "Bank of Montreal (BMO)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 59,
+  "fields": {
+    "name": "Absa Group",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 60,
+  "fields": {
+    "name": "Ex-Im bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 61,
+  "fields": {
+    "name": "Svenska Handelsbanken",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 62,
+  "fields": {
+    "name": "La Banque Postale",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.660Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 63,
+  "fields": {
+    "name": "Banco de la Republica Oriental del Uruguay",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.660Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 64,
+  "fields": {
+    "name": "Bankinter",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 65,
+  "fields": {
+    "name": "Natixis",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 66,
+  "fields": {
+    "name": "Access Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 67,
+  "fields": {
+    "name": "Coöperatieve Rabobank U.A.",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 68,
+  "fields": {
+    "name": "Banco Santander",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 69,
+  "fields": {
+    "name": "Arab African International Bank (AAIB)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 70,
+  "fields": {
+    "name": "HSBC",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 71,
+  "fields": {
+    "name": "Wells Fargo",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 72,
+  "fields": {
+    "name": "Ahli United Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 73,
+  "fields": {
+    "name": "Bank of Africa (BMCE)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 74,
+  "fields": {
+    "name": "FirstRand",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 75,
+  "fields": {
+    "name": "Banco Bilbao Vizcaya Argentaria, S.A. (BBVA)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 76,
+  "fields": {
+    "name": "Citi",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 77,
+  "fields": {
+    "name": "ASN Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 78,
+  "fields": {
+    "name": "Bancolombia",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 79,
+  "fields": {
+    "name": "Bankia",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 80,
+  "fields": {
+    "name": "Development Bank of Japan",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 81,
+  "fields": {
+    "name": "Toronto-Dominion Bank (TD Bank)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 82,
+  "fields": {
+    "name": "Royal Bank of Canada (RBC)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 83,
+  "fields": {
+    "name": "ING",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 84,
+  "fields": {
+    "name": "Export Credit Norway",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 85,
+  "fields": {
+    "name": "Caixa Econômica Federal",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 86,
+  "fields": {
+    "name": "CTBC Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 87,
+  "fields": {
+    "name": "Swedish Export Credit Corporation (SEK)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 88,
+  "fields": {
+    "name": "E.SUN Commercial Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 89,
+  "fields": {
+    "name": "Green Investment Group",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.661Z",
+    "last_change_date": "2023-06-18T19:17:40.661Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 90,
+  "fields": {
+    "name": "ABN AMRO",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 91,
+  "fields": {
+    "name": "Nippon Life Insurance Company",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 92,
+  "fields": {
+    "name": "Mitsubishi UFJ Financial Group (MUFG)",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 93,
+  "fields": {
+    "name": "Skandinaviska Enskilda Banken AB",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 94,
+  "fields": {
+    "name": "Export Development Canada",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 95,
+  "fields": {
+    "name": "OP Financial Group",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 96,
+  "fields": {
+    "name": "Nedbank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 97,
+  "fields": {
+    "name": "Shinsei Bank",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+},
+{
+  "model": "portfolio.projectportfolio",
+  "pk": 98,
+  "fields": {
+    "name": "KBC",
+    "manager": null,
+    "notes": null,
+    "portfolio_type": 0,
+    "creation_date": "2023-06-18T19:17:40.662Z",
+    "last_change_date": "2023-06-18T19:17:40.662Z"
+  }
+}
+]

@@ -56,9 +56,13 @@ class Project(models.Model):
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
                                   help_text="The portfolio to which this project belongs")
 
+
+    snapshot = models.ForeignKey('PortfolioSnapshot', on_delete=models.CASCADE, blank=True, null=True,
+                                    help_text="The portfolio snapshot to which the project belongs")
+
     # PROJECT DATA
 
-    project_description = MarkdownField(blank=True, null=True, rendered_field='text_rendered',
+    project_description = MarkdownField(blank=True, null=True, default="", rendered_field='text_rendered',
                                         validator=VALIDATOR_STANDARD,
                                         help_text='Textual description of a Project. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/GHG_Project">Documentation</a>')
 

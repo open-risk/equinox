@@ -41,4 +41,3 @@ class AssetMapView(TemplateView):
     """Asset Markers Map view."""
 
     template_name = "asset_map.html"
-

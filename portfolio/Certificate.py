@@ -20,8 +20,7 @@
 
 from django.db import models
 from django.urls import reverse
-from portfolio.Counterparty import Counterparty
-from portfolio.Asset import PowerPlant
+
 
 class Certificate(models.Model):
     """
@@ -32,32 +31,38 @@ class Certificate(models.Model):
 
     # IDENTIFICATION
     certificate_identifier = models.CharField(max_length=80, blank=True, null=True,
-                                       help_text='Unique EECS Certificate Number.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Certficate_Number">Documentation</a>')
+                                              help_text='Unique EECS Certificate Number.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Certficate_Number">Documentation</a>')
 
     # LINKS
-    seller = models.ForeignKey('Counterparty', blank=True, null=True, on_delete=models.CASCADE, related_name='Seller', help_text='EECS Account Holder (Certificate Seller). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Account_Holder">Documentation</a>')
+    seller = models.ForeignKey('Counterparty', blank=True, null=True, on_delete=models.CASCADE, related_name='Seller',
+                               help_text='EECS Account Holder (Certificate Seller). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Account_Holder">Documentation</a>')
 
-    buyer = models.ForeignKey('Counterparty', blank=True, null=True, on_delete=models.CASCADE, related_name='Buyer', help_text='EECS Account Holder (Certificate Buyer). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Account_Holder">Documentation</a>')
+    buyer = models.ForeignKey('Counterparty', blank=True, null=True, on_delete=models.CASCADE, related_name='Buyer',
+                              help_text='EECS Account Holder (Certificate Buyer). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Account_Holder">Documentation</a>')
 
-    production_device = models.ForeignKey('PowerPlant', blank=True, null=True, on_delete=models.CASCADE, help_text='EECS Production Device. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Device">Documentation</a>')
+    production_device = models.ForeignKey('PowerPlant', blank=True, null=True, on_delete=models.CASCADE,
+                                          help_text='EECS Production Device. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Device">Documentation</a>')
 
     # CERTIFICATE DATA
 
     # production period
-    production_start = models.DateField(blank=True, null=True, help_text='EECS Production Period Start. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Period">Documentation</a>')
+    production_start = models.DateField(blank=True, null=True,
+                                        help_text='EECS Production Period Start. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Period">Documentation</a>')
 
-    production_end = models.DateField(blank=True, null=True, help_text='EECS Production Period End. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Period">Documentation</a>')
+    production_end = models.DateField(blank=True, null=True,
+                                      help_text='EECS Production Period End. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Period">Documentation</a>')
 
     # technology
     technology_code = models.CharField(max_length=80, blank=True, null=True,
                                        help_text='EECS Technology Code. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Technology_Code">Documentation</a>')
 
     # delivery date
-    delivery_date = models.DateField(blank=True, null=True, help_text='EECS Delivery Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Delivery_Date">Documentation</a>')
+    delivery_date = models.DateField(blank=True, null=True,
+                                     help_text='EECS Delivery Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Delivery_Date">Documentation</a>')
 
     # quantity
     contract_quantity = models.IntegerField(default=1, blank=True, null=True,
-                                       help_text='EECS Contract Quantity. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Contract_Quantity">Documentation</a>')
+                                            help_text='EECS Contract Quantity. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Contract_Quantity">Documentation</a>')
 
     # contract price
 
@@ -67,28 +72,24 @@ class Certificate(models.Model):
     # EECS DOMAIN
 
     production_country = models.CharField(max_length=80, blank=True, null=True,
-                                        help_text='Country / Countries of Production. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Country">Documentation</a>')
+                                          help_text='Country / Countries of Production. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Production_Country">Documentation</a>')
 
     production_issuing_body = models.CharField(max_length=80, blank=True, null=True,
-                                        help_text='Authorised Issuing Body of the Country / Countries of Production. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Issuing_Body">Documentation</a>')
+                                               help_text='Authorised Issuing Body of the Country / Countries of Production. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Issuing_Body">Documentation</a>')
 
     delivery_country = models.CharField(max_length=80, blank=True, null=True,
                                         help_text='Country of Delivery')
 
     deliver_issuing_body = models.CharField(max_length=80, blank=True, null=True,
-                                        help_text='Authorised Issuing Body of Country of Delivery. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Issuing_Body">Documentation</a>')
-
+                                            help_text='Authorised Issuing Body of Country of Delivery. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Issuing_Body">Documentation</a>')
 
     # OTHER
 
-
     support_type = models.CharField(max_length=40, blank=True, null=True,
-                                        help_text='Type of support (no support, production support, etc.)')
-
+                                    help_text='Type of support (no support, production support, etc.)')
 
     ics = models.CharField(max_length=40, blank=True, null=True,
-                                        help_text='Independent Criteria Scheme')
-
+                           help_text='Independent Criteria Scheme')
 
     #
     # BOOKKEEPING FIELDS

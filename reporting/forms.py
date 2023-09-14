@@ -18,11 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from reporting.models import Visualization
 from django import forms
 from django.forms import ModelForm
 
-from portfolio.Portfolios import ProjectPortfolio
+from reporting.models import Visualization
 
 aggregation_choices = [(0, 'Avg'), (1, 'Count'), (2, 'Max'), (3, 'Min'), (4, 'Sum'), (5, 'StdDev'), (6, 'Variance')]
 

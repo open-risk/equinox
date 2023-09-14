@@ -23,6 +23,5 @@
 # TODO Refactor into
 # CommonFlow / ModelFlow, IndexFlow, LimitFlow etc
 
-OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'), (3, 'Risk Appetite'), (4, 'Risk Capital'), (5, 'Other')]
-
-
+OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'), (3, 'Risk Appetite'),
+                    (4, 'Risk Capital'), (5, 'Other')]

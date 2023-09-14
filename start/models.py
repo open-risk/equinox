@@ -23,7 +23,6 @@ from django.urls import reverse
 
 
 class ORMKeyword(models.Model):
-
     default_url = "https://www.openriskmanual.org/wiki"
     keyword = models.CharField(max_length=400, help_text="The managed keyword")
     slug = models.CharField(max_length=400, help_text="Representation of keyword on documentation website URL",
@@ -40,7 +39,6 @@ class ORMKeyword(models.Model):
 
 
 class DocPage(models.Model):
-
     slug = models.CharField(max_length=400, help_text="Representation of keyword on website URL", null=True, blank=True)
     title = models.CharField(max_length=400, help_text="Page Title", null=True, blank=True)
     tooltip_message = models.TextField(null=True, blank=True, help_text="Help-box message")

@@ -20,9 +20,10 @@
 
 
 from django.test import TestCase
-from django.contrib.auth.models import User
 
 from start.models import DocPage, ORMKeyword
+
+
 class StartModelTests(TestCase):
 
     def test_docpage_str(self):

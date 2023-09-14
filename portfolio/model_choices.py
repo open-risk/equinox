@@ -18,20 +18,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-MARKET_CONDITIONS_CHOICES = [(0, '(a) Few competing suppliers or substantial and durable advantage in location or technology. Demand is strong and growing'),
-                             (1, '(b) Few competing suppliers or better than average location or technology but this situation may not last. Demand is strong and stable'),
-                             (2, '(c) Project has no advantage in location or technology. Demand is adequate and stable'),
-                             (3, '(d) Project has worse than average location or technology. Demand is weak and declining')]
+MARKET_CONDITIONS_CHOICES = [(0,
+                              '(a) Few competing suppliers or substantial and durable advantage in location or technology. Demand is strong and growing'),
+                             (1,
+                              '(b) Few competing suppliers or better than average location or technology but this situation may not last. Demand is strong and stable'),
+                             (2,
+                              '(c) Project has no advantage in location or technology. Demand is adequate and stable'),
+                             (3,
+                              '(d) Project has worse than average location or technology. Demand is weak and declining')]
 
 FINANCIAL_RATIOS_CHOICES = [
     (0, '(a) Strong financial ratios considering the level of project risk; very robust economic assumptions'),
-    (1, '(b) Strong to acceptable financial ratios considering the level of project risk; robust project economic assumptions'),
+    (1,
+     '(b) Strong to acceptable financial ratios considering the level of project risk; robust project economic assumptions'),
     (2, '(c) Standard financial ratios considering the level of project risk'),
     (3, '(d) Aggressive financial ratios considering the level of project risk')]
 
-STRESS_ANALYSIS_CHOICES = [(0, '(a) The project can meet its financial obligations under sustained severely stressed economic or sectoral conditions'),
-                           (1, '(b) The project can meet its financial obligations under normal stressed economic or sectoral conditions. The project is only likely to default under severe economic conditions'),
-                           (2, '(c) The project is vulnerable to stresses that are not uncommon through an economic cycle and may default in a normal downturn'),
+STRESS_ANALYSIS_CHOICES = [(0,
+                            '(a) The project can meet its financial obligations under sustained severely stressed economic or sectoral conditions'),
+                           (1,
+                            '(b) The project can meet its financial obligations under normal stressed economic or sectoral conditions. The project is only likely to default under severe economic conditions'),
+                           (2,
+                            '(c) The project is vulnerable to stresses that are not uncommon through an economic cycle and may default in a normal downturn'),
                            (3, '(d) The project is likely to default unless conditions improve soon')]
 
 REFINANCING_RISK_CHOICES = [(0,
@@ -67,9 +75,12 @@ FORCE_MAJEURE_RISK_CHOICES = [(0, '(a) No or very low exposure to force majeure 
                               (2, '(c) Significant exposure to force majeure risk which is not sufficiently mitigated'),
                               (3, '(d) Significant exposure to force majeure risk which is not mitigated')]
 
-GOVERNMENT_SUPPORT_CHOICES = [(0, '(a) Project of strategic importance for the country (preferably export-oriented) Strong support from Government'),
-                              (1, '(b) Project considered important for the country. Good level of support from Government'),
-                              (2, '(c) Project may not be strategic but brings unquestionable benefits for the country. Support from Government may not be explicit'),
+GOVERNMENT_SUPPORT_CHOICES = [(0,
+                               '(a) Project of strategic importance for the country (preferably export-oriented) Strong support from Government'),
+                              (1,
+                               '(b) Project considered important for the country. Good level of support from Government'),
+                              (2,
+                               '(c) Project may not be strategic but brings unquestionable benefits for the country. Support from Government may not be explicit'),
                               (3, '(d) Project not key to the country. No or weak support from Government')]
 
 LEGAL_AND_REGULATORY_RISK_CHOICES = [(0, '(a) Favourable and stable regulatory environment over the long term'),
@@ -84,19 +95,25 @@ PROJECT_APPROVAL_RISK_CHOICES = [(0, '(a) Strong'),
 
 LEGAL_REGIME_CHOICES = [(0, '(a) Contract collateral and security are enforceable'),
                         (1, '(b) Contract collateral and security are enforceable'),
-                        (2, '(c) Contract collateral and security are considered enforceable even if certain non-key issues may exist'),
-                        (3, '(d) There are unresolved key issues in respect if actual enforcement of contract collateral and security')]
+                        (2,
+                         '(c) Contract collateral and security are considered enforceable even if certain non-key issues may exist'),
+                        (3,
+                         '(d) There are unresolved key issues in respect if actual enforcement of contract collateral and security')]
 
 DESIGN_AND_TECHNOLOGY_RISK_CHOICES = [(0, '(a) Fully proven technology and design'),
                                       (1, '(b) Fully proven technology and design'),
-                                      (2, '(c) Proven technology and design - start-up issues are mitigated by a strong completion package'),
+                                      (2,
+                                       '(c) Proven technology and design - start-up issues are mitigated by a strong completion package'),
                                       (3,
                                        '(d) Unproven technology and design; technology issues exist and/or complex design')]
 
 PERMITTING_AND_SITING_CHOICES = [(0, '(a) All permits have been obtained'),
-                                 (1, '(b) Some permits are still outstanding but their receipt is considered very likely'),
-                                 (2, '(c) Some permits are still outstanding but the permitting process is well defined and they are considered routine'),
-                                 (3, '(d) Key permits still need to be obtained and are not considered routine. Significant conditions may be attached')]
+                                 (1,
+                                  '(b) Some permits are still outstanding but their receipt is considered very likely'),
+                                 (2,
+                                  '(c) Some permits are still outstanding but the permitting process is well defined and they are considered routine'),
+                                 (3,
+                                  '(d) Key permits still need to be obtained and are not considered routine. Significant conditions may be attached')]
 
 TYPE_OF_CONSTRUCTION_CONTRACT_CHOICES = [
     (0, '(a) Fixed-price date-certain turnkey construction EPC (engineering and procurement contract)'),
@@ -104,22 +121,31 @@ TYPE_OF_CONSTRUCTION_CONTRACT_CHOICES = [
     (2, '(c) Fixed-price date-certain turnkey construction contract with one or several contractors'),
     (3, '(d) No or partial fixed-price turnkey contract and/or interfacing issues with multiple contractors')]
 
-COMPLETION_RISK_CHOICES = [(0, '(a) It is almost certain that the project will be finished within the agreed time horizon and at the agreed cost'),
-                           (1, '(b) It is very likely that the project will be finished within the agreed time horizon and at the agreed cost'),
-                           (2, '(c) It is uncertain whether the project will be finished within the agreed time horizon and at the agreed cost'),
-                           (3, '(d) There are indications that the project will not be finished within the agreed time horizon and at the agreed cost')]
+COMPLETION_RISK_CHOICES = [(0,
+                            '(a) It is almost certain that the project will be finished within the agreed time horizon and at the agreed cost'),
+                           (1,
+                            '(b) It is very likely that the project will be finished within the agreed time horizon and at the agreed cost'),
+                           (2,
+                            '(c) It is uncertain whether the project will be finished within the agreed time horizon and at the agreed cost'),
+                           (3,
+                            '(d) There are indications that the project will not be finished within the agreed time horizon and at the agreed cost')]
 
-COMPLETION_GUARANTEES_AND_LIQUIDATED_DAMAGES_CHOICES = [(0, '(a) Substantial liquidated damages supported by financial substance and/or strong completion guarantee from sponsors with excellent financial standing'),
-                                                        (1, '(b) Significant liquidated damages supported by financial substance and/or completion guarantee from sponsors with good financial standing'),
-                                                        (2, '(c) Adequate liquidated damages supported by financial substance and/or completion guarantee from sponsors with good financial standing'),
-                                                        (3, '(d) Inadequate liquidated damages or not supported by financial substance or weak completion guarantees')]
+COMPLETION_GUARANTEES_AND_LIQUIDATED_DAMAGES_CHOICES = [(0,
+                                                         '(a) Substantial liquidated damages supported by financial substance and/or strong completion guarantee from sponsors with excellent financial standing'),
+                                                        (1,
+                                                         '(b) Significant liquidated damages supported by financial substance and/or completion guarantee from sponsors with good financial standing'),
+                                                        (2,
+                                                         '(c) Adequate liquidated damages supported by financial substance and/or completion guarantee from sponsors with good financial standing'),
+                                                        (3,
+                                                         '(d) Inadequate liquidated damages or not supported by financial substance or weak completion guarantees')]
 
 CONTRACTOR_TRACK_RECORD_CHOICES = [(0, '(a) Strong'),
                                    (1, '(b) Good'),
                                    (2, '(c) Satisfactory'),
                                    (3, '(d) Weak')]
 
-O_AND_M_CONTRACT_CHOICES = [(0, '(a) Strong long-tem O and M contract preferably with contractual performance incentive and/or O and M reserve accounts'),
+O_AND_M_CONTRACT_CHOICES = [(0,
+                             '(a) Strong long-tem O and M contract preferably with contractual performance incentive and/or O and M reserve accounts'),
                             (1, '(b) Long-term O and M contract and/or O and M reserve accounts'),
                             (2, '(c) Limited O and M contract or O and M reserve account'),
                             (3, '(d) No O and M contract: risk of high operational cost overruns beyond mitigants')]
@@ -132,25 +158,38 @@ OPERATOR_TRACK_RECORD_CHOICES = [(0, '(a) Very strong or committed technical ass
 REVENUE_CONTRACT_ROBUSTNESS_CHOICES = [(0, '(a) Excellent robustness of the revenues'),
                                        (1, '(b)  Good robustness of the revenues'),
                                        (2, '(c) Acceptable robustness of the revenues'),
-                                       (3, '(d) The revenues of the project are not certain and there are indications that some of the revenues may not be obtained')]
+                                       (3,
+                                        '(d) The revenues of the project are not certain and there are indications that some of the revenues may not be obtained')]
 
-OFFTAKE_CONTRACT_CASE_CHOICES = [(0, '(a) Excellent creditworthiness of off-taker; strong termination clauses; tenor of contract comfortably exceeds the maturity of the debt'),
-                                 (1, '(b) Good creditworthiness of off-taker; strong termination clauses; tenor of contract exceeds the maturity of the debt'),
-                                 (2, '(c) Acceptable financial standing of off-taker; normal termination clauses; tenor of contract generally matches the maturity of the debt'),
-                                 (3, '(d) Weak off-taker; weak termination clauses; tenor of contract does not exceed the maturity of the debt')]
+OFFTAKE_CONTRACT_CASE_CHOICES = [(0,
+                                  '(a) Excellent creditworthiness of off-taker; strong termination clauses; tenor of contract comfortably exceeds the maturity of the debt'),
+                                 (1,
+                                  '(b) Good creditworthiness of off-taker; strong termination clauses; tenor of contract exceeds the maturity of the debt'),
+                                 (2,
+                                  '(c) Acceptable financial standing of off-taker; normal termination clauses; tenor of contract generally matches the maturity of the debt'),
+                                 (3,
+                                  '(d) Weak off-taker; weak termination clauses; tenor of contract does not exceed the maturity of the debt')]
 
-NO_OFFTAKE_CONTRACT_CASE_CHOICES = [(0, '(a) Project produces essential services or a commodity sold widely on a world market; output can readily be absorbed at projected prices even at lower than historic market growth rates'),
-                                    (1, '(b) Project produces essential services or a commodity sold widely on a regional market that will absorb it at projected prices at historical growth rates'),
-                                    (2, '(c) Commodity is sold on a limited market that may absorb it only at lower than projected prices'),
-                                    (3, '(d) Project output is demanded by only one or a few buyers or is not generally sold on an organised market')]
+NO_OFFTAKE_CONTRACT_CASE_CHOICES = [(0,
+                                     '(a) Project produces essential services or a commodity sold widely on a world market; output can readily be absorbed at projected prices even at lower than historic market growth rates'),
+                                    (1,
+                                     '(b) Project produces essential services or a commodity sold widely on a regional market that will absorb it at projected prices at historical growth rates'),
+                                    (2,
+                                     '(c) Commodity is sold on a limited market that may absorb it only at lower than projected prices'),
+                                    (3,
+                                     '(d) Project output is demanded by only one or a few buyers or is not generally sold on an organised market')]
 
 SUPPLY_COST_RISKS_CHOICES = [(0, '(a) Long-term supply contract with supplier of excellent financial standing'),
                              (1, '(b) Long-term supply contract with supplier of good financial standing'),
-                             (2, '(c) Long-term supply contract with supplier of good financial standing. A degree of price risk may remain'),
-                             (3, '(d) Short-term supply contract or long-term supply contract with financially weak supplier. A degree of price risk definitely remains')]
+                             (2,
+                              '(c) Long-term supply contract with supplier of good financial standing. A degree of price risk may remain'),
+                             (3,
+                              '(d) Short-term supply contract or long-term supply contract with financially weak supplier. A degree of price risk definitely remains')]
 
-RESERVE_RISK_CHOICES = [(0, '(a) Independently audited, proven and developed reserves well in excess of requirements over lifetime of the project'),
-                        (1, '(b) Independently audited, proven and developed reserves in excess of requirements over lifetime of the project'),
+RESERVE_RISK_CHOICES = [(0,
+                         '(a) Independently audited, proven and developed reserves well in excess of requirements over lifetime of the project'),
+                        (1,
+                         '(b) Independently audited, proven and developed reserves in excess of requirements over lifetime of the project'),
                         (2, '(c) Proven reserves can supply the project adequately through the maturity of the debt'),
                         (3, '(d) Project relies to some extent on potential and undeveloped reserves')]
 
@@ -175,9 +214,12 @@ ASSIGNMENT_OF_CONTRACTS_AND_ACCOUNTS_CHOICES = [(0, '(a) Fully comprehensive'),
                                                 (2, '(c) Acceptable'),
                                                 (3, '(d) Weak')]
 
-PLEDGE_OF_ASSETS_CHOICES = [(0, '(a) First perfected security interest in all project assets, contract permits and accounts necessary to run the project'),
-                            (1, '(b) Perfected security interest in all project assets, contract permits and accounts necessary to run the project'),
-                            (2, '(c) Acceptable security interest in all project assets, contract permits and accounts necessary to run the project'),
+PLEDGE_OF_ASSETS_CHOICES = [(0,
+                             '(a) First perfected security interest in all project assets, contract permits and accounts necessary to run the project'),
+                            (1,
+                             '(b) Perfected security interest in all project assets, contract permits and accounts necessary to run the project'),
+                            (2,
+                             '(c) Acceptable security interest in all project assets, contract permits and accounts necessary to run the project'),
                             (3, '(d) Little security or collateral for lenders; weak negative pledge clause')]
 
 CONTROL_OVER_CASH_FLOW_CHOICES = [(0, '(a) Strong'),
@@ -187,11 +229,14 @@ CONTROL_OVER_CASH_FLOW_CHOICES = [(0, '(a) Strong'),
 
 COVENANT_PACKAGE_CHOICES = [
     (0, '(a) Covenant package is strong for this type of project. \\n\\nProject may issue no additional debt'),
-    (1, '(b) Covenant package is satisfactory for this type of project. \\n\\nProject may issue extremely limited additional debt'),
+    (1,
+     '(b) Covenant package is satisfactory for this type of project. \\n\\nProject may issue extremely limited additional debt'),
     (2, '(c) Covenant package is fair for this type of project. \\n\\nProject may issue limited additional debt'),
-    (3, '(d) Covenant package is Insufficient for this type of project. \\n\\nProject may issue unlimited additional debt')]
+    (3,
+     '(d) Covenant package is Insufficient for this type of project. \\n\\nProject may issue unlimited additional debt')]
 
-RESERVE_FUNDS_CHOICES = [(0, '(a) Longer than average coverage period, all reserve funds fully funded in cash or letters of credit from highly rated bank'),
+RESERVE_FUNDS_CHOICES = [(0,
+                          '(a) Longer than average coverage period, all reserve funds fully funded in cash or letters of credit from highly rated bank'),
                          (1, '(b) Average coverage period, all reserve funds fully funded'),
                          (2, '(c) Average coverage all reserve funds all reserve funds fully funded'),
                          (3, '(d) Shorter than average coverage perio reserve funds funded from operating cash flows')]
@@ -205,7 +250,8 @@ LEGAL_TYPE_OF_PROJECT_CHOICES = [
     (1, '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange'),
     (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
     (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
-    (4, '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership where profits and liabilities are shared'),
+    (4,
+     '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership where profits and liabilities are shared'),
     (5, '(f) Private Individual')]
 
 PRODUCT_TYPE_CHOICES = [(0, '(a) Term Loans'),
@@ -266,8 +312,10 @@ PRINCIPAL_PAYMENT_FREQUENCY_CHOICES = [(0, '(a) Monthly'),
 
 LOAN_COVENANTS_CHOICES = [
     (0, '(a) Loan to Value (LTV) is the ratio of a loan to the value of the collateral purchased'),
-    (1, '(b) Interest Coverage Ratio (ICR) is the ratio of earnings before interest and tax to the interest expense in the same period'),
-    (2, '(c) Debt Service Coverage Ratio (DSCR) is the ratio of annual net operating income to debt obligations owed in the last 12m'),
+    (1,
+     '(b) Interest Coverage Ratio (ICR) is the ratio of earnings before interest and tax to the interest expense in the same period'),
+    (2,
+     '(c) Debt Service Coverage Ratio (DSCR) is the ratio of annual net operating income to debt obligations owed in the last 12m'),
     (3, '(d) Other')]
 
 TYPE_OF_LEGAL_OWNER_CHOICES = [
@@ -275,7 +323,8 @@ TYPE_OF_LEGAL_OWNER_CHOICES = [
     (1, '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange'),
     (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
     (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
-    (4, '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership where profits and liabilities are shared'),
+    (4,
+     '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership where profits and liabilities are shared'),
     (5, '(f) Private Individual')]
 
 COLLATERAL_TYPE_CHOICES = [(0, '(a) Auto Mobile Vehicles'),

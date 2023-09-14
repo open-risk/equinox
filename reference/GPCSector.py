@@ -31,7 +31,7 @@ class GPCSector(MP_Node):
 
 
     """
-    name = models.CharField(blank=True, null=True,max_length=50, help_text="A concise name")
+    name = models.CharField(blank=True, null=True, max_length=50, help_text="A concise name")
 
     gpc_ref_no = models.CharField(blank=True, null=True, max_length=10, help_text="The GPC Reference number")
 

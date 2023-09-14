@@ -20,9 +20,10 @@
 
 
 from django.test import TestCase
-from policy.models import DashBoardParams,  DataFlow, DataSeries, GeoSlice
-class PolicyModelTests(TestCase):
+from policy.models import DashBoardParams, DataFlow, DataSeries, GeoSlice
 
+
+class PolicyModelTests(TestCase):
 
     def test_contractor_str(self):
         DashBoardParams.objects.create()

@@ -18,10 +18,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.test import TestCase
-
-from django.test import Client
-
 #
 # class SimpleTest(TestCase):
 #

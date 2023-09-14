@@ -174,7 +174,9 @@ class BuildingEmissionsSource(models.Model):
     asset = models.ForeignKey('portfolio.Building', blank=True, null=True, on_delete=models.CASCADE,
                               help_text="The Asset (Building) to which this emissions source belongs")
 
-    emissions_factor = models.ForeignKey('reference.BuildingEmissionFactor', blank=True, null=True, on_delete=models.CASCADE, help_text="The Applicable Building Emissions Factor (From PCAF Database)")
+    emissions_factor = models.ForeignKey('reference.BuildingEmissionFactor', blank=True, null=True,
+                                         on_delete=models.CASCADE,
+                                         help_text="The Applicable Building Emissions Factor (From PCAF Database)")
 
     # CHARACTERISTICS
 
@@ -213,7 +215,7 @@ class GPPEmissionsSource(models.Model):
     # LINKS
 
     project = models.ForeignKey('portfolio.Project', blank=True, null=True, on_delete=models.CASCADE,
-                                      help_text="Project to which this emissions source belongs")
+                                help_text="Project to which this emissions source belongs")
 
     # CHARACTERISTICS
 
@@ -228,7 +230,6 @@ class GPPEmissionsSource(models.Model):
     nf3_amount = models.FloatField(null=True, blank=True, help_text='NF3 amount in tonnes')
     tco2e_amount = models.FloatField(null=True, blank=True, help_text='Total CO2 equivalent amount in tonnes')
     co2b_amount = models.FloatField(null=True, blank=True, help_text='CO2 (b) amount in tonnes')
-
 
     comments = models.TextField(null=True, blank=True,
                                 help_text="Explanatory comments (i.e. description of methods used)")
@@ -247,4 +248,3 @@ class GPPEmissionsSource(models.Model):
     class Meta:
         verbose_name = "GPP Emissions Source"
         verbose_name_plural = "GPP Emissions Sources"
-

@@ -24,7 +24,6 @@ from django.urls import reverse
 from markdownfield.models import MarkdownField, RenderedMarkdownField
 from markdownfield.validators import VALIDATOR_STANDARD
 
-from portfolio.Project import Project
 from portfolio.ghg_choices import BASELINE_ESTIMATION_PROCEDURE
 
 PROJECT_ACTIVITY_ROLE = [(0, 'Target'),

@@ -39,7 +39,8 @@ class Operator(models.Model):
                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # LINKS
-    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Company that contracted this Operator")
+    project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
+                                        help_text="The Project Company that contracted this Operator")
 
     # SCORECARD
 
@@ -49,12 +50,9 @@ class Operator(models.Model):
     operator_track_record = models.IntegerField(blank=True, null=True, choices=OPERATOR_TRACK_RECORD_CHOICES,
                                                 help_text='Risk SubFactor. EBA 3.3.2. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     # OTHER
     operating_risk = models.FloatField(blank=True, null=True,
                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
 
     #
     # BOOKKEEPING FIELDS

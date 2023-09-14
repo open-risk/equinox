@@ -73,12 +73,12 @@ Step 1: Download the github sources to your preferred directory
     cd equinox
 
 
-Step 2: Create a virtualenv for Python >= 3.9.
+Step 2: Create a virtualenv for Python >= 3.10.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is advisable to run the equinox platform via a Python *virtualenv* so as not to interfere with your system's own Python distribution.
 
-.. note:: If you do not have Python 3.9 please install it first into your system (either as a replacement of your previous 3.X version or as an alternative).
+.. note:: If you do not have Python 3.10 please install it first into your system (either as a replacement of your previous 3.X version or as an alternative).
 
 .. code:: bash
 
@@ -88,7 +88,7 @@ It is advisable to run the equinox platform via a Python *virtualenv* so as not 
 Step 3: Install the required python dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The core dependency of Equinox is *Django* (and its own dependencies). In addition it uses the *Jazzmin* skin as the admin interface and various Python libraries such as *Numpy* and *Pandas* are also required for calculations. You install all dependencies issuing the following:
+The core dependency of Equinox is *Django* (and its own dependencies). In addition Equinox uses the *Jazzmin* skin as the admin interface and various Python libraries such as *Numpy* and *Pandas* are also required for calculations. You install all dependencies issuing the following:
 
 .. code:: bash
 
@@ -133,7 +133,7 @@ In the next step we create an Equinox superuser (administrator).
 
 .. code:: bash
 
-    python3 createadmin
+    python3 createadmin.py
 
 Step 7: Collect static files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

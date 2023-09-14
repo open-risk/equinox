@@ -25,7 +25,9 @@ from django.urls import reverse
 from portfolio.Portfolios import ProjectPortfolio, LimitStructure
 from risk.Scenarios import Scenario
 
-OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'), (3, 'Risk Appetite'), (4, 'Risk Capital'), (5, 'Other')]
+OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'), (3, 'Risk Appetite'),
+                    (4, 'Risk Capital'), (5, 'Other')]
+
 
 # Global specification of the objective categories (used by both Objective and Workflow Models)
 
@@ -72,8 +74,9 @@ class Limitflow(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
-    workflow_id = models.CharField(null=True, blank=True, default='CN_0000', max_length=200, help_text="Serial Number Workflow"
-                                                                                "in the format MM_NNNN ")
+    workflow_id = models.CharField(null=True, blank=True, default='CN_0000', max_length=200,
+                                   help_text="Serial Number Workflow"
+                                             "in the format MM_NNNN ")
 
     workflow_description = models.TextField(default="Default Description", null=True, blank=True,
                                             help_text="A description of the main purpose and "
@@ -110,7 +113,7 @@ class Limitflow(models.Model):
                                    help_text="Where to store the results")
 
     results_list = models.JSONField(default=dict, null=True, blank=True,
-                             help_text="List of desired result items (when applicable")
+                                    help_text="List of desired result items (when applicable")
 
     def __str__(self):
         return self.name
@@ -121,4 +124,3 @@ class Limitflow(models.Model):
     class Meta:
         verbose_name = "Limitflow"
         verbose_name_plural = "Limitflows"
-

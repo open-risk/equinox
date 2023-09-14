@@ -45,6 +45,7 @@ def export2xml(self, request, queryset):
     serializers.serialize("xml", queryset, stream=response)
     return response
 
+
 class DataSeriesAdmin(admin.ModelAdmin):
     formfield_overrides = {
         JSONField: {'widget': PrettyJSONWidget(attrs={'initiaĺ': 'parsed'})},

@@ -445,14 +445,13 @@ class PowerPlant(models.Model):
     # IDENTIFICATION & CATEGORIZATION
 
     production_device_number = models.CharField(max_length=80, blank=True, null=True,
-                                        help_text='Production Device Number (GSRN)')
+                                                help_text='Production Device Number (GSRN)')
 
     production_device_name = models.CharField(max_length=80, blank=True, null=True,
-                                        help_text='Name of Production Device')
+                                              help_text='Name of Production Device')
 
     description = models.TextField(blank=True, null=True,
                                    help_text='Additional information about the Asset')
-
 
     #
     # GHG Data
@@ -463,12 +462,8 @@ class PowerPlant(models.Model):
 
     # OTHER
 
-
     date_of_commisioning = models.DateField(blank=True, null=True,
-                                                 help_text='Commissioning date of the power plant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
-
+                                            help_text='Commissioning date of the power plant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

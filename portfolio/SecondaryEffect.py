@@ -24,7 +24,6 @@ from django.urls import reverse
 from markdownfield.models import MarkdownField, RenderedMarkdownField
 from markdownfield.validators import VALIDATOR_STANDARD
 
-from portfolio.ProjectActivity import ProjectActivity
 from portfolio.ghg_choices import SECONDARY_GHG_EFFECTS
 
 

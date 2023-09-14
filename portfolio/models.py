@@ -98,7 +98,6 @@ class AreaSource(models.Model):
 
 
 class MultiAreaSource(models.Model):
-
     """A multi-polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)"""
 
     # IDENTIFICATION

@@ -20,6 +20,8 @@
 
 from django.db import models
 from django.urls import reverse
+
+
 # from django_countries.fields import CountryField
 
 
@@ -176,7 +178,7 @@ class BuildingEmissionFactor(models.Model):
     #                        help_text='Specify the country where the building is located (European Countries Only')
 
     Country = models.CharField(max_length=40, blank=True, null=True,
-                           help_text='Specify the country where the building is located (European Countries Only')
+                               help_text='Specify the country where the building is located (European Countries Only')
 
     Data_level_1_information = models.CharField(max_length=80, blank=True, null=True,
                                                 help_text='Features of the emission factor (such as the broad real estate asset class) at the highest aggregation level (Example: Residential or Commercial)')
@@ -215,31 +217,32 @@ class BuildingEmissionFactor(models.Model):
     Emission_factor_methodology_description = models.TextField(blank=True, null=True,
                                                                help_text='Information on the methodology used to derive the respective emission factor')
 
-    YEAR_CHOICES = [(2015, 2015), (2016, 2016), (2017, 2017), (2018, 2018), (2019, 2019), (2020, 2020), (2021, 2021), (2022, 2022)]
+    YEAR_CHOICES = [(2015, 2015), (2016, 2016), (2017, 2017), (2018, 2018), (2019, 2019), (2020, 2020), (2021, 2021),
+                    (2022, 2022)]
 
     Emission_factor_source_1 = models.CharField(max_length=80, blank=True, null=True,
                                                 help_text='The name of the emission factor source(s) 1')
 
     Emission_factor_year_1 = models.CharField(max_length=20, blank=True, null=True,
-                                                 help_text='The emission factor source(s) 1 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
+                                              help_text='The emission factor source(s) 1 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
 
     Emission_factor_source_2 = models.CharField(max_length=80, blank=True, null=True,
                                                 help_text='The name of the emission factor source(s) 2')
 
     Emission_factor_year_2 = models.CharField(max_length=20, blank=True, null=True,
-                                                 help_text='The emission factor source(s) 2 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
+                                              help_text='The emission factor source(s) 2 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
 
     Emission_factor_source_3 = models.CharField(max_length=80, blank=True, null=True,
                                                 help_text='The name of the emission factor source(s) 3')
 
     Emission_factor_year_3 = models.CharField(max_length=20, blank=True, null=True,
-                                                 help_text='The emission factor source(s) 3 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
+                                              help_text='The emission factor source(s) 3 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
 
     Emission_factor_source_4 = models.CharField(max_length=80, blank=True, null=True,
                                                 help_text='The name of the emission factor source(s) 4')
 
     Emission_factor_year_4 = models.CharField(max_length=20, blank=True, null=True,
-                                                 help_text='The emission factor source(s) 4 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
+                                              help_text='The emission factor source(s) 4 base year (i.e. the actual year of the underlying data used to calculate the emission factor).')
 
     Link_to_emission_factor = models.CharField(max_length=80, blank=True, null=True,
                                                help_text='A link to the emission factor source and/or methodology.')

@@ -21,23 +21,17 @@
 
 from django.test import TestCase
 
-from portfolio.Counterparty import Counterparty
-from portfolio.models import AreaSource, MultiAreaSource, PointSource
-
-from portfolio.EmissionsSource import BuildingEmissionsSource, EmissionsSource, GPCEmissionsSource, GPPEmissionsSource
-
-from portfolio.Borrower import Borrower
 from portfolio.Asset import Building, PowerPlant
-from portfolio.Contractor import Contractor
-from portfolio.Loan import Loan
-from portfolio.Swap import Swap
+from portfolio.Borrower import Borrower
 from portfolio.Certificate import Certificate
+from portfolio.Contractor import Contractor
+from portfolio.Counterparty import Counterparty
+from portfolio.EmissionsSource import BuildingEmissionsSource, EmissionsSource, GPCEmissionsSource, GPPEmissionsSource
+from portfolio.Loan import Loan
 from portfolio.Mortgage import Mortgage
 from portfolio.Operator import Operator
 from portfolio.PortfolioManager import PortfolioManager
-
 from portfolio.Portfolios import LimitStructure, PortfolioSnapshot, PortfolioTable, ProjectPortfolio
-
 from portfolio.PrimaryEffect import PrimaryEffect
 from portfolio.Project import Project
 from portfolio.ProjectActivity import ProjectActivity
@@ -48,6 +42,9 @@ from portfolio.Revenue import Revenue
 from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
+from portfolio.Swap import Swap
+from portfolio.models import AreaSource, MultiAreaSource, PointSource
+
 
 class PortfolioModelTests(TestCase):
 
@@ -124,7 +121,6 @@ class PortfolioModelTests(TestCase):
         instance = Swap.objects.get()
         self.assertEquals("test", str(instance))
 
-
     def test_certificate_str(self):
         Certificate.objects.create(certificate_identifier='test')
         instance = Certificate.objects.get()
@@ -197,6 +193,7 @@ class PortfolioModelTests(TestCase):
         Revenue.objects.create(revenue_group_identifier='test')
         instance = Revenue.objects.get()
         self.assertEquals("test", str(instance))
+
     def test_project_portfolio_str(self):
         ProjectPortfolio.objects.create(name='test')
         instance = ProjectPortfolio.objects.get()

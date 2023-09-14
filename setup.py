@@ -23,7 +23,7 @@ from codecs import open
 
 from setuptools import setup
 
-__version__ = '0.3'
+__version__ = '0.7.1'
 
 ver = __version__
 

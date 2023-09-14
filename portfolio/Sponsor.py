@@ -55,7 +55,6 @@ class Sponsor(models.Model):
     sponsor_financial_strength = models.IntegerField(blank=True, null=True, choices=SPONSOR_FINANCIAL_STRENGTH_CHOICES,
                                                      help_text='Risk Factor. EBA 4.1. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     # OTHER
 
     strength_of_sponsor = models.FloatField(blank=True, null=True,
@@ -151,11 +150,6 @@ class Sponsor(models.Model):
 
     source_of_external_credit_rating_at_origination = models.TextField(blank=True, null=True,
                                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
-
-
-
 
     total_assets = models.FloatField(blank=True, null=True,
                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

@@ -21,6 +21,7 @@
 # !/usr/bin/env python
 
 import os
+
 import django
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'

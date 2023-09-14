@@ -19,8 +19,9 @@
 # SOFTWARE.
 
 import os
-import django
 import pprint as pp
+
+import django
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
 django.setup()

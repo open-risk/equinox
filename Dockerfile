@@ -1,6 +1,6 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 LABEL author="Open Risk <www.openriskmanagement.com>"
-LABEL version="0.4"
+LABEL version="0.7.1"
 LABEL description="Equinox: Open Source Sustainable Porfolio Management"
 LABEL maintainer="info@openrisk.eu"
 EXPOSE 8080

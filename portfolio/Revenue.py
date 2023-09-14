@@ -30,7 +30,8 @@ class Revenue(models.Model):
 
     """
 
-    revenue_group_identifier = models.TextField(help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    revenue_group_identifier = models.TextField(
+        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # LINKS
 

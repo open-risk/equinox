@@ -22,4 +22,3 @@
 App specific settings
 
 """
-

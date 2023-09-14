@@ -21,11 +21,12 @@
 
 from django.test import TestCase
 
-from reference.EmissionFactor import BuildingEmissionFactor
 from reference.CPVData import CPVData
+from reference.EmissionFactor import BuildingEmissionFactor
+from reference.EmissionIntensity import ReferenceIntensity
 from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
-from reference.EmissionIntensity import ReferenceIntensity
+
 
 class ReferenceModelTests(TestCase):
 

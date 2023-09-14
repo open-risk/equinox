@@ -29,9 +29,9 @@ from treebeard.forms import movenodeform_factory
 
 from reference.CPVData import CPVData
 from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
+from reference.EmissionIntensity import ReferenceIntensity
 from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
-from reference.EmissionIntensity import ReferenceIntensity
 
 actions = ['export2json', 'export2xml']
 

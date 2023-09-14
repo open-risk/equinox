@@ -19,13 +19,13 @@
 # SOFTWARE.
 
 
-from django.test import TestCase
 from django.contrib.auth.models import User
+from django.test import TestCase
 
 from reporting.models import AggregatedStatistics, Calculation, SummaryStatistics, ResultGroup, Visualization
 
-class ReportingModelTests(TestCase):
 
+class ReportingModelTests(TestCase):
 
     def test_aggregated_statistics_str(self):
         AggregatedStatistics.objects.create()

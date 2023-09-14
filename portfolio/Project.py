@@ -56,9 +56,8 @@ class Project(models.Model):
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
                                   help_text="The portfolio to which this project belongs")
 
-
     snapshot = models.ForeignKey('PortfolioSnapshot', on_delete=models.CASCADE, blank=True, null=True,
-                                    help_text="The portfolio snapshot to which the project belongs")
+                                 help_text="The portfolio snapshot to which the project belongs")
 
     # PROJECT DATA
 

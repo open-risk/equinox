@@ -18,8 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#!/usr/bin/env python
+# !/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+
 import os
 import sys
 

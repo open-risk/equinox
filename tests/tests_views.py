@@ -19,4 +19,3 @@
 # SOFTWARE.
 
 
-from django.test import TestCase

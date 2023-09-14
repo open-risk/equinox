@@ -26,10 +26,9 @@ EQUINOX_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = os.path.join(EQUINOX_DIR, 'policy/fixtures/policy_data/')
 ROOT_DIR = DATA_PATH
 
-
 # Output files:
 dataseries_file = ROOT_DIR + "dataseries.latest.json"
-dimensions_file = ROOT_DIR  + "dimensions.latest.json"
+dimensions_file = ROOT_DIR + "dimensions.latest.json"
 dataseries_update_file = ROOT_DIR + "dataseries.update.json"
 metadata_file = ROOT_DIR + 'wikidata_extract_19_05_2020.json'
 

@@ -50,7 +50,6 @@ class Scenario(models.Model):
     # scenario description
     description = models.TextField(blank=True, null=True, help_text="Scenario Description")
 
-
     # LINKS
     # TODO link with portfolio entities
     # portfolio = models.ForeignKey('Portfolio', blank=True, null=True, on_delete=models.CASCADE)
@@ -58,19 +57,22 @@ class Scenario(models.Model):
     # SCENARIO DATA
 
     cutoff_date = models.CharField(max_length=80, blank=True, null=True,
-                                       help_text="Scenario Cutoff Date, Base Year or similar Time Reference")
+                                   help_text="Scenario Cutoff Date, Base Year or similar Time Reference")
 
     scenario_type = models.CharField(blank=True, null=True, max_length=80, help_text="Scenario Type or Category")
 
     # number of scenarios. this supports bundled projections (possibly with probabilities attached to each project)
     scenario_no = models.IntegerField(default=1, help_text="Number of Scenarios")
     # Scenario probabilities (must sum to one)
-    scenario_probabilities = models.JSONField(blank=True, null=True, help_text="Scenario Probabilities (Optional). For mathematical consistency must add to unity")
+    scenario_probabilities = models.JSONField(blank=True, null=True,
+                                              help_text="Scenario Probabilities (Optional). For mathematical consistency must add to unity")
 
     # number of factors projected per scenario. this supports multi-factor (multi-variable)
-    factor_no = models.IntegerField(blank=True, null=True, default=1, help_text="The Number of Scenario Factors (Variables)")
+    factor_no = models.IntegerField(blank=True, null=True, default=1,
+                                    help_text="The Number of Scenario Factors (Variables)")
 
-    factor_values = models.JSONField(blank=True, null=True, help_text="Factor Values under the Projection as a Dict (See Docs)")
+    factor_values = models.JSONField(blank=True, null=True,
+                                     help_text="Factor Values under the Projection as a Dict (See Docs)")
 
     factor_units = models.JSONField(blank=True, null=True, help_text="Factor Variable Name / Units")
 

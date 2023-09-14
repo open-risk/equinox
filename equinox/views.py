@@ -22,17 +22,16 @@ from rest_framework import permissions
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
 from rest_framework.reverse import reverse
 
-from risk.Scorecard import Scorecard
 from equinox.serializers import ScorecardSerializer, ScorecardDetailSerializer
+from portfolio.Contractor import Contractor
+from portfolio.Loan import Loan
+from portfolio.Operator import Operator
 from portfolio.Revenue import Revenue
 from portfolio.Sponsor import Sponsor
-from portfolio.Contractor import Contractor
-from portfolio.Operator import Operator
 from portfolio.Stakeholders import Stakeholders
-from portfolio.Loan import Loan
+from risk.Scorecard import Scorecard
 
 
 @api_view(['GET'])

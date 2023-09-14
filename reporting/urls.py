@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from django.urls import re_path
+
 from reporting import views
 
 app_name = 'reporting'
@@ -46,7 +47,8 @@ urlpatterns = [
     re_path(r'^visualization_grid$', views.visualization_grid, name='visualization_grid'),
     # TODO
     re_path(r'^portfolio_summary/(?P<pk>\d+)$', views.portfolio_summary, name='portfolio_summary'),
-    re_path(r'^credit_portfolio_stats/(?P<pk>[-\w.]+)$', views.credit_portfolio_stats_view, name='credit_portfolio_stats'),
+    re_path(r'^credit_portfolio_stats/(?P<pk>[-\w.]+)$', views.credit_portfolio_stats_view,
+            name='credit_portfolio_stats'),
     re_path(r'^portfolio_aggregates$', views.portfolio_aggregates, name='portfolio_aggregates'),
     # re_path(r'^result_types$', views.result_types, name='result_types'),
     re_path(r'^results_view/(?P<pk>\d+)$', views.results_view, name='results_view'),

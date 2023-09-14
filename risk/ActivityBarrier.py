@@ -36,18 +36,19 @@ class ActivityBarrier(models.Model):
 
     # IDENTIFICATION
 
-    barrier_identifier = models.CharField(max_length=80, blank=True, null=True, help_text='A unique identification of a Barrier')
+    barrier_identifier = models.CharField(max_length=80, blank=True, null=True,
+                                          help_text='A unique identification of a Barrier')
 
     barrier_description = MarkdownField(default='', rendered_field='text_rendered',
-                                                 validator=VALIDATOR_STANDARD,
-                                                 help_text='Textual description of an Activity Barrier. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/">Documentation</a>')
+                                        validator=VALIDATOR_STANDARD,
+                                        help_text='Textual description of an Activity Barrier. Markdown format is supported <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/">Documentation</a>')
 
     # ATTN cannot be null
     text_rendered = RenderedMarkdownField()
 
     # LINKS
-    project_activity = models.ForeignKey(ProjectActivity, blank=True, null=True, on_delete=models.CASCADE, help_text="The Project Activity to which this Primary Effect belongs")
-
+    project_activity = models.ForeignKey(ProjectActivity, blank=True, null=True, on_delete=models.CASCADE,
+                                         help_text="The Project Activity to which this Primary Effect belongs")
 
     #
     # BOOKKEEPING FIELDS

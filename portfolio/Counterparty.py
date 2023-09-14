@@ -19,7 +19,6 @@
 # SOFTWARE.
 
 from django.db import models
-from portfolio.model_choices import *
 from django.urls import reverse
 
 
@@ -32,25 +31,26 @@ class Counterparty(models.Model):
     # IDENTITY
 
     counterparty_identifier = models.IntegerField(null=True, blank=True,
-                                                help_text='Unique Internal Integer Identifier')
+                                                  help_text='Unique Internal Integer Identifier')
 
     counterparty_legal_entity_identifier = models.CharField(max_length=200, blank=True, null=True,
-                                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    name_of_counterparty = models.CharField(max_length=200, null=True, blank=True, help_text='Full Name of Counterparty')
+    name_of_counterparty = models.CharField(max_length=200, null=True, blank=True,
+                                            help_text='Full Name of Counterparty')
 
     # LINKS
 
     # EECS REGISTRY
 
     eecs_account_no = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='EECS Account No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                       help_text='EECS Account No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     eecs_registration_database = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='EECS Registration Database. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Registration_Database">Documentation</a>')
+                                                  help_text='EECS Registration Database. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EECS_Registration_Database">Documentation</a>')
 
     eecs_registry_operator = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='EECS Registry Operator. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                              help_text='EECS Registry Operator. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # ADDRESS
 
@@ -89,24 +89,19 @@ class Counterparty(models.Model):
     # Bank Account Information
 
     bank_name = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='Bank Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                 help_text='Bank Name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     bank_account_no = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='Bank Account No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
+                                       help_text='Bank Account No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     bic_swift_code = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='BIC-/Swift-code. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
+                                      help_text='BIC-/Swift-code. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     iban = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='IBAN. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
+                            help_text='IBAN. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     vat_registration_no = models.CharField(max_length=40, null=True, blank=True,
-                               help_text='VAT Registration No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-
+                                           help_text='VAT Registration No. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

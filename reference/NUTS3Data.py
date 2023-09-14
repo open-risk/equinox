@@ -18,9 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from django.contrib.gis.db.models import PointField
 from django.db import models
 from django.urls import reverse
-from django.contrib.gis.db.models import PointField
 
 
 class NUTS3PointData(models.Model):

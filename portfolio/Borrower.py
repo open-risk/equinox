@@ -36,7 +36,6 @@ class Borrower(models.Model):
 
     """
 
-
     #
     # IDENTIFICATION FIELDS
     #
@@ -118,13 +117,13 @@ class Borrower(models.Model):
                                                          help_text='Insolvency Practitioner Reference" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Insolvency_Practitioner_Reference">Documentation</a>')
 
     proof_of_claim_filed_by_the_seller = models.BooleanField(blank=True, null=True,
-                                                                 help_text='Proof of Claim Filed by the seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Proof_of_Claim_Filed_by_the_seller">Documentation</a>')
+                                                             help_text='Proof of Claim Filed by the seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Proof_of_Claim_Filed_by_the_seller">Documentation</a>')
 
     distribution_made_to_the_seller = models.BooleanField(blank=True, null=True,
-                                                              help_text='https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Distribution_made_to_the_Seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Country_of_Registered_Location">Documentation</a>')
+                                                          help_text='https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Distribution_made_to_the_Seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Country_of_Registered_Location">Documentation</a>')
 
     notice_for_procedure_termination = models.BooleanField(blank=True, null=True,
-                                                               help_text='Indicator as to whether the notice of the end of the procedure has been given to the seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Notice_for_Procedure_Termination">Documentation</a>')
+                                                           help_text='Indicator as to whether the notice of the end of the procedure has been given to the seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Notice_for_Procedure_Termination">Documentation</a>')
 
     cross_collateralisation_for_counterparty = models.IntegerField(blank=True, null=True,
                                                                    choices=CROSS_COLLATERALISATION_FOR_COUNTERPARTY_CHOICES,

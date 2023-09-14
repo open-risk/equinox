@@ -18,11 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.http import HttpRequest
 from django.test import SimpleTestCase
 from django.urls import reverse
-
-from equinox import views
 
 
 # ATTN internationalization strings are not captured

@@ -43,7 +43,6 @@ A policy consists of:
 
 
 class DashBoardParams(models.Model):
-
     # key value store for policy dashboard parameters
     # dataseries statistics etc
 
@@ -112,7 +111,8 @@ class DataSeries(models.Model):
     status = models.CharField(null=True, blank=True, max_length=50)
 
     # last observation date tracked separately for filtering purposes
-    last_observation_date = models.DateTimeField(null=True, blank=True, default=datetime(1916, 9, 25, 17, 22, 22, 90879))
+    last_observation_date = models.DateTimeField(null=True, blank=True,
+                                                 default=datetime(1916, 9, 25, 17, 22, 22, 90879))
 
     # nature of field (categorical, ordinal, numerical)
     field_type = models.CharField(null=True, blank=True, default="numerical", max_length=50)

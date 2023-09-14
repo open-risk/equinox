@@ -108,5 +108,3 @@ class ReferenceIntensity(models.Model):
     class Meta:
         verbose_name = "Reference Intensity"
         verbose_name_plural = "Reference Intensities"
-
-

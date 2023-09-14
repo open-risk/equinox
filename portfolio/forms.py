@@ -44,4 +44,3 @@ class AssemblePortfolioForm(forms.Form):
 class ImportPortfolioForm(forms.Form):
     name = forms.CharField(label='Portfolio Name', max_length=100)
     file = forms.FileField(label='Select a file', help_text='max. 42 megabytes', widget=forms.FileInput)
-

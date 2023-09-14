@@ -52,7 +52,7 @@ class ProjectEvent(models.Model):
     # PROJECT ACTIVITY DATA
 
     project_event_type = models.IntegerField(blank=True, null=True, choices=EVENT_CHOICES,
-                                            help_text='The project event type')
+                                             help_text='The project event type')
 
     project_event_date = models.DateTimeField(blank=True, null=True, help_text='The Lifecycle Event date')
 

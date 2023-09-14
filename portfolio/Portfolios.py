@@ -9,7 +9,6 @@ from portfolio.PortfolioManager import PortfolioManager
 
 
 class ProjectPortfolio(models.Model):
-
     """
         The ProjectPortfolio object holds a collection of Projects (Economic activities with defined environmental impact)
 
@@ -99,7 +98,6 @@ class PortfolioSnapshot(models.Model):
     name = models.CharField(blank=True, null=True, max_length=200,
                             help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
 
-
     cutoff_date = models.DateTimeField(blank=True, null=True,
                                        help_text="Portfolio Cutoff Date (If available). Different from the creation date")
 
@@ -168,7 +166,8 @@ class LimitStructure(models.Model):
     """
 
     name = models.CharField(max_length=200, help_text="An assigned name to help identify the limit structure")
-    portfolio = models.ForeignKey(ProjectPortfolio, null=True, blank=True, on_delete=models.CASCADE, help_text="The portfolio to which the limit structure applies")
+    portfolio = models.ForeignKey(ProjectPortfolio, null=True, blank=True, on_delete=models.CASCADE,
+                                  help_text="The portfolio to which the limit structure applies")
     notes = models.TextField(blank=True, null=True,
                              help_text="Description of the purpose or other relevant information about the limit structure")
 

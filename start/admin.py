@@ -45,4 +45,3 @@ class DocPageAdmin(admin.ModelAdmin):
 
 admin.site.register(ORMKeyword, ORMKeywordAdmin)
 admin.site.register(DocPage, DocPageAdmin)
-

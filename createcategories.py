@@ -20,6 +20,7 @@
 
 # !/usr/bin/env python
 import os
+
 import django
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'equinox.settings'
@@ -47,5 +48,3 @@ get(node.pk).add_sibling(name='Agricultural Tillage')
 node = get(ted_node.pk).add_child(name='WORKS')
 get(node.pk).add_sibling(name='SERVICES')
 get(node.pk).add_sibling(name='SUPPLIES')
-
-

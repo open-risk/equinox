@@ -25,7 +25,7 @@ import django
 
 django.setup()
 
-__version__ = '0.7'
+__version__ = '0.7.1'
 
 # -- Project information -----------------------------------------------------
 
@@ -182,7 +182,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'equinox', 'Equinox Documentation',
-     author, 'Open Risk', 'Sustainable Finance Reporting Platform.',
+     author, 'Open Risk', 'Sustainable Finance Reporting Platform',
      'Miscellaneous'),
 ]
 

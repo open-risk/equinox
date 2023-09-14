@@ -251,6 +251,7 @@
                                                     <li class="nav-item">
                                                         <a href="
 
+
                                                                 {% if model.url %}{{ model.url }}{% else %}javascript:void(0){% endif %}"
                                                            class="nav-link"> <i class="nav-icon {{ model.icon }}"></i>
                                                             <p>{{ model.name }}</p>
@@ -345,7 +346,8 @@
                     <b>{% trans 'Jazzmin version' %}</b> {% get_jazzmin_version %}
                 </div>
                 {% autoescape off %}
-                    <strong>{% trans 'Copyright' %} &copy; {% now 'Y' %} {{ jazzmin_settings.copyright }}.</strong> {% trans 'All rights reserved.' %}
+                    <strong>{% trans 'Copyright' %} &copy; {% now 'Y' %} {{ jazzmin_settings.copyright }}.</strong>
+                    {% trans 'All rights reserved.' %}
                 {% endautoescape %}
             </footer>
             {% if jazzmin_settings.show_ui_builder %}

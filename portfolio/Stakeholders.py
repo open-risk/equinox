@@ -19,8 +19,9 @@
 # SOFTWARE.
 
 from django.db import models
-from portfolio.model_choices import *
 from django.urls import reverse
+
+from portfolio.model_choices import *
 
 
 class Stakeholders(models.Model):
@@ -33,7 +34,7 @@ class Stakeholders(models.Model):
     # IDENTITY
 
     stakeholder_identifier = models.CharField(max_length=80, null=True,
-                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     # LINKS
 
@@ -73,10 +74,8 @@ class Stakeholders(models.Model):
     environmental_and_social_management_system = models.TextField(blank=True, null=True,
                                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     grievance_mechanisms = models.TextField(blank=True, null=True,
                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
 
     stakeholder_engagement = models.TextField(blank=True, null=True,
                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

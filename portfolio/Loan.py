@@ -19,10 +19,11 @@
 # SOFTWARE.
 
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from portfolio.model_choices import *
-from portfolio.ghg_choices import *
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+
+from portfolio.ghg_choices import *
+from portfolio.model_choices import *
 
 # The EBA Loan Asset Classes
 

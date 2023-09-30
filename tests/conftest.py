@@ -1,4 +1,3 @@
-import time
 # Copyright (c) 2020 - 2023 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy

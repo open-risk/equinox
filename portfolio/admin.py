@@ -29,8 +29,10 @@ from django.utils.html import format_html
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
+from portfolio.Asset import PowerPlant
 from portfolio.Asset import ProjectAsset, Building
 from portfolio.Borrower import Borrower
+from portfolio.Certificate import Certificate
 from portfolio.Contractor import Contractor
 from portfolio.Counterparty import Counterparty
 from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource
@@ -52,8 +54,6 @@ from portfolio.SecondaryEffect import SecondaryEffect
 from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
 from portfolio.Swap import Swap
-from portfolio.Certificate import Certificate
-from portfolio.Asset import PowerPlant
 from portfolio.models import PointSource, AreaSource, MultiAreaSource
 
 

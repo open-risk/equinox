@@ -54,5 +54,3 @@ class Command(BaseCommand):
                     source.project = p
                     source.comments = 'Testing the EEIO Method'
                     source.save()
-
-

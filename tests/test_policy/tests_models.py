@@ -20,6 +20,7 @@
 
 
 from django.test import TestCase
+
 from policy.models import DashBoardParams, DataFlow, DataSeries, GeoSlice
 
 

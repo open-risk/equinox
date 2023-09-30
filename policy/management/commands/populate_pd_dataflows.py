@@ -26,9 +26,10 @@ Created Wed Jun 10 12:48:51 CEST 2020
 
 import json
 
-import policy.settings as settings
 from django.core.management.base import BaseCommand
 from django.utils import timezone
+
+import policy.settings as settings
 from policy.models import DashBoardParams
 from policy.models import DataFlow
 from policy.models import DataSeries
@@ -39,7 +40,7 @@ class Command(BaseCommand):
     Debug = False
 
     path = settings.DATA_PATH
-    dataflows_file =  settings.dataflows_file
+    dataflows_file = settings.dataflows_file
     dimensions_file = settings.dimensions_file
     dataseries_file = settings.dataseries_update_file
 

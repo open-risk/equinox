@@ -19,8 +19,9 @@
 # SOFTWARE.
 
 from django.db import models
-from portfolio.model_choices import *
 from django.urls import reverse
+
+from portfolio.model_choices import *
 
 
 class Sponsor(models.Model):

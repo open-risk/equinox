@@ -19,7 +19,9 @@
 # SOFTWARE.
 
 from django.core.management.base import BaseCommand
+
 from reference.EmissionFactor import EmissionFactor
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):

@@ -19,9 +19,10 @@
 # SOFTWARE.
 
 
-from django.db import models
 from django.contrib.gis.db.models import PointField, MultiPolygonField, PolygonField
+from django.db import models
 from django.urls import reverse
+
 from portfolio.Asset import ProjectAsset
 
 """

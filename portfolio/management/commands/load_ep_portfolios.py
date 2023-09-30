@@ -54,6 +54,5 @@ class Command(BaseCommand):
         indata.append(portfolio)
     ProjectPortfolio.objects.bulk_create(indata)
 
-
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Successfully inserted equator principles portfolio data into db'))

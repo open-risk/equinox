@@ -21,9 +21,9 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 
+from portfolio.Portfolios import ProjectPortfolio
 from portfolio.Project import Project
 from portfolio.ProjectCategory import ProjectCategory
-from portfolio.Portfolios import ProjectPortfolio
 
 
 class Command(BaseCommand):

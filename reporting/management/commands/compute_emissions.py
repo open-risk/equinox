@@ -19,14 +19,13 @@
 # SOFTWARE.
 
 from django.core.management.base import BaseCommand
+
 from portfolio.EmissionsSource import GPPEmissionsSource
 from reference.EmissionIntensity import intensity, ReferenceIntensity
 from reporting.models import AggregatedStatistics
 
 
 class Command(BaseCommand):
-
-
     """
       iterate over procurement portfolio (project portfolio)
       read emissions intensity from cpv_code dictionary

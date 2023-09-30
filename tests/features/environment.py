@@ -20,6 +20,7 @@
 
 
 import os
+
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equinox.settings')
@@ -29,6 +30,7 @@ from behave import fixture, use_fixture
 from django.contrib.auth.models import User
 from django.test.runner import DiscoverRunner
 from django.test.testcases import LiveServerTestCase
+
 
 class BaseTestCase(LiveServerTestCase):
     @classmethod

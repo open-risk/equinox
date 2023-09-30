@@ -27,9 +27,10 @@ Created Wed Jun 10 12:48:51 CEST 2020
 import json
 from datetime import datetime
 
-import policy.settings as settings
 from django.core.management.base import BaseCommand
 from django.utils import timezone
+
+import policy.settings as settings
 from policy.models import DashBoardParams
 from policy.models import DataSeries
 
@@ -160,7 +161,7 @@ class Command(BaseCommand):
     high_end = 0
     for c in range(chunks):
         low_end = c * chunk_size
-        high_end = (c+1) * chunk_size
+        high_end = (c + 1) * chunk_size
         if Debug:
             print(low_end, high_end)
         DataSeries.objects.bulk_create(indata[low_end:high_end])

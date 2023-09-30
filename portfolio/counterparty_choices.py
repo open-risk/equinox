@@ -83,7 +83,7 @@ LEGAL_PROCEDURE_TYPE_CHOICES = [(0, '(a) Corporate Restructuring Procedures, whi
 LEGAL_PROCEDURE_NAME_CHOICES = [(0, 'Country Specific: Annex I')]
 
 STAGE_REACHED_IN_INSOLVENCY_OR_RESTRUCTURING_PROCEDURE_CHOICES = [(0, '(a) A creditors committee has been formed'), (
-1, '(b) A moratorium against enforcement is in place'), (2, '(c) A restructuring plan has been proposed'),
+    1, '(b) A moratorium against enforcement is in place'), (2, '(c) A restructuring plan has been proposed'),
                                                                   (3, '(d) A restructuring plan has been approved'),
                                                                   (4, '(e) A proof of claim has been filed'),
                                                                   (5, '(f) A bar date for claims has been issued'), (6,

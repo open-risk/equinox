@@ -19,8 +19,9 @@
 # SOFTWARE.
 
 from django.core.management.base import BaseCommand
-from portfolio.ProjectActivity import ProjectActivity
+
 from portfolio.PrimaryEffect import PrimaryEffect
+from portfolio.ProjectActivity import ProjectActivity
 from portfolio.SecondaryEffect import SecondaryEffect
 
 

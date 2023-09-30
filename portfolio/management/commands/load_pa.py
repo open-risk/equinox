@@ -21,9 +21,8 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 
-from portfolio.ProjectActivity import ProjectActivity
-from portfolio.ProjectCategory import ProjectCategory
 from portfolio.Project import Project
+from portfolio.ProjectActivity import ProjectActivity
 
 
 class Command(BaseCommand):
@@ -43,7 +42,6 @@ class Command(BaseCommand):
     serial = 10000
 
     for index, entry in data.iterrows():
-
         pr = Project.objects.get(pk=entry['PROJECT'])
 
         # TODO fix null issue with markdown field

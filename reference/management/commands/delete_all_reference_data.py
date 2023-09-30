@@ -26,7 +26,6 @@ from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.EmissionIntensity import ReferenceIntensity
 from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
-from reporting.models import SummaryStatistics, AggregatedStatistics, ResultGroup, Calculation, Visualization
 
 
 class Command(BaseCommand):

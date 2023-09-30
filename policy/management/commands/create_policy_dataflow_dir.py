@@ -29,8 +29,9 @@ import pickle
 import time
 from datetime import datetime
 
-import policy.settings as settings
 from django.core.management.base import BaseCommand
+
+import policy.settings as settings
 
 
 class Command(BaseCommand):
@@ -61,7 +62,7 @@ class Command(BaseCommand):
     if Logging:
         logfile.write("> Created  Policy Data Dataflow Directory \n")
         logfile.write("> Execution Time: %s seconds --- \n" % (time.time() - start_time))
-        logfile.write(80*'=' + '\n')
+        logfile.write(80 * '=' + '\n')
         logfile.close()
 
     def handle(self, *args, **options):

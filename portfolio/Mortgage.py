@@ -21,8 +21,8 @@
 from django.db import models
 from django.urls import reverse
 
-from portfolio.mortgage_choices import *
 from portfolio.Borrower import Borrower
+from portfolio.mortgage_choices import *
 
 
 class Mortgage(models.Model):

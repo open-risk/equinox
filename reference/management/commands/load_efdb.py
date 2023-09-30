@@ -19,7 +19,9 @@
 # SOFTWARE.
 
 import csv
+
 from django.core.management import BaseCommand
+
 from reference.EmissionFactor import EmissionFactor
 
 

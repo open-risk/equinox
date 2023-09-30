@@ -21,8 +21,8 @@
 from django.db import models
 from django.urls import reverse
 
-from portfolio.counterparty_choices import *
 from portfolio.Portfolios import PortfolioSnapshot, ProjectPortfolio
+from portfolio.counterparty_choices import *
 
 
 class Borrower(models.Model):

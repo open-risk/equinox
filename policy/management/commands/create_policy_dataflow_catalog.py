@@ -46,10 +46,11 @@ dataflow['DASHBOARD_N'] = dashboard_count\
 
 import json
 import pickle
+
 from django.core.management.base import BaseCommand
 
 import policy.settings as settings
-from policy.settings import dataflows_file, country_dict
+from policy.settings import dataflows_file
 
 
 class Command(BaseCommand):
@@ -69,7 +70,7 @@ class Command(BaseCommand):
     dataseries_list_file = settings.dataseries_file
     series_list = json.load(open(dataseries_list_file))
 
-    dataseries_updated_file =  settings.dataseries_update_file
+    dataseries_updated_file = settings.dataseries_update_file
     updated_list = json.load(open(dataseries_updated_file))
 
     for key in dataflow_dict:

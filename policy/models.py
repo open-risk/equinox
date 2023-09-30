@@ -18,10 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db.models import JSONField
-from django.db import models
-from django.urls import reverse
 from datetime import datetime
+
+from django.db import models
+from django.db.models import JSONField
+from django.urls import reverse
 
 """
 Classes to store policy data

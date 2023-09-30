@@ -1,18 +1,22 @@
-"""
-Created on Tue Aug 23 19:41:00 2016
-Updated on Thu Oct  6 23:02:43 2016
-Merged into equinox Commands Tue Mar  6 11:43:38 CET 2018
-Adapted for mobility data Tue Apr 28 19:41:59 CEST 2020
-Adapted for policy data Wed Jun 10 12:48:51 CEST 2020
-
-Update Step 3
-Process data from local json files into json
-- impute missing data (if possible)
-- calculate metrics
-- pre-calculate graphical elements
-
-Updated at 3/2/21 (management command)
-"""
+# Copyright (c) 2020 - 2023 Open Risk (https://www.openriskmanagement.com)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 import json
 import math
@@ -24,7 +28,6 @@ from django.core.management.base import BaseCommand
 from scipy import stats
 
 import policy.settings as settings
-
 # The field names as they are in the CSV header
 from policy.settings import field_codes, field_description, field_description_long, field_code_list, field_type
 
@@ -87,7 +90,7 @@ class Command(BaseCommand):
 
     # Read the list of downloaded dataseries
     dataseries_list_file = settings.dataseries_file
-    dataseries_list_update_file =  settings.dataseries_update_file
+    dataseries_list_update_file = settings.dataseries_update_file
 
     series_list = json.load(open(dataseries_list_file))
     if Debug:

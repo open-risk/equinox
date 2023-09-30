@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from django.core.management.base import BaseCommand
+
 from reference.NUTS3Data import NUTS3PointData
 
 

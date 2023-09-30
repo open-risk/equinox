@@ -18,7 +18,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pandas as pd
 from django.core.management.base import BaseCommand
 
 from portfolio.Portfolios import ProjectPortfolio, PortfolioManager

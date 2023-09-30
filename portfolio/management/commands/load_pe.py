@@ -21,9 +21,8 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 
-from portfolio.ProjectEvent import ProjectEvent
-from portfolio.ProjectCategory import ProjectCategory
 from portfolio.Project import Project
+from portfolio.ProjectEvent import ProjectEvent
 
 
 class Command(BaseCommand):
@@ -43,7 +42,6 @@ class Command(BaseCommand):
     serial = 10000
 
     for index, entry in data.iterrows():
-
         pr = Project.objects.get(pk=entry['PROJECT'])
 
         pe = ProjectEvent(

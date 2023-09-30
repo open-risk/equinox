@@ -20,6 +20,7 @@
 
 
 from rest_framework import serializers
+
 from equinox.settings import ROOT_VIEW
 from risk.Scorecard import Scorecard
 

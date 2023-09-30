@@ -46,9 +46,9 @@ class Command(BaseCommand):
         for key in top_level:
             # print(key[0], key[1], top_level[key])
             co = AggregatedStatistics(
-                 country=key[1],
-                 sector=key[0],
-                 value_total=top_level[key]
+                country=key[1],
+                sector=key[0],
+                value_total=top_level[key]
             )
             indata.append(co)
 

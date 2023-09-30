@@ -23,8 +23,8 @@ import os
 
 from django.core.management.base import BaseCommand
 
-from portfolio.Project import Project
 from equinox.settings import BASE_DIR
+from portfolio.Project import Project
 
 
 class Command(BaseCommand):
@@ -39,7 +39,7 @@ class Command(BaseCommand):
     for pr in Project.objects.all():
         if len(pr.cpv_code) == 8:
             pr.cpa_code = cpv_map[pr.cpv_code]
-        else: # hack for string based definition of single digit division cpv codes (03, 09 etc)
+        else:  # hack for string based definition of single digit division cpv codes (03, 09 etc)
             cpv_code = '0' + pr.cpv_code
             pr.cpa_code = cpv_map[cpv_code]
         indata.append(pr)

@@ -41,10 +41,10 @@ Updated at 2/19/21 productionize
 """
 
 import json
-from datetime import datetime
-import pandas as pd
-import json
 import time
+from datetime import datetime
+
+import pandas as pd
 from django.core.management.base import BaseCommand
 
 import policy.settings as settings

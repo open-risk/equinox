@@ -27,12 +27,13 @@ Created Wed Jun 10 12:48:51 CEST 2020
 import json
 import pickle
 import pprint
-from datetime import datetime
 import time
+from datetime import datetime
 
 from django.core.management.base import BaseCommand
-from policy.settings import field_names, field_codes, field_description
+
 import policy.settings as settings
+from policy.settings import field_codes, field_description
 
 """
 For each dataflow (country based)
@@ -101,7 +102,7 @@ class Command(BaseCommand):
     if Logging:
         logfile.write("> Created  Policy Data dimensions \n")
         logfile.write("> Execution Time: %s seconds --- \n" % (time.time() - start_time))
-        logfile.write(80*'=' + '\n')
+        logfile.write(80 * '=' + '\n')
         logfile.close()
 
     def handle(self, *args, **options):

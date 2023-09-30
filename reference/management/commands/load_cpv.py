@@ -18,10 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import csv
-from django.core.management import BaseCommand
-from reference.CPVData import CPVData, CPV_LEVEL_DICT
 import pandas as pd
+from django.core.management import BaseCommand
+
+from reference.CPVData import CPVData, CPV_LEVEL_DICT
 
 
 class Command(BaseCommand):

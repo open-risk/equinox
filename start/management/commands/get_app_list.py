@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
         if verbose:
             for app in apps.get_app_configs():
-                print(80*'-')
+                print(80 * '-')
                 print('Name: ', app.name)
                 print('Label: ', app.label)
                 print('Verbose Name: ', app.verbose_name)
@@ -56,4 +56,3 @@ class Command(BaseCommand):
             print(equinox)
             print('==== Third Party Apps ====')
             print(third_party)
-

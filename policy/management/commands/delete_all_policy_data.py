@@ -24,6 +24,7 @@ Created Tue Dec  8 20:54:39 CET 2020
 
 """
 from django.core.management.base import BaseCommand
+
 from policy.models import DashBoardParams, GeoSlice
 from policy.models import DataSeries, DataFlow
 

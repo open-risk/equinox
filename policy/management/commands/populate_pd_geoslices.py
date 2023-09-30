@@ -27,10 +27,10 @@ Created Wed Jun 10 12:48:51 CEST 2020
 from django.core.management.base import BaseCommand
 from django.db.models import Q
 from django.utils import timezone
+
 from policy.models import DataFlow
 from policy.models import DataSeries
 from policy.models import GeoSlice
-
 from policy.settings import activities_short
 
 

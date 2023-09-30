@@ -37,13 +37,14 @@ Updated at 2/19/21 to productionize
 
 import json
 import pickle
-from datetime import datetime
 import time
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
-import policy.settings as settings
 from django.core.management.base import BaseCommand
+
+import policy.settings as settings
 from policy.settings import countryISOMapping
 
 
@@ -115,7 +116,7 @@ class Command(BaseCommand):
         logfile.write("> Created  datafiles/dataflow_dict.json \n")
         logfile.write("> Created  datafiles/dataflow_dict.pkl   \n")
         logfile.write("> Execution Time: %s seconds --- \n" % (time.time() - start_time))
-        logfile.write(80*'=' + '\n')
+        logfile.write(80 * '=' + '\n')
         logfile.close()
 
     def handle(self, *args, **options):

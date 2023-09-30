@@ -18,10 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import csv
-from django.core.management import BaseCommand
-from reference.EmissionIntensity import ReferenceIntensity
 import pandas as pd
+from django.core.management import BaseCommand
+
+from reference.EmissionIntensity import ReferenceIntensity
 
 
 class Command(BaseCommand):

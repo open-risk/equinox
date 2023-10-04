@@ -20,7 +20,13 @@
 
 
 """
-The main Reference models are defined in individual files for readability
+The main Reference models are defined in individual files for readability:
+
+* CPVData.py (CPVData)
+* EmissionFactor.py (EmissionFactor, BuildingEmissionFactor)
+* EmissionIntensity.py (Reference Intensity)
+* GPCSector.py (GPCSector)
+
 Use models.py for any additional / auxiliary models
 
 """

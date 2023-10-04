@@ -1,4 +1,4 @@
 Equinox Reference
 ==========================================
 
-Reference is an Equinox app store a variety of reference (external and slowly changing data)
+Reference is an Equinox app that stores a variety of reference (external and/or slowly changing data)

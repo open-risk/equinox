@@ -11,6 +11,6 @@ INSTALLED_APPS = [
 'portfolio',
 ]
 
-2. Run ``python manage.py migrate`` to create the polls models.
+2. Run ``python manage.py migrate`` to create the portfolio models.
 
 3. Start the development server and visit http://127.0.0.1:8000/admin/

@@ -14,7 +14,7 @@ INSTALLED_APPS = [
 2. Include the policies URLconf in your project urls.py like this::
 path('policy/', include('policy.urls')),
 
-3. Run ``python manage.py migrate`` to create the polls models.
+3. Run ``python manage.py migrate`` to create the policy models.
 
 4. Start the development server and visit http://127.0.0.1:8000/admin/
 

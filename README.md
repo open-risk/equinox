@@ -1,12 +1,15 @@
 [![Documentation Status](https://readthedocs.org/projects/equinox-server/badge/?version=latest)](https://equinox-server.readthedocs.io/en/latest/?badge=latest)
 
 # Equinox Overview
+
 ![Equinox Logo](docs/source/equinox-logo.png) Equinox is an open source platform for sustainable portfolio management. It supports holistic risk management and reporting of sustainable finance projects in accordance with evolving industry standards.
 
 ## The Challenge of Sustainable Finance
+
 Sustainability (understood both in environmental and social terms) is a seriously challenging and for the foreseable future persistent issue that affects all economies irrespective of state of development. Tools and methodologies that improve the ability of all stakeholders to assess and report risks are thus an important objective.
 
 ## What exactly is Equinox?
+
 Equinox is a *database and a web application frontend* that works together with tailored data schemas to provide a flexible and powerful Sustainable Finance platform adhering to many regulatory and ESG initiatives and recommendations. 
 
 Running an equinox *instance* creates a local *server* that can then be accessed via any regular web browser. With some additional installation steps an instance can be also be made available online (publicly or via registration). 

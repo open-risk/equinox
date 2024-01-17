@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2023 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -94,7 +94,7 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 #
 
 @admin.register(PointSource)
-class PointSourceAdmin(admin.OSMGeoAdmin):
+class PointSourceAdmin(admin.GISModelAdmin):
     """Point Source admin."""
 
     list_display = ("name",)
@@ -106,7 +106,7 @@ class PointSourceAdmin(admin.OSMGeoAdmin):
 
 
 @admin.register(AreaSource)
-class AreaSourceAdmin(admin.OSMGeoAdmin):
+class AreaSourceAdmin(admin.GISModelAdmin):
     """Project Region admin. (Simple Polygon) """
 
     list_display = ("name",)
@@ -117,7 +117,7 @@ class AreaSourceAdmin(admin.OSMGeoAdmin):
 
 
 @admin.register(MultiAreaSource)
-class MultiAreaSourceAdmin(admin.OSMGeoAdmin):
+class MultiAreaSourceAdmin(admin.GISModelAdmin):
     """Project Region admin. (Multi Polygon) """
 
     list_display = ("name",)

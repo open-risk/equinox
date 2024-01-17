@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2023 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ admin.site.add_action(export2xml)
 
 
 @admin.register(NUTS3PointData)
-class NUTS3PointDataAdmin(admin.OSMGeoAdmin):
+class NUTS3PointDataAdmin(admin.GISModelAdmin):
     """NUTS3 Point Data admin."""
 
     search_fields = ['nuts_id', 'nuts_name', 'name_latn']

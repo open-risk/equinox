@@ -1,9 +1,11 @@
 Installation
 =======================
-You can install and use the Equinox platform in any computing system that either directly supports a *Python* environment **or** indirectly via *Docker*. Here you can find alternative ways to install Equinox.
+
+You can install and use the Equinox platform in any computing system that either directly supports a *Python* environment **or** does so indirectly (via *Docker*). Here you can find alternative ways to install Equinox.
 
 Installation via Docker
 -----------------------
+
 Installation via docker is recommended as a long term production option as it provides a streamlined and fast setup of an equinox instance. If you do not want to use docker scroll further down for :ref:`Manual installation from sources`
 
 
@@ -59,6 +61,7 @@ Again, access the running instance of equinox by pointing your browser to ``http
 
 Manual installation from sources
 --------------------------------
+
 The manual installation path is recommended if you want to use the latest release, dig into and inspect the equinox code base and/or if you want to contribute to equinox development.
 
 
@@ -74,7 +77,7 @@ Step 1: Download the github sources to your preferred directory
 
 
 Step 2: Create a virtualenv for Python >= 3.10.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is advisable to run the equinox platform via a Python *virtualenv* so as not to interfere with your system's own Python distribution.
 
@@ -86,7 +89,7 @@ It is advisable to run the equinox platform via a Python *virtualenv* so as not 
     source venv/bin/activate
 
 Step 3: Install the required python dependencies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The core dependency of Equinox is *Django* (and its own dependencies). In addition Equinox uses the *Jazzmin* skin as the admin interface and various Python libraries such as *Numpy* and *Pandas* are also required for calculations. You install all dependencies issuing the following:
 
@@ -95,9 +98,11 @@ The core dependency of Equinox is *Django* (and its own dependencies). In additi
     pip3 install -r requirements.txt
 
 Step 4: Install the required system-wide dependencies
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Equinox supports working with *geospatial data* and this requires specific C/C++ libraries that must be installed system-wide. Specifically GDAL and Spatialite. On a linux system with apt installed issue the following:
+Equinox supports working with *geospatial data* and this requires specific C/C++ libraries that must be installed system-wide.
+
+The default Equinox project is setup to use sqlite3 (spatialite). On a linux system with apt installed issue the following:
 
 .. note:: In other Linux distributions replace apt with your package manager
 
@@ -109,13 +114,52 @@ Equinox supports working with *geospatial data* and this requires specific C/C++
     spatialite-bin\
     libsqlite3-mod-spatialite
 
-
 .. note:: The above are geospatial C/C++ libraries that are installed system-wide (not in the isolated virtualenv we created above). If you *don not* want to modify the host system on which you install equinox you should go down the Docker route describe in the previous installation paths.
+
+To use postgres/postgis as a backend, install first the following at the system level (assuming here the 14 version of postgres):
+
+.. code:: bash
+
+    sudo apt-get libpq-dev postgresql postgresql-contrib
+    sudo apt-get install python3-psycopg2
+    sudo apt install postgresql-14-postgis-scripts
+    sudo apt install postgresql-plpython3-14
+
+Subsequently setup the appropriate user / databases as follows (names are indicative):
+
+.. code:: sql
+
+   CREATE DATABASE equinox;
+   CREATE USER equinoxuser WITH PASSWORD 'equinoxuser';
+   ALTER ROLE equinoxuser SUPERUSER;
+   ALTER ROLE equinoxuser SET client_encoding TO 'utf8';
+   ALTER ROLE equinoxuser SET default_transaction_isolation TO 'read committed';
+   ALTER ROLE equinoxuser SET timezone TO 'UTC';
+   GRANT ALL PRIVILEGES ON DATABASE equinox TO equinoxuser;
+
+Modify the database configuration section of the settings.py file
+
+.. code:: python
+
+    DATABASES = {
+        # 'default': {
+        #     "ENGINE": "django.contrib.gis.db.backends.spatialite",
+        #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # }
+        'default': {
+            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'NAME': 'equinox',
+            'USER': 'equinoxuser',
+            'PASSWORD': 'equinoxuser',
+            'HOST': 'localhost',
+            'PORT': '5433',
+        }
+    }
 
 Step 5: Make the required Django migrations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The default Equinox project is setup to use sqlite3 (spatialite). This step will ensure the database has the right tables. Issue the following command lines:
+This step will ensure the database has the right tables. Issue the following command lines:
 
 .. code:: bash
 
@@ -125,7 +169,7 @@ The default Equinox project is setup to use sqlite3 (spatialite). This step will
     python manage.py migrate
 
 Step 6: Create a superuser.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the next step we create an Equinox superuser (administrator).
 
@@ -174,12 +218,9 @@ The above steps are typical Django project installation steps. If you experience
 
 .. warning:: The current User Interface (UI) of equinox is desktop oriented and might not work properly in smaller (mobile) screens. Mobile clients are in the roadmap for future development.
 
-
 We welcome your feedback and support. Please raise a `github ticket <https://github.com/open-risk/equinox/issues>`_ if you want to report a bug or need a new feature.
 
-
 For contributions check our Contribution and Code of Conduct docs.
-
 
 Setup (Initialization)
 =======================

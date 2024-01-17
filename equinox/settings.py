@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2023 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -128,9 +128,17 @@ TEMPLATE_LOADERS = (
 WSGI_APPLICATION = 'equinox.wsgi.application'
 
 DATABASES = {
+    # 'default': {
+    #     "ENGINE": "django.contrib.gis.db.backends.spatialite",
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     'default': {
-        "ENGINE": "django.contrib.gis.db.backends.spatialite",
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'equinox',
+        'USER': 'equinoxuser',
+        'PASSWORD': 'equinoxuser',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'

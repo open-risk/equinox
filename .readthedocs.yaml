@@ -7,6 +7,8 @@ version: 2
 # Set the OS, Python version and other tools you might need
 build:
   os: ubuntu-22.04
+  apt_packages:
+    - gdal
   tools:
     python: "3.10"
     # You can also specify other tool versions:

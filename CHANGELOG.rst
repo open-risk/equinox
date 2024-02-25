@@ -1,4 +1,4 @@
-ChangeLog
+ ChangeLog
 ===========================
 
 This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
@@ -44,7 +44,7 @@ v0.3.2 (31-03-2022)
 
 v0.3.14 (14-03-2022)
 --------------------
-* Pi Day pre-release
+* Pi-Day pre-release
 * PCAF for Mortgages
 
 v0.3 (01-03-2022)

@@ -128,18 +128,18 @@ TEMPLATE_LOADERS = (
 WSGI_APPLICATION = 'equinox.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     "ENGINE": "django.contrib.gis.db.backends.spatialite",
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'equinox',
-        'USER': 'equinoxuser',
-        'PASSWORD': 'equinoxuser',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.contrib.gis.db.backends.postgis',
+    #     'NAME': 'equinox',
+    #     'USER': 'equinoxuser',
+    #     'PASSWORD': 'equinoxuser',
+    #     'HOST': 'localhost',
+    #     'PORT': '5433',
+    # }
 }
 SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
 

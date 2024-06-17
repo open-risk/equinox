@@ -15,7 +15,6 @@ django-treebeard~=4.7.1
 django-import-export
 django-prettyjson
 django-countries
-django-pwa
 django-extensions
 django-htmx
 django-debug-toolbar~=4.3.0

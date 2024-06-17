@@ -28,6 +28,8 @@ from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+from pwa import views as pwa_views
+from django.views.decorators.cache import cache_page
 
 from . import views, settings
 
@@ -46,6 +48,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
                   path('', include('start.urls')),  # Equinox Start Page URLS
+                  path('offline/', cache_page(settings.PWA_APP_NAME)(pwa_views.offline)),
                   path('reporting/', include('reporting.urls')),  # Results Explorer URLS
                   path('policy/', include('policy.urls')),  # Results Explorer URLS
                   path('reference/', include('reference.urls')),  # Results Explorer URLS
@@ -54,7 +57,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),  # Equinox Admin URL's
                   path(r'api/', views.api_root, name='api_root'),  # API root
                   path(r'api/portfolio_data/', include(('portfolio.urls', 'portfolio'), namespace='portfolio')),
-                  # Portfolio data API
+                  # Portfolio Data API
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # This is the optional debug toolbar

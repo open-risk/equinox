@@ -18,7 +18,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 """
 The main Risk models are defined in individual files for readability
 Use models.py for any additional / auxiliary models

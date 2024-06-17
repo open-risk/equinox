@@ -1,9 +1,9 @@
-The equinox platform at a glance
+The Equinox platform at a glance
 ============================================
 
-**equinox** is a Python / Django powered sustainable portfolio management platform. It allows the collection and reporting of information relating to sustainable finance and more broadly any portfolio of financial contracts or instruments that has material sustainability related characteristics
+**Equinox** is a Python / Django powered _sustainable portfolio management_ platform. It allows the collection and reporting of information relating to sustainable finance and more broadly any portfolio of financial contracts or instruments that has material sustainability related characteristics
 
-This documentation focuses on technical (software, installation, devops) characteristics of the equinox platform. Documentation of the user perspective (Functionality, workflows etc is provided `here <https://www.openriskmanagement.com/equinox>`_
+This documentation focuses on technical (software, installation, devops) characteristics of the equinox platform. Documentation of the user perspective (Functionality, workflows etc is provided `here <https://www.openriskmanagement.com/documentation/equinox>`_
 
 Architecture
 -------------
@@ -18,7 +18,6 @@ The equinox data layer can be segmented into several major categories:
 - The *Physical Data Layer* that holds information about physical aspects of assets, activities etc. This concerns mostly information typically external to the portfolio manager.
 - The *Socioeconomic Data Layer* that holds information about economic agents and their economic and financial profiles. This too concerns information external to the portfolio manager.
 - The *Portfolio Management Layer* that overlays internal portfolio management information about sustainability scenarios, portfolio constraints, limits and targets etc.
-
 
 Lets look at those layers in some more detail. Each one is implemented as as set of specialized data models, with corresponding database schema.
 

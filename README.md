@@ -29,7 +29,7 @@ The functionality of Equinox focuses on integrating the following concepts:
 * The European Banking Authority's Criteria for Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending
 
 ## Find out more:
-- For [User Documentation](https://www.openriskmanagement.com/equinox/)
+- For [User Documentation](https://www.openriskmanagement.com/documentation/equinox/)
 - For [Technical Documentation](https://equinox-server.readthedocs.io/en/latest/)
 - 💬 [Discussion at the Open Risk Commons](https://www.openriskcommons.org/c/equinox/27)
 - For broader sustainable finance knowledge base, consult the [Open Risk Manual](https://www.openriskmanual.org/wiki/Category:Sustainable_Finance)
@@ -42,11 +42,11 @@ The landing page of a working equinox instance:
 
 ![Landing Page](docs/source/landing.png)
 
-To get anything done we need to login! (admin/admin would be the credentials in a local demo instance)
+To get anything done we need to log in! (admin/admin would be the credentials in a local demo instance)
 
 ![Login Page](docs/source/login.png)
 
-Once you login successfully you'd be greeted by the admin area
+Once you log in successfully you'd be greeted by the admin area
 
 ![Admin Page](docs/source/admin.png)
 

@@ -28,7 +28,6 @@ class Scorecard(models.Model):
     """
     The Scorecard data model holds data for defined scorecards. The current implementation is a Credit Scorecard of the ProjectCompany
 
-
     """
 
     scorecard_identifier = models.CharField(max_length=80, blank=True, null=True,

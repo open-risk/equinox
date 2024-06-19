@@ -12,7 +12,7 @@ Sustainability (understood both in environmental and social terms) is a seriousl
 
 Equinox is a *database and a web application frontend* that works together with tailored data schemas to provide a flexible and powerful Sustainable Finance platform adhering to many regulatory and ESG initiatives and recommendations. 
 
-Running an equinox *instance* creates a local *server* that can then be accessed via any regular web browser. With some additional installation steps an instance can be also be made available online (publicly or via registration). 
+Running an equinox *instance* creates a local *server* that can then be accessed via any regular web browser. With some additional installation steps an instance can be also be made available online (publicly or via registration). For a running instance of equinox check out [Sustainability.Town](https://www.sustainability.town). 
 
 NB: For easy installation and testing the current release uses an sqlite database instead of a production database.
 
@@ -29,11 +29,13 @@ The functionality of Equinox focuses on integrating the following concepts:
 * The European Banking Authority's Criteria for Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending
 
 ## Find out more:
+
 - For [User Documentation](https://www.openriskmanagement.com/documentation/equinox/)
 - For [Technical Documentation](https://equinox-server.readthedocs.io/en/latest/)
 - 💬 [Discussion at the Open Risk Commons](https://www.openriskcommons.org/c/equinox/27)
 - For broader sustainable finance knowledge base, consult the [Open Risk Manual](https://www.openriskmanual.org/wiki/Category:Sustainable_Finance)
 - 🌱 For training, head to the [Open Risk Academy](https://www.openriskacademy.com/)
+- [Sustainability.Town](https://www.sustainability.town). 
 
 
 ## Screenshots

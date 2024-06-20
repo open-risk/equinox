@@ -21,7 +21,6 @@
 
 from rest_framework import serializers
 
-from equinox.settings import ROOT_VIEW
 from risk.Scorecard import Scorecard
 
 
@@ -37,7 +36,7 @@ class ScorecardSerializer(serializers.ModelSerializer):
         fields = ('id', 'scorecard_identifier', 'link')
 
     def get_link(self, obj):
-        link = ROOT_VIEW + "/api/portfolio_data/scorecards/" + str(obj.pk)
+        link = "/api/portfolio_data/scorecards/" + str(obj.pk)
         return link
 
 

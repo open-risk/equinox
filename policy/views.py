@@ -168,7 +168,6 @@ class DataFlowGeoSliceView(DetailView):
             dimension['DimString'] = dimension['DimDescription'].replace(" ", "_").replace("/", "_")
         context.update({'geoslices': json.dumps(dataset)})
         context.update({'dimension_list': obj})
-        # context.update({'root_view': root_view})
         return context
 
 
@@ -194,7 +193,6 @@ class DataFlowSliceView(DetailView):
 
         context.update({'dataseries': json.dumps(dataflow.dataset_id)})
         context.update({'dimension_list': obj})
-        # context.update({'root_view': root_view})
         return context
 
 
@@ -459,7 +457,6 @@ class DSInteractiveView(DetailView):
         dataflow = DataFlow.objects.get(identifier=dataseries.df_name)
         unit = dataseries.unit
         context.update({'unit': json.dumps(unit)})
-        # context.update({'root_view': root_view})
         context.update({'df_size': dataflow.dashboard_n})
         return context
 
@@ -498,7 +495,6 @@ class DataSeriesListView(ListView):
 
         context.update({'content_data': json.dumps(content_data)})
         context.update({'freshness': json.dumps(freshness)})
-        # context.update({'root_view': root_view})
         return context
 
 

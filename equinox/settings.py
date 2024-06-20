@@ -92,8 +92,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'equinox.urls'
 
-ROOT_VIEW = "http://localhost:8000"
-
 SITE_ID = 1
 # SITE_URL = "https://equinoxpoint.org"
 SITE_URL = "http://127.0.0.1:8080/"

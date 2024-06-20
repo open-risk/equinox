@@ -21,7 +21,6 @@
 from django.test import TestCase
 
 from equinox.serializers import ScorecardSerializer
-from equinox.settings import ROOT_VIEW
 from risk.Scorecard import Scorecard
 
 
@@ -38,5 +37,5 @@ class APITests(TestCase):
         scorecard = Scorecard.objects.get(scorecard_identifier='Test')
         serializer = ScorecardSerializer(scorecard)
         api_link = serializer.get_link(scorecard)
-        test_link = ROOT_VIEW + "/api/portfolio_data/scorecards/" + str(scorecard.pk)
+        test_link = "/api/portfolio_data/scorecards/" + str(scorecard.pk)
         self.assertEquals(api_link, test_link)

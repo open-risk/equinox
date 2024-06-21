@@ -42,7 +42,7 @@ from portfolio.ProjectEvent import ProjectEvent
 from portfolio.models import MultiAreaSource
 from reference.NUTS3Data import NUTS3PointData
 from reporting.forms import CustomPortfolioAggregatesForm, portfolio_attributes, aggregation_choices
-from reporting.models import Calculation, SummaryStatistics, AggregatedStatistics
+from reporting.models import Calculation, SummaryStatistics, AggregatedStatistics, Visualization
 
 """
 
@@ -787,4 +787,24 @@ def visualization_sector(request):
     context = RequestContext(request, {})
     context.update({'img_list': img_list})
     context.update({'dataset': top_level})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def visualization_vega(request, pk):
+    """
+
+    """
+
+    # get the Visualization object
+    visualization = Visualization.objects.get(pk=pk)
+    context = RequestContext(request, {})
+
+    t = loader.get_template('vega_viz.html')
+    spec = json.dumps(visualization.vega_specification)
+    data = json.dumps(visualization.visualization_data)
+    context.update({'object': visualization})
+    context.update({'visualization_data': data})
+    context.update({'vega_specification': spec})
+
     return HttpResponse(t.template.render(context))

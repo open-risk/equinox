@@ -10,6 +10,7 @@ v0.8 (Upcoming)
     * sqlite bug workaround: python ./manage.py shell -c "import django;django.db.connection.cursor().execute('SELECT InitSpatialMetaData(1);')";
 * Enhancements: Postgres backend option
 * Scripts for deleting user data from database
+* Vega visualization framework
 
 v0.7.1 (14-09-2023)
 -------------------

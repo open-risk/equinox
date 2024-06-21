@@ -1,6 +1,10 @@
 ChangeLog
 ===========================
 
+v0.7.0 (21-06-2024)
+-------------------
+* Vega visualization framework
+
 v0.6.0 (03-06-2023)
 -------------------
 * Model testing framework

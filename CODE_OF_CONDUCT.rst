@@ -2,7 +2,7 @@
 Code of Conduct
 ===============
 
-This code of conduct applies to all online spaces managed by Open Risk. This includes Github, mailing lists, the issue tracker, the Open Risk Commons and/or any other forums created by the Open Risk team towards community usage.
+This code of conduct applies to all online spaces managed by Open Risk. This includes Github, mailing lists, issue trackers, the Open Risk Commons and/or any other forums created by the Open Risk team towards community usage.
 
 .. warning:: Violations of this code also outside the above mentioned spaces may affect a person's ability to participate within them.
 
@@ -23,4 +23,4 @@ This code of conduct applies to all online spaces managed by Open Risk. This inc
     * Repeated harassment of others. In general, if someone asks you to stop, then stop.
 
 
-Original text courtesy of the Django Project
+Original text of this Code of Conduct is courtesy of the Django Project

@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.urls import re_path
+from django.urls import re_path, path
 
 from reporting import views
 
@@ -52,4 +52,5 @@ urlpatterns = [
     re_path(r'^portfolio_aggregates$', views.portfolio_aggregates, name='portfolio_aggregates'),
     # re_path(r'^result_types$', views.result_types, name='result_types'),
     re_path(r'^results_view/(?P<pk>\d+)$', views.results_view, name='results_view'),
+    re_path(r'^visualization_vega$', views.visualization_vega, name='visualization_vega'),
 ]

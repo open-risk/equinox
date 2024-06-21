@@ -1,0 +1,71 @@
+{% extends "start/generic.html" %}
+
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Standard Visualization
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega/5.7.0/vega.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-lite/3.4.0/vega-lite.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vega-embed/5.1.3/vega-embed.js"></script>
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <style media="screen">
+        .vega-actions a {
+            margin-right: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block messages %}
+    <div class="helpblock">
+        <p><i class="fa fa-hand-pointer-o"></i> Declarative Visualization: <b>{{ object.name }} :</b>
+            <i>{{ object.description }}</i></p>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="page" class="container-responsive">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="vis"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let myData = "{{ visualization_data | escapejs }}";
+        let spec = "{{ vega_specification | escapejs }}";
+        let data = JSON.parse(myData);
+        let vspec = JSON.parse(spec);
+        console.log(vspec);
+        console.log(data);
+
+        vspec.data = data;visualization_single.html
+
+        let runtime = vega.parse(vspec);
+        let changeSet = vega.changeset().remove(vega.truthy).insert(data);
+        console.log(changeSet);
+
+        let view = new vega.View(runtime)
+            .logLevel(vega.Warn) // set view logging level
+            .initialize(document.querySelector('#vis')) // set parent DOM element
+            .renderer('svg') // set render type (defaults to 'canvas')
+            .hover() // enable hover event processing
+            .run(); // update and render the view
+    </script>
+
+
+{% endblock %}
+

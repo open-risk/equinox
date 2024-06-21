@@ -158,21 +158,16 @@ class Calculation(models.Model):
         verbose_name_plural = "Results"
 
 
+OBJECTIVE_CHOICE = [(0, 'General Information'), (1, 'Concentration Risk'), (2, 'Origination'),
+                    (3, 'Risk Appetite'), (4, 'Risk Capital'), (5, 'Other')]
+
+
 class Visualization(models.Model):
     """
     The Visualization Data object holds the structural Vega / Vega-Lite specification of a visualization
 
     Includes reference to user creating the Visualization
     """
-
-    VISUALIZATION_DATA_CHOICES = [(0, 'Load portfolio data from local JSON files'),
-                                  (1, 'Fetch portfolio data via REST API'),
-                                  (2, 'Create new portfolio from local JSON configuration'),
-                                  (3, 'Fetch portfolio configuration via REST API'),
-                                  (4, 'Attached portfolio data in JSON format')]
-
-    OBJECTIVE_CHOICE = [(0, 'Portfolio Information'), (1, 'Concentration Risk'), (2, 'Origination'),
-                        (3, 'Risk Appetite'), (4, 'Risk Capital'), (5, 'Other')]
 
     name = models.CharField(max_length=200, help_text="Assigned name to help manage Visualization collections")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1, help_text="The creator of the Visualization")
@@ -184,9 +179,6 @@ class Visualization(models.Model):
 
     description = models.TextField(null=True, blank=True, help_text="A description of the main purpose and "
                                                                     "characteristics of the Visualization")
-
-    visualization_data_mode = models.IntegerField(default=1, null=True, blank=True, choices=VISUALIZATION_DATA_CHOICES,
-                                                  help_text="Select the mode for portfolio data inputs")
 
     visualization_data = models.JSONField(null=True, blank=True, help_text="Container for visualization data")
     visualization_data_url = models.URLField(null=True, blank=True, help_text="URL for visualization data")

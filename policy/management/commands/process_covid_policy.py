@@ -69,9 +69,9 @@ STATUS INDICATORS
 
 
 class Command(BaseCommand):
-    help = 'Process policy dataseries'
-    Debug = True
-    Logging = True
+    help = 'Process covid policy dataseries'
+    Debug = False
+    Logging = False
 
     datapath = settings.DATA_PATH
 
@@ -85,7 +85,7 @@ class Command(BaseCommand):
         logfile.write('> Starting at: ' + str(date) + '\n')
 
     if Debug:
-        print('> Script 3: Process Oxford Policy Data')
+        print('> Process Oxford Covid Policy Data')
         print('> ' + str(date) + '\n')
 
     # Read the list of downloaded dataseries
@@ -152,76 +152,82 @@ class Command(BaseCommand):
         Data['Long Description'] = field_description_long[field_index]
         Data['Code List'] = field_code_list[field_id]
         Data['Field Type'] = field_type[field_index]
-        # print(field_index, Data['Description'], Data['Long Description'])
 
         # Load and parse the saved JSON files
 
-        input_file = str(datapath) + '/policy/policy_data/dataflows/' + dataflow + '/' + series_id + '.json'
+        input_file = str(datapath) + '/dataflows/' + dataflow + '/' + series_id + '.json'
 
         Dates = []
         Values = []
+
         # Try to load the data
         try:
             mydata = json.load(open(input_file))
             Dates = mydata['Dates']
             Values = mydata['Values']
+            if Debug:
+                print('Parsed ' + series_id + '\n')
         except Exception as e:
-            logfile.write('Could not load/parse ' + series_id + '\n')
-            continue
+            if Logging:
+                logfile.write('Could not load/parse ' + series_id + '\n')
+            else:
+                print('Could not load/parse ' + series_id + '\n')
 
         # Total number of observations
         ObsCount = len(Values)
-        # Actual measurements (excluding NaN)
-        ValidCount = np.count_nonzero(~np.isnan(Values))
 
-        if Debug:
-            print(ObsCount, ValidCount)
+        # Actual measurements (excluding NaN)
+        # ValidCount = np.count_nonzero(~np.isnan(Values))
 
         LastDate = Dates[len(Dates) - 1]
         lastDate = datetime.strptime(LastDate, "%Y-%m-%d").date()
 
-        now = datetime.now()
-        nowDate = now.date()
+        # now = datetime.now()
+        # nowDate = now.date()
 
-        #
-        # OVERRIDE For now we keep only full observation sets
-        #
+        if Debug:
+            print(ObsCount, lastDate)
 
-        # if ValidCount == ObsCount:
+        # if Logging:
+        #     check1 = " len > 6"
+        #     logfile.write(dataflow + ' : ' + series_id + check1 + '\n')
 
-        if ObsCount > 6:  # Filter out insufficiently long timeseries
+        # Compute absolute and percent differences for numerical types
+        # print(Data['Field Type'], Values[-10:])
 
-            if Logging:
-                check1 = " len > 6"
-                logfile.write(dataflow + ' : ' + series_id + check1 + '\n')
+        Diffs = []
+        PDiffs = []
+        Diffs.append(0)
+        PDiffs.append(0)
 
-            # Compute absolute and percent differences
-            Diffs = []
-            PDiffs = []
-            Diffs.append(0)
-            PDiffs.append(0)
-            for k in range(1, len(Values)):
+        for k in range(1, len(Values)):
+            if Data['Field Type'] != 'text':
+
                 Diffs.append(Values[k] - Values[k - 1])
                 if math.fabs(Values[k - 1]) > 0:
                     PDiffs.append((Values[k] - Values[k - 1]) / Values[k - 1])
                 else:
                     PDiffs.append(0)
+            else:
+                Diffs.append(0)
+                PDiffs.append(0)
 
-            series['Status'] = 'Valid'
-            Data['Dates'] = Dates
-            Data['Values'] = Values
-            Data['Delta'] = Diffs
-            Data['PDelta'] = PDiffs
+        series['Status'] = 'Valid'
+        Data['Dates'] = Dates
+        Data['Values'] = Values
+        Data['Delta'] = Diffs
+        Data['PDelta'] = PDiffs
 
-            # Compute Metrics
-            Metrics = {}
-            Value = np.array(Values)
-            FirstDate = Dates[0]
-            # ObsCount = len(Value)
+        # Compute Metrics
+        Metrics = {}
+        Value = np.array(Values)
+        FirstDate = Dates[0]
+        # ObsCount = len(Value)
 
-            # TODO CONVERT TO UTC DATE
-            Data['LastDate'] = LastDate
+        # TODO CONVERT TO UTC DATE
+        Data['LastDate'] = LastDate
 
+        if Data['Field Type'] != 'text':
             # Compute key risk metrics and recent observations
             max_value = np.max(Value)
             min_value = np.min(Value)
@@ -267,86 +273,82 @@ class Command(BaseCommand):
                 'T-3': round(value_m3, 3),
                 'Orders': val_orders
             }
-
-            Data['Metrics'] = Metrics
-
-            if std_value > 0:  # Ignore flat timeseries
-                check2 = " vol > 0"
-                if Logging:
-                    logfile.write(dataflow + ' : ' + series_id + check2 + '\n')
-
-                # Compute Geometry (For Volatility Gauge Visualization)
-
-                # VOLATILITY GAUGE SETTINGS
-                # Map key values onto circle
-                # Average is at 90
-                # 1 std is 30
-                # angle_unit = 3.1415 / 6.0
-                # theta_current = angle_unit * (last_value - mean_value) / std_value
-                # theta_m1 = angle_unit * (value_m1 - mean_value) / std_value
-                # theta_m2 = angle_unit * (value_m2 - mean_value) / std_value
-                # theta_m3 = angle_unit * (value_m3 - mean_value) / std_value
-                # theta_max = angle_unit * (max_value - mean_value) / std_value
-                # theta_min = angle_unit * (min_value - mean_value) / std_value
-
-                # Zero decline / increase is at 90
-                # 20% change is 30 degrees
-                mean_value = 0
-                std_value = 20
-                angle_unit = 3.1415 / 6.0
-                theta_current = angle_unit * (last_value - mean_value) / std_value
-                theta_m1 = angle_unit * (value_m1 - mean_value) / std_value
-                theta_m2 = angle_unit * (value_m2 - mean_value) / std_value
-                theta_m3 = angle_unit * (value_m3 - mean_value) / std_value
-                theta_max = angle_unit * (max_value - mean_value) / std_value
-                theta_min = angle_unit * (min_value - mean_value) / std_value
-
-                Geometry = {'Max': theta_max, 'Min': theta_min, 'Current': theta_current, 'Min1': theta_m1,
-                            'Min2': theta_m2, 'Min3': theta_m3}
-                Data['Geometry_1D'] = Geometry
-
-            else:
-                check2 = " vol = 0"
-                if Logging:
-                    logfile.write(dataflow + ' : ' + series_id + check2 + '\n')
-                series['Status'] = 'Stale Dataset'
         else:
-            check1 = " len < 6"
-            if Logging:
-                logfile.write(dataflow + ' : ' + series_id + check1 + '\n')
-            series['Status'] = 'Insufficient Length Dataset'
-        # else:
-        #     check4 = " Missing Data"
-        #     if Logging:
-        #         logfile.write(dataflow + ' : ' + series_id + check4 + '\n')
-        #     series['Status'] = 'Missing Data'
+            Metrics = {
+                'FirstDate': FirstDate,
+                'LastDate': LastDate,
+                'Frequency': Data['Frequency'],
+                'ObsCount': ObsCount,
+                'Min': 0,
+                'Max': 0,
+                'Median': 0,
+                'Q25': 0,
+                'Q75': 0,
+                'Mean': 0,
+                'Vol': 0,
+                'Skew': 0,
+                'Kurtosis': 0,
+                'T': 0,
+                'T-1': 0,
+                'T-2': 0,
+                'T-3': 0,
+                'Orders': 0
+            }
+
+        Data['Metrics'] = Metrics
+
+        if Data['Field Type'] != 'text':
+
+            # Compute Geometry (For Volatility Gauge Visualization)
+
+            # VOLATILITY GAUGE SETTINGS
+            # Map key values onto circle
+            # Average is at 90
+            # 1 std is 30
+            # angle_unit = 3.1415 / 6.0
+            # theta_current = angle_unit * (last_value - mean_value) / std_value
+            # theta_m1 = angle_unit * (value_m1 - mean_value) / std_value
+            # theta_m2 = angle_unit * (value_m2 - mean_value) / std_value
+            # theta_m3 = angle_unit * (value_m3 - mean_value) / std_value
+            # theta_max = angle_unit * (max_value - mean_value) / std_value
+            # theta_min = angle_unit * (min_value - mean_value) / std_value
+
+            # Zero decline / increase is at 90
+            # 20% change is 30 degrees
+            mean_value = 0
+            std_value = 20
+            angle_unit = 3.1415 / 6.0
+            theta_current = angle_unit * (last_value - mean_value) / std_value
+            theta_m1 = angle_unit * (value_m1 - mean_value) / std_value
+            theta_m2 = angle_unit * (value_m2 - mean_value) / std_value
+            theta_m3 = angle_unit * (value_m3 - mean_value) / std_value
+            theta_max = angle_unit * (max_value - mean_value) / std_value
+            theta_min = angle_unit * (min_value - mean_value) / std_value
+
+            Geometry = {'Max': theta_max, 'Min': theta_min, 'Current': theta_current, 'Min1': theta_m1,
+                        'Min2': theta_m2, 'Min3': theta_m3}
+
+        else:
+            Geometry = {'Max': 0, 'Min': 0, 'Current': 0, 'Min1': 0, 'Min2': 0, 'Min3': 0}
+
+        Data['Geometry_1D'] = Geometry
 
         processing_end = time.time()
         processing_time = round(processing_end - processing_start, 4)
+
         if Debug:
             print(count, len(series_list), processing_time)
 
-        # if Debug:
-        #     print(Data)
-        #     if series['Status'] is 'Valid':
-        #         print(dataflow, " : ", series_id, LastDate, processing_time, " sec")
-        #     else:
-        #         print(dataflow, " : ", series_id, series['Status'], check1, check2, check3, check4)
-        #
-        #
-        output_file = str(datapath) + '/policy/policy_data/dataflows/' + dataflow + '/' + series_id + '.P' + '.json'
+        output_file = str(datapath) + '/dataflows/' + dataflow + '/' + series_id + '.P' + '.json'
+        print('Dumping File: ', output_file)
+        print(Data)
         json.dump(Data, open(output_file, 'w'), sort_keys=True, indent=4, separators=(',', ': '))
         series_list_update.append(series)
+        print('Done')
 
     # store an updated list of dataseries dicts
     json.dump(series_list_update, open(dataseries_list_update_file, 'w'), sort_keys=True, indent=4,
               separators=(',', ': '))
-
-    # Attach series we have not processed
-    # series_list_update.extend(static_list)
-    # if Debug:
-    #     print("Processed :", len(download_list))
-    #     print("Untouched :", len(static_list))
 
     if Logging:
         logfile.write("> Processed  Policy Data  \n")
@@ -355,4 +357,4 @@ class Command(BaseCommand):
         logfile.close()
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully processed policy data'))
+        self.stdout.write(self.style.SUCCESS('Successfully processed covid policy data'))

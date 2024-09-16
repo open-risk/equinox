@@ -53,9 +53,9 @@ from policy.settings import field_names, field_codes, field_description
 
 
 class Command(BaseCommand):
-    help = 'Extract policy dataseries metadata from csv'
-    Debug = False
-    Logging = True
+    help = 'Extract covid policy dataseries metadata from csv'
+    Debug = True
+    Logging = False
     dataflowpath = settings.DATA_PATH + 'dataflows/'
 
     start_time = time.time()
@@ -72,7 +72,7 @@ class Command(BaseCommand):
     count = 0
     filepath = settings.CSV_FILE_PATH
     mydata = pd.read_csv(filepath)
-    mydata = mydata.fillna(0)
+    mydata = mydata.fillna(0.0)
     total_rows = mydata.shape[0]
 
     if Logging:
@@ -107,7 +107,7 @@ class Command(BaseCommand):
         # Construct collection of identifiers for this dataflow
         values = []
         identifier = []
-        # ATTN WE FILL NAN WITH ZERO
+        # ATTN WE FILL NAN's WITH ZEROS
         for field in field_names:
             values.append(row[field])
             f_index = field_names.index(field)

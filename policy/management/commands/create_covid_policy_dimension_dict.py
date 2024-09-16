@@ -55,8 +55,8 @@ type of policy data being tracked
 
 class Command(BaseCommand):
     help = 'Create policy dimension dictionary'
-    Debug = False
-    Logging = True
+    Debug = True
+    Logging = False
 
     start_time = time.time()
     start_timestamp = datetime.isoformat(datetime.now())
@@ -76,6 +76,7 @@ class Command(BaseCommand):
     dataflow_dict = pickle.load(open(datapath + '/dataflow_dict' + '.pkl', 'rb'))
 
     actual_codes = {}
+    print(len(field_codes), len(field_description))
     for field in field_codes:
         f_index = field_codes.index(field)
         actual_codes[field] = field_description[f_index]

@@ -35,7 +35,7 @@ import policy.settings as settings
 
 
 class Command(BaseCommand):
-    help = 'Create policy data dataflow directories'
+    help = 'Create covid policy data dataflow directories'
     Debug = False
     Logging = True
 

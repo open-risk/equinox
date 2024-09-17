@@ -44,6 +44,8 @@ A policy consists of:
 
 
 class DashBoardParams(models.Model):
+
+
     # key value store for policy dashboard parameters
     # dataseries statistics etc
 

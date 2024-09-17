@@ -1,7 +1,10 @@
 Policy Models
 ------------------------------
 
-This manual page provides information about the Equinox Policy Data module that helps collect and work with Covid-19 related policy data.
+This manual page provides information about the Equinox Policy Data module. This module helps collect and work with policy data of various types.
+
+Example fixtures:
+* Covid-19 related policy data.
 
 .. automodule:: policy.models
    :members:

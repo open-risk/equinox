@@ -18,30 +18,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
-from django.test import TestCase
-
-from policy.models import DashBoardParams, DataFlow, DataSeries, GeoSlice
+#
+"""
 
 
-class PolicyModelTests(TestCase):
 
-    def test_dashboard_str(self):
-        DashBoardParams.objects.create()
-        instance = DashBoardParams.objects.get()
-        self.assertEquals("1", str(instance))
+"""
+import os
 
-    def test_dataflow_str(self):
-        DataFlow.objects.create(name='test')
-        instance = DataFlow.objects.get()
-        self.assertEquals("test", str(instance))
+from django.core.management.base import BaseCommand
+import policy.settings as settings
 
-    def test_dataseries_str(self):
-        DataSeries.objects.create(identifier='test')
-        instance = DataSeries.objects.get()
-        self.assertEquals("test", str(instance))
 
-    def test_geoslice_str(self):
-        GeoSlice.objects.create(identifier='test')
-        instance = GeoSlice.objects.get()
-        self.assertEquals("test", str(instance))
+class Command(BaseCommand):
+    help = 'Deletes all policy related log files '
+    Debug = False
+
+    os.remove(settings.logfile_path)
+
+
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Deleted all policy logs. Good Luck!'))

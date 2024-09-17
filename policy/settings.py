@@ -33,7 +33,8 @@ dimensions_file = ROOT_DIR + "dimensions.latest.json"
 dataseries_update_file = ROOT_DIR + "dataseries.update.json"
 metadata_file = ROOT_DIR + 'wikidata_extract_19_05_2020.json'
 
-DATA_FILE = 'OxCGRT_compact_national_v1.csv'
+DATA_FILE = 'OECD.ENV.EPI,DSD_CAPMF@DF_CAPMF,1.0+all.csv'
+# DATA_FILE = 'OxCGRT_compact_national_v1.csv'
 # DATA_FILE = 'Oxford_Policies_Report_Latest.csv'
 # DATA_FILE = 'OxCGRT_latest.csv'
 

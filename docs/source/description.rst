@@ -1,7 +1,7 @@
 The Equinox platform at a glance
 ============================================
 
-**Equinox** is a Python / Django powered _sustainable portfolio management_ platform. It allows the collection and reporting of information relating to sustainable finance and more broadly any portfolio of financial contracts or instruments that has material sustainability related characteristics
+**Equinox** is a Python / Django powered *Sustainable Portfolio Management* platform. It allows the collection and reporting of information relating to sustainable finance and more broadly any portfolio of financial contracts or instruments that has material sustainability related characteristics
 
 This documentation focuses on technical (software, installation, devops) characteristics of the equinox platform. Documentation of the user perspective (Functionality, workflows etc is provided `here <https://www.openriskmanagement.com/documentation/equinox>`_
 

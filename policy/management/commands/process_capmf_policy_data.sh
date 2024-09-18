@@ -7,15 +7,15 @@ SCRIPT_DIR="/equinox/policy/fixtures/policy_data"
 DATA_DIR="../../fixtures/policy_data/dataflows"
 
 echo "-> Step 1: Extracting Dataflows to Dict"
-# python3 $DJANGO_DIR/manage.py extract_capmf_policy_dataflows
+python3 $DJANGO_DIR/manage.py extract_capmf_policy_dataflows
 echo "-> Step 1: Successful"
 
 echo "-> Step 2: Clean Old Dataflows"
-# rm -rf $DATA_DIR/*
+rm -rf $DATA_DIR/*
 echo "-> Step 2: Successful"
 
 echo "-> Step 3: Recreate Dataflow Dir"
-# python3 $DJANGO_DIR/manage.py create_capmf_policy_dataflow_dir
+python3 $DJANGO_DIR/manage.py create_capmf_policy_dataflow_dir
 echo "-> Step 3: Successful"
 
 echo "-> Step 4: Extracting Dataseries"

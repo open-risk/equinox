@@ -1,6 +1,11 @@
 ChangeLog
 ===========================
 
+v0.5.0 (XX-XX-XXXX)
+----------------------
+* OECD CAPMF Policy data import
+
+
 v0.4.0 (03-06-2023)
 -------------------
 * Model testing framework

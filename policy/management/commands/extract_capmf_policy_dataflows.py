@@ -71,8 +71,10 @@ class Command(BaseCommand):
     for index, row in mydata.iterrows():
 
         # The data columns we will work with in this script
-        country_region_code = countryISOMapping[row['CountryCode']]
-        country_region = row['CountryName']
+        # Choosing 2 Letter country code
+        # ATTN: EU added as country
+        country_region_code = countryISOMapping[row['REF_AREA']]
+        country_region = row['Reference area']
 
         # Some type issues of pandas
         if type(country_region_code) is float:

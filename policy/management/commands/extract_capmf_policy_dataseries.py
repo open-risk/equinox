@@ -21,22 +21,17 @@
 """
 
 
-Input csv
-Output DF/DF.XX.json dataseries file
+Input OECD CAPMF CSV Dump
 
-ds_data['DF_NAME'] = ds[:2]
-ds_data['FREQ'] = 'D'
-ds_data['ID'] = ds
-ds_data['REF_AREA'] = dataseries_dict[ds]['REF_AREA']
-ds_data['Status'] = 'Live'
-ds_data['TITLE'] = dataseries_dict[ds]['TITLE']
-ds_data['TITLE_COMPL'] = dataseries_dict[ds]['TITLE_COMPL']
-ds_data['UNIT'] = 'CHECK'
-ds_data['URL'] = 'https://www.equinox.com/api/policy_data'
-ds_data['ACTIVITY'] = dataseries_dict[ds]['ACTIVITY']
-ds_data['AGG_LEVEL'] = dataseries_dict[ds]['AGG_LEVEL']
+Output DF/DF.XX.json dataseries files per dataflow directory
 
-Updated at 2/19/21 productionize
+{
+    "Dates" : []
+    "Values" : []
+    "Identifier"
+    etc.
+}
+
 """
 
 import json
@@ -47,12 +42,12 @@ import pandas as pd
 from django.core.management.base import BaseCommand
 
 import policy.settings as settings
-from policy.settings import countryISOMapping
+from policy.settings import countryISOMapping, country_dict
 from policy.capmf_settings import field_names, field_codes, field_description
 
 
 class Command(BaseCommand):
-    help = 'Extract covid capmf dataseries metadata from csv'
+    help = 'Extract CAPMF dataseries data from csv'
     Debug = True
     Logging = False
     dataflowpath = settings.DATA_PATH + 'dataflows/'
@@ -70,91 +65,97 @@ class Command(BaseCommand):
 
     count = 0
     filepath = settings.CSV_FILE_PATH
-    mydata = pd.read_csv(filepath)
+    mydata = pd.read_csv(filepath, sep='\t')
     mydata = mydata.fillna(0.0)
     total_rows = mydata.shape[0]
 
     if Logging:
         logfile.write('> Found total data rows: ' + str(total_rows) + '\n')
 
-    # store dataseries dicts into a list
+    # store identified dataseries dicts into a list
     dataseries_group_list = []
     dataseries_dict = {}
 
     # Iterate over the rows of the CSV file
-    for index, row in mydata.iterrows():
-        if Debug:
-            print('Extracting ', index)
+    # Construct a dataseries identifier from row data
+    # If it exists, add measurement value to array, if not, create it
+    
+    # for index, row in mydata.iterrows():
 
-        country_region_code = countryISOMapping[row['REF_AREA']]
-        country_region = row['Reference area']
+    REF_AREA = 1
+    TIME_PERIOD = 5
+    OBS_VALUE = 6
+    TITLE = 4
+
+    for row in mydata.itertuples(index=True):
+
+        if Debug:
+            print('Extracting ', row[0])
+
+        country_region_code = countryISOMapping[row[REF_AREA]]
+        # country_region = row['Reference area']
+        country_region = country_dict[country_region_code]
 
         # Some type issues of pandas
         if type(country_region_code) is float:
             country_region_code = 'NA'
 
-        # The dataseries data
-
-        # The date
-        raw_date = row['TIME_PERIOD']
-
-        observation_date = datetime.strptime(str(raw_date), '%Y%m%d').date().isoformat()
+        # Construct the dataflow identifier
+        df_identifier = country_region_code
 
         # Construct the dataseries identifier
-        root_identifier = country_region_code
 
-        # Extract the different dimensions of measurement
-        # Construct a collection of field identifiers for this dataflow
+        ds_identifier = df_identifier  + '.' + row[2][4:] + '.' + row[3][5:]
 
-        values = []
-        identifier = []
-        # ATTN WE FILL NAN's WITH ZEROS
-        for field in field_names:
-            values.append(row[field])
-            f_index = field_names.index(field)
-            identifier.append(root_identifier + '.' + field_codes[f_index])
+        # Compile the dataseries data
+
+        # The date
+        raw_date = row[TIME_PERIOD]
+        observation_date = datetime.strptime(str(raw_date), '%Y').date().isoformat()
+        value = row[OBS_VALUE]
 
         # Record the aggregation level (Currently Country Only)
         aggregation_level = 'Country'
 
-        # Create new dataseries group
-        if root_identifier not in dataseries_group_list:
-            # start new dataseries group
-            dataseries_group_list.append(root_identifier)
-            # Create the dataseries dicts
-            for i in range(len(identifier)):
-                dataseries = {'Identifier': identifier[i], 'Dates': [], 'Values': []}
-                dataseries['Dates'].append(observation_date)
-                dataseries['Values'].append(values[i])
-                title = field_description[i]
-                dataseries['TITLE'] = title
-                title_compl = title + ' in ' + country_region
-                dataseries['TITLE_COMPL'] = title_compl
-                dataseries['REF_AREA'] = root_identifier
-                dataseries['ACTIVITY'] = title
-                dataseries['AGG_LEVEL'] = aggregation_level
+        print('DS ID: ', ds_identifier)
 
-                # Store the dataseries
-                dataseries_dict[identifier[i]] = dataseries
+        # Create new dataseries group (if needed)
+        if ds_identifier not in dataseries_group_list:
+            # start new dataseries group
+            dataseries_group_list.append(ds_identifier)
+            # Create the dataseries dict
+            dataseries = {'Identifier': ds_identifier, 'Dates': [], 'Values': []}
+            dataseries['Dates'].append(observation_date)
+            dataseries['Values'].append(value)
+            title = row[TITLE]
+            dataseries['TITLE'] = title
+            title_compl = title + ' in ' + country_region
+            dataseries['TITLE_COMPL'] = title_compl
+            dataseries['REF_AREA'] = df_identifier
+            dataseries['ACTIVITY'] = title
+            dataseries['AGG_LEVEL'] = aggregation_level
+
+            # Store the dataseries
+            dataseries_dict[ds_identifier] = dataseries
         # or modify an existing one
         else:
-            for i in range(len(identifier)):
-                dataseries = dataseries_dict[identifier[i]]
-                dataseries['Dates'].append(observation_date)
-                dataseries['Values'].append(values[i])
-                title = field_description[i]
-                dataseries['TITLE'] = title
-                title_compl = title + ' in ' + country_region
-                dataseries['TITLE_COMPL'] = title_compl
-                dataseries['REF_AREA'] = root_identifier
-                dataseries['ACTIVITY'] = title
-                dataseries['AGG_LEVEL'] = aggregation_level
 
-                # Store the dataseries
-                dataseries_dict[identifier[i]] = dataseries
+            dataseries = dataseries_dict[ds_identifier]
+            dataseries['Dates'].append(observation_date)
+            dataseries['Values'].append(value)
+            title = row[TITLE]
+            dataseries['TITLE'] = title
+            title_compl = title + ' in ' + country_region
+            dataseries['TITLE_COMPL'] = title_compl
+            dataseries['REF_AREA'] = df_identifier
+            dataseries['ACTIVITY'] = title
+            dataseries['AGG_LEVEL'] = aggregation_level
+
+            dataseries_dict[ds_identifier] = dataseries
 
         count += 1
         print(str(int(100 * count / total_rows)) + " %", end='\r')
+
 
     # Save the dataseries data into the dataflow directory structure
     for ds in dataseries_dict:
@@ -189,4 +190,4 @@ class Command(BaseCommand):
         logfile.close()
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully extracted capmf dataseries from csv file'))
+        self.stdout.write(self.style.SUCCESS('Successfully extracted CAPMF dataseries from csv file'))

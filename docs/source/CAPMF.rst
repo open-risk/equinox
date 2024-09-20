@@ -12,8 +12,8 @@ The original single dataflow structure of the CAPMF data (**Climate actions and 
 
 The new dataflows groups are by country:
 
-* REF_AREA
-* Reference area
+* REF_AREA. We revert from 3 to 2 letter code. The EU is provisionally added as a country.
+* Reference area (Not used, inferred from country dict)
 
 Each dataseries belongs to one of the above.
 
@@ -23,7 +23,7 @@ Dataseries
 A measurement of a policy dataseries is identified by
 
 * CLIM_ACT_POL, machine-oriented identifier
-* Climate actions and policies, human readable form of identifier (text)
+* Climate actions and policies, human readable form of the identifier (text / label)
 
 
 Dataseries Attributes

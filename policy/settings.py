@@ -34,7 +34,8 @@ dimensions_file = ROOT_DIR + "dimensions.latest.json"
 dataseries_update_file = ROOT_DIR + "dataseries.update.json"
 metadata_file = ROOT_DIR + 'wikidata_extract_19_05_2020.json'
 
-DATA_FILE = 'OECD.ENV.EPI,DSD_CAPMF@DF_CAPMF,1.0+all.csv'
+DATA_FILE = 'CAPMF.csv'
+# DATA_FILE = 'OECD.ENV.EPI,DSD_CAPMF@DF_CAPMF,1.0+all.csv'
 # DATA_FILE = 'OxCGRT_compact_national_v1.csv'
 # DATA_FILE = 'Oxford_Policies_Report_Latest.csv'
 # DATA_FILE = 'OxCGRT_latest.csv'
@@ -121,12 +122,13 @@ country_dict = {'AE': 'United Arab Emirates', 'AF': 'Afghanistan', 'AG': 'Antigu
                 'BB': 'Barbados', 'BD': 'Bangladesh', 'BE': 'Belgium', 'BF': 'Burkina Faso', 'BG': 'Bulgaria',
                 'BH': 'Bahrain', 'BJ': 'Benin', 'BO': 'Bolivia', 'BR': 'Brazil', 'BS': 'The Bahamas', 'BW': 'Botswana',
                 'BY': 'Belarus', 'BZ': 'Belize', 'CA': 'Canada', 'CH': 'Switzerland', 'CI': "Côte d'Ivoire",
-                'CL': 'Chile', 'CM': 'Cameroon', 'CO': 'Colombia', 'CR': 'Costa Rica', 'CV': 'Cape Verde',
+                'CL': 'Chile', 'CM': 'Cameroon', 'CN': 'China',
+                'CO': 'Colombia', 'CR': 'Costa Rica', 'CV': 'Cape Verde',
                 'CZ': 'Czechia', 'DE': 'Germany', 'DK': 'Denmark', 'DO': 'Dominican Republic', 'EC': 'Ecuador',
                 'EE': 'Estonia', 'EG': 'Egypt', 'ES': 'Spain', 'FI': 'Finland', 'FJ': 'Fiji', 'FR': 'France',
                 'GA': 'Gabon', 'GB': 'United Kingdom', 'GE': 'Georgia', 'GH': 'Ghana', 'GR': 'Greece',
                 'GT': 'Guatemala', 'GW': 'Guinea-Bissau', 'HK': 'Hong Kong', 'HN': 'Honduras', 'HR': 'Croatia',
-                'HT': 'Haiti', 'HU': 'Hungary', 'ID': 'Indonesia', 'IE': 'Ireland', 'IL': 'Israel', 'IN': 'India',
+                'HT': 'Haiti', 'HU': 'Hungary', 'ID': 'Indonesia', 'IE': 'Ireland', 'IL': 'Israel', 'IN': 'India', 'IS' : 'Iceland',
                 'IQ': 'Iraq', 'IT': 'Italy', 'JM': 'Jamaica', 'JO': 'Jordan', 'JP': 'Japan', 'KE': 'Kenya',
                 'KG': 'Kyrgyzstan', 'KH': 'Cambodia', 'KR': 'South Korea', 'KW': 'Kuwait', 'KZ': 'Kazakhstan',
                 'LA': 'Laos', 'LB': 'Lebanon', 'LI': 'Liechtenstein', 'LK': 'Sri Lanka', 'LT': 'Lithuania',
@@ -136,7 +138,8 @@ country_dict = {'AE': 'United Arab Emirates', 'AF': 'Afghanistan', 'AG': 'Antigu
                 'NI': 'Nicaragua', 'NL': 'Netherlands', 'NO': 'Norway', 'NP': 'Nepal', 'NZ': 'New Zealand',
                 'OM': 'Oman', 'PA': 'Panama', 'PE': 'Peru', 'PG': 'Papua New Guinea', 'PH': 'Philippines',
                 'PK': 'Pakistan', 'PL': 'Poland', 'PR': 'Puerto Rico', 'PT': 'Portugal', 'PY': 'Paraguay',
-                'QA': 'Qatar', 'RE': 'Réunion', 'RO': 'Romania', 'RW': 'Rwanda', 'SA': 'Saudi Arabia', 'SE': 'Sweden',
+                'QA': 'Qatar', 'RE': 'Réunion', 'RO': 'Romania', 'RW': 'Rwanda', 'RU': 'Russia',
+                'SA': 'Saudi Arabia', 'SE': 'Sweden',
                 'SG': 'Singapore', 'SI': 'Slovenia', 'SK': 'Slovakia', 'SN': 'Senegal', 'SV': 'El Salvador',
                 'TG': 'Togo', 'TH': 'Thailand', 'TJ': 'Tajikistan', 'TR': 'Turkey', 'TT': 'Trinidad and Tobago',
                 'TW': 'Taiwan', 'TZ': 'Tanzania', 'UG': 'Uganda', 'US': 'United States', 'UY': 'Uruguay',

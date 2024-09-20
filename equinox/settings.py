@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'drf_yasg',
     'treebeard',
     'django.contrib.gis',
-    'prettyjson',
     'markdownfield',
     'leaflet',
     'django_countries',

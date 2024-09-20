@@ -22,7 +22,7 @@ from django.contrib import admin
 from django.core import serializers
 from django.db.models import JSONField
 from django.http import HttpResponse
-from prettyjson.widgets import PrettyJSONWidget
+from django_json_widget.widgets import JSONEditorWidget
 
 from policy.models import DashBoardParams
 from policy.models import DataFlow
@@ -48,14 +48,14 @@ def export2xml(self, request, queryset):
 
 class DataSeriesAdmin(admin.ModelAdmin):
     formfield_overrides = {
-        JSONField: {'widget': PrettyJSONWidget(attrs={'initiaĺ': 'parsed'})},
+        JSONField: {'widget': JSONEditorWidget(attrs={'initiaĺ': 'parsed'})},
     }
     save_as = True
 
 
 class DataFlowAdmin(admin.ModelAdmin):
     formfield_overrides = {
-        JSONField: {'widget': PrettyJSONWidget(attrs={'initiaĺ': 'parsed'})},
+        JSONField: {'widget': JSONEditorWidget(attrs={'initiaĺ': 'parsed'})},
     }
     search_fields = ['name', 'short_desc', 'long_desc']
     list_display = (
@@ -67,12 +67,15 @@ class DataFlowAdmin(admin.ModelAdmin):
 
 class GeoSliceAdmin(admin.ModelAdmin):
     formfield_overrides = {
-        JSONField: {'widget': PrettyJSONWidget(attrs={'initiaĺ': 'parsed'})},
+        JSONField: {'widget': JSONEditorWidget(attrs={'initiaĺ': 'parsed'})},
     }
     save_as = True
 
 
 class DashboardParamsAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        JSONField: {'widget': JSONEditorWidget(attrs={'initiaĺ': 'parsed'})},
+    }
     save_as = True
 
 

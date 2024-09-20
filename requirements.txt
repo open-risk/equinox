@@ -4,7 +4,6 @@ drf-yasg
 numpy
 pandas
 scipy
-jsonfield
 Markdown
 Pillow
 django-leaflet
@@ -13,7 +12,6 @@ django-json-widget
 django-markdownfield
 django-treebeard
 django-import-export
-django-prettyjson
 django-countries
 django-extensions
 django-jsoneditor

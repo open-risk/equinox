@@ -1,3 +1,21 @@
+[tool.poetry]
+name = "equinox"
+version = "0.8"
+description = ""
+authors = ["Open Risk <info@openrisk.eu>"]
+readme = "README.md"
+packages = [{include = "poetry_demo"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+#[build-system]
+#requires = ["poetry-core"]
+#build-backend = "poetry.core.masonry.api"
+
 [build-system]
 requires = ['setuptools>=40.8.0', 'wheel']
 build-backend = 'setuptools.build_meta:__legacy__'
+
+

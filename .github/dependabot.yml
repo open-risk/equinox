@@ -5,10 +5,11 @@
 
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: /
+  - package-ecosystem: "pip"
+    directory: "/"
     schedule:
       interval: "weekly"
-      day: saturday
-      time: "24:00"
-      timezone: "Amsterdam"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

@@ -39,9 +39,9 @@ python3 $DJANGO_DIR/manage.py populate_capmf_dataseries
 echo "-> Step 8: Successful"
 
 echo "-> Step 9: Populate dataflows"
-python3 $DJANGO_DIR/manage.py populate_pd_dataflows
+python3 $DJANGO_DIR/manage.py populate_capmf_dataflows
 echo "-> Step 9: Successful"
 
 echo "-> Step 10: Populate geoslices"
-# python3 $DJANGO_DIR/manage.py populate_pd_geoslices
+python3 $DJANGO_DIR/manage.py populate_capmf_geoslices
 echo "-> Step 10: Successful"

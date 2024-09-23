@@ -25,9 +25,9 @@ from django.db.models import JSONField
 from django.urls import reverse
 
 """
-Classes to store policy data
+Classes to store Policy data
 
-A policy consists of:
+A portfolio-wide policy consists of (indicatively):
 
 * Policy ID (Example: C1)
 * Policy Name (Example: C1_School_Closing)
@@ -45,9 +45,8 @@ A policy consists of:
 
 class DashBoardParams(models.Model):
 
-
     # key value store for policy dashboard parameters
-    # dataseries statistics etc
+    # captures dataseries statistics etc.
 
     total_dataflows = models.IntegerField(blank=True, null=True)
     total_datasets = models.IntegerField(blank=True, null=True)
@@ -68,6 +67,7 @@ class DashBoardParams(models.Model):
         verbose_name_plural = "Dashboard Parameters"
 
 
+# TODO Fine-Grained Policy data storage
 # class PolicyDatum(models.Model):
 #     country_region_code = models.CharField(max_length=80)
 #     country_region = models.CharField(max_length=80, blank=True, null=True)
@@ -91,50 +91,50 @@ class DashBoardParams(models.Model):
 
 
 class DataSeries(models.Model):
-    # formal identifier of the timeseries (constructed from region identifiers)
-    identifier = models.CharField(null=True, blank=True, max_length=400)
+    # formal identifier of the policy timeseries (constructed from region identifiers)
+    identifier = models.CharField(null=True, blank=True, max_length=400, help_text="The unique identifier of the Policy dataseries")
 
-    # metadata
-    title = models.CharField(null=True, blank=True, max_length=400)
-    title_long = models.CharField(null=True, blank=True, max_length=1600)
-    df_name = models.CharField(null=True, blank=True, max_length=80)
-    rest_url = models.CharField(null=True, blank=True, max_length=400)
-    agg_level = models.CharField(null=True, blank=True, default="None", max_length=80)
+    # policy dataflow metadata
+    title = models.CharField(null=True, blank=True, max_length=400, help_text="The title of the Policy (Short)")
+    title_long = models.CharField(null=True, blank=True, max_length=1600, help_text="The title of the Policy (Long)")
 
-    # frequency is fixed to daily
-    frequency = models.CharField(null=True, blank=True, default="D", max_length=80)
-    # freshness indicator
-    color = models.CharField(null=True, blank=True, default="0", max_length=80)
-    # region to which it applies
-    region = models.CharField(null=True, blank=True, default="N/A", max_length=80)
-    # type of activity it represents
-    activity = models.CharField(null=True, blank=True, default="N/A", max_length=80)
+    # TODO FK relation to stored dataflows
+    df_name = models.CharField(null=True, blank=True, max_length=80, help_text="The  Dataflow to which the Policy Dataseries belongs")
 
-    # validity status of the numerical data as usable timeseries
-    status = models.CharField(null=True, blank=True, max_length=50)
+    rest_url = models.CharField(null=True, blank=True, max_length=400, help_text="API URL")
 
-    # last observation date tracked separately for filtering purposes
+    documentation_url = models.CharField(null=True, blank=True, max_length=400, help_text="Documentation URL")
+
+    agg_level = models.CharField(null=True, blank=True, default="Country", max_length=80, help_text="The applicable aggregation level of the policy data")
+
+    frequency = models.CharField(null=True, blank=True, default="A", max_length=80, help_text="Policy update frequency")
+
+    color = models.CharField(null=True, blank=True, default="0", max_length=80, help_text="The temporal freshness of measurement indicator")
+
+    region = models.CharField(null=True, blank=True, default="N/A", max_length=80, help_text="Region to which policy applies")
+
+    # TODO Hierarchical activity classifications
+    activity = models.CharField(null=True, blank=True, default="N/A", max_length=80, help_text="Type of activity the policy concerns")
+
+    status = models.CharField(null=True, blank=True, default="Valid", max_length=50, help_text="Validity status of the numerical data as usable timeseries")
+
     last_observation_date = models.DateTimeField(null=True, blank=True,
-                                                 default=datetime(1916, 9, 25, 17, 22, 22, 90879))
+                                                 default=datetime(1916, 9, 25, 17, 22, 22, 90879), help_text="Last observation date of the timeseries,tracked separately for filtering purposes")
 
-    # nature of field (categorical, ordinal, numerical)
-    field_type = models.CharField(null=True, blank=True, default="numerical", max_length=50)
+    field_type = models.CharField(null=True, blank=True, default="numerical", max_length=50, help_text="Mathematical nature of the timeseries data (categorical, ordinal, numerical)")
 
-    # primary numerical data
-    dates = JSONField(null=True, blank=True, help_text="observation dates")
-    values = JSONField(null=True, blank=True, help_text="observation values")
+    dates = JSONField(null=True, blank=True, help_text="Array of observation dates")
+    values = JSONField(null=True, blank=True, help_text="Array of observation values")
 
-    # the units of the data are unspecified (if numerical)
-    unit = models.CharField(null=True, blank=True, default="%", max_length=50)
+    unit = models.CharField(null=True, blank=True, default="%", max_length=50, help_text="The units the data are specified in (if numerical)")
 
-    # code list (for categorical data)
-    code_list = JSONField(null=True, blank=True, help_text="ordinal data code descriptions")
+    code_list = JSONField(null=True, blank=True, help_text="Ordinal/Categorical data code descriptions (code lists)")
 
-    # derived data
-    metrics = JSONField(null=True, blank=True, help_text="derived metrics (statistics)")
-    geometry_1D = JSONField(null=True, blank=True, help_text="derived graph geometries")
-    values_diff = JSONField(null=True, blank=True, help_text="value differences")
-    values_diff_p = JSONField(null=True, blank=True, help_text="value differences %")
+    # storage of derived data in pre-processing stage
+    metrics = JSONField(null=True, blank=True, help_text="Derived metrics (statistics)")
+    geometry_1D = JSONField(null=True, blank=True, help_text="Derived graph geometries")
+    values_diff = JSONField(null=True, blank=True, help_text="Value differences")
+    values_diff_p = JSONField(null=True, blank=True, help_text="Value differences %")
 
     #
     # BOOKKEEPING FIELDS
@@ -160,49 +160,46 @@ class DataFlow(models.Model):
     # Dataflow name (=Country 2 Letter Code)
     name = models.CharField(null=True, blank=True, max_length=80, help_text="Internal dataflow name")
     # formal identifier of the dataflow (country code)
-    identifier = models.CharField(null=True, blank=True, max_length=80, help_text="formal identifier of the dataflow")
+    identifier = models.CharField(null=True, blank=True, max_length=80, help_text="Formal identifier of the dataflow")
     # dataflow short description
     # short_desc = models.CharField(max_length=200, help_text="List of desired result dataseries")
-    short_desc = models.TextField(null=True, blank=True, help_text="dataflow short description")
+    short_desc = models.TextField(null=True, blank=True, help_text="Dataflow short description")
     # dataflow long description
     # long_desc = models.CharField(max_length=800)
-    long_desc = models.TextField(null=True, blank=True, help_text="dataflow long description")
+    long_desc = models.TextField(null=True, blank=True, help_text="Dataflow long description")
     # dataflow description node url (TODO not used)
-    node_url = models.CharField(null=True, blank=True, max_length=400, help_text="dataflow description node url")
+    node_url = models.CharField(null=True, blank=True, max_length=400, help_text="Dataflow description node url")
     # number of dataseries
-    oxford_n = models.IntegerField(null=True, blank=True, help_text="number of available dataseries")
+    oxford_n = models.IntegerField(null=True, blank=True, help_text="Number of available dataseries")
     # number of regions (level 1)
-    regions_n = models.IntegerField(null=True, blank=True, default=0, help_text="number of regions")
+    regions_n = models.IntegerField(null=True, blank=True, default=0, help_text="Number of regions")
     # number of regions (level 2)
-    subregions_n = models.IntegerField(null=True, blank=True, default=0, help_text="number of sub-regions")
+    subregions_n = models.IntegerField(null=True, blank=True, default=0, help_text="Number of sub-regions")
 
     # dimensions and codelists
-    dimensions = JSONField(null=True, blank=True, help_text="dimensions and codelists")
+    dimensions = JSONField(null=True, blank=True, help_text="Dimensions and codelists")
     # update frequency
-    update = models.CharField(null=True, blank=True, default="W", max_length=10, help_text="update frequency")
+    update = models.CharField(null=True, blank=True, default="W", max_length=10, help_text="Update frequency")
 
-    #
-    # Dashboard Dataflow MetaData
-    #
     # list of dataseries ID's
-    dataset_id = JSONField(null=True, blank=True, help_text="list of dataseries ID's")
+    dataset_id = JSONField(null=True, blank=True, help_text="List of dataseries ID's")
     # tracked within dashboard
-    tracked = models.BooleanField(null=True, blank=True, help_text="whether tracked within dashboard")
+    tracked = models.BooleanField(null=True, blank=True, help_text="Whether tracked within dashboard")
     # number of tracked dashboard series
-    dashboard_n = models.IntegerField(null=True, blank=True, help_text="number of tracked dashboard series")
+    dashboard_n = models.IntegerField(null=True, blank=True, help_text="Number of tracked dashboard series")
     # number of geolocation tags
-    geo = models.IntegerField(null=True, blank=True, help_text="number of geolocation tags")
+    geo = models.IntegerField(null=True, blank=True, help_text="Number of geolocation tags")
     # number of geoslices
-    geoslices = models.IntegerField(null=True, blank=True, help_text="number of geoslices")
+    geoslices = models.IntegerField(null=True, blank=True, help_text="Number of geoslices")
     # number of tracked dashboard series
-    live_n = models.IntegerField(null=True, blank=True, help_text="number of live dashboard series")
+    live_n = models.IntegerField(null=True, blank=True, help_text="Number of live dashboard series")
     # dataseries SDW selector fields
-    selectors = JSONField(null=True, blank=True, help_text="dataseries selector field")
+    selectors = JSONField(null=True, blank=True, help_text="Dataseries selector field")
     # equinox category dictionary for each dataflow (placeholder in case of additional data sources)
-    category_list = JSONField(null=True, blank=True, help_text="equinox category dictionary for each dataflow")
+    category_list = JSONField(null=True, blank=True, help_text="Equinox category dictionary for each dataflow")
     # category string to use in Category based list view of all dataflows
     menu_category = models.CharField(null=True, blank=True, max_length=200,
-                                     help_text="category string to use in Category based list view of all dataflows")
+                                     help_text="Category string to use in Category based list view of all dataflows")
     # freshness data
     # Array with summary date buckets [red, orange, yellow]
     freshness = JSONField(null=True, blank=True, help_text="Array with summary date buckets [red, orange, yellow]")

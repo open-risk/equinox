@@ -1,7 +1,7 @@
 Policy
 ------------------------------
 
-The **Policy App** is the primary contained and functionality of portfolio *policy* information.
+The **Policy App** is the primary contained and functionality of portfolio *Policy* timeseries information.
 
 
 .. toctree::

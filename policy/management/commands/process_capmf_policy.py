@@ -36,6 +36,7 @@ Starting with downloaded data
 {
     "Dates" : []
     "Values" : []
+    "Status" : []
     "Identifier"
     etc.
 }
@@ -98,14 +99,14 @@ class Command(BaseCommand):
     count = 0
 
     # Select the series to be processed
-    # TODO Currently All
+    # TODO Currently we process all
     download_list = series_list
     static_list = []
 
-    # # # TODO This must be set to all dataseries if there is a change in the dataflows
+    # TODO This must be set to all dataseries if there is a change in the dataflows
     # Structure to store updated dataseries records
     series_list_update = []
-    #
+
     # Loop over all dataseries listed in catalog
     for series in download_list:
 
@@ -115,7 +116,7 @@ class Command(BaseCommand):
         dataflow = series['DF_NAME']
         series_id = series['ID']
 
-        # validity markers (for debugging only)
+        # validity markers (for debugging purposes only)
         check1 = ''
         check2 = ''
         check3 = ''
@@ -146,12 +147,15 @@ class Command(BaseCommand):
 
         Dates = []
         Values = []
+        Status = []
+
 
         # Try to load the data
         try:
             mydata = json.load(open(input_file))
             Dates = mydata['Dates']
             Values = mydata['Values']
+            Status = mydata['Status']
             if Debug:
                 print('Parsed ' + series_id + '\n')
         except Exception as e:
@@ -174,7 +178,6 @@ class Command(BaseCommand):
 
         if Debug:
             print(ObsCount, lastDate)
-
 
         # Compute absolute and percent differences for numerical types
         # print(Data['Field Type'], Values[-10:])
@@ -199,6 +202,7 @@ class Command(BaseCommand):
         series['Status'] = 'Valid'
         Data['Dates'] = Dates
         Data['Values'] = Values
+        Data['Status'] = Status
         Data['Delta'] = Diffs
         Data['PDelta'] = PDiffs
 
@@ -285,18 +289,6 @@ class Command(BaseCommand):
 
             # Compute Geometry (For Volatility Gauge Visualization)
 
-            # VOLATILITY GAUGE SETTINGS
-            # Map key values onto circle
-            # Average is at 90
-            # 1 std is 30
-            # angle_unit = 3.1415 / 6.0
-            # theta_current = angle_unit * (last_value - mean_value) / std_value
-            # theta_m1 = angle_unit * (value_m1 - mean_value) / std_value
-            # theta_m2 = angle_unit * (value_m2 - mean_value) / std_value
-            # theta_m3 = angle_unit * (value_m3 - mean_value) / std_value
-            # theta_max = angle_unit * (max_value - mean_value) / std_value
-            # theta_min = angle_unit * (min_value - mean_value) / std_value
-
             # Zero decline / increase is at 90
             # 20% change is 30 degrees
             mean_value = 0
@@ -309,8 +301,7 @@ class Command(BaseCommand):
             theta_max = angle_unit * (max_value - mean_value) / std_value
             theta_min = angle_unit * (min_value - mean_value) / std_value
 
-            Geometry = {'Max': theta_max, 'Min': theta_min, 'Current': theta_current, 'Min1': theta_m1,
-                        'Min2': theta_m2, 'Min3': theta_m3}
+            Geometry = {'Max': theta_max, 'Min': theta_min, 'Current': theta_current, 'Min1': theta_m1, 'Min2': theta_m2, 'Min3': theta_m3}
 
         else:
             Geometry = {'Max': 0, 'Min': 0, 'Current': 0, 'Min1': 0, 'Min2': 0, 'Min3': 0}

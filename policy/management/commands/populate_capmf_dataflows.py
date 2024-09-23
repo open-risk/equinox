@@ -20,7 +20,7 @@
 
 """
 
-Created Wed Jun 10 12:48:51 CEST 2020
+
 
 """
 
@@ -164,4 +164,4 @@ class Command(BaseCommand):
     params.save()
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted policy Dataflows'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted CAPMF policy Dataflows'))

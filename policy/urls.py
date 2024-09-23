@@ -32,6 +32,8 @@ urlpatterns = [
     re_path(r'^dataflow/categories$', views.DataFlowCategoriesView.as_view(), name='DataFlow_categories'),
 
     re_path(r'^dataflow/(?P<pk>\d+)$', views.DataFlowListView.as_view(), name='DataFlow'),
+
+
     re_path(r'^dataflow/(?P<slug>[-\w]+)$', views.DataFlowListView.as_view(), name='DataFlow2'),
     re_path(r'^dataflow/slice/(?P<slug>[-\w]+)$', views.DataFlowSliceView.as_view(), name='DataFlow_slice'),
     re_path(r'^dataflow/filter/(?P<identifier>\w+)/(?P<region>\w+)/(?P<color>\w+)', views.DataFlowFilterView.as_view(),

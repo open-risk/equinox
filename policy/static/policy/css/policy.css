@@ -1,3 +1,23 @@
+.card-body {
+    background-color: #dbdbdb;
+}
+
+.helpblock {
+    height: 100px;
+    background-color: #dbdbdb;
+    color: black;
+    padding: 10px;
+}
+
+.helpblocktext {
+    font-size: 14px;
+    color: black;
+}
+
+.feed {
+    color: black;
+}
+
 #interface_buttons {
     text-align: left;
     margin-right: 10px;
@@ -77,13 +97,6 @@ img[src*=".svg"] {
     width: 100%;
 }
 
-.helpblock {
-    height: 100px;
-}
-
-.helpblocktext {
-    font-size: 14px;
-}
 
 #page {
     margin-top: 75px;
@@ -285,17 +298,17 @@ table.db_stats td:nth-of-type(2) {
 }
 
 table.display thead th {
-  border-bottom: none;
-  background-color: #f4c63d;
-  color: black;
+    border-bottom: none;
+    background-color: #f4c63d;
+    color: black;
 }
 
 .dark-mode .card {
-  color: #000;
+    color: #000;
 }
 
 .dark-mode .card .card {
-  color: #262323!important;
+    color: #262323 !important;
 }
 
 .category {

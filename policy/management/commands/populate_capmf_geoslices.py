@@ -20,7 +20,6 @@
 
 """
 
-Created Wed Jun 10 12:48:51 CEST 2020
 
 """
 
@@ -142,4 +141,4 @@ class Command(BaseCommand):
             print(geoslice)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully created policy data Geoslices'))
+        self.stdout.write(self.style.SUCCESS('Successfully created CAPMF policy data Geoslices'))

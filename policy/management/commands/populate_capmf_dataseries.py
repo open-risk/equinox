@@ -20,7 +20,7 @@
 
 """
 
-Created Wed Jun 10 12:48:51 CEST 2020
+
 
 """
 
@@ -36,7 +36,7 @@ from policy.models import DataSeries
 
 
 class Command(BaseCommand):
-    help = 'Imports dataseries data into the database (no backup!)'
+    help = 'Imports CAPMF dataseries data into the database (no backup!)'
     Debug = True
 
     datapath = settings.DATA_PATH
@@ -54,8 +54,8 @@ class Command(BaseCommand):
     # Delete existing DataSeries objects
     DataSeries.objects.all().delete()
 
-    # Import metadata from file
-    metadata = json.load(open(settings.metadata_file))
+    # Import any metadata from file
+    # metadata = json.load(open(settings.metadata_file))
 
     # Import valid dataseries METADATA from file
     dataseries = json.load(open(dataseries_file))
@@ -178,8 +178,7 @@ class Command(BaseCommand):
         gray_datasets=gray,
         total_datasets=total_n,
         tracked_datasets=tracked_n,
-        live_datasets=red + orange + yellow,
-        country_metadata=metadata
+        live_datasets=red + orange + yellow
     )
     params.save()
 

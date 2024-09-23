@@ -35,9 +35,9 @@ import policy.settings as settings
 
 
 class Command(BaseCommand):
-    help = 'Create capmf policy data dataflow directories'
-    Debug = False
-    Logging = True
+    help = 'Create CAPMF policy data dataflow directories'
+    Debug = True
+    Logging = False
 
     start_time = time.time()
     start_timestamp = datetime.isoformat(datetime.now())
@@ -66,4 +66,4 @@ class Command(BaseCommand):
         logfile.close()
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully created capmf dataflow directories'))
+        self.stdout.write(self.style.SUCCESS('Successfully created CAPMF dataflow directories'))

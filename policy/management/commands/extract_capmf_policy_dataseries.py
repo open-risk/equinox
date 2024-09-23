@@ -43,7 +43,6 @@ from django.core.management.base import BaseCommand
 
 import policy.settings as settings
 from policy.settings import countryISOMapping, country_dict
-from policy.capmf_settings import field_names, field_codes, field_description
 
 
 class Command(BaseCommand):
@@ -79,13 +78,14 @@ class Command(BaseCommand):
     # Iterate over the rows of the CSV file
     # Construct a dataseries identifier from row data
     # If it exists, add measurement value to array, if not, create it
-    
-    # for index, row in mydata.iterrows():
 
     REF_AREA = 1
+    MEASURE = 2
+    CLIM_ACT_POL = 3
+    TITLE = 4
     TIME_PERIOD = 5
     OBS_VALUE = 6
-    TITLE = 4
+    OBS_STATUS = 7
 
     for row in mydata.itertuples(index=True):
 
@@ -93,7 +93,6 @@ class Command(BaseCommand):
             print('Extracting ', row[0])
 
         country_region_code = countryISOMapping[row[REF_AREA]]
-        # country_region = row['Reference area']
         country_region = country_dict[country_region_code]
 
         # Some type issues of pandas
@@ -104,29 +103,38 @@ class Command(BaseCommand):
         df_identifier = country_region_code
 
         # Construct the dataseries identifier
-
-        ds_identifier = df_identifier  + '.' + row[2][4:] + '.' + row[3][5:]
+        ds_identifier = df_identifier + '.' + row[MEASURE][4:] + '.' + row[CLIM_ACT_POL][5:]
 
         # Compile the dataseries data
 
-        # The date
+        # The observation date
         raw_date = row[TIME_PERIOD]
         observation_date = datetime.strptime(str(raw_date), '%Y').date().isoformat()
+
+        # The observed value
         value = row[OBS_VALUE]
+
+        # The status of the observations
+        status = row[OBS_STATUS]
 
         # Record the aggregation level (Currently Country Only)
         aggregation_level = 'Country'
 
         print('DS ID: ', ds_identifier)
 
-        # Create new dataseries group (if needed)
+        # Create new dataseries object (if needed)
         if ds_identifier not in dataseries_group_list:
-            # start new dataseries group
+            # start new dataseries object
             dataseries_group_list.append(ds_identifier)
             # Create the dataseries dict
-            dataseries = {'Identifier': ds_identifier, 'Dates': [], 'Values': []}
+            dataseries = {'Identifier': ds_identifier, 'Dates': [], 'Values': [], 'Status': []}
+
+            # Add data
             dataseries['Dates'].append(observation_date)
             dataseries['Values'].append(value)
+            dataseries['Status'].append(status)
+
+            # Add attributes
             title = row[TITLE]
             dataseries['TITLE'] = title
             title_compl = title + ' in ' + country_region
@@ -143,6 +151,7 @@ class Command(BaseCommand):
             dataseries = dataseries_dict[ds_identifier]
             dataseries['Dates'].append(observation_date)
             dataseries['Values'].append(value)
+            dataseries['Status'].append(status)
             title = row[TITLE]
             dataseries['TITLE'] = title
             title_compl = title + ' in ' + country_region
@@ -156,14 +165,13 @@ class Command(BaseCommand):
         count += 1
         print(str(int(100 * count / total_rows)) + " %", end='\r')
 
-
     # Save the dataseries data into the dataflow directory structure
     for ds in dataseries_dict:
         dataseries_file = dataflowpath + ds[:2] + '/' + ds + '.json'
         json.dump(dataseries_dict[ds], open(dataseries_file, 'w'), sort_keys=True, indent=4, separators=(',', ': '))
         # print(dataseries_file)
 
-    # Save a dataseries summary fingerprint into a cumulative json list
+    # Save a Dataseries summary fingerprint into a cumulative json list
     dataseries_list = []
     for ds in dataseries_dict:
         if Debug:

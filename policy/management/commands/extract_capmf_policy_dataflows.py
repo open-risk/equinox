@@ -21,6 +21,9 @@
 
 """
 
+For the CAPMF data we map country -> dataflow (+ EU)
+
+The output is a dictionary of dataflows (one per identified country)
 
 """
 
@@ -39,9 +42,9 @@ from policy.settings import countryISOMapping
 
 
 class Command(BaseCommand):
-    help = 'Extract Dataflow metadata from csv into a pickle file'
+    help = 'Extract Dataflow metadata from Raw CSV into a pickle file'
     Debug = True
-    Logging = True
+    Logging = False
 
     BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -83,7 +86,7 @@ class Command(BaseCommand):
         if country_region_code not in country_dict:
             country_dict[country_region_code] = country_region
 
-        # DO WE NEED THIS
+        # DO WE NEED THIS?
         if country_region_code not in dataflow_dict:
             # start new data flow
             dataflow_dict[country_region_code] = country_region
@@ -91,10 +94,7 @@ class Command(BaseCommand):
         count += 1
         if Debug:
             print(count)
-        # if count > 1000:
-        #     break
 
-    # print(dataflow_dict)
     if Debug:
         print(country_dict)
 

@@ -37,8 +37,10 @@ from policy.capmf_settings import field_codes, field_description
 
 """
 For each dataflow (country based)
-A list of dimensions. A dimension is a dataflow selector variable. Currently the only selector is the
-type of policy data being tracked
+A list of dimensions. A dimension is a dataflow selector variable. Currently the only selector is the type of policy data being tracked
+
+Example:
+
 {
     "DE" : [
         {

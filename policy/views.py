@@ -64,10 +64,72 @@ class PolicyOverview(ListView):
         context.update({'statistics': json.dumps(statistics)})
         return context
 
+#
+# 1 DataFlow Views
+#
 
-#
-# 1 DataFlow Categories View
-#
+class DataFlowCountryView(DetailView):
+    """
+    2f Dataflow Country View (Display Regional Groupings within Dataflow)
+
+    """
+    model = DataFlow
+    template_name_suffix = '_country'
+    slug_field = 'identifier'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        dataflow = super(DataFlowCountryView, self).get_object()
+
+        # count all tracked series per region
+        series_list = DataSeries.objects.filter(df_name=dataflow.identifier)
+        # count all active series per region
+        f1 = Q(color='red')
+        f2 = Q(color='orange')
+        f3 = Q(color='yellow')
+        f0 = Q(df_name=dataflow.identifier)
+        active_list = DataSeries.objects.filter(f0 & (f1 | f2 | f3))
+
+        dimensions = dataflow.dimensions
+        regions = {}
+        for dim in dimensions:
+            if dim['DimName'] == 'Reference Area':
+                regions = dim['ActualCodes']
+
+        region_list = []
+
+        for code in regions:
+            code_parts = code.split('.')
+            dashboard_n = 0
+            live_n = 0
+            if len(code_parts) == 2:
+                region = {}
+                region['title'] = code_parts[1]
+                region['title_long'] = regions[code]
+
+                for tracked in series_list:
+                    tregion = tracked.identifier.split('.')[1]
+                    if tregion == region['title']:
+                        dashboard_n += 1
+
+                for active in active_list:
+                    tregion = active.identifier.split('.')[1]
+                    if tregion == region['title']:
+                        live_n += 1
+
+                region['dashboard_n'] = dashboard_n
+                region['live_n'] = live_n
+
+                region_list.append(region)
+
+        # Construct region list datas
+        content_data = {}
+        context.update({'content_data': content_data})
+        context.update({'identifier': dataflow.identifier})
+        context.update({'region_list': region_list})
+
+        return context
+
 
 class DataFlowCategoriesView(ListView):
     """
@@ -272,67 +334,7 @@ class DataFlowFilterView(DetailView):
         return context
 
 
-class DataFlowCountryView(DetailView):
-    """
-    2f Dataflow Country View (Display Regional Groupings within Dataflow)
 
-    """
-    model = DataFlow
-    template_name_suffix = '_country'
-    slug_field = 'identifier'
-
-    def get_context_data(self, **kwargs):
-        context = super(DetailView, self).get_context_data(**kwargs)
-        dataflow = super(DataFlowCountryView, self).get_object()
-
-        # count all tracked series per region
-        series_list = DataSeries.objects.filter(df_name=dataflow.identifier)
-        # count all active series per region
-        f1 = Q(color='red')
-        f2 = Q(color='orange')
-        f3 = Q(color='yellow')
-        f0 = Q(df_name=dataflow.identifier)
-        active_list = DataSeries.objects.filter(f0 & (f1 | f2 | f3))
-
-        dimensions = dataflow.dimensions
-        regions = {}
-        for dim in dimensions:
-            if dim['DimName'] == 'Reference Area':
-                regions = dim['ActualCodes']
-
-        region_list = []
-
-        for code in regions:
-            code_parts = code.split('.')
-            dashboard_n = 0
-            live_n = 0
-            if len(code_parts) == 2:
-                region = {}
-                region['title'] = code_parts[1]
-                region['title_long'] = regions[code]
-
-                for tracked in series_list:
-                    tregion = tracked.identifier.split('.')[1]
-                    if tregion == region['title']:
-                        dashboard_n += 1
-
-                for active in active_list:
-                    tregion = active.identifier.split('.')[1]
-                    if tregion == region['title']:
-                        live_n += 1
-
-                region['dashboard_n'] = dashboard_n
-                region['live_n'] = live_n
-
-                region_list.append(region)
-
-        # Construct region list datas
-        content_data = {}
-        context.update({'content_data': content_data})
-        context.update({'identifier': dataflow.identifier})
-        context.update({'region_list': region_list})
-
-        return context
 
 
 class DataFlowCountryAggregateView(DetailView):

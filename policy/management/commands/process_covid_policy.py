@@ -29,7 +29,7 @@ from scipy import stats
 
 import policy.settings as settings
 # The field names as they are in the CSV header
-from policy.settings import field_codes, field_description, field_description_long, field_code_list, field_type
+from policy.covid_settings import field_codes, field_description, field_description_long, field_code_list, field_type
 
 """
 Starting with downloaded data

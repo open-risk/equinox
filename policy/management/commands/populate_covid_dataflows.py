@@ -132,7 +132,7 @@ class Command(BaseCommand):
                 node_url="https://localhost/api/",
                 dimensions=dimension_data,
                 dataset_id=dataset_id,
-                oxford_n=df['OXFORD_N'],
+                available_n=df['OXFORD_N'],
                 dashboard_n=df['DASHBOARD_N'],
                 regions_n=df['REGIONS_N'],
                 subregions_n=df['SUBREGIONS_N'],

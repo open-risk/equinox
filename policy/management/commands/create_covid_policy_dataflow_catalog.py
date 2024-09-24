@@ -39,7 +39,7 @@ dataflow = {
     "GEO": 1
 }
 
-dataflow['OXFORD_N'] = oxford_count
+dataflow['AVAILABLE_N'] = oxford_count
 dataflow['DASHBOARD_N'] = dashboard_count\
 
 """
@@ -107,7 +107,7 @@ class Command(BaseCommand):
         for series in series_list:
             if series['DF_NAME'] == key:
                 oxford_count += 1
-        dataflow['OXFORD_N'] = oxford_count
+        dataflow['AVAILABLE_N'] = oxford_count
 
         # Calculate valid (full data) timeseries
         dashboard_count = 0

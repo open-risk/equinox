@@ -6,11 +6,6 @@ In a sustainable portfolio management context, Policy refers to a system of prin
 
 Policies express the plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters. Policy defines limits within which decisions are made.
 
-The equinox
-
-
-
-
 
 Quick Start
 ---------------------

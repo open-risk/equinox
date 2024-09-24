@@ -51,7 +51,7 @@ class PolicyOverview(ListView):
         tracked_datasets = 0
         live_datasets = 0
         for df in object_list:
-            total_datasets += df.oxford_n
+            total_datasets += df.available_n
             if df.tracked:
                 tracked_datasets += df.dashboard_n
                 live_datasets += df.live_n
@@ -63,6 +63,7 @@ class PolicyOverview(ListView):
         context = super(ListView, self).get_context_data(**kwargs)
         context.update({'statistics': json.dumps(statistics)})
         return context
+
 
 #
 # 1 DataFlow Views
@@ -294,14 +295,14 @@ class DataFlowFilterView(DetailView):
                 f3 = Q(color='yellow')
                 f0 = Q(df_name=df)
                 series_list = DataSeries.objects.filter(f0 & (f1 | f2 | f3))
-                print('all active')
-                print(len(series_list))
+                # print('all active')
+                # print(len(series_list))
             elif color == 'all':
                 # Retrieve all dataseries objects and filter for selected dataflow
                 f0 = Q(df_name=df)
                 series_list = DataSeries.objects.filter(f0)
-                print('all all')
-                print(len(series_list))
+                # print('all all')
+                # print(len(series_list))
         elif len(region) > 0:
             if color == 'active':
                 # Retrieve all active dataseries objects and filter for selected region
@@ -311,17 +312,18 @@ class DataFlowFilterView(DetailView):
                 f2 = Q(color='orange')
                 f3 = Q(color='yellow')
                 series_list = DataSeries.objects.filter(f0 & f4 & (f1 | f2 | f3))
-                print('region active')
-                print(len(series_list))
+                # print('region active')
+                # print(len(series_list))
             elif color == 'all':
                 # Retrieve all dataseries objects and filter for selected dataflow
                 f0 = Q(df_name=df)
                 f4 = Q(region=region)
                 series_list = DataSeries.objects.filter(f0 & f4)
-                print('region all')
-                print(len(series_list))
+                # print('region all')
+                # print(len(series_list))
         else:
-            print('NO REGION SPECIFIED')
+            pass
+            # print('NO REGION SPECIFIED')
 
         # Construct content description for help display
         content_data = {}
@@ -332,9 +334,6 @@ class DataFlowFilterView(DetailView):
         context.update({'content_data': json.dumps(content_data)})
 
         return context
-
-
-
 
 
 class DataFlowCountryAggregateView(DetailView):
@@ -355,7 +354,7 @@ class DataFlowCountryAggregateView(DetailView):
         aggregate = []
         for series in series_list:
             if len(series.region) == 0:
-                print(series.title)
+                # print(series.title)
                 aggregate.append(series)
 
         # Construct content description for help display
@@ -523,7 +522,7 @@ class GSMapView(DetailView):
         entries = DataSeries.objects.filter(query)
 
         for full_entry in entries:
-            print(full_entry)
+            # print(full_entry)
             entry = {}
             # the redirect url in case we want to drill down
             entry['url'] = 'plot/' + full_entry.identifier
@@ -657,7 +656,7 @@ class StatsCountryTableView(ListView):
         activity_string = activities[activities_short.index(activity)]
         context.update({'activity': activity_string})
         context.update({'stats_list': stats_list})
-        print(stats_list)
+        # print(stats_list)
         return context
 
 
@@ -687,7 +686,7 @@ class StatsCountryHistogramView(ListView):
             value = json.loads(series.metrics)[stat]
             values.append(value)
 
-        print(stat)
+        # print(stat)
         context.update({'stat': stat_string})
         context.update({'activity': activity_string})
         context.update({'values': values})
@@ -701,7 +700,7 @@ class StatsCountryCorrelationView(ListView):
     def get_context_data(self, **kwargs):
 
         metadata = DashBoardParams.objects.all()[0].country_metadata
-        print(metadata)
+        # print(metadata)
 
         context = super(ListView, self).get_context_data(**kwargs)
         activity1 = self.kwargs['activity1']

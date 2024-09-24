@@ -170,7 +170,7 @@ class DataFlow(models.Model):
     # dataflow description node url (TODO not used)
     node_url = models.CharField(null=True, blank=True, max_length=400, help_text="Dataflow description node url")
     # number of dataseries
-    oxford_n = models.IntegerField(null=True, blank=True, help_text="Number of available dataseries")
+    available_n = models.IntegerField(null=True, blank=True, help_text="Number of available dataseries")
     # number of regions (level 1)
     regions_n = models.IntegerField(null=True, blank=True, default=0, help_text="Number of regions")
     # number of regions (level 2)

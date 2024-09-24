@@ -59,7 +59,7 @@ class DataFlowAdmin(admin.ModelAdmin):
     }
     search_fields = ['name', 'short_desc', 'long_desc']
     list_display = (
-        'name', 'identifier', 'short_desc', 'oxford_n', 'dashboard_n', 'live_n')
+        'name', 'identifier', 'short_desc', 'available_n', 'dashboard_n', 'live_n')
     list_filter = ('tracked', 'menu_category')
     save_as = True
     view_on_site = False

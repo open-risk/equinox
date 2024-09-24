@@ -20,7 +20,7 @@
 
 from django.urls import re_path
 
-from . import views
+import policy.views as views
 
 app_name = 'policy'
 

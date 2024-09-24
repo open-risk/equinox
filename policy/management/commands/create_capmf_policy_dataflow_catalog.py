@@ -39,7 +39,7 @@ dataflow = {
     "GEO": 1
 }
 
-dataflow['CAPMF_N'] = oxford_count
+dataflow['AVAILABLE_N'] = oxford_count
 dataflow['DASHBOARD_N'] = dashboard_count\
 
 """

@@ -1,41 +1,43 @@
 Policy App
 =============================
-The Policy App provides portfolio policy data oriented functionality of equinox.
+The Policy App provides portfolio-wide Policy oriented functionality of equinox.
 
-Policies are mostly discrete choices among options (that can change over time)
-
-
-TODO
------------------
-* settings.py structure for field names is unusable after changes
-* field descriptions and code lists are not used
+Policies are in general discretionary choices among a menu options (that can change over time). They can be numerical or categorical in nature.
 
 Category
 --------
-
 Policies
 
 
 Models
 ------
 
-- Policies: Store generic policy data
+Policy Models Store generic policy data
 
+* Dataflow
+* Dataseries
+* Geoslice
 
 Admin
 -----
 
-- PolicyAdmin:    PrettyJSONWidget  Search, List, Filter
+Standard Model Admin
+
 
 API
 ---
+TODO
 
 Functionality
 -----------------------
 
+* Provide overviews and dashboards for portfolio-wide policy data
+
 Management Commands
 --------------------
-None
+
+* create fixtures for Oxford COVID policy database
+* create fixtures for OECD CAPMF policy database
 
 Architecture
 ------------
@@ -43,16 +45,25 @@ Architecture
 Dependencies
 -----------------
 
+* core app Django only
+* management commands:
+
+    * pandas
+    * scipy
+
 Is dependent on by
 --------------------
 
 File structure
 -----------------
+TODO
 
 
 Testing
 ----------------------
 
+* test/test_policy/test_models.py (test creation of core models)
+* policy/tests.py
 
 Backup Procedure
 ---------------------

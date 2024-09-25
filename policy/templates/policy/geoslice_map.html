@@ -139,8 +139,6 @@
         context['obs'] = max_obs;
         context['max'] = max_obs;
         context['dates'] = reference_dates;
-        console.log(context);
-
         initializeMap(dataset, context);
         let currentDate = context.dates[max_obs - 1];
         $("#data_date").html("Date : " + currentDate);

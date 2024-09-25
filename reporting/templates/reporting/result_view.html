@@ -49,9 +49,7 @@
 
         <script type="text/javascript">
             var result = "{{ Result | escapejs }}";
-            console.log('Result', result);
             var json_response = JSON.parse(result);
-            {#console.log('Parsed', json_response);#}
 
             // create the editor
             var container = document.getElementById("jsoneditor");

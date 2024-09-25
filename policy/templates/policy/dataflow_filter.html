@@ -14,7 +14,6 @@
 
 {% block content %}
 
-    {% include "policy/df_breadcrumb.html" %}
 
     <div class="card card-primary card-outline">
         <div class="card-info">
@@ -22,9 +21,24 @@
                 <h4><i class="fa fa-table"></i> Filtered View</h4>
             </div>
             <div class="card-body">
-                <p class="helpblocktext">
-                    <i class="fa fa-info-circle"></i> If required to narrow the selection, SEARCH for keywords in the DataSet descriptions<br> CLICK on Analysis Icons to explore further any particular dataset<br>
-                </p>
+                <div class="helpblock" id="page_content_front">
+                    <p class="helpblocktext">
+                        <i class="fa fa-info-circle"></i> If required to narrow the selection, SEARCH for keywords in
+                        the
+                        DataSet descriptions<br> CLICK on Analysis Icons to explore further any particular dataset<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-thermometer-quarter"></i> Status Update </h4>
+            </div>
+            <div class="card-body">
+                {% include "policy/df_breadcrumb.html" %}
             </div>
         </div>
     </div>
@@ -47,16 +61,16 @@
                     <tbody>
                     {% for DataSeries in series_list %}
                         <tr class="feed" id={{ DataSeries.id }}>
-                            <td width="250px">{{ DataSeries.title }}</td>
+                            <td>{{ DataSeries.title }}</td>
                             <td>{{ DataSeries.title_long }}</td>
                             <td>{{ DataSeries.last_observation_date }}</td>
-                            <td width="160px"><a href="{% url 'policy:DataSeries2' DataSeries.identifier %}"
+                            <td><a href="{% url 'policy:DataSeries2' DataSeries.identifier %}"
                                                  target="_blank"> <i
-                                    class="fa fa-table fa-2x"></i> </a> <a
+                                    class="fas fa-table fa-2x"></i> </a> <a
                                     href="{% url 'policy:Plot' DataSeries.identifier %}" target="_blank"> <i
-                                    class="fa fa-area-chart fa-2x"></i> </a> <a
+                                    class="fas fa-chart-area fa-2x"></i> </a> <a
                                     href="{% url 'policy:Metrics' DataSeries.identifier %}" target="_blank"> <i
-                                    class="fa fa-thermometer fa-2x"></i> </a>
+                                    class="fas fa-thermometer fa-2x"></i> </a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -81,7 +95,6 @@
 
     <script>
         var content_data = {{ content_data | safe }};
-        var root_view = "{{ root_view }}";
         var freshness = {{ freshness | safe }};
         $("#red_no").html(freshness['red']);
         $("#orange_no").html(freshness['orange']);

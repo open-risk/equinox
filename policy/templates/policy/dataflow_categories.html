@@ -9,19 +9,33 @@
 {% endblock %}
 
 {% block title %}
-    {{ title }} Policy Overview
+    {{ title }} Policy Dataflow Overview
 {% endblock %}
 
 {% block content %}
 
-    {% include "policy/time_breadcrumb.html" %}
 
     <div class="card card-primary card-outline">
-        <div class="card-body">
-            <div class="helpblock" id="page_content_front">
-                <p class="helpblocktext">
-                    SEARCH by keyword to narrow the selection. SELECT from the list of stored DataFlows (click on a country) to further explore the datasets.<br/> CLICK on the
-                    <b>Red Links</b> to focus on recent significant changes per country</p>
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-info-circle"></i> About </h4>
+            </div>
+            <div class="card-body">
+                <div class="helpblock" id="page_content_front">
+                    <p class="helpblocktext">
+                        Overview of all Policy Dataflows. SEARCH by keyword to narrow the selection. SELECT from the list of stored DataFlows (click on a country) to further explore the datasets. CLICK on <b>Red Links</b> to focus on recent significant changes per country</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-thermometer-quarter"></i> Status Update </h4>
+            </div>
+            <div class="card-body">
+                {% include "policy/time_breadcrumb.html" %}
             </div>
         </div>
     </div>
@@ -31,7 +45,7 @@
         <div class="pad table-responsive">
             <div class="card-info">
                 <div class="card-header">
-                    <h4><i class="fa fa-info-circle"></i> Policy Overview</h4>
+                    <h4><i class="fa fa-eye"></i> Policy Overview</h4>
                 </div>
                 <div class="card-body">
                     <table class="display responsive no-wrap" id="category_list">
@@ -53,13 +67,13 @@
                                        href="{% url 'policy:DataFlow_country_aggregate' DataFlow.identifier %}">{{ DataFlow.name }}</a>
                                 </td>
 
-                                <td>
+                                <td style="text-align:center;">
                                     <a title="Click through to explore all datasets for this country"
                                        style="color:blue"
                                        href="{% url 'policy:DataFlow_filter' DataFlow.identifier 'all' 'all' %}">{{ DataFlow.dashboard_n }}</a>
                                 </td>
 
-                                <td>
+                                <td style="text-align:center;">
                                     <a title="Click through to explore datasets that showed significant change recently"
                                        style="color:red"
                                        href="{% url 'policy:DataFlow_filter' DataFlow.identifier region 'active' %}">{{ DataFlow.live_n }}</a>
@@ -100,7 +114,6 @@
         // var content_data = {{ content_data | safe }};
         var freshness = {{ freshness | safe }};
         var statistics = {{ statistics | safe }};
-        var root_view = "{{ root_view }}";
         $("#red_no").html(freshness['red']);
         $("#orange_no").html(freshness['orange']);
         $("#yellow_no").html(freshness['yellow']);

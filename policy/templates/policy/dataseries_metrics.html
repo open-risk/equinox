@@ -14,15 +14,18 @@
 
 {% block content %}
 
-    {% include "policy/ds_breadcrumb.html" %}
+
 
     <div class="card card-primary card-outline">
-    <div class="card-info">
-        <div class="card-header">
-            <h4><i class="fa fa-thermometer"></i> Policy Data: Derived Metrics</h4>
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-chart-bar"></i> Policy Data: Derived Metrics</h4>
+            </div>
             <div class="card-body">
-                <p class="helpblocktext">
-                    <b>Dataseries: {{ object.title }}</b><br><i>Details: {{ object.title_long }}</i></p>
+                <div class="helpblock" id="page_content_front">
+                    <p class="helpblocktext">
+                        <b>Dataseries: {{ object.title }}</b><br><i>Details: {{ object.title_long }}</i></p>
+                </div>
             </div>
         </div>
     </div>
@@ -30,10 +33,24 @@
     <div class="card card-primary card-outline">
         <div class="card-info">
             <div class="card-header">
-                <h4><i class="fa fa-info-circle"></i> Metrics Table </h4>
+                <h4><i class="fa fa-thermometer-quarter"></i> Status Update </h4>
             </div>
             <div class="card-body">
-                <table id="metrics"></table>
+                {% include "policy/ds_breadcrumb.html" %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-primary card-outline">
+        <div class="pad table-responsive">
+            <div class="card-info">
+                <div class="card-header">
+                    <h4><i class="fa fa-info-circle"></i> Metrics Table </h4>
+                </div>
+                <div class="card-body">
+                    <table id="metrics" class="display"></table>
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +58,7 @@
     <div class="card card-warning">
         <div class="card-info">
             <div class="card-header">
-                <h3>Note:</h3>
+                <h4><i class="fa fa-exclamation-warning"></i> Note:</h4>
             </div>
             <div class="card-body">
                 <p id="explanatory_note">
@@ -60,7 +77,6 @@
         var dates = {{ object.dates | safe }};
         var metrics = {{ object.metrics | safe }};
         var geometry_1D = {{ object.geometry_1D | safe }};
-        var root_view = "{{ root_view }}";
     </script>
 
     <script type="text/javascript" charset="utf-8"

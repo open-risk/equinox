@@ -14,24 +14,38 @@
 
 {% block content %}
 
-    {% include "policy/df_breadcrumb.html" %}
 
     <div class="card card-primary card-outline">
         <div class="card-info">
             <div class="card-header">
-                <h4><i class="fa fa-table"></i> Aggregate Policy Data for {{ country_name }}</h4>
-                <p class="helpblocktext">
-                    CLICK on the <i>Analysis</i> pictograms to explore further any specific dataset
-                </p>
+                <h4><i class="fa fa-info-circle"></i> Aggregate Policy Data for {{ country_name }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="helpblock" id="page_content_front">
+                    <p class="helpblocktext">
+                        CLICK on the <i>Analysis</i> pictograms to explore further any specific dataset
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="card card-primary card-outline">
-        <div class="card-body pad table-responsive">
+        <div class="card-info">
+            <div class="card-header">
+                <h4><i class="fa fa-thermometer-quarter"></i> Status Update </h4>
+            </div>
+            <div class="card-body">
+                {% include "policy/df_breadcrumb.html" %}
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-primary card-outline">
+        <div class="pad table-responsive">
             <div class="card-info">
                 <div class="card-header">
-                    <h4><i class="fa fa-info-circle"></i> Aggregate Country Data</h4>
+                    <h4><i class="fa fa-table"></i> Aggregate Country Data</h4>
                 </div>
                 <div class="card-body">
 
@@ -56,7 +70,7 @@
                                         <i class="fas fa-chart-area fa-2x"></i>
                                     </a>
                                     <a href="{% url 'policy:Metrics' DataSeries.identifier %}" target="_blank"> <i
-                                        class="fas fa-thermometer fa-2x"></i> </a>
+                                            class="fas fa-thermometer fa-2x"></i> </a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -82,7 +96,6 @@
 
     <script>
         var content_data = {{ content_data | safe }};
-        var root_view = "{{ root_view }}";
         var freshness = {{ freshness | safe }};
         $("#red_no").html(freshness['red']);
         $("#orange_no").html(freshness['orange']);

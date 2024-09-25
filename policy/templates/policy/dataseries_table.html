@@ -17,12 +17,11 @@
 {% block content %}
 
 
-    {% include "policy/ds_breadcrumb.html" %}
 
     <div class="card card-primary card-outline">
         <div class="card-info">
             <div class="card-header">
-                <h4><i class="fa fa-table"></i> Policy Data: Tabular View</h4>
+                <h4><i class="fa fa-info-circle"></i> Policy Data: Tabular View</h4>
             </div>
             <div class="card-body">
                 <p class="helpblocktext">
@@ -35,10 +34,23 @@
     <div class="card card-primary card-outline">
         <div class="card-info">
             <div class="card-header">
+                <h4><i class="fa fa-eye"></i> Overview </h4>
+            </div>
+            <div class="card-body">
+                {% include "policy/ds_breadcrumb.html" %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-primary card-outline">
+        <div class="card-info">
+            <div class="card-header">
                 <h4><i class="fa fa-info-circle"></i> Dataseries Table </h4>
             </div>
             <div class="card-body">
-                <table id="dataseries"></table>
+                <table id="dataseries" class="display"></table>
+                <thead></thead>
             </div>
         </div>
     </div>
@@ -51,7 +63,7 @@
         var dates = {{ object.dates | safe }};
         var metrics = {{ object.metrics | safe }};
         var geometry_1D = {{ object.geometry_1D | safe }};
-        var root_view = "{{ root_view }}";
+
     </script>
 
     <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/table_timeseries.js' %}"></script>

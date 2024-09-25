@@ -3,7 +3,7 @@
 }
 
 .helpblock {
-    height: 100px;
+    height: 80px;
     background-color: #dbdbdb;
     color: black;
     padding: 10px;
@@ -16,6 +16,7 @@
 
 .feed {
     color: black;
+    paddind: 10px;
 }
 
 #interface_buttons {
@@ -65,7 +66,7 @@
     background-color: #369;
     color: white;
     border: 5px solid white;
-    width: 220px;
+    /*width: 220px;*/
     vertical-align: middle;
     /*height: 80px;*/
     padding: 10px;
@@ -125,16 +126,7 @@ img[src*=".svg"] {
     */
 }
 
-#series_list {
-    width: 90%;
-    text-align: left;
-    border: none;
-    border-collapse: separate;
-    border-spacing: 2px;
-    overflow: auto;
-    float: left;
-    font-size: 12px;
-}
+
 
 li .list-unstyled {
     list-style-type: none;
@@ -219,6 +211,16 @@ li .list-unstyled {
     font-size: 10px;
 }
 
+.table_header {
+    padding: 5px;
+}
+
+table.display thead th {
+    border-bottom: none;
+    background-color: #b0afa7;
+    color: black;
+}
+
 table.db_stats {
     table-layout: fixed;
     background-color: #fffefe;
@@ -253,27 +255,18 @@ table.db_stats td:nth-of-type(2) {
     padding: 3px;
 }
 
-#first_row {
-    margin-top: 20px;
-    margin-left: 230px
-}
-
-#second_row {
-    margin-top: 20px;
-    margin-left: 230px
-}
 
 #series_list .even {
-    background-color: rgb(219, 219, 219) !important;
+    background-color: rgb(255, 255, 255) !important;
 }
 
 #series_list .odd {
-    background-color: rgb(230, 230, 230) !important;
+    background-color: rgb(199, 199, 199) !important;
 }
 
-#series_list th {
-    background-color: #f4c63d;
-}
+/*#series_list th {*/
+/*    background-color: #f4c63d;*/
+/*}*/
 
 #series_ids {
     width: 100%;
@@ -287,6 +280,17 @@ table.db_stats td:nth-of-type(2) {
     padding: 3px;
 }
 
+#series_list {
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 2px;
+    overflow: auto;
+    float: left;
+    font-size: 12px;
+}
+
 #category_list {
     width: 100%;
     text-align: left;
@@ -297,11 +301,11 @@ table.db_stats td:nth-of-type(2) {
     float: left;
 }
 
-table.display thead th {
-    border-bottom: none;
-    background-color: #f4c63d;
-    color: black;
+#category_list tr {
+    background-color: #A1AD72;
 }
+
+
 
 .dark-mode .card {
     color: #000;
@@ -315,9 +319,6 @@ table.display thead th {
     padding: 7px;
 }
 
-#category_list tr {
-    background-color: #A1AD72;
-}
 
 .work_area {
     margin-top: 80px;
@@ -357,7 +358,7 @@ table.display thead th {
 }
 
 #dataseries {
-    text-align: left;
+    text-align: center;
     border-radius: 10px;
     margin: 0 auto;
     padding: 10px;
@@ -368,11 +369,11 @@ table.display thead th {
 }
 
 #dataseries .even {
-    background-color: rgb(219, 219, 219)
+    background-color: rgb(255, 255, 255)
 }
 
 #dataseries .odd {
-    background-color: rgb(230, 230, 230)
+    background-color: rgb(203, 203, 203)
 }
 
 #dataseries .even td.sorting_1 {
@@ -462,61 +463,89 @@ table.display thead th {
     opacity: 0.2;
 }
 
-#red_feed {
+.gray_no {
     display: inline-block;
     padding: 4px;
     height: 27px;
-    background-color: red;
+    color: black;
+    background-color: gray;
     border-radius: 5px;
     margin-left: 2px;
     margin-bottom: 5px;
 }
 
-#red_no {
+.red_no {
     display: inline-block;
     padding: 4px;
     height: 27px;
     background-color: red;
+    color: black;
     border-radius: 5px;
     margin-left: 2px;
     margin-bottom: 5px;
 }
 
-#orange_feed {
+.gray_feed {
+    display: inline-block;
+    padding: 4px;
+    height: 27px;
+    background-color: gray;
+    color: black!important;
+    border-radius: 5px;
+    margin-left: 2px;
+    margin-bottom: 5px;
+}
+
+.red_feed {
+    display: inline-block;
+    padding: 4px;
+    height: 27px;
+    background-color: red;
+    color: black!important;
+    border-radius: 5px;
+    margin-left: 2px;
+    margin-bottom: 5px;
+}
+
+.orange_feed {
     display: inline-block;
     padding: 4px;
     height: 27px;
     background-color: orange;
+    color: black!important;
     border-radius: 5px;
     margin-left: 5px;
     margin-bottom: 5px;
 }
 
-#orange_no {
+.orange_no {
     display: inline-block;
     padding: 4px;
     height: 27px;
     background-color: orange;
+    color: black;
     border-radius: 5px;
     margin-left: 2px;
     margin-bottom: 5px;
 }
 
-#yellow_feed {
+.yellow_feed {
     display: inline-block;
     padding: 4px;
     height: 27px;
     background-color: yellow;
+    color: black!important;
     border-radius: 5px;
     margin-left: 5px;
     margin-bottom: 5px;
 }
 
-#yellow_no {
+.yellow_no {
     display: inline-block;
     padding: 4px;
     height: 27px;
     background-color: yellow;
+    color: black;
     border-radius: 5px;
     margin-left: 2px;
     margin-bottom: 5px;
@@ -534,26 +563,7 @@ table.display thead th {
     text-align: center;
 }
 
-#gray_no {
-    display: inline-block;
-    padding: 4px;
-    height: 27px;
-    background-color: rgb(219, 219, 219);
-    border-radius: 5px;
-    margin-left: 2px;
-    margin-bottom: 5px;
-}
 
-.gray_no {
-    display: inline-block;
-    height: 27px;
-    padding: 4px;
-    background-color: white;
-    border-radius: 5px;
-    margin-left: 2px;
-    margin-bottom: 4px;
-    border: 1px solid rgb(219, 219, 219);
-}
 
 .feed_list {
     margin-top: 230px;

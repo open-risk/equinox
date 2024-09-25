@@ -3,8 +3,9 @@
 
 This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
 
-v0.8 (Upcoming)
+v0.8.0 (25-09-2024)
 -----------------
+* Enhancements: OECD Climate Actions and Policies Workflow
 * Dependencies: Django 5.0 related updates
     * OSMGeoAdmin deprecation
     * sqlite bug workaround: python ./manage.py shell -c "import django;django.db.connection.cursor().execute('SELECT InitSpatialMetaData(1);')";

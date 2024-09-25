@@ -1,14 +1,14 @@
 ChangeLog
 ===========================
 
-v0.5.0 (XX-XX-XXXX)
+v0.5.0 (25-09-2024)
 ----------------------
 * OECD CAPMF Policy data import
-
+* Policy Workflow UI Standardization
 
 v0.4.0 (03-06-2023)
 -------------------
-* Model testing framework
+* Model Testing framework
 
 v0.3.0 (21-04-2022)
 -------------------

@@ -10,6 +10,7 @@
     {{ block.super }}
     <script type="text/javascript" charset="utf-8" src="{% static 'start/js/jquery-ui/jquery-ui.js' %}"></script>
     <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/underscore-umd.js' %}"></script>
     <script type="text/javascript" charset="utf-8" src="{% static 'policy/js/slider.js' %}"></script>
 {% endblock %}
 
@@ -69,19 +70,21 @@
                                     The earliest reading (to the left) is generally February 15, 2020. The latest
                                     observation (to the right) is changing with each data update.
                                 </li>
-                                <li>The color color captures the differences of country versus <i>their own baseline
-                                    </i> for each particular Policy metric. The baseline value (0%) is blue.
+                                <li>The color captures the differences of country versus <i>their own baseline
+                                </i> for each particular Policy metric. The baseline value (0%) is blue.
                                     Changes from baseline are red. Increases from baseline
                                     (e.g. increased Policy in Parks) is green.
                                 </li>
-                                <li><button style="background-color: red; width:80px">-100%</button>
+                                <li>
+                                    <button style="background-color: red; width:80px">-100%</button>
                                     <button style="background-color: blue; color:white; width:80px">0%</button>
                                     <button style="background-color: green; width:80px">+100%</button>
                                 </li>
                                 <li>For some countries there are no data</li>
                                 <li>The actual timeseries are quite noisy (click through to see examples) and
                                     may have various residual periodicities and spikes (see also the Help page) so
-                                    additional caution is required when interpreting the fine structure of Policy changes!
+                                    additional caution is required when interpreting the fine structure of Policy
+                                    changes!
                                 </li>
                             </ul>
                         </div>
@@ -152,7 +155,7 @@
                 let currentName = $(this).attr('data-name');
                 if (context.ids.indexOf(currentId) > -1) {
                     let index = context.obs - context.max + dataset[currentId].dates.length;
-                    $("#data_name").html("Country : " + currentName);
+                    $("#data_name").html("Country : " + _.escape(currentName));
                     $("#data_value").html("Value : " + dataset[currentId].values[index - 1] + "% change versus baseline");
                 }
             });

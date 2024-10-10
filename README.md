@@ -1,4 +1,7 @@
 [![Documentation Status](https://readthedocs.org/projects/equinox-server/badge/?version=latest)](https://equinox-server.readthedocs.io/en/latest/?badge=latest)
+![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/Naereen/badges.svg)](http://isitmaintained.com/project/Naereen/badges "Percentage of issues still open")
 
 # Equinox Overview
 

@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 LABEL author="Open Risk <www.openriskmanagement.com>"
-LABEL version="0.7.1"
+LABEL version="0.8.0"
 LABEL description="Equinox: Open Source Sustainable Porfolio Management"
 LABEL maintainer="info@openrisk.eu"
 EXPOSE 8080
@@ -20,15 +20,25 @@ WORKDIR /equinox
 COPY requirements.txt /equinox/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY . /equinox/
-RUN rm -f /equinox/venv
-RUN rm -f /equinox/db.sqlite3
-RUN rm -rf /equinox/portfolio/migrations/*
-RUN rm -rf /equinox/policy/migrations/*
-RUN rm -rf /equinox/reference/migrations/*
-RUN rm -rf /equinox/reporting/migrations/*
-RUN rm -rf /equinox/risk/migrations/*
-RUN rm -rf /equinox/start/migrations/*
+
+COPY locale/ /equinox/locale/
+COPY equinox/ /equinox/equinox/
+COPY start/ /equinox/start/
+COPY portfolio/ /equinox/portfolio/
+COPY policy/ /equinox/policy/
+COPY reference/ /equinox/reference/
+COPY reporting/ /equinox/reporting/
+COPY risk/ /equinox/risk/
+COPY visualization/ /equinox/visualization/
+COPY templates/ /equinox/templates/
+COPY static/ /equinox/static/
+
+COPY manage.py /equinox/
+COPY createadmin.py /equinox/
+COPY createcategories.py /equinox/
+COPY createsectors.py /equinox/
+COPY loadfixtures.sh /equinox/
+
 RUN python /equinox/manage.py makemigrations start
 RUN python /equinox/manage.py makemigrations portfolio
 RUN python /equinox/manage.py makemigrations policy

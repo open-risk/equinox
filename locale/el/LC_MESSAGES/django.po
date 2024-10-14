@@ -20,71 +20,71 @@ msgstr ""
 
 #: build/lib/equinox/settings.py:153 equinox/settings.py:153
 msgid "Dutch"
-msgstr ""
+msgstr "Ολλανδικά"
 
 #: build/lib/equinox/settings.py:154 equinox/settings.py:154
 msgid "English"
-msgstr ""
+msgstr "Αγγλικά"
 
 #: build/lib/equinox/settings.py:155 equinox/settings.py:155
 msgid "Spanish"
-msgstr ""
+msgstr "Ισπανικά"
 
 #: build/lib/equinox/settings.py:156 equinox/settings.py:156
 msgid "Greek"
-msgstr ""
+msgstr "Ελληνικά"
 
 #: portfolio/Loan.py:329
 msgid "Loan"
-msgstr ""
+msgstr "Δάνειο"
 
 #: portfolio/Loan.py:330
 msgid "Loans"
-msgstr ""
+msgstr "Δάνεια"
 
 #: portfolio/apps.py:31
 msgid "Portfolio"
-msgstr ""
+msgstr "Χαρτοφυλάκιο"
 
 #: reference/apps.py:33
 msgid "Reference"
-msgstr ""
+msgstr "Παραπομπές"
 
 #: results_explorer/apps.py:32
 msgid "Reporting"
-msgstr ""
+msgstr "Αναφορές"
 
 #: risk_analysis/apps.py:32
 msgid "Risk Analysis"
-msgstr ""
+msgstr "Ανάλυση Ρίσκου"
 
 #: start/apps.py:31
 msgid "Starting Page"
-msgstr ""
+msgstr "Σελίδα Εκκινησης"
 
 #: start/templates/start/base.html:93
 msgid "Search"
-msgstr ""
+msgstr "Ψάξιμο"
 
 #: start/templates/start/base.html:153
 msgid "Account"
-msgstr ""
+msgstr "Λογαριασμός"
 
 #: start/templates/start/base.html:156
 msgid "Change password"
-msgstr ""
+msgstr "Άλλαξε Σύνθημα"
 
 #: start/templates/start/base.html:160
 msgid "Log out"
-msgstr ""
+msgstr "Αποσύνδεση"
 
 #: start/templates/start/base.html:171
 msgid "See Profile"
-msgstr ""
+msgstr "Δες το Προφίλ"
 
 #: start/templates/start/base.html:212
 msgid "Dashboard"
-msgstr ""
+msgstr "Επιφάνεια Εργασίας"
 
 #: start/templates/start/base.html:325
 msgid "Jazzmin version"
@@ -108,14 +108,15 @@ msgstr ""
 
 #: start/templates/start/base.html:352
 msgid "Close"
-msgstr ""
+msgstr "Κλείσιμο"
 
 #: start/templates/start/front.html:19
 msgid ""
 "Equinox is an open source platform that supports the holistic risk "
 "management of sustainable finance projects"
-msgstr ""
+msgstr "Το Equιnox είναι μια πλατφόρμα ανοιχτού λογισμικού που υποστηρίζει"
+"την ολιστική διαχείριση προτζεκτ βιωσιμης χρηματοδότησης"
 
 #: start/templates/start/front.html:31
 msgid "Welcome to Equinox"
-msgstr ""
+msgstr "Καλώς ήρθατε στο Equinox"

@@ -22,7 +22,6 @@ import os
 from pathlib import Path
 
 # Directories
-#
 
 EQUINOX_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = os.path.join(EQUINOX_DIR, 'policy/fixtures/policy_data/')

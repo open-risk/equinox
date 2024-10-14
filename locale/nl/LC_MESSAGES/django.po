@@ -1,5 +1,5 @@
 # GENERAL TRANSLATIONS
-# Copyright (C) 2021 - 2022, Open Risk (www.openriskmanagement.com)
+# Copyright (C) 2021 - 2024, Open Risk (www.openriskmanagement.com)
 # This file is distributed under the same license as the equinox package.
 #
 #, fuzzy

@@ -17,6 +17,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.views.generic.base import TemplateView
@@ -35,6 +36,7 @@ class AssetList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
         return context
+
 
 class AssetMapView(TemplateView):
     """Asset Markers Map view."""

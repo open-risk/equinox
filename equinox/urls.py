@@ -37,7 +37,7 @@ schema_view = get_schema_view(
         default_version='v1',
         description="equinox is an open source platform for the holistic management of sustainable finance projects.",
         terms_of_service="https://www.openriskmanagement.com/",
-        contact=openapi.Contact(email="info@openrisk.eu"),
+        contact=openapi.Contact(email="info@openriskmanagement.com"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,

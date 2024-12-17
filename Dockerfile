@@ -2,7 +2,7 @@ FROM python:3.10-slim
 LABEL author="Open Risk <www.openriskmanagement.com>"
 LABEL version="0.8.0"
 LABEL description="Equinox: Open Source Sustainable Porfolio Management"
-LABEL maintainer="info@openrisk.eu"
+LABEL maintainer="info@openriskmanagement.com"
 EXPOSE 8080
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1

@@ -5,7 +5,7 @@
 
 # Equinox Overview
 
-![Equinox Logo](docs/source/equinox-logo.png) Equinox is an open source platform for sustainable portfolio management. It supports holistic risk management and reporting of sustainable finance projects in accordance with evolving industry standards.
+![Equinox Logo](docs/source/equinox-logo.png) Equinox is an open source platform for sustainable portfolio management. It supports holistic risk management and reporting of sustainable finance projects in accordance with evolving industry standards. 
 
 ## The Challenge of Sustainable Finance
 
@@ -59,7 +59,7 @@ The admin is our main workbench
 
 ## Credits
 
-* The Python and Django ecosystems and the many powerful software components (Geodjango, Jazzmin, ... full list coming) 
+* The Python and Django ecosystems and the many powerful software components (GeoDjango, Jazzmin, ... full list coming) 
 * The GHG Protocol
 * The Partnership for Carbon Accounting Financials  
 * The European Banking Authority

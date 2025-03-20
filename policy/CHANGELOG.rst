@@ -1,4 +1,4 @@
-ChangeLog
+ChangeLog of Policy App
 ===========================
 
 v0.5.0 (25-09-2024)

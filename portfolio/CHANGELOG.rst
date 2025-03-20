@@ -1,4 +1,4 @@
-ChangeLog
+ChangeLog of Portfolio App
 ===========================
 
 v0.5.0 (Upcoming)

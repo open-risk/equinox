@@ -1,10 +1,17 @@
- ChangeLog
+ChangeLog
 ===========================
 
-This is the Changelog for the overall Equinox platform and its API changes. Individual apps may have their own more detailed changelogs within the app subdirectory
+This is the *global* Changelog for the overall Equinox platform and its API changes. Individual apps have their own more detailed changelogs within each app's subdirectory:
+
+* :doc:`portfolio-changelog`
+* :doc:`policy-changelog`
+* :doc:`reference-changelog`
+* :doc:`reporting-changelog`
+* :doc:`start-changelog`
+* :doc:`risk-changelog`
 
 v0.8.0 (25-09-2024)
------------------
+-------------------
 * Enhancements: OECD Climate Actions and Policies Workflow
 * Dependencies: Django 5.0 related updates
     * OSMGeoAdmin deprecation

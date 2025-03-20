@@ -1,4 +1,4 @@
-ChangeLog
+ChangeLog of Reporting App
 ===========================
 
 v0.7.0 (21-06-2024)

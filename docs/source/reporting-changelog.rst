@@ -1,0 +1,1 @@
+.. include:: ../../reporting/CHANGELOG.rst

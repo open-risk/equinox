@@ -49,7 +49,12 @@ Table of Contents
    api_docs
    internationalization
    changelog
-
+   portfolio-changelog
+   policy-changelog
+   reference-changelog
+   reporting-changelog
+   risk-changelog
+   start-changelog
 
 .. toctree::
    :maxdepth: 2

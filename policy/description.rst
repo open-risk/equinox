@@ -1,8 +1,11 @@
 Policy App
 =============================
-The Policy App provides portfolio-wide Policy oriented functionality of equinox.
 
-Policies are in general discretionary choices among a menu options (that can change over time). They can be numerical or categorical in nature.
+The Policy App provides portfolio-wide Policy oriented functionality of Equinox.
+
+Policies are in general discretionary choices among a menu options (that can change over time).
+
+They can be numerical or categorical in nature.
 
 Category
 --------

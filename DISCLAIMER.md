@@ -1,5 +1,5 @@
-Equinox (the 'Resource') has been produced by Open Risk (www.openriskmanagement.com). Open Risk exercises care in the preparation of all its publicly released resources including this resource, and uses information it believes to be reliable. 
+**Equinox** (the 'Resource') has been produced by _Open Risk_ (www.openriskmanagement.com). Open Risk exercises care in the preparation of all its publicly released resources including this resource, and uses information it believes to be reliable. 
 
-Open Risk makes no representations and provides no warranties in relation to the completeness, accuracy, reliability, fitness for any purpose, or any other feature, or in respect of any use, of Equinox. 
+_Open Risk_ makes no representations and provides no warranties in relation to the completeness, accuracy, reliability, fitness for any purpose, or any other feature, or in respect of any use, of Equinox. 
 
 You should not rely on this resource as the basis for any business, legal or any other decisions. You are using and relying upon this resource at your own risk, and on condition that Open Risk shall not be liable for any claims or losses of any kind arising in connection with or as a result of use of or reliance on this resource, including but not limited to lost profits and punitive and consequential losses.

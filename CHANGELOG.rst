@@ -1,7 +1,9 @@
 ChangeLog
 ===========================
 
-This is the *global* Changelog for the overall Equinox platform and its API changes. Individual apps have their own more detailed changelogs within each app's subdirectory:
+This is the *global* Changelog for the Equinox platform and its API changes.
+
+NB: Individual apps have their own more detailed changelogs within each app's subdirectory:
 
 * :doc:`portfolio-changelog`
 * :doc:`policy-changelog`

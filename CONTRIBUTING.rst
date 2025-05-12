@@ -1,7 +1,9 @@
 Contributing
 ============
 
-Thank you very much for your interest in the equinox project. We always welcome contributions!
+Thank you for your interest in the equinox project!
+
+We always welcome contributions!
 
 Bugs / Issues / Feature Requests
 -----------------------------------
@@ -15,4 +17,3 @@ Todo List (auto-generated)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. todolist::
-

@@ -7,9 +7,9 @@
 
 ![Equinox Logo](docs/source/equinox-logo.png) Equinox is an open source platform for sustainable portfolio management. It supports holistic risk management and reporting of sustainable finance projects in accordance with evolving industry standards. 
 
-## The Challenge of Sustainable Finance
+## The Challenge of Sustainability
 
-Sustainability (understood both in environmental and social terms) is a seriously challenging and for the foreseable future persistent issue that affects all economies irrespective of state of development. Tools and methodologies that improve the ability of all stakeholders to assess and report risks are thus an important objective.
+Sustainability (understood both in environmental and social terms) is a seriously challenging and for the foreseeable future persistent issue that affects all economies irrespective of state of development. Tools and methodologies that improve the ability of all stakeholders to assess and report risks are thus an important objective.
 
 ## What exactly is Equinox?
 
@@ -23,8 +23,8 @@ NB: For easy installation and testing the current release uses an sqlite databas
 
 The functionality of Equinox focuses on integrating the following concepts:
 
-* Energy Accounting and in Particular Scope 2 Accounting and Reporting
 * Green Public Procurement (GPP) portfolio management
+* Energy Accounting and in Particular Scope 2 Accounting and Reporting
 * GHG Accounting Protocol for Projects
 * The PCAF coalition's approach to accounting and reporting **mortgage portfolio** GHG emissions
 * The PCAF coalition's approach to accounting and reporting **project finance** GHG emissions

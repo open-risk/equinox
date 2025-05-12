@@ -2,7 +2,9 @@
 
 ## Supported Versions
 
-We will use this section to tell people about which versions of the Equinox project are being supported with security updates.
+At present Equinox is in beta. **Do not use in production**.
+
+We will use this section to tell people about which versions of the Equinox project will be supported with security updates.
 
 | Version | Supported          |
 |---------| ------------------ |

@@ -1,6 +1,7 @@
 {% extends "admin/change_list.html" %}
 {% load i18n admin_urls %}
 
+
 {% block content_title %}
     <a href="{% url 'django-admindocs-docroot' %}models/{{ opts.app_label }}.{{ opts.model_name }}">{{ cl.opts.verbose_name_plural|capfirst }}</a>
 {% endblock %}

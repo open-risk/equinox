@@ -32,6 +32,7 @@ from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.EmissionIntensity import ReferenceIntensity
 from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
+from reference.IOData import IOMatrix, IOMatrixEntry
 
 actions = ['export2json', 'export2xml']
 
@@ -157,3 +158,24 @@ class ReferenceIntensityAdmin(admin.ModelAdmin):
     list_filter = ('Region',)
     view_on_site = False
     save_as = True
+
+
+@admin.register(IOMatrix)
+class IOMatrixAdmin(admin.ModelAdmin):
+    search_fields = ['io_family']
+    list_display = ('io_family', 'io_year', 'io_part', 'nrows', 'ncols')
+    list_filter = ('io_family', 'io_year', 'io_part', 'nrows', 'ncols')
+    view_on_site = False
+    save_as = True
+
+
+@admin.register(IOMatrixEntry)
+class IOMatrixEntryAdmin(admin.ModelAdmin):
+
+    def get_readonly_fields(self, request, obj=None):
+        return ('__all__',)
+
+    search_fields = ['row_lbl', 'col_lbl']
+    list_display = ('matrix', 'row_idx', 'col_idx', 'value')
+    view_on_site = False
+    save_as = False

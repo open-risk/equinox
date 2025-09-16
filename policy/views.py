@@ -22,6 +22,7 @@ import json
 
 from django.db.models import Q
 from django.views.generic import DetailView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from policy.models import DashBoardParams
 from policy.models import DataFlow
@@ -35,11 +36,12 @@ from policy.settings import country_dict, activities_short, activities, stat_str
 #
 
 # Policy Data Overview
-class PolicyOverview(ListView):
+class PolicyOverview(LoginRequiredMixin, ListView):
     """
     Retrieve all dataflow objects and construct content description text for help display
     """
 
+    login_url = '/admin/login/'
     model = DataFlow
     template_name = 'policy/policy_overview.html'
 
@@ -69,11 +71,12 @@ class PolicyOverview(ListView):
 # 1 DataFlow Views
 #
 
-class DataFlowCountryView(DetailView):
+class DataFlowCountryView(LoginRequiredMixin, DetailView):
     """
     2f Dataflow Country View (Display Regional Groupings within Dataflow)
 
     """
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_country'
     slug_field = 'identifier'
@@ -132,11 +135,12 @@ class DataFlowCountryView(DetailView):
         return context
 
 
-class DataFlowCategoriesView(ListView):
+class DataFlowCategoriesView(LoginRequiredMixin, ListView):
     """
     Retrieve all dataflow objects and construct content description text. Useful for help displays
 
     """
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_categories'
 
@@ -173,12 +177,13 @@ class DataFlowCategoriesView(ListView):
         return context
 
 
-class DataFlowListView(DetailView):
+class DataFlowListView(LoginRequiredMixin, DetailView):
     """
     2a Dataflow Detail View (List of All Data Series)
     class DataFlowView(LoginRequiredMixin, DetailView)
     """
 
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_detail'
     slug_field = 'identifier'
@@ -202,18 +207,19 @@ class DataFlowListView(DetailView):
         return context
 
 
-class DataFlowDimensionsView(DetailView):
+class DataFlowDimensionsView(LoginRequiredMixin, DetailView):
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_dimensions'
     slug_field = 'name'
     pass
 
 
-class DataFlowGeoSliceView(DetailView):
+class DataFlowGeoSliceView(LoginRequiredMixin, DetailView):
     """
     2c Dataflow Geo Slice View (For GEO tagged DF's produce a slice for graphing)
     """
-
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_geoslice'
     slug_field = 'name'
@@ -234,13 +240,13 @@ class DataFlowGeoSliceView(DetailView):
         return context
 
 
-class DataFlowSliceView(DetailView):
+class DataFlowSliceView(LoginRequiredMixin, DetailView):
     """
     2d Dataflow Slice View (Slicing a Dataflow along some Dataflow Dimension)
     class DataFlowView(LoginRequiredMixin, DetailView)
     The view passes all the DF JSON dataseries list to the template to be sliced there
     """
-
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_slice'
     slug_field = 'identifier'
@@ -259,11 +265,12 @@ class DataFlowSliceView(DetailView):
         return context
 
 
-class DataFlowFilterView(DetailView):
+class DataFlowFilterView(LoginRequiredMixin, DetailView):
     """
     2e Dataflow Filter View (Filtering the DS of a Dataflow using some filter e.g. color)
     The view passes all filtered DF JSON dataseries to the template
     """
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_filter'
 
@@ -336,11 +343,12 @@ class DataFlowFilterView(DetailView):
         return context
 
 
-class DataFlowCountryAggregateView(DetailView):
+class DataFlowCountryAggregateView(LoginRequiredMixin, DetailView):
     """
     2g Dataflow Country Aggregate View (Display Only Top Level Aggregate Groupings within Dataflow)
 
     """
+    login_url = '/admin/login/'
     model = DataFlow
     template_name_suffix = '_country_aggregate'
     slug_field = 'identifier'
@@ -371,7 +379,8 @@ class DataFlowCountryAggregateView(DetailView):
 
 # 3 Data Series Data (Table)
 
-class DataSeriesView(DetailView):
+class DataSeriesView(LoginRequiredMixin, DetailView):
+    login_url = '/admin/login/'
     model = DataSeries
     slug_field = 'identifier'
     template_name_suffix = '_table'
@@ -387,7 +396,8 @@ class DataSeriesView(DetailView):
 
 
 # 3a Data Series Explore (Metrics)
-class DSMetricsView(DetailView):
+class DSMetricsView(LoginRequiredMixin, DetailView):
+    login_url = '/admin/login/'
     model = DataSeries
     slug_field = 'identifier'
     template_name_suffix = '_metrics'
@@ -404,7 +414,9 @@ class DSMetricsView(DetailView):
 
 # 3b Data Series Explore (Histogram)
 # TODO Not enabled
-class DSHistogramView(DetailView):
+class DSHistogramView(LoginRequiredMixin, DetailView):
+
+    login_url = '/admin/login/'
     model = DataSeries
     slug_field = 'identifier'
     template_name_suffix = '_histogram'
@@ -421,7 +433,9 @@ class DSHistogramView(DetailView):
 
 # 3c Data Series Explore (Plot)
 #
-class DSPlotView(DetailView):
+class DSPlotView(LoginRequiredMixin, DetailView):
+
+    login_url = '/admin/login/'
     model = DataSeries
     slug_field = 'identifier'
     template_name_suffix = '_plot'
@@ -447,7 +461,9 @@ class DSPlotView(DetailView):
 
 
 # 3d Data Series Explore (Interactive)
-class DSInteractiveView(DetailView):
+class DSInteractiveView(LoginRequiredMixin, DetailView):
+
+    login_url = '/admin/login/'
     model = DataSeries
     slug_field = 'identifier'
     template_name_suffix = '_interactive'
@@ -464,7 +480,9 @@ class DSInteractiveView(DetailView):
 
 # 4 Data Series Filtered by Date List
 # class DataSeriesListView(LoginRequiredMixin, ListView):
-class DataSeriesListView(ListView):
+class DataSeriesListView(LoginRequiredMixin, ListView):
+
+    login_url = '/admin/login/'
     model = DataSeries
     template_name_suffix = '_list'
 
@@ -500,7 +518,9 @@ class DataSeriesListView(ListView):
 
 
 # 5 GeoSlice Explore (Map)
-class GSMapView(DetailView):
+class GSMapView(LoginRequiredMixin, DetailView):
+
+    login_url = '/admin/login/'
     model = GeoSlice
     slug_field = 'identifier'
     template_name_suffix = '_map'
@@ -554,9 +574,10 @@ class GSMapView(DetailView):
         return context
 
 
-class GSListView(DetailView):
+class GSListView(LoginRequiredMixin, DetailView):
     # 5 GeoSlice Explore (Detail)
 
+    login_url = '/admin/login/'
     model = GeoSlice
     template_name_suffix = '_detail'
     slug_field = 'identifier'
@@ -594,7 +615,9 @@ class GSListView(DetailView):
 #
 
 # 6a. Statistics (Overview) View
-class Statistics(ListView):
+class Statistics(LoginRequiredMixin, ListView):
+
+    login_url = '/admin/login/'
     model = DataFlow
     template_name = 'policy/statistics.html'
 
@@ -626,7 +649,9 @@ class Statistics(ListView):
 
 # 6b. Statistics Table View
 # We compute the statistics on the fly based on filters
-class StatsCountryTableView(ListView):
+class StatsCountryTableView(LoginRequiredMixin, ListView):
+
+    login_url = '/admin/login/'
     model = DataFlow
     template_name = 'policy/statistics_table.html'
 
@@ -662,7 +687,9 @@ class StatsCountryTableView(ListView):
 
 # 6c. Statistics Histogram View
 # We compute the statistics on the fly based on filters
-class StatsCountryHistogramView(ListView):
+class StatsCountryHistogramView(LoginRequiredMixin, ListView):
+
+    login_url = '/admin/login/'
     model = DataFlow
     template_name = 'policy/statistics_histogram.html'
 
@@ -693,7 +720,9 @@ class StatsCountryHistogramView(ListView):
         return context
 
 
-class StatsCountryCorrelationView(ListView):
+class StatsCountryCorrelationView(LoginRequiredMixin, ListView):
+
+    login_url = '/admin/login/'
     model = DataFlow
     template_name = 'policy/statistics_correlation.html'
 
@@ -771,21 +800,21 @@ class StatsCountryCorrelationView(ListView):
         context.update({'activity2': activity_string2 + ' Mobility'})
         return context
 
-# @login_required(login_url='/login/')
+# @login_required(login_url='/admin/login/')
 # def eve_volatility_gauge_view(request):
 #     t = loader.get_template('visual_apps/index.html')
 #     context = RequestContext(request, {})
 #     return HttpResponse(t.template.render(context))
 #
 #
-# @login_required(login_url='/login/')
+# @login_required(login_url='/admin/login/')
 # def eve_correlation_radar_view(request):
 #     t = loader.get_template('visual_apps/correlation_radar.html')
 #     context = RequestContext(request, {})
 #     return HttpResponse(t.template.render(context))
 #
 #
-# @login_required(login_url='/login/')
+# @login_required(login_url='/admin/login/')
 # def sdw_3D_scan_view(request):
 #     t = loader.get_template('visual_apps/3D_scan.html')
 #     context = RequestContext(request, {})

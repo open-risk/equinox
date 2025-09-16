@@ -20,12 +20,13 @@
 
 
 """
-The main Reference models are defined in individual files for readability:
+The main Reference app models are defined in their individual files for readability:
 
 * CPVData.py (CPVData)
 * EmissionFactor.py (EmissionFactor, BuildingEmissionFactor)
 * EmissionIntensity.py (Reference Intensity)
 * GPCSector.py (GPCSector)
+* NUTS3Data.py (NUTS Regions)
 
 Use models.py for any additional / auxiliary models
 

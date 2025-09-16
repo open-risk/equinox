@@ -60,7 +60,7 @@ msgstr "Ανάλυση Ρίσκου"
 
 #: start/apps.py:31
 msgid "Starting Page"
-msgstr "Σελίδα Εκκινησης"
+msgstr "Σελίδα Εκκίνησης"
 
 #: start/templates/start/base.html:93
 msgid "Search"

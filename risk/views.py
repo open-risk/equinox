@@ -32,6 +32,8 @@ from risk.forms import ScenarioForm
 
 
 class ScenarioEdit(LoginRequiredMixin, UpdateView):
+
+    login_url = '/admin/login/'
     model = Scenario
     form_class = modelform_factory(Scenario, exclude=None, fields='__all__')
     success_url = reverse_lazy('scenario_list')
@@ -42,7 +44,7 @@ class ScenarioEdit(LoginRequiredMixin, UpdateView):
         return context
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/admin/login/')
 def scenario_editor(request, pk):
     """
     Display for editing scenario data

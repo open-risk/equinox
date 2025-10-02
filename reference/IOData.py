@@ -55,7 +55,7 @@ class IOMatrix(models.Model):
 
 class IOMatrixEntry(models.Model):
 
-    matrix = models.ForeignKey(IOMatrix, on_delete=models.CASCADE, related_name='entries')
+    matrix = models.ForeignKey(IOMatrix, on_delete=models.CASCADE, related_name='io_matrix_entries')
     row_idx = models.IntegerField()
     col_idx = models.IntegerField()
     row_lbl = models.TextField()

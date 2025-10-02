@@ -172,8 +172,8 @@ class IOMatrixAdmin(admin.ModelAdmin):
 @admin.register(IOMatrixEntry)
 class IOMatrixEntryAdmin(admin.ModelAdmin):
 
-    def get_readonly_fields(self, request, obj=None):
-        return ('__all__',)
+    # def get_readonly_fields(self, request, obj=None):
+    #     return ('__all__',)
 
     search_fields = ['row_lbl', 'col_lbl']
     list_display = ('matrix', 'row_idx', 'col_idx', 'value')

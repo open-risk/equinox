@@ -1,4 +1,4 @@
-Equinox Risk
+Equinox Risk App
 ==========================================
 
 Risk is an Equinox app dedicated to performing various Risk Analysis tasks on the basis of Equinox data

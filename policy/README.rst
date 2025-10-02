@@ -1,4 +1,4 @@
-Equinox Policy
+Equinox Policy App
 ==========================================
 Policy is an Equinox app to monitor and manage portfolio-wide policy data.
 

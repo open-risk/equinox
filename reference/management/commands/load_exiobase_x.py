@@ -26,7 +26,7 @@ from reference.settings import EXIOBASE_PATH
 
 
 class Command(BaseCommand):
-    help = 'Load EXIOBASE txt file into equinox'
+    help = 'Load EXIOBASE x.txt data file into equinox'
 
     def handle(self, *args, **kwargs):
 

@@ -29,6 +29,8 @@ class IOMatrix(models.Model):
     """
     The IOMatrix model holds the key information about IO datasets stored in Equinox
 
+    NB: Multi-regional data must be flattened
+
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, help_text='IO Matrix ID')
     io_year = models.PositiveIntegerField(null=True, blank=True, help_text="Reference Year")

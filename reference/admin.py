@@ -176,6 +176,6 @@ class IOMatrixEntryAdmin(admin.ModelAdmin):
     #     return ('__all__',)
 
     search_fields = ['row_lbl', 'col_lbl']
-    list_display = ('matrix', 'row_idx', 'col_idx', 'value')
+    list_display = ('row_lbl', 'col_lbl', 'value')
     view_on_site = False
     save_as = False

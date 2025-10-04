@@ -18,6 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import json
 import pandas as pd
 from django.core.management import BaseCommand
 
@@ -43,23 +44,30 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        # Delete existing objects
-        IOMatrixEntry.objects.all().delete()
-        IOMatrix.objects.all().delete()
+        # Delete existing objects if appropriate
+
+        # IOMatrixEntry.objects.all().delete()
+        # IOMatrix.objects.all().delete()
+
+        # Import metadata from file
+        file = EXIOBASE_PATH + 'metadata.json'
+        metadata = json.load(open(file))
 
         Y = IOMatrix(
             io_year='2022',
             io_family='EXIOBASE 3',
             io_part='Y',
-            nrows=100,
-            ncols=1,
-            dtype='float64')
+            nrows=9800,
+            ncols=343,
+            dtype='float64',
+            metadata=metadata)
         Y.save()
 
-        # Import data from file
+        # Import matrix data from file
         file = EXIOBASE_PATH + 'Y.txt'
         print('Reading file')
         data = pd.read_csv(file, header=[0, 1], index_col=[0, 1], delimiter='\t')
+
         # Multi-index col labels -> flatten
         # First header row: Category, null, Y_Labels
         # Second header row: region, sector, null, ..., null

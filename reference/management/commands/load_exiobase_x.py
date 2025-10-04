@@ -17,6 +17,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import json
 
 import pandas as pd
 from django.core.management import BaseCommand
@@ -30,20 +31,27 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        # Delete existing objects
-        IOMatrixEntry.objects.all().delete()
-        IOMatrix.objects.all().delete()
+        # Delete existing objects if appropriate
+
+        # IOMatrixEntry.objects.all().delete()
+        # IOMatrix.objects.all().delete()
+
+        # Import metadata from file
+        file = EXIOBASE_PATH + 'metadata.json'
+        metadata = json.load(open(file))
 
         x = IOMatrix(
             io_year='2022',
             io_family='EXIOBASE 3',
             io_part='X',
-            nrows=100,
-            ncols=1,
-            dtype='float64')
+            nrows=9800,
+            ncols=3,
+            dtype='float64',
+            metadata=metadata
+        )
         x.save()
 
-        # Import data from file
+        # Import matrix data from file
         file = EXIOBASE_PATH + 'x.txt'
         print('Reading file')
         data = pd.read_csv(file, header='infer', delimiter='\t')

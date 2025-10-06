@@ -18,6 +18,7 @@ django-extensions
 django-htmx
 django-debug-toolbar
 psycopg2
+openpyxl
 Sphinx
 sphinx-rtd-theme
 selenium

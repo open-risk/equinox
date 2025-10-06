@@ -56,7 +56,6 @@ class IOMatrix(models.Model):
 
 
 class IOMatrixEntry(models.Model):
-
     matrix = models.ForeignKey(IOMatrix, on_delete=models.CASCADE, related_name='io_matrix_entries')
     row_idx = models.IntegerField()
     col_idx = models.IntegerField()
@@ -103,3 +102,74 @@ class IOMatrixEntry(models.Model):
             .annotate(sum=Sum('value'))
             .order_by('row_idx')
         )
+
+
+class IOGraph(models.Model):
+    """
+    The IOGraph model implements a graph version of IO system storage
+
+    Key features
+    - transaction matrices are stored as weighted adjacency matrices
+    - only non-zero values are stored in graph edges
+
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, help_text='IO Graph ID')
+    io_year = models.PositiveIntegerField(null=True, blank=True, help_text="Reference Year")
+    io_family = models.CharField(max_length=80, null=True, blank=True, help_text="IO Family")
+    io_part = models.CharField(max_length=80, null=True, blank=True, help_text="IO Graph Part")
+    nodes = models.PositiveIntegerField(null=True, blank=True, help_text="Number of Nodes")
+    edges = models.PositiveIntegerField(null=True, blank=True, help_text="Number of Edges")
+    dtype = models.CharField(max_length=32, default='float64', help_text="Data Type")
+    metadata = models.JSONField(null=True, blank=True, help_text="Additional Description")
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "io_graphs"
+        verbose_name = "IO Graph"
+        verbose_name_plural = "IO Graphs"
+
+    def __str__(self):
+        return f"IO Matrix {self.io_family}[{self.io_year}]: {self.io_part} ({self.nodes}x{self.edges})"
+
+    def get_absolute_url(self):
+        return reverse('reference:IOGraph_edit', kwargs={'pk': self.pk})
+
+
+class IOGraphEdge(models.Model):
+    graph = models.ForeignKey(IOGraph, on_delete=models.CASCADE, related_name='io_graph_edges')
+    row_idx = models.IntegerField()
+    col_idx = models.IntegerField()
+    value = models.FloatField()
+
+    class Meta:
+        db_table = "io_graph_edges"
+        unique_together = (("graph", "row_idx", "col_idx"),)
+        indexes = [
+            Index(fields=['graph', 'row_idx', 'col_idx'], name='gr_edge_row_col_idx'),
+            Index(fields=['graph', 'row_idx'], name='gr_edge_row_idx'),
+            Index(fields=['graph', 'col_idx'], name='gr_edge_col_idx'),
+        ]
+        verbose_name = "IO Graph Edge"
+        verbose_name_plural = "IO Graph Edges"
+
+    def __str__(self):
+        return f"({self.row_idx},{self.col_idx})={self.value}"
+
+
+class IOGraphNode(models.Model):
+    graph = models.ForeignKey(IOGraph, on_delete=models.CASCADE, related_name='io_graph_nodes')
+    row_idx = models.IntegerField()
+    row_lbl = models.TextField()
+
+    class Meta:
+        db_table = "io_graph_nodes"
+        unique_together = (("graph", "row_idx"),)
+        indexes = [
+            Index(fields=['graph', 'row_idx'], name='gr_node_row_idx'),
+        ]
+        verbose_name = "IO Graph Nodes"
+        verbose_name_plural = "IO Graph Nodes"
+
+    def __str__(self):
+        return f"({self.row_lbl})"

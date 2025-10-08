@@ -20,8 +20,8 @@
 import random
 import string
 
-import pandas as pd
 from django.core.management import BaseCommand
+from django.db import connection
 
 from reference.IOData import IOGraph, IOGraphEdge, IOGraphNode
 
@@ -40,19 +40,21 @@ class Command(BaseCommand):
         IOGraphEdge.objects.all().delete()
         IOGraphNode.objects.all().delete()
 
+        size = 4
+
         G = IOGraph(
             io_year='2022',
             io_family='Test IO',
             io_part='X',
-            nodes=10,
-            edges=10,
+            nodes=size,
+            edges=size,
             dtype='float64',
             metadata=None
         )
         G.save()
 
         indata = []
-        for i in range(10):
+        for i in range(size):
             node = IOGraphNode(
                 graph=G,
                 row_idx=i,
@@ -62,8 +64,8 @@ class Command(BaseCommand):
         IOGraphNode.objects.bulk_create(indata)
 
         indata = []
-        for i in range(10):
-            for j in range(10):
+        for i in range(size):
+            for j in range(size):
                 edge = IOGraphEdge(
                     graph=G,
                     row_idx=i,

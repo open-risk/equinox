@@ -1,6 +1,10 @@
 ChangeLog of Reference App
 ===========================
 
+v0.6.0 (08-10-2025)
+--------------
+* Storage of EEIO data
+
 v0.5.0 (03-06-2023)
 -------------------
 * Model testing framework

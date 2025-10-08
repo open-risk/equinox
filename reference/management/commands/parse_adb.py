@@ -21,54 +21,77 @@ from contextlib import nullcontext
 
 from django.core.management import BaseCommand
 from openpyxl import load_workbook
+import pandas as pd
+import numpy as np
 
 from reference.settings import ADB_PATH
 
 """
-1 Multiregional Input-Output Table 2024 None ...
-2 75 economies, at current prices (industry by industry) None ...
-3 In millions of US$ ...
-4 None None None None None None ...
-5 None None None None Agriculture, hunting, forestry, and fishing | Mining and quarrying ...
-6 None None None None AUS AUS ...
-7 None None None None c1 c2 ...
-8 None Agriculture, hunting, forestry, and fishing AUS c1 15255.198275409259 208.59987660651302
+For more robustness, parsing and inserting ADB data is done in two steps
+
+* Step 1: parse the xlsx spreadsheet and create "canonical" csv files for nodes and edges
+* Step 2: bulk load nodes and edges into the database
 
 """
 
+
 class Command(BaseCommand):
-    help = 'Parse ADB spreadsheet'
+    help = 'Parse ADB spreadsheet and insert into Database'
 
     def handle(self, *args, **kwargs):
         file = ADB_PATH + 'ADB-MRIO-2024-August 2025.xlsx'
         print('Reading file')
 
         wb = load_workbook(file, read_only=True, data_only=True)
-        ws = wb.active  # or wb[sheet_name]
-        i = 1
+        ws = wb.active
+
         colsize = 3009
-        col_industry_idx = None
-        col_country = None
-        col_industry = None
-        row_industry_idx = None
-        row_country = None
-        row_industry = None
+        zsize = 2625
+        ysize = 375
+        vsize = 6
+
+        Z = np.zeros((zsize, zsize), dtype=float, order='C')
+        FD = np.zeros((zsize, ysize), dtype=float, order='C')
+        VA = np.zeros((vsize, zsize + ysize), dtype=float, order='C')
+        X = np.zeros((zsize, 1), dtype=float, order='C')
+
+        i = 1
         for row in ws.values:
-            print(i, row[1], row[2], row[3])
-            # if i == 5:
-            #     col_industry = row[4:colsize-4]
-            # if i == 6:
-            #     col_country = row[4:colsize-4]
-            # if i == 7:
-            #     col_industry_idx = row[4:colsize-5]
-            # else:
-            #     row_industry = row[1]
-            #     row_country = row[2]
-            #     row_industry_idx = row[3]
-            #     values = row[4:colsize-4]
+            print(i)
+            if i < 5:
+                pass
+            elif i == 5:
+                col_industry = row[4:colsize - 4]
+            elif i == 6:
+                col_country = row[4:colsize - 4]
+            elif i == 7:
+                col_industry_idx = row[4:colsize - 5]
+            elif 7 < i < 8 + zsize:
+                row_industry = row[1]
+                row_country = row[2]
+                row_industry_idx = row[3]
+                all_values = row[4:colsize - 4]
+                X[i - 8] = all_values[zsize + ysize]
+                Z[i - 8, :] = all_values[:zsize]
+                FD[i - 8, :] = all_values[zsize:zsize + ysize]
+            elif i == 8 + zsize:
+                print(i, row[1], row[2], row[3])  # intermediate total
+            elif 8 + zsize < i < 14 + zsize:
+                all_values = row[4:colsize - 4]
+                VA[i - 14 - zsize] = all_values[:-1]
+            elif i == 15 + zsize:
+                print(i, row[1], row[2], row[3])  # total
+            else:
+                pass  # last text / empty rows
             i += 1
-            # if i > 8:
-            #     break
         wb.close()
 
-# 2665 rows total
+        # # Save node and edge data to csv files
+        # pd.to_csv(ADB_PATH + 'nodes.csv', nodes, delimiter='\t')
+        # np.savetxt(ADB_PATH + 'edges.csv', edges, delimiter='\t')
+
+        # # Import node and edge data from csv files
+        # file = ADB_PATH + 'nodes.csv'
+        # nodes = pd.read_csv(file, delimiter='\t')
+        # file = ADB_PATH + 'edges.csv'
+        # edges = pd.read_csv(file, delimiter='\t')

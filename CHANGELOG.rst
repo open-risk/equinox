@@ -1,4 +1,4 @@
-ChangeLog
+Equinox ChangeLog
 ===========================
 
 This is the *global* Changelog for the Equinox platform and its API changes.

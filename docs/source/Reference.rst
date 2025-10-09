@@ -13,8 +13,29 @@ Reference Views
    :undoc-members:
    :noindex:
 
+Reference Data Documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 4
+
+   PEFA
 
 Reference Management Commands
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* populate_sources
+* clear_efdb.py
+* clear_nuts3data.py
+* delete_all_reference_data.py
+* insert_io_graph.py
+* load_cpv.py
+* load_efdb.py
+* load_exiobase_x.py
+* load_exiobase_y.py
+* load_intensities.py
+* parse_adb.py
+* parse_figaro_supply_table.py
+* parse_figaro_use_table.py
+* parse_pefa.py
+* populate_sources.py
+

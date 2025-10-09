@@ -28,3 +28,4 @@ EQUINOX_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = os.path.join(EQUINOX_DIR, 'reference/fixtures/')
 EXIOBASE_PATH = os.path.join(EQUINOX_DIR, 'data/exiobase/')
 ADB_PATH = os.path.join(EQUINOX_DIR, 'data/adb/')
+PEFA_PATH = os.path.join(EQUINOX_DIR, 'data/pefa/')

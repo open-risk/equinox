@@ -25,85 +25,6 @@ import uuid
 from django.urls import reverse
 
 
-class IOMatrix(models.Model):
-    """
-    The IOMatrix model holds the key information about IO datasets stored in Equinox
-
-    NB: Multi-regional data must be flattened
-
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, help_text='IO Matrix ID')
-    io_year = models.PositiveIntegerField(null=True, blank=True, help_text="Reference Year")
-    io_family = models.CharField(max_length=80, null=True, blank=True, help_text="IO Family")
-    io_part = models.CharField(max_length=80, null=True, blank=True, help_text="IO Part")
-    nrows = models.PositiveIntegerField(null=True, blank=True, help_text="Number of Rows")
-    ncols = models.PositiveIntegerField(null=True, blank=True, help_text="Number of Columns")
-    dtype = models.CharField(max_length=32, default='float64', help_text="Data Type")
-    metadata = models.JSONField(null=True, blank=True, help_text="Additional Description")
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_change_date = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = "io_matrices"
-        verbose_name = "IO Matrix"
-        verbose_name_plural = "IO Matrices"
-
-    def __str__(self):
-        return f"IO Matrix {self.io_family}[{self.io_year}]: {self.io_part} ({self.nrows}x{self.ncols})"
-
-    def get_absolute_url(self):
-        return reverse('reference:IOMatrix_edit', kwargs={'pk': self.pk})
-
-
-class IOMatrixEntry(models.Model):
-    matrix = models.ForeignKey(IOMatrix, on_delete=models.CASCADE, related_name='io_matrix_entries')
-    row_idx = models.IntegerField()
-    col_idx = models.IntegerField()
-    row_lbl = models.TextField()
-    col_lbl = models.TextField()
-    value = models.FloatField()
-
-    class Meta:
-        db_table = "io_matrix_entries"
-        unique_together = (("matrix", "row_idx", "col_idx"),)
-        indexes = [
-            Index(fields=['matrix', 'row_idx', 'col_idx'], name='mx_row_col_idx'),
-            Index(fields=['matrix', 'row_idx'], name='mx_row_idx'),
-            Index(fields=['matrix', 'col_idx'], name='mx_col_idx'),
-        ]
-        verbose_name = "IO Matrix Entry"
-        verbose_name_plural = "IO Matrix Entries"
-
-    def __str__(self):
-        return f"({self.row_idx},{self.col_idx})={self.value}"
-
-    @classmethod
-    def fetch_submatrix(cls, matrix_id, r1, r2, c1, c2):
-        """
-        Return list of (row_idx, col_idx, value) within specified bounds.
-        """
-        return list(
-            cls.objects.filter(
-                matrix_id=matrix_id,
-                row_idx__gte=r1, row_idx__lte=r2,
-                col_idx__gte=c1, col_idx__lte=c2
-            ).values_list('row_idx', 'col_idx', 'value')
-            .order_by('row_idx', 'col_idx')
-        )
-
-    @classmethod
-    def row_sums(cls, matrix_id):
-        """
-        Return list of (row_idx, sum) for the matrix.
-        """
-        return list(
-            cls.objects.filter(matrix_id=matrix_id)
-            .values('row_idx')
-            .annotate(sum=Sum('value'))
-            .order_by('row_idx')
-        )
-
-
 class IOGraph(models.Model):
     """
     The IOGraph model implements a graph version of IO system storage
@@ -146,9 +67,9 @@ class IOGraphEdge(models.Model):
         db_table = "io_graph_edges"
         unique_together = (("graph", "row_idx", "col_idx"),)
         indexes = [
-            Index(fields=['graph', 'row_idx', 'col_idx'], name='gr_edge_row_col_idx'),
-            Index(fields=['graph', 'row_idx'], name='gr_edge_row_idx'),
-            Index(fields=['graph', 'col_idx'], name='gr_edge_col_idx'),
+            Index(fields=['graph', 'row_idx', 'col_idx'], name='io_edge_row_col_idx'),
+            Index(fields=['graph', 'row_idx'], name='io_edge_row_idx'),
+            Index(fields=['graph', 'col_idx'], name='io_edge_col_idx'),
         ]
         verbose_name = "IO Graph Edge"
         verbose_name_plural = "IO Graph Edges"
@@ -166,7 +87,7 @@ class IOGraphNode(models.Model):
         db_table = "io_graph_nodes"
         unique_together = (("graph", "row_idx"),)
         indexes = [
-            Index(fields=['graph', 'row_idx'], name='gr_node_row_idx'),
+            Index(fields=['graph', 'row_idx'], name='io_node_row_idx'),
         ]
         verbose_name = "IO Graph Nodes"
         verbose_name_plural = "IO Graph Nodes"

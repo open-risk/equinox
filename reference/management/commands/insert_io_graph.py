@@ -23,7 +23,7 @@ import string
 from django.core.management import BaseCommand
 from django.db import connection
 
-from reference.IOData import IOGraph, IOGraphEdge, IOGraphNode
+from reference.IOGraph import IOGraph, IOGraphEdge, IOGraphNode
 
 
 def random_string(n=12):

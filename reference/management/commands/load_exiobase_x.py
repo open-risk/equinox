@@ -22,7 +22,7 @@ import json
 import pandas as pd
 from django.core.management import BaseCommand
 
-from reference.IOData import IOMatrix, IOMatrixEntry
+from reference.IOGraph import IOMatrix, IOMatrixEntry
 from reference.settings import EXIOBASE_PATH
 
 

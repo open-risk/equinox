@@ -33,6 +33,8 @@ Load PEFA dataset from TSV file
 'freq', 'stk_flow', 'nace_r2', 'prod_nrg', 'unit', 'geo\\TIME_PERIOD', '2000 ', '2001 ', '2002 ', '2003 ', '2004 ', '2005 ', '2006 ', '2007 ', '2008 ', '2009 ', '2010 ', '2011 ', '2012 ', '2013 ', '2014 ', '2015 ', '2016 ', '2017 ', '2018 ', '2019 ', '2020 ', '2021 ', '2022 ', '2023'
 
 
+stk_flow: ER_USE, SUP, USE, USE_END, USE_TRS
+
 """
 
 
@@ -43,21 +45,18 @@ class Command(BaseCommand):
         file = PEFA_PATH + 'estat_env_ac_pefasu.tsv'
         print('Reading file')
 
-        data = pd.read_csv(file, header='infer', sep='[,\t]', engine='python', na_values=': m')
-        print(list(data.columns.values))
+        data = pd.read_csv(file, header='infer', sep='[,\t]', engine='python', na_values=[': m',':'])
+        # print(list(data.columns.values))
 
         print(data.head(2))
         i = 0
         for index, entry in data.iterrows():
-            print(80*'=')
-            print(entry['freq'])
-            print(entry['stk_flow'])
-            print(entry['nace_r2'])
-            print(entry['prod_nrg'])
-            print(entry['unit'])
-            print(entry['geo\\TIME_PERIOD'])
-            print(entry['2023'])
+            if entry['stk_flow'] == 'SUP':
+                # print(80*'=')
+                # print(entry['freq'])
+                # print(entry['unit'])
+                print(entry['nace_r2'], entry['prod_nrg'], entry['geo\\TIME_PERIOD'],  entry['2023'])
 
             i += 1
-            if i > 3:
-                break
+            # if i > 3:
+            #     break

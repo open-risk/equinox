@@ -32,7 +32,9 @@ from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.EmissionIntensity import ReferenceIntensity
 from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
-from reference.IOData import IOMatrix, IOMatrixEntry, IOGraph, IOGraphEdge, IOGraphNode
+from reference.IOMatrix import IOMatrix, IOMatrixEntry
+from reference.IOGraph import IOGraph, IOGraphEdge, IOGraphNode
+from reference.SUTGraph import SUTGraph, SUTGraphEdge, SUTGraphNode
 
 actions = ['export2json', 'export2xml']
 
@@ -191,7 +193,6 @@ class IOGraphAdmin(admin.ModelAdmin):
 
 @admin.register(IOGraphEdge)
 class IOGraphEdgeAdmin(admin.ModelAdmin):
-
     list_display = ('row_idx', 'col_idx', 'value')
     view_on_site = False
     save_as = False
@@ -199,7 +200,30 @@ class IOGraphEdgeAdmin(admin.ModelAdmin):
 
 @admin.register(IOGraphNode)
 class IOGraphNodeAdmin(admin.ModelAdmin):
+    search_fields = ['row_lbl']
+    list_display = ('row_idx', 'row_lbl')
+    view_on_site = False
+    save_as = False
 
+
+@admin.register(SUTGraph)
+class SUTGraphAdmin(admin.ModelAdmin):
+    search_fields = ['sut_family']
+    list_display = ('sut_family', 'sut_year', 's_nodes', 'u_nodes')
+    list_filter = ('sut_family', 'sut_year', 's_nodes', 'u_nodes')
+    view_on_site = False
+    save_as = True
+
+
+@admin.register(SUTGraphEdge)
+class SUTGraphEdgeAdmin(admin.ModelAdmin):
+    list_display = ('row_idx', 'col_idx', 'value')
+    view_on_site = False
+    save_as = False
+
+
+@admin.register(SUTGraphNode)
+class SUTGraphNodeAdmin(admin.ModelAdmin):
     search_fields = ['row_lbl']
     list_display = ('row_idx', 'row_lbl')
     view_on_site = False

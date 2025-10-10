@@ -25,6 +25,15 @@ This documentation refers to three PEFA datasets based on the same data collecti
 * Physical energy flow accounts totals bridging to energy balances totals (env_ac_pefa05)
 
 
+PEFA Data Tables
+--------------------
+
+* Table A – Physical supply table for energy flows (SUP)
+* Table B – Physical use table for energy flows (USE)
+* Table C – Table of emission-relevant use of energy flows (ER_USE)
+* Table D – Derived indicators (USE_END)
+* Table E – Bridge table (USE_TRS)
+
 PEFA Data Dimensions
 --------------------
 

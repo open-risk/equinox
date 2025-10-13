@@ -48,6 +48,9 @@ The elements of this dimension are coming from the five questionnaire tables:
     * end use (table B2), and
 * emission relevant use (table C).
 
+
+
+
 2. Energy product (PROD_NRG)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -92,6 +95,13 @@ All energy flow data are annual.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All energy flows are reported in Terajoules.
+
+PEFA Data Processing
+------------------------
+
+First we split the data
+
+awk -F, '{print>$2".tsv"}' estat_env_ac_pefasu.tsv
 
 
 Glossary

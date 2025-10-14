@@ -17,12 +17,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-from contextlib import nullcontext
 
-from django.core.management import BaseCommand
-from openpyxl import load_workbook
 import pandas as pd
-import numpy as np
+from django.core.management import BaseCommand
 
 from reference.settings import PEFA_PATH
 
@@ -38,13 +35,13 @@ stk_flow: ER_USE, SUP, USE, USE_END, USE_TRS
 
 
 class Command(BaseCommand):
-    help = 'Parse PEFA tsv files and insert into Database'
+    help = 'Parse PEFA USE table tsv file and insert into Database'
 
     def handle(self, *args, **kwargs):
 
         # file = PEFA_PATH + 'estat_env_ac_pefasu.tsv'
-        file = PEFA_PATH + 'SUP.tsv'
-        print('Reading Supply file')
+        file = PEFA_PATH + 'USE.tsv'
+        print('Reading USE file')
 
         data = pd.read_csv(file, header=None, sep='[,\t]', engine='python')
         data = data.fillna(0)
@@ -76,4 +73,4 @@ class Command(BaseCommand):
             # if i > 100:
             #     break
         out = pd.DataFrame(new_rows, columns=columns)
-        out.to_csv(PEFA_PATH + 'supply_table.csv', index=False)
+        out.to_csv(PEFA_PATH + 'use_table.csv', index=False)

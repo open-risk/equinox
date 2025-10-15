@@ -21,7 +21,7 @@
 import pandas as pd
 from django.core.management import BaseCommand
 
-from reference.PEFA import PEFASupply
+from reference.PEFA import PEFASUT
 from reference.settings import PEFA_PATH
 
 
@@ -30,15 +30,16 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Delete existing objects
-        PEFASupply.objects.all().delete()
-
-        # Import data from file
+        PEFASUT.objects.all().delete()
+        # Import Supply data from file
         file = PEFA_PATH + 'supply_table.csv'
+        print('Reading Supply Table')
         data = pd.read_csv(file, header='infer', delimiter=',')
-
+        print('Parsing Supply Table')
         indata = []
         for index, entry in data.iterrows():
-            row = PEFASupply(
+            row = PEFASUT(
+                role=0,
                 year=entry['year'],
                 product=entry['prod_nrg'],
                 region=entry['geo'],
@@ -46,5 +47,24 @@ class Command(BaseCommand):
                 value=entry['value'])
 
             indata.append(row)
+        print('Inserting Supply Table')
+        PEFASUT.objects.bulk_create(indata)
 
-        PEFASupply.objects.bulk_create(indata)
+        # Import Use data from file
+        file = PEFA_PATH + 'use_table.csv'
+        print('Reading Use Table')
+        data = pd.read_csv(file, header='infer', delimiter=',')
+        print('Parsing Use Table')
+        indata = []
+        for index, entry in data.iterrows():
+            row = PEFASUT(
+                role=1,
+                year=entry['year'],
+                product=entry['prod_nrg'],
+                region=entry['geo'],
+                industry=entry['nace_r2'],
+                value=entry['value'])
+
+            indata.append(row)
+        print('Inserting Use Table')
+        PEFASUT.objects.bulk_create(indata)

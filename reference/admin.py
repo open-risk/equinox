@@ -34,7 +34,7 @@ from reference.GPCSector import GPCSector
 from reference.NUTS3Data import NUTS3PointData
 from reference.IOMatrix import IOMatrix, IOMatrixEntry
 from reference.IOGraph import IOGraph, IOGraphEdge, IOGraphNode
-from reference.PEFA import PEFASupply
+from reference.PEFA import PEFASUT
 from reference.SUTGraph import SUTGraph, SUTGraphEdge, SUTGraphNode
 
 actions = ['export2json', 'export2xml']
@@ -231,10 +231,10 @@ class SUTGraphNodeAdmin(admin.ModelAdmin):
     save_as = False
 
 
-@admin.register(PEFASupply)
-class PEFASupplyAdmin(admin.ModelAdmin):
+@admin.register(PEFASUT)
+class PEFASUTAdmin(admin.ModelAdmin):
     search_fields = ['industry', 'product', 'region']
-    list_display = ('industry', 'product', 'region', 'year', 'value')
-    list_filter = ('industry', 'product', 'region', 'year')
+    list_display = ('role', 'industry', 'product', 'region', 'year', 'value')
+    list_filter = ('role', 'industry', 'product', 'region', 'year')
     view_on_site = False
     save_as = False

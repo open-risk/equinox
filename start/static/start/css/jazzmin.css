@@ -11,39 +11,10 @@
 }
 
 .dark-mode .navbar-navy {
-  background-color: #393e43;
-  color: #fff;
+  /*background-color: #393e43;*/
+  /*color: #fff;*/
 }
 
-/*.dark-mode .select2-results {*/
-/*    color: #f5f7f9 !important;*/
-/*    background-color: #393e43 !important;*/
-/*}*/
-
-
-/*.select2-container--default  .select2-selection__rendered {*/
-/*    margin-top: 0;*/
-/*    background-color: #393e43;*/
-/*    color: #fff;*/
-/*}*/
-
-
-/*.select2-container--open .select2-dropdown {*/
-/*    display: inline !important;*/
-/*}*/
-
-/*.select2-container--open .select2-dropdown--above {*/
-/*    display: inline !important;*/
-/*}*/
-
-/*.select2-container--open .select2-dropdown--below {*/
-/*    display: inline !important;*/
-/*}*/
-
-/*.select2-dropdown {*/
-/*    display: inline !important;*/
-/*}*/
-
-/*.select2-results {*/
-/*    display: inline !important;*/
-/*}*/
+.card-header {
+    background-color: #e6e6e6!important;
+}

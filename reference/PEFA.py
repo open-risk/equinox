@@ -19,14 +19,15 @@
 # SOFTWARE.
 
 from django.db import models
-
+from django.db.models import Index
 from django.urls import reverse
 
+PEFA_CHOICES = [(0, 'Supply'), (1, 'Use')]
 
-class PEFASupply(models.Model):
 
+class PEFASUT(models.Model):
     """
-    PEFA Supply Table
+    PEFA Supply and Use Tables
 
     """
 
@@ -35,14 +36,22 @@ class PEFASupply(models.Model):
     product = models.CharField(max_length=10, null=True, blank=True, help_text="Energy Product")
     region = models.CharField(max_length=10, null=True, blank=True, help_text="Geographical Region")
     value = models.FloatField(null=True, blank=True, help_text="Measurement Value (TJoules)")
+    role = models.IntegerField(blank=True, null=True,
+                               choices=PEFA_CHOICES,
+                               help_text='Type of SUT Table')
 
     created_at = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "pefa_supply"
-        verbose_name = "PEFA Supply Data"
-        verbose_name_plural = "PEFA Supply Data"
+        db_table = "pefa_sut"
+        unique_together = (("role", "industry", "product", "region", "year"),)
+        indexes = [
+            Index(fields=['role', 'industry', 'product', 'region', 'year'], name='pefa_all_idx'),
+            Index(fields=['role', 'region', 'year'], name='pefa_region_idx'),
+        ]
+        verbose_name = "PEFA SUT Data"
+        verbose_name_plural = "PEFA SUT Data"
 
     def get_absolute_url(self):
-        return reverse('reference:PEFASupply_edit', kwargs={'pk': self.pk})
+        return reverse('reference:PEFASUT_edit', kwargs={'pk': self.pk})

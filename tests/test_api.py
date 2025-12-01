@@ -30,7 +30,7 @@ class APITests(TestCase):
 
     def test_api_root_status_code(self):
         response = self.client.get('/api/')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_scorecard_api_endpoint(self):
         Scorecard.objects.create(scorecard_identifier='Test')
@@ -38,4 +38,4 @@ class APITests(TestCase):
         serializer = ScorecardSerializer(scorecard)
         api_link = serializer.get_link(scorecard)
         test_link = "/api/portfolio_data/scorecards/" + str(scorecard.pk)
-        self.assertEquals(api_link, test_link)
+        self.assertEqual(api_link, test_link)

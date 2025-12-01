@@ -1,7 +1,7 @@
 ChangeLog of Reference App
 ===========================
 
-Reference App v0.6.1 (XX-10-2025)
+Reference App v0.6.1 (15-10-2025)
 -------------------------------------
 * Storage of PEFA data
 

@@ -30,30 +30,30 @@ class ReportingModelTests(TestCase):
     def test_aggregated_statistics_str(self):
         AggregatedStatistics.objects.create()
         instance = AggregatedStatistics.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))
 
     def test_summary_statistics_str(self):
         SummaryStatistics.objects.create()
         instance = SummaryStatistics.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))
 
     def test_visualization_str(self):
         User.objects.create()
         user = User.objects.get()
         Visualization.objects.create(name='test', user_id=user)
         instance = Visualization.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_results_group_str(self):
         User.objects.create()
         user = User.objects.get()
         ResultGroup.objects.create(user=user)
         instance = ResultGroup.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))
 
     def test_calculation_str(self):
         User.objects.create()
         user = User.objects.get()
         Calculation.objects.create(user=user)
         instance = Calculation.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))

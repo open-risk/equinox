@@ -33,26 +33,26 @@ class ReferenceModelTests(TestCase):
     def test_building_emisssion_factor_str(self):
         BuildingEmissionFactor.objects.create(id=1)
         instance = BuildingEmissionFactor.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))
 
     def test_cpvdata_str(self):
         CPVData.objects.create(CPV_ID='test')
         instance = CPVData.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_gpcsector_str(self):
         # ATTN MP Node
         GPCSector.objects.create(name='test', depth=1)
         instance = GPCSector.objects.get()
-        self.assertEquals('GPC Sector: {}'.format('test'), str(instance))
+        self.assertEqual('GPC Sector: {}'.format('test'), str(instance))
 
     def test_nutspoint_data_str(self):
         point = 'POINT(0 0)'
         NUTS3PointData.objects.create(nuts_id='test', coordinates=point)
         instance = NUTS3PointData.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_references_intensity_str(self):
         ReferenceIntensity.objects.create()
         instance = ReferenceIntensity.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))

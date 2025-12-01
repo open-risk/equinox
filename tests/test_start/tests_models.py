@@ -29,9 +29,9 @@ class StartModelTests(TestCase):
     def test_docpage_str(self):
         DocPage.objects.create(slug='test')
         instance = DocPage.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_orm_keyword_str(self):
         ORMKeyword.objects.create(keyword='test')
         instance = ORMKeyword.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))

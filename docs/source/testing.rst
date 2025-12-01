@@ -1,7 +1,7 @@
 Testing
 =======================
 
-.. note:: The testing framework is still under development. The following sub-section highlight the main approaches to testing the Equinox platform.
+.. note:: The testing framework is still under development. The following sub-section highlights the main approaches to testing the Equinox platform.
 
 Django Test Framework
 -----------------------

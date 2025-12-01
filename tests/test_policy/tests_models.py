@@ -29,19 +29,19 @@ class PolicyModelTests(TestCase):
     def test_dashboard_str(self):
         DashBoardParams.objects.create()
         instance = DashBoardParams.objects.get()
-        self.assertEquals("1", str(instance))
+        self.assertEqual("1", str(instance))
 
     def test_dataflow_str(self):
         DataFlow.objects.create(name='test')
         instance = DataFlow.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_dataseries_str(self):
         DataSeries.objects.create(identifier='test')
         instance = DataSeries.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_geoslice_str(self):
         GeoSlice.objects.create(identifier='test')
         instance = GeoSlice.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))

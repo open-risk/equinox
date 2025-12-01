@@ -33,21 +33,21 @@ class RiskModelTests(TestCase):
     def test_activity_barrier_str(self):
         ActivityBarrier.objects.create(barrier_identifier='test', barrier_description='')
         instance = ActivityBarrier.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_scenario_str(self):
         Scenario.objects.create(name='test')
         instance = Scenario.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_scorecard_str(self):
         Scorecard.objects.create(scorecard_identifier='test')
         instance = Scorecard.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))
 
     def test_limitflow_str(self):
         User.objects.create()
         user = User.objects.get()
         Limitflow.objects.create(name='test', user_id=user)
         instance = Limitflow.objects.get()
-        self.assertEquals("test", str(instance))
+        self.assertEqual("test", str(instance))

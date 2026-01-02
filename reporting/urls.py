@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2026 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,7 @@ urlpatterns = [
     re_path(r'^gpc_report$', views.gpc_report, name='gpc_report'),
     re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
+    re_path(r'^pcaf_waterfall_report$', views.pcaf_waterfall_report, name='pcaf_waterfall_report'),
     # Visualizations and Maps
     re_path(r'^contractor_nuts3_map$', views.contractor_nuts3_map, name='contractor_nuts3_map'),
     re_path(r'^manager_nuts3_map$', views.manager_nuts3_map, name='manager_nuts3_map'),

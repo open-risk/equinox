@@ -1,4 +1,4 @@
-Django
+Django==5.2
 djangorestframework
 drf-yasg
 numpy
@@ -17,7 +17,7 @@ django-countries
 django-extensions
 django-htmx
 django-debug-toolbar
-psycopg2
+psycopg2-binary
 openpyxl
 Sphinx
 sphinx-rtd-theme

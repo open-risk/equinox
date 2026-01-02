@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2026 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -334,6 +334,19 @@ def pcaf_mortgage_report(request):
 
     context.update({'TableHeader': table_header})
     context.update({'TableRows': table_rows})
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def pcaf_waterfall_report(request):
+    t = loader.get_template('reporting/pcaf_waterfall_report.html')
+    context = RequestContext(request, {})
+
+    """ Construct a PCAF Waterfall Emissions report that compares two reporting periods
+
+    """
+
+
     return HttpResponse(t.template.render(context))
 
 

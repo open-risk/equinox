@@ -1,0 +1,30 @@
+{% extends "start/generic.html" %}
+
+{% load static %}
+{% load custom_tags %}
+{% load humanize %}
+
+{% block title %}
+    {{ title }} Standard Visualization
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@latest"></script>
+
+    {#    <script type="text/javascript" charset="utf-8" src="{% static 'reporting/js/vega@6.2.0.0.js' %}"></script>#}
+    {#    <script type="text/javascript" charset="utf-8" src="{% static 'reporting/js/vega-embed@7.0.2.2.js' %}"></script>#}
+    {#    <script type="text/javascript" charset="utf-8" src="{% static 'reporting/js/vega-lite@6.4.1.1.js' %}"></script>#}
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <style media="screen">
+        .vega-actions a {
+            margin-right: 5px;
+        }
+    </style>
+{% endblock %}

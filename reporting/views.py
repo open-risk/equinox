@@ -288,7 +288,6 @@ def pcaf_mortgage_report(request):
     
     Aggregate total emission per asset (sum of emissions sources, weighted average DQ score)
     
-    
     Select Loans that are 
     - Residential Mortgages (asset_class == 0)
     - with total_balance > 0
@@ -344,8 +343,163 @@ def pcaf_waterfall_report(request):
 
     """ Construct a PCAF Waterfall Emissions report that compares two reporting periods
 
-    """
+    Step 1: Fetch requisite Portfolio data
+    
+    - loan amount       (two periods)
+    - company value     (two periods)
+    - economic activity (two periods)
+    - emission factor   (fixed)
+    
+    Step 2: 
+    
+    - construct totals
+    - construct deltas due to loan, value, activity changes
+    
+    Step 3:
+    
+    - generate vega visualization data
 
+    """
+    data = {"values": [
+        {"label": "Begin", "amount": 4000},
+        {"label": "F1", "amount": 1707},
+        {"label": "F2", "amount": -1425},
+        {"label": "F3", "amount": -1030},
+        {"label": "F4", "amount": 1812},
+        {"label": "F5", "amount": -1067},
+        {"label": "F6", "amount": -1481},
+        {"label": "F7", "amount": 1228},
+        {"label": "F8", "amount": 1176},
+        {"label": "F9", "amount": 1146},
+        {"label": "F10", "amount": 1205},
+        {"label": "F11", "amount": -1388},
+        {"label": "F12", "amount": 1492},
+        {"label": "End", "amount": 0}
+    ]
+    }
+
+    spec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+        "data": {},
+        "width": 900,
+        "height": 450,
+        "transform": [
+            {"window": [{"op": "sum", "field": "amount", "as": "sum"}]},
+            {"window": [{"op": "lead", "field": "label", "as": "lead"}]},
+            {
+                "calculate": "datum.lead === null ? datum.label : datum.lead",
+                "as": "lead"
+            },
+            {
+                "calculate": "datum.label === 'End' ? 0 : datum.sum - datum.amount",
+                "as": "previous_sum"
+            },
+            {
+                "calculate": "datum.label === 'End' ? datum.sum : datum.amount",
+                "as": "amount"
+            },
+            {
+                "calculate": "(datum.label !== 'Begin' && datum.label !== 'End' && datum.amount > 0 ? '+' : '') + datum.amount",
+                "as": "text_amount"
+            },
+            {"calculate": "(datum.sum + datum.previous_sum) / 2", "as": "center"}
+        ],
+        "encoding": {
+            "x": {
+                "field": "label",
+                "type": "ordinal",
+                "sort": None,
+                "axis": {"labelAngle": 0, "title": "Factors"}
+            }
+        },
+        "layer": [
+            {
+                "mark": {"type": "bar", "size": 45},
+                "encoding": {
+                    "y": {
+                        "field": "previous_sum",
+                        "type": "quantitative",
+                        "title": "Amount"
+                    },
+                    "y2": {"field": "sum"},
+                    "color": {
+                        "condition": [
+                            {
+                                "test": "datum.label === 'Begin' || datum.label === 'End'",
+                                "value": "#f7e0b6"
+                            },
+                            {"test": "datum.sum < datum.previous_sum", "value": "#f78a64"}
+                        ],
+                        "value": "#93c4aa"
+                    }
+                }
+            },
+            {
+                "mark": {
+                    "type": "rule",
+                    "color": "#404040",
+                    "opacity": 1,
+                    "strokeWidth": 2,
+                    "xOffset": -22.5,
+                    "x2Offset": 22.5
+                },
+                "encoding": {
+                    "x2": {"field": "lead"},
+                    "y": {"field": "sum", "type": "quantitative"}
+                }
+            },
+            {
+                "mark": {"type": "text", "dy": {"expr": "datum.amount >= 0 ? -4 : 4"},
+                         "baseline": {"expr": "datum.amount >= 0 ? 'bottom' : 'top'"}},
+                "encoding": {
+                    "y": {"field": "sum", "type": "quantitative"},
+                    "text": {"field": "sum", "type": "nominal"}
+                }
+            },
+            {
+                "mark": {"type": "text", "fontWeight": "bold", "baseline": "middle"},
+                "encoding": {
+                    "y": {"field": "center", "type": "quantitative"},
+                    "text": {"field": "text_amount", "type": "nominal"},
+                    "color": {
+                        "condition": [
+                            {
+                                "test": "datum.label === 'Begin' || datum.label === 'End'",
+                                "value": "#725a30"
+                            }
+                        ],
+                        "value": "white"
+                    }
+                }
+            }
+        ],
+        "config": {"text": {"fontWeight": "bold", "color": "#404040"}}
+    }
+
+    spec = {
+        "data": {
+            "values": [
+                {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
+                {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
+                {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
+            ]
+        },
+        "mark": "bar",
+        "encoding": {
+            "y": {"field": "a", "type": "nominal"},
+            "x": {
+                "aggregate": "average", "field": "b", "type": "quantitative",
+                "title": "Mean of b"
+            }
+        }
+    }
+
+
+    spec = json.dumps(spec)
+    data = json.dumps(data)
+    # context.update({'object': visualization})
+    context.update({'visualization_data': data})
+    context.update({'vega_specification': spec})
 
     return HttpResponse(t.template.render(context))
 

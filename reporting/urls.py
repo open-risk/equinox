@@ -25,7 +25,7 @@ from reporting import views
 app_name = 'reporting'
 
 """
-Custom reporting URL's (in addition to the admin url's) that implement the Equinox reporting functionality
+Custom reporting URL's (in addition to the admin URL's) that implement the Equinox reporting functionality
 
 """
 
@@ -38,8 +38,8 @@ urlpatterns = [
     re_path(r'^gpc_report$', views.gpc_report, name='gpc_report'),
     re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
-    re_path(r'^pcaf_waterfall_report$', views.pcaf_waterfall_report, name='pcaf_waterfall_report'),
     # Visualizations and Maps
+    re_path(r'^pcaf_waterfall_report$', views.pcaf_waterfall_report, name='pcaf_waterfall_report'),
     re_path(r'^contractor_nuts3_map$', views.contractor_nuts3_map, name='contractor_nuts3_map'),
     re_path(r'^manager_nuts3_map$', views.manager_nuts3_map, name='manager_nuts3_map'),
     re_path(r'^project_nuts3_map$', views.project_nuts3_map, name='project_nuts3_map'),

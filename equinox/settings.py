@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'markdownfield',
     'leaflet',
+    'location_field.apps.DefaultConfig',
     'django_countries',
     'start',
     'reference',
@@ -74,11 +75,13 @@ INSTALLED_APPS = [
     'risk',
     'reporting',
     'visualization',
+    'provenance',
     'debug_toolbar',
     'behave_django'
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -90,6 +93,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
 ]
+
+CSP_DEFAULT_SRC = ("'self'",)
 
 ROOT_URLCONF = 'equinox.urls'
 
@@ -141,6 +146,11 @@ DATABASES = {
     # }
 }
 SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
+
+LOCATION_FIELD = {
+    'map.provider': 'openstreetmap',
+    'search.provider': 'nominatim',
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 

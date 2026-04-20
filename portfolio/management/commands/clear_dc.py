@@ -18,26 +18,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
+import numpy as np
+import pandas as pd
+from django.core.management.base import BaseCommand
 
-from treebeard.mp_tree import MP_Node
+from django.contrib.gis.geos import Point
+from portfolio.Asset import DataCenter
+from portfolio.Operator import Operator
 
 
-class ProjectCategory(MP_Node):
-    """
-    Projects can optionally be classified in categories of similar characteristics. ProjectCategory is a model that implements a flexible Category tree
+class Command(BaseCommand):
+    help = 'Deletes data center / operator data'
+
+    # Delete existing objects
+    DataCenter.objects.all().delete()
 
 
-    """
-    name = models.CharField(max_length=30)
-
-    node_order_by = ['name']
-
-    description = models.CharField(max_length=200, null=True, blank=True)
-
-    def __str__(self):
-        return 'Project Category: {}'.format(self.name)
-
-    class Meta:
-        verbose_name = "Project Category"
-        verbose_name_plural = "Project Categories"
+    def handle(self, *args, **options):
+        self.stdout.write(self.style.SUCCESS('Successfully deleted data center data from db'))

@@ -54,6 +54,7 @@ Table of Contents
    reference-changelog
    reporting-changelog
    risk-changelog
+   provenance-changelog
    start-changelog
 
 .. toctree::

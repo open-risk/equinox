@@ -18,26 +18,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
+from django.apps import AppConfig
+from django.utils.translation import gettext_lazy as _
 
-from treebeard.mp_tree import MP_Node
+""" Provenance: Equinox application for providing provenance data to other apps
 
+"""
 
-class ProjectCategory(MP_Node):
-    """
-    Projects can optionally be classified in categories of similar characteristics. ProjectCategory is a model that implements a flexible Category tree
-
-
-    """
-    name = models.CharField(max_length=30)
-
-    node_order_by = ['name']
-
-    description = models.CharField(max_length=200, null=True, blank=True)
-
-    def __str__(self):
-        return 'Project Category: {}'.format(self.name)
-
-    class Meta:
-        verbose_name = "Project Category"
-        verbose_name_plural = "Project Categories"
+class ProvenanceConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'provenance'
+    verbose_name = _('Provenance')

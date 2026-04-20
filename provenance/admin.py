@@ -18,26 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
+from django.contrib import admin
+from provenance.models import Agent
 
-from treebeard.mp_tree import MP_Node
+@admin.register(Agent)
+class AgentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url')
+    save_as = True
+    view_on_site = False
 
-
-class ProjectCategory(MP_Node):
-    """
-    Projects can optionally be classified in categories of similar characteristics. ProjectCategory is a model that implements a flexible Category tree
-
-
-    """
-    name = models.CharField(max_length=30)
-
-    node_order_by = ['name']
-
-    description = models.CharField(max_length=200, null=True, blank=True)
-
-    def __str__(self):
-        return 'Project Category: {}'.format(self.name)
-
-    class Meta:
-        verbose_name = "Project Category"
-        verbose_name_plural = "Project Categories"

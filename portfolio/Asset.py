@@ -21,9 +21,15 @@
 from django.db import models
 from django.urls import reverse
 
+from django.contrib.gis.db.models import PointField
+from location_field.models.spatial import LocationField
+
 from portfolio.model_choices import *
 from portfolio.property_collateral_choices import *
 
+"""
+(Financial) Asset Class Choices for a Project
+"""
 ASSET_CLASS_CHOICES = [(0, '(a) Residential'),
                        (1, '(b) CRE'),
                        (2, '(c) SME/Corporate'),
@@ -73,6 +79,7 @@ class ProjectAsset(models.Model):
 
     #
     # GHG Data
+    # This is a convenience field to store aggregate emissions from a number of possible underlying activities.
     #
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
@@ -426,7 +433,7 @@ class Building(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.protection_identifier
+        return self.protection_identifier if self.protection_identifier else str(self.pk)
 
     def get_absolute_url(self):
         return reverse('portfolio:Building_edit', kwargs={'pk': self.pk})
@@ -480,3 +487,99 @@ class PowerPlant(models.Model):
     class Meta:
         verbose_name = "Power Plant"
         verbose_name_plural = "Power Plants"
+
+
+DATACENTER_CLASS_CHOICES = [(0, '(a) Enterprise'),
+                            (1, '(b) Cloud'),
+                            (2, '(c) Colocation'),
+                            (3, '(d) Unknown')]
+
+
+class DataCenter(models.Model):
+    """
+    The Data Center Asset model holds data center specific data
+
+    """
+
+    # IDENTIFICATION & CATEGORIZATION
+
+    datacenter_id = models.CharField(max_length=80, blank=True, null=True,
+                                     help_text='Data Center ID (OSM)')
+
+    datacenter_name = models.CharField(max_length=80, blank=True, null=True,
+                                       help_text='Name of Data Center (OSM)')
+
+    description = models.TextField(blank=True, null=True,
+                                   help_text='Additional information about the Data Center')
+
+    asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
+                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    # FACILITY CHARACTERISTICS
+
+    surface_area = models.FloatField(blank=True, null=True,
+                                     help_text="Surface area of facility polygon, measured in square feet. Only available for building and campus layers")
+
+    prov_surface_area = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE, help_text="Provenance Agent", related_name='prov_surface_area')
+
+    # FACILITY OPERATOR
+
+    operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE, help_text="The operator (corporate entity) of the data center")
+
+    prov_operator = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE, help_text="Provenance Agent", related_name='prov_operator')
+
+    # GEOGRAPHICAL DATA
+
+    country = models.CharField(max_length=300, blank=True, null=True,
+                               help_text='Country of Datacenter Location')
+
+    county = models.CharField(max_length=300, blank=True, null=True,
+                              help_text='County of Datacenter Location')
+
+    county_id = models.IntegerField(blank=True, null=True,
+                                    help_text='County ID of Datacenter Location')
+
+    state = models.CharField(max_length=300, blank=True, null=True,
+                             help_text='State of Datacenter Location')
+
+    state_abb = models.CharField(max_length=2, blank=True, null=True,
+                                 help_text='2-Letter State Abbreviation of Datacenter Location')
+
+    state_id = models.IntegerField(blank=True, null=True,
+                                   help_text='State ID of Datacenter Location')
+
+    # datacenter_location = PointField(blank=True, null=True, help_text='The barycenter location of the data center')
+
+    datacenter_location =  LocationField(based_fields=['city'], zoom=7, blank=True, null=True, help_text='The barycenter location of the data center')
+
+
+    #
+    # Environmental Data
+    #
+
+    asset_ghg_emissions = models.FloatField(blank=True, null=True,
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents')
+
+    asset_water_usage = models.FloatField(blank=True, null=True,
+                                          help_text='This field stores the aggregate current annualized water usage of an asset')
+
+    # OTHER
+
+    date_of_commisioning = models.DateField(blank=True, null=True,
+                                            help_text='Commissioning date of the data center. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    #
+    # BOOKKEEPING FIELDS
+    #
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.datacenter_name
+
+    def get_absolute_url(self):
+        return reverse('portfolio:DataCenter_edit', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name = "Data Center"
+        verbose_name_plural = "Data Centers"

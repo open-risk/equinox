@@ -24,6 +24,11 @@ Creating useful outcomes / reports is linked to specific use cases. Still under 
 
 Results cannot be created except through run a model workflow.
 
+Report Configuration
+~~~~~~~~~~~~~~~~~~~~~~
+
+* The Reporting Period
+
 Grouped Results
 ~~~~~~~~~~~~~~~~
 

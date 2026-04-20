@@ -7,6 +7,8 @@ The assumption is that an Asset participates in only one Project at a time (if l
 
 A special type of Asset is a **Building** (whether used for residential or commercial purposes).
 
+The Asset model includes an GHG emissions field to store the aggregate GHG emissions associtated with the asset. This will typically be a derived field from the underlying activities.
+
 .. note::  To further classify assets, the EBA Loan Asset Classes are used for correspondence, but those are *financial asset classes*.
 
 .. automodule:: portfolio.Asset
@@ -18,3 +20,9 @@ A special type of Asset is a **Building** (whether used for residential or comme
 
 
    .. automethod:: portfolio.Asset.Building
+
+
+   .. automethod:: portfolio.Asset.PowerPlant
+
+
+   .. automethod:: portfolio.Asset.DataCenter

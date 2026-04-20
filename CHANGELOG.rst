@@ -11,6 +11,12 @@ NB: Individual apps have their own more detailed changelogs within each app's su
 * :doc:`reporting-changelog`
 * :doc:`start-changelog`
 * :doc:`risk-changelog`
+* :doc:`provenance-changelog`
+
+v0.9.0 (XX-XX-2026)
+--------------------
+* Enhancements: GHG Protocol reporting for data centers
+
 
 v0.8.0 (25-09-2024)
 -------------------

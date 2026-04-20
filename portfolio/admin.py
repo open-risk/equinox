@@ -19,7 +19,10 @@
 # SOFTWARE.
 
 from django import forms
+
 from django.contrib.gis import admin
+
+
 from django.core import serializers
 from django.forms.widgets import NumberInput
 from django.http import HttpResponse
@@ -31,6 +34,7 @@ from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import PowerPlant
 from portfolio.Asset import ProjectAsset, Building
+from portfolio.Asset import DataCenter
 from portfolio.Borrower import Borrower
 from portfolio.Certificate import Certificate
 from portfolio.Contractor import Contractor
@@ -91,7 +95,18 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 
 #
 # Geospatial Objects (Source Geometries)
-#
+# OSMGeoAdmin
+
+@admin.register(DataCenter)
+class DataCenterAdmin(admin.GISModelAdmin):
+    """Data Center Admin
+
+    """
+    list_display = ('datacenter_id', 'operator', 'county', 'state_abb', 'surface_area')
+    list_filter = ('operator',)
+    view_on_site = False
+    save_as = True
+    search_field = ['datacenter_name', 'operator']
 
 @admin.register(PointSource)
 class PointSourceAdmin(admin.GISModelAdmin):

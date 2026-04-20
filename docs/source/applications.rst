@@ -14,3 +14,4 @@ The following pages document the built-in Equinox *applications* (apps).
    Risk
    Policy
    Workflows
+   Provenance

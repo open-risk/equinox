@@ -31,6 +31,7 @@ Custom reporting URL's (in addition to the admin URL's) that implement the Equin
 
 urlpatterns = [
     # Tabular Reports
+    re_path(r'asset_list', views.AssetList.as_view(), name='asset_manager'),
     re_path(r'^portfolio_overview$', views.portfolio_overview, name='portfolio_overview'),
     re_path(r'^portfolio_stats/$', views.portfolio_stats_view, name='portfolio_stats'),
     re_path(r'^ghg_reduction$', views.ghg_reduction, name='ghg_reduction'),
@@ -38,11 +39,14 @@ urlpatterns = [
     re_path(r'^gpc_report$', views.gpc_report, name='gpc_report'),
     re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
-    # Visualizations and Maps
+    # Maps
     re_path(r'^pcaf_waterfall_report$', views.pcaf_waterfall_report, name='pcaf_waterfall_report'),
     re_path(r'^contractor_nuts3_map$', views.contractor_nuts3_map, name='contractor_nuts3_map'),
     re_path(r'^manager_nuts3_map$', views.manager_nuts3_map, name='manager_nuts3_map'),
     re_path(r'^project_nuts3_map$', views.project_nuts3_map, name='project_nuts3_map'),
+    re_path(r'^asset_map$', views.AssetMapView.as_view(), name='asset_map'),
+    re_path(r'^data_center_map$', views.DataCenterMapView.as_view(), name='data_center_map'),
+    # Visualizations
     re_path(r'^visualization_country$', views.visualization_country, name='visualization_country'),
     re_path(r'^visualization_sector$', views.visualization_sector, name='visualization_sector'),
     re_path(r'^visualization_grid$', views.visualization_grid, name='visualization_grid'),

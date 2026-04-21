@@ -25,21 +25,6 @@ from django.views.generic.base import TemplateView
 from portfolio.Asset import ProjectAsset
 
 
-class AssetList(ListView):
-    """
-    List all assets sequentially with common action buttons
-    Also generation options at the end
-    """
-    model = ProjectAsset
-    template_name = 'asset_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ListView, self).get_context_data(**kwargs)
-        return context
 
 
-class AssetMapView(TemplateView):
-    """Asset Markers Map view."""
-
-    template_name = "asset_map.html"
 

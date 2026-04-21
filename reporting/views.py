@@ -23,12 +23,14 @@ import json
 
 import pandas as pd
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.serializers import serialize
 from django.db.models import Sum
 from django.http import Http404
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.urls import reverse_lazy
+from django.views.generic import ListView, TemplateView
 
 from portfolio.Asset import ProjectAsset
 from portfolio.Contractor import Contractor
@@ -81,7 +83,7 @@ def portfolio_overview(request):
     context = RequestContext(request, {})
 
     """
-    Compile a global portfolio overview of all data sets available the database
+    Compile a global portfolio overview of all data sets available in the database
 
     ## Focus of this view is on procurement data
     
@@ -274,6 +276,19 @@ def credit_portfolio_stats_view(request, pk):
     context = RequestContext(request, {})
     context.update({'portfolio': p, 'stats_view': stats_view, 'portfolio_data': portfolio_queryset})
     return HttpResponse(t.template.render(context))
+
+
+class AssetList(LoginRequiredMixin, ListView):
+    """
+    List all assets sequentially with common action buttons
+    Also generation options at the end
+    """
+    model = ProjectAsset
+    template_name = 'asset_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListView, self).get_context_data(**kwargs)
+        return context
 
 
 @login_required(login_url='/login/')
@@ -494,7 +509,6 @@ def pcaf_waterfall_report(request):
         }
     }
 
-
     spec = json.dumps(spec)
     data = json.dumps(data)
     # context.update({'object': visualization})
@@ -581,106 +595,6 @@ def scope_2_report(request):
 
     context.update({'TableHeader': table_header})
     context.update({'TableRows': table_rows})
-    return HttpResponse(t.template.render(context))
-
-
-@login_required(login_url='/login/')
-def project_nuts3_map(request):
-    t = loader.get_template('reporting/portfolio_map.html')
-    context = RequestContext(request, {})
-
-    """
-    Compile a global portfolio map of portfolio projects using their NUTS3 representative point geometries
-
-    """
-
-    portfolio_data = Project.objects.all()
-    nuts_data = []
-    iter = 1
-    for co in portfolio_data.iterator():
-        nuts = co.region
-        if iter < 100:
-            try:
-                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
-            except:
-                pass
-            iter += 1
-        else:
-            break
-    geodata = json.loads(serialize("geojson", nuts_data))
-    context.update({'geodata': geodata})
-
-    return HttpResponse(t.template.render(context))
-
-
-@login_required(login_url='/login/')
-def manager_nuts3_map(request):
-    t = loader.get_template('reporting/portfolio_map.html')
-    context = RequestContext(request, {})
-
-    """
-    Compile a global portfolio map of portfolio managing entities using their NUTS3 representative point geometries
-
-    """
-
-    # ATTN this is not performant for interactive use due to the large number of lookups
-    # TODO pre-process geometric elements per mappable entity
-
-    portfolio_data = PortfolioManager.objects.all()
-    nuts_data = []
-    iter = 1
-    marker_limit = 3000  # avoid loading huge datasets
-
-    for co in portfolio_data.iterator():
-        nuts = co.region
-        if iter < marker_limit:
-            try:
-                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
-            except:
-                pass
-            iter += 1
-        else:
-            break
-    geodata = json.loads(serialize("geojson", nuts_data))
-    context.update({'geodata': geodata})
-
-    return HttpResponse(t.template.render(context))
-
-
-@login_required(login_url='/login/')
-def contractor_nuts3_map(request):
-    t = loader.get_template('reporting/portfolio_map.html')
-    context = RequestContext(request, {})
-
-    # ATTN this is not performant for interactive use due to the large number of lookups
-    # TODO pre-process geometric elements per mappable entity
-
-    """
-    Compile a global portfolio map of contractor entities using their NUTS3 representative point geometries
-
-    """
-
-    marker_limit = 3000  # avoid loading huge datasets
-
-    # geometry = json.loads(serialize("geojson", PointSource.objects.all()))
-    # geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
-    # geodata = json.loads(serialize("geojson", NUTS3PointData.objects.all()))
-    portfolio_data = Contractor.objects.all()
-    nuts_data = []
-    iter = 1
-    for co in portfolio_data.iterator():
-        nuts = co.region
-        if iter < marker_limit:
-            try:
-                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
-            except:
-                pass
-            iter += 1
-        else:
-            break
-    geodata = json.loads(serialize("geojson", nuts_data))
-    context.update({'geodata': geodata})
-
     return HttpResponse(t.template.render(context))
 
 
@@ -975,3 +889,119 @@ def visualization_vega(request, pk):
     context.update({'vega_specification': spec})
 
     return HttpResponse(t.template.render(context))
+
+
+#
+#  MAP VIEWS
+#
+
+@login_required(login_url='/login/')
+def project_nuts3_map(request):
+    t = loader.get_template('reporting/portfolio_map.html')
+    context = RequestContext(request, {})
+
+    """
+    Compile a global portfolio map of portfolio projects using their NUTS3 representative point geometries
+
+    """
+
+    portfolio_data = Project.objects.all()
+    nuts_data = []
+    iter = 1
+    for co in portfolio_data.iterator():
+        nuts = co.region
+        if iter < 100:
+            try:
+                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
+            except:
+                pass
+            iter += 1
+        else:
+            break
+    geodata = json.loads(serialize("geojson", nuts_data))
+    context.update({'geodata': geodata})
+
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def manager_nuts3_map(request):
+    t = loader.get_template('reporting/portfolio_map.html')
+    context = RequestContext(request, {})
+
+    """
+    Compile a global portfolio map of portfolio managing entities using their NUTS3 representative point geometries
+
+    """
+
+    # ATTN this is not performant for interactive use due to the large number of lookups
+    # TODO pre-process geometric elements per mappable entity
+
+    portfolio_data = PortfolioManager.objects.all()
+    nuts_data = []
+    iter = 1
+    marker_limit = 3000  # avoid loading huge datasets
+
+    for co in portfolio_data.iterator():
+        nuts = co.region
+        if iter < marker_limit:
+            try:
+                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
+            except:
+                pass
+            iter += 1
+        else:
+            break
+    geodata = json.loads(serialize("geojson", nuts_data))
+    context.update({'geodata': geodata})
+
+    return HttpResponse(t.template.render(context))
+
+
+@login_required(login_url='/login/')
+def contractor_nuts3_map(request):
+    t = loader.get_template('reporting/portfolio_map.html')
+    context = RequestContext(request, {})
+
+    # ATTN this is not performant for interactive use due to the large number of lookups
+    # TODO pre-process geometric elements per mappable entity
+
+    """
+    Compile a global portfolio map of contractor entities using their NUTS3 representative point geometries
+
+    """
+
+    marker_limit = 3000  # avoid loading huge datasets
+
+    # geometry = json.loads(serialize("geojson", PointSource.objects.all()))
+    # geometry = json.loads(serialize("geojson", AreaSource.objects.all()))
+    # geodata = json.loads(serialize("geojson", NUTS3PointData.objects.all()))
+    portfolio_data = Contractor.objects.all()
+    nuts_data = []
+    iter = 1
+    for co in portfolio_data.iterator():
+        nuts = co.region
+        if iter < marker_limit:
+            try:
+                nuts_data.append(NUTS3PointData.objects.get(nuts_id=nuts))
+            except:
+                pass
+            iter += 1
+        else:
+            break
+    geodata = json.loads(serialize("geojson", nuts_data))
+    context.update({'geodata': geodata})
+
+    return HttpResponse(t.template.render(context))
+
+
+class AssetMapView(LoginRequiredMixin, TemplateView):
+    """Asset Markers Map view."""
+
+    template_name = "asset_map.html"
+
+
+class DataCenterMapView(LoginRequiredMixin, TemplateView):
+    """Data Centers Markers Map view."""
+
+    template_name = "reporting/data_center_map.html"

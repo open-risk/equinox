@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 LABEL author="Open Risk <www.openriskmanagement.com>"
-LABEL version="0.8.0"
+LABEL version="0.9.0"
 LABEL description="Equinox: Open Source Sustainable Porfolio Management"
 LABEL maintainer="info@openriskmanagement.com"
 EXPOSE 8080
@@ -29,6 +29,7 @@ COPY policy/ /equinox/policy/
 COPY reference/ /equinox/reference/
 COPY reporting/ /equinox/reporting/
 COPY risk/ /equinox/risk/
+COPY provenance/ /equinox/provenance/
 COPY visualization/ /equinox/visualization/
 COPY templates/ /equinox/templates/
 COPY static/ /equinox/static/
@@ -45,6 +46,8 @@ RUN python /equinox/manage.py makemigrations policy
 RUN python /equinox/manage.py makemigrations reference
 RUN python /equinox/manage.py makemigrations reporting
 RUN python /equinox/manage.py makemigrations risk
+RUN python /equinox/manage.py makemigrations provenance
+RUN python /equinox/manage.py makemigrations visualization
 RUN python /equinox/manage.py migrate
 RUN python /equinox/createadmin.py
 RUN python /equinox/createcategories.py

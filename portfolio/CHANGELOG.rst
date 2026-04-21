@@ -1,7 +1,11 @@
 ChangeLog of Portfolio App
 ===========================
 
-Portfolio App v0.5.0 (Upcoming)
+Portfolio App v0.6.0 (Upcoming)
+--------------------------------
+* DataCenter assets
+
+Portfolio App v0.5.0 (25-09-2024)
 ---------------------------------
 * Project Add PortfolioSnapshot FK
 * Usecase 5 (Equator principles)

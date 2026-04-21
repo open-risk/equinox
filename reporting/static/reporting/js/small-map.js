@@ -2,8 +2,20 @@ const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">Op
 
 const smallMap = L.map('map')
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: attribution}).addTo(smallMap);
+// Add OSM tile layer (production)
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+//     {attribution: attribution}).addTo(smallMap);
+
+// Add CartoDB tile layer (development)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 20
+}).addTo(smallMap);
+
 const geodata = JSON.parse(document.getElementById('geodata').textContent);
+
+console.log(geodata);
 
 let feature = L.geoJSON(geodata).bindPopup(function (layer) {
 }).addTo(smallMap);

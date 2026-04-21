@@ -6,7 +6,7 @@
     {{ block.super }}
     <title>Data Center Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'reporting/map.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'reporting/css/map.css' %}">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 {% endblock %}
@@ -27,8 +27,9 @@
         <div class="container-fluid">
             <div class="row">
                 {% block content %}
+                    {{ geodata|json_script:"geodata" }}
                     <div id="map"></div>
-                    <script src="{% static 'reporting/small-map.js' %}"></script>
+                    <script src="{% static 'reporting/js/small-map.js' %}"></script>
                 {% endblock %}
             </div>
         </div>

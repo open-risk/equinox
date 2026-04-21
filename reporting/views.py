@@ -32,7 +32,7 @@ from django.template import RequestContext, loader
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
 
-from portfolio.Asset import ProjectAsset
+from portfolio.Asset import ProjectAsset, DataCenter
 from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
 from portfolio.EmissionsSource import GPPEmissionsSource
@@ -1004,4 +1004,14 @@ class AssetMapView(LoginRequiredMixin, TemplateView):
 class DataCenterMapView(LoginRequiredMixin, TemplateView):
     """Data Centers Markers Map view."""
 
+    model = DataCenter
     template_name = "reporting/data_center_map.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        dc_data = DataCenter.objects.all()
+        geodata = json.loads(serialize("geojson", dc_data, geometry_field='datacenter_location'))
+        context.update({'geodata': geodata})
+        return context
+
+

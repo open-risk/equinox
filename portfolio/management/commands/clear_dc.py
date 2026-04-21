@@ -25,12 +25,15 @@ from django.core.management.base import BaseCommand
 from django.contrib.gis.geos import Point
 from portfolio.Asset import DataCenter
 from portfolio.Operator import Operator
+from provenance.models import Agent
 
 
 class Command(BaseCommand):
     help = 'Deletes data center / operator data'
 
     # Delete existing objects
+    Agent.objects.all().delete()
+    Operator.objects.all().delete()
     DataCenter.objects.all().delete()
 
 

@@ -102,7 +102,7 @@ class DataCenterAdmin(admin.GISModelAdmin):
     """Data Center Admin
 
     """
-    list_display = ('datacenter_id', 'operator', 'county', 'state_abb', 'surface_area')
+    list_display = ('operator', 'datacenter_name', 'county', 'state_abb', 'surface_area')
     list_filter = ('operator',)
     view_on_site = False
     save_as = True

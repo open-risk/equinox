@@ -18,10 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import csv
 from django import forms
 
 from django.contrib.gis import admin
-
 
 from django.core import serializers
 from django.forms.widgets import NumberInput
@@ -75,8 +75,23 @@ def export2xml(self, request, queryset):
     return response
 
 
+@admin.action(description='Export Selected Entries as CSV')
+def export2csv(self, request, queryset):
+    meta = self.model._meta
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="{meta}.csv"'
+
+    field_names = [field.name for field in meta.fields]
+    writer = csv.writer(response)
+    writer.writerow(field_names)
+    for obj in queryset:
+        writer.writerow([getattr(obj, field) for field in field_names])
+    return response
+
+
 admin.site.add_action(export2json)
 admin.site.add_action(export2xml)
+admin.site.add_action(export2csv)
 
 
 #
@@ -103,10 +118,11 @@ class DataCenterAdmin(admin.GISModelAdmin):
 
     """
     list_display = ('operator', 'datacenter_name', 'county', 'state_abb', 'surface_area')
-    list_filter = ('operator',)
+    list_filter = ('operator', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
-    search_field = ['datacenter_name', 'operator']
+    search_fields = ['datacenter_name']
+
 
 @admin.register(PointSource)
 class PointSourceAdmin(admin.GISModelAdmin):

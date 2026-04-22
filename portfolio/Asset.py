@@ -26,6 +26,7 @@ from location_field.models.spatial import LocationField
 
 from portfolio.model_choices import *
 from portfolio.property_collateral_choices import *
+from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 
 """
 (Financial) Asset Class Choices for a Project
@@ -514,6 +515,12 @@ class DataCenter(models.Model):
 
     asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
+                                  help_text="The portfolio to which this data center belongs")
+
+    snapshot = models.ForeignKey('PortfolioSnapshot', on_delete=models.CASCADE, blank=True, null=True,
+                                 help_text="The portfolio snapshot to which the date center record belongs")
 
     # FACILITY CHARACTERISTICS
 

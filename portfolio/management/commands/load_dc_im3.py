@@ -23,14 +23,17 @@ import pandas as pd
 from django.core.management.base import BaseCommand
 
 from django.contrib.gis.geos import Point
+from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from portfolio.Asset import DataCenter
 from portfolio.Operator import Operator
 from provenance.models import Agent
 
 class Command(BaseCommand):
-    help = 'Imports data center / operator data'
+    help = 'Imports data center / operator data from the IM3 Dataset'
 
     # Delete existing Operator / DataCenter / Provenance objects
+    ProjectPortfolio.objects.all().delete()
+    PortfolioSnapshot.objects.all().delete()
     Agent.objects.all().delete()
     Operator.objects.all().delete()
     DataCenter.objects.all().delete()
@@ -42,9 +45,17 @@ class Command(BaseCommand):
 
 
     """
-     Create Provenance Data
+     Create Portfolio, Portfolio Snapshot and Provenance Data
 
     """
+
+    portfolio = ProjectPortfolio(name='US Data Centers')
+    portfolio.save()
+    portfolio_id = ProjectPortfolio.objects.get(name='US Data Centers')
+
+    portfolio_snapshot = PortfolioSnapshot(name='2023')
+    portfolio_snapshot.save()
+    portfolio_snapshot_id = PortfolioSnapshot.objects.get(name='2023')
 
     agent = Agent(name='IM3', url='https://data.msdlive.org/records/p147s-4h760')
     agent.save()
@@ -76,6 +87,8 @@ class Command(BaseCommand):
         op = Operator.objects.get(operator_identifier=name)
 
         dc = DataCenter(
+            portfolio=portfolio_id,
+            snapshot=portfolio_snapshot_id,
             datacenter_id=entry['id'],
             datacenter_name=entry['name'],
             surface_area=entry['sqft'],

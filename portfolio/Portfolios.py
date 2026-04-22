@@ -30,18 +30,17 @@ class ProjectPortfolio(models.Model):
     """
         The ProjectPortfolio object holds a collection of Projects (Economic activities with defined environmental impact)
 
-        Includes reference to the user creating the data set (portfolio manager)
+        Includes reference to the user creating the data set (the portfolio manager)
 
         Portfolios are named to facilitate recognition
 
-        Actual Portfolio data are optionally aggregated and stored in the PortfolioData model
         Timed Portfolio data are tagged using the PortfolioSnapshot model
 
         TODO "Notes" is a user oriented field to allow storing human readable context about the portfolio
 
-        **Type** is an integer field representing the type of the portfolio
-        0 -> Performing Book / Current Book
-        1 -> Historical Book
+        **Portfolio Type** is an integer field representing the type of the portfolio. For example:
+            0 -> Performing Book / Current Book
+            1 -> Historical Book
 
     """
 

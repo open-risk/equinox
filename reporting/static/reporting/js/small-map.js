@@ -16,8 +16,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
 const geodata = JSON.parse(document.getElementById('geodata').textContent);
 
-console.log(geodata);
-
 let feature = L.geoJSON(geodata).bindPopup(function (layer) {
 }).addTo(smallMap);
 
@@ -28,9 +26,7 @@ function onEachFeature(feature, layer) {
     }
     if (feature.properties && feature.properties.operator) {
         var name = feature.properties.datacenter_name.toString();
-        var popupContent = '<a href="{% url 'admin:app_model_change' object.pk %}">Change</a>'
-        // var popupContent = '<a href="' + feature.properties.id + '">' + name + '</a>';
-        var popupContent = feature.properties.django_url;
+        var popupContent = '<a href=" '+ feature.properties.local_url +' ">' + name + '</a>';
         layer.bindPopup(popupContent);
     }
 }

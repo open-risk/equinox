@@ -20,7 +20,7 @@
 
 
 import json
-
+from django.forms.models import model_to_dict
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -32,6 +32,7 @@ from django.template import RequestContext, loader
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
 
+from equinox.settings import SITE_URL
 from portfolio.Asset import ProjectAsset, DataCenter
 from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
@@ -1010,8 +1011,18 @@ class DataCenterMapView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TemplateView, self).get_context_data(**kwargs)
         dc_data = DataCenter.objects.all()
-        geodata = json.loads(serialize("geojson", dc_data, geometry_field='datacenter_location'))
-        context.update({'geodata': geodata})
+        geojson = serialize("geojson", dc_data, geometry_field='datacenter_location')
+        geodata = json.loads(geojson)
+        server_url = SITE_URL
+        geodata_plus = {'type': 'FeatureCollection'}
+        features = []
+        for feature in geodata['features']:
+            feature_id = feature['id']
+            local_url = server_url + 'admin/portfolio/datacenter/' + str(feature_id) + '/change'
+            feature['properties']['local_url'] = local_url
+            features.append(feature)
+        geodata_plus['features'] = features
+        context.update({'geodata': geodata_plus})
         return context
 
 

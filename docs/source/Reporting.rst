@@ -1,7 +1,7 @@
 Reporting
 ------------------------------
 
-Reports are the primary means to disseminate results of analyses outside the Equinox environment. The **Reporting App** is the primary means of generating reports.
+Reports are the primary means to examine the state of the portfolio and disseminate results of analyses outside the Equinox environment. The **Reporting App** is the primary means of generating reports for internal and external use.
 
 
 Topbar Navigation
@@ -18,14 +18,21 @@ There are several different types of reports:
 * where applicable, the storage of the output
 
 
+Visualization Reports
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Working with visual data may also lead to graphical reports. More complex reports will involve composite workflows and storage of results which may lead to specifications of risk profile assessment for an entity, optimization options etc.
+
+Visualization can be split into two categories: Standardized visualizations that rely on pre-specified (Vega based) schemas and ad-hoc, custom visualizations.
+
+
+Report Configuration
+~~~~~~~~~~~~~~~~~~~~~~
 
 Creating useful outcomes / reports is linked to specific use cases. Still under construction
 
 Results cannot be created except through run a model workflow.
 
-Report Configuration
-~~~~~~~~~~~~~~~~~~~~~~
 
 * The Reporting Period
 

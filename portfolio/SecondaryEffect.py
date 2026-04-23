@@ -63,7 +63,7 @@ class SecondaryEffect(models.Model):
         return self.secondary_effect_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:SecondaryEffect_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_secondaryeffect_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Secondary Effect"

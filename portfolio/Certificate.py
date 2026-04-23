@@ -101,7 +101,7 @@ class Certificate(models.Model):
         return self.certificate_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:certificate_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_certificate_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Certificate"

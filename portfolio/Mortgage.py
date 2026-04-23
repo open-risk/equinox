@@ -366,7 +366,7 @@ class Mortgage(models.Model):
         return self.contract_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Mortgage_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_mortgage_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Mortgage"

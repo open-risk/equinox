@@ -113,7 +113,7 @@ class Counterparty(models.Model):
         return str(self.counterparty_identifier)
 
     def get_absolute_url(self):
-        return reverse('portfolio:counterparty_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_counterparty_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Counterparty"

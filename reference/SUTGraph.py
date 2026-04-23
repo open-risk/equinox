@@ -53,7 +53,7 @@ class SUTGraph(models.Model):
         return f"SUT Matrix {self.sut_family}[{self.sut_year}]: ({self.s_nodes}x{self.u_nodes})"
 
     def get_absolute_url(self):
-        return reverse('reference:SUTGraph_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_sutgraph_change', args=[self.pk])
 
 
 class SUTGraphEdge(models.Model):

@@ -65,7 +65,7 @@ class Operator(models.Model):
         return self.operator_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Operator_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_operator_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Operator"

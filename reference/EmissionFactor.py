@@ -123,7 +123,7 @@ class EmissionFactor(models.Model):
         return str(self.EF_ID)
 
     def get_absolute_url(self):
-        return reverse('reference:EmissionFactor_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_emissionfactor_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Emissions Factor"
@@ -263,7 +263,7 @@ class BuildingEmissionFactor(models.Model):
         return str(self.id)
 
     def get_absolute_url(self):
-        return reverse('reference:BuildingEmissionFactor_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_buildingemissionfactor_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Building Emissions Factor"

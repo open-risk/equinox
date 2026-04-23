@@ -97,7 +97,7 @@ class ProjectPortfolio(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:ProjectPortfolio_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_projectportfolio_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Project Portfolio"
@@ -127,7 +127,7 @@ class PortfolioSnapshot(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_portfoliosnapshot_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Portfolio Snapshot"
@@ -165,7 +165,7 @@ class PortfolioTable(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('portfolio:portfolio_table_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_portfoliotable_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Portfolio Table"

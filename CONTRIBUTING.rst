@@ -1,7 +1,7 @@
 Contributing
 ============
 
-Thank you for your interest in the equinox project!
+Thank you for your interest in the Equinox project!
 
 We always welcome contributions!
 

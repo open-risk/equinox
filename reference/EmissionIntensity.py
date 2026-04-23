@@ -103,7 +103,7 @@ class ReferenceIntensity(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('reference:ReferenceIntensity_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_referenceintensity_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Reference Intensity"

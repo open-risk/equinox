@@ -174,7 +174,7 @@ class Sponsor(models.Model):
         return self.sponsor_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Sponsor_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_sponsor_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Sponsor"

@@ -44,9 +44,10 @@ A portfolio-wide policy consists of (indicatively):
 
 
 class DashBoardParams(models.Model):
-
-    # key value store for policy dashboard parameters
-    # captures dataseries statistics etc.
+    """
+    key value store for policy dashboard parameters
+    captures dataseries statistics etc.
+    """
 
     total_dataflows = models.IntegerField(blank=True, null=True)
     total_datasets = models.IntegerField(blank=True, null=True)
@@ -92,41 +93,51 @@ class DashBoardParams(models.Model):
 
 class DataSeries(models.Model):
     # formal identifier of the policy timeseries (constructed from region identifiers)
-    identifier = models.CharField(null=True, blank=True, max_length=400, help_text="The unique identifier of the Policy dataseries")
+    identifier = models.CharField(null=True, blank=True, max_length=400,
+                                  help_text="The unique identifier of the Policy dataseries")
 
     # policy dataflow metadata
     title = models.CharField(null=True, blank=True, max_length=400, help_text="The title of the Policy (Short)")
     title_long = models.CharField(null=True, blank=True, max_length=1600, help_text="The title of the Policy (Long)")
 
     # TODO FK relation to stored dataflows
-    df_name = models.CharField(null=True, blank=True, max_length=80, help_text="The  Dataflow to which the Policy Dataseries belongs")
+    df_name = models.CharField(null=True, blank=True, max_length=80,
+                               help_text="The  Dataflow to which the Policy Dataseries belongs")
 
     rest_url = models.CharField(null=True, blank=True, max_length=400, help_text="API URL")
 
     documentation_url = models.CharField(null=True, blank=True, max_length=400, help_text="Documentation URL")
 
-    agg_level = models.CharField(null=True, blank=True, default="Country", max_length=80, help_text="The applicable aggregation level of the policy data")
+    agg_level = models.CharField(null=True, blank=True, default="Country", max_length=80,
+                                 help_text="The applicable aggregation level of the policy data")
 
     frequency = models.CharField(null=True, blank=True, default="A", max_length=80, help_text="Policy update frequency")
 
-    color = models.CharField(null=True, blank=True, default="0", max_length=80, help_text="The temporal freshness of measurement indicator")
+    color = models.CharField(null=True, blank=True, default="0", max_length=80,
+                             help_text="The temporal freshness of measurement indicator")
 
-    region = models.CharField(null=True, blank=True, default="N/A", max_length=80, help_text="Region to which policy applies")
+    region = models.CharField(null=True, blank=True, default="N/A", max_length=80,
+                              help_text="Region to which policy applies")
 
     # TODO Hierarchical activity classifications
-    activity = models.CharField(null=True, blank=True, default="N/A", max_length=80, help_text="Type of activity the policy concerns")
+    activity = models.CharField(null=True, blank=True, default="N/A", max_length=80,
+                                help_text="Type of activity the policy concerns")
 
-    status = models.CharField(null=True, blank=True, default="Valid", max_length=50, help_text="Validity status of the numerical data as usable timeseries")
+    status = models.CharField(null=True, blank=True, default="Valid", max_length=50,
+                              help_text="Validity status of the numerical data as usable timeseries")
 
     last_observation_date = models.DateTimeField(null=True, blank=True,
-                                                 default=datetime(1916, 9, 25, 17, 22, 22, 90879), help_text="Last observation date of the timeseries,tracked separately for filtering purposes")
+                                                 default=datetime(1916, 9, 25, 17, 22, 22, 90879),
+                                                 help_text="Last observation date of the timeseries,tracked separately for filtering purposes")
 
-    field_type = models.CharField(null=True, blank=True, default="numerical", max_length=50, help_text="Mathematical nature of the timeseries data (categorical, ordinal, numerical)")
+    field_type = models.CharField(null=True, blank=True, default="numerical", max_length=50,
+                                  help_text="Mathematical nature of the timeseries data (categorical, ordinal, numerical)")
 
     dates = JSONField(null=True, blank=True, help_text="Array of observation dates")
     values = JSONField(null=True, blank=True, help_text="Array of observation values")
 
-    unit = models.CharField(null=True, blank=True, default="%", max_length=50, help_text="The units the data are specified in (if numerical)")
+    unit = models.CharField(null=True, blank=True, default="%", max_length=50,
+                            help_text="The units the data are specified in (if numerical)")
 
     code_list = JSONField(null=True, blank=True, help_text="Ordinal/Categorical data code descriptions (code lists)")
 
@@ -154,9 +165,10 @@ class DataSeries(models.Model):
 
 
 class DataFlow(models.Model):
-    #
-    # Policy Dataflow MetaData (Country Based)
-    #
+    """
+     Policy Dataflow MetaData (Country Based)
+    """
+
     # Dataflow name (=Country 2 Letter Code)
     name = models.CharField(null=True, blank=True, max_length=80, help_text="Internal dataflow name")
     # formal identifier of the dataflow (country code)

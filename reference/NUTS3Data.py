@@ -60,7 +60,7 @@ class NUTS3PointData(models.Model):
         return self.nuts_id
 
     def get_absolute_url(self):
-        return reverse('reference:NUTS3PointData_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_nuts3pointdata_change', args=[self.pk])
 
     class Meta:
         verbose_name = "NUTS3 Point Geometry"

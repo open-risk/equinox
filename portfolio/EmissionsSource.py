@@ -91,7 +91,7 @@ class EmissionsSource(models.Model):
         return self.source_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:EmissionsSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_emissionssource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Emissions Source"
@@ -148,7 +148,7 @@ class GPCEmissionsSource(models.Model):
         return self.source_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:GPCEmissionsSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_gpcemissionssource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "GPC Emissions Source"
@@ -194,7 +194,7 @@ class BuildingEmissionsSource(models.Model):
         return self.source_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:BuildingEmissionsSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_buildingemissionssource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Building Emissions Source"
@@ -243,7 +243,7 @@ class GPPEmissionsSource(models.Model):
         return self.source_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:GPPEmissionsSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_gppemissionssource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "GPP Emissions Source"

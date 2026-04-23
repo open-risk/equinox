@@ -110,7 +110,7 @@ class ProjectActivity(models.Model):
         return self.project_activity_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:ProjectActivity_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_projectactivity_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Project Activity"

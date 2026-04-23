@@ -58,7 +58,7 @@ class PointSource(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:PointSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_pointsource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Point Source"
@@ -66,7 +66,8 @@ class PointSource(models.Model):
 
 
 class AreaSource(models.Model):
-    """A simple polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)"""
+    """A simple polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)
+    """
 
     # IDENTIFICATION
 
@@ -91,7 +92,7 @@ class AreaSource(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:AreaSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_areasource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Area Source"
@@ -99,7 +100,8 @@ class AreaSource(models.Model):
 
 
 class MultiAreaSource(models.Model):
-    """A multi-polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)"""
+    """A multi-polygon geometry demarcating the area of a Project or Real Estate boundaries (where applicable)
+    """
 
     # IDENTIFICATION
 
@@ -122,7 +124,7 @@ class MultiAreaSource(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('portfolio:MultiAreaSource_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_multiareasource_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Multi Area Source"

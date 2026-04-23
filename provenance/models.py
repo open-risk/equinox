@@ -19,14 +19,14 @@
 # SOFTWARE.
 
 from django.db import models
-
+from django.urls import reverse
 
 # Partial implementation of PROV following
 # https://github.com/kristinriebe/django-prov_vo/blob/master/prov_vo/models.py
 
 AGENT_TYPE_CHOICES = (
-    ('voprov:Organization','voprov:Organization'),
-    ('voprov:Individual','voprov:Individual'),
+    ('voprov:Organization', 'voprov:Organization'),
+    ('voprov:Individual', 'voprov:Individual'),
 )
 
 ACTIVITY_TYPE_CHOICES = (
@@ -39,9 +39,11 @@ ACTIVITY_TYPE_CHOICES = (
     ('other', 'other'),
 )
 
+
 class Agent(models.Model):
-    name = models.CharField(max_length=128, null=True) # human readable label, firstname + lastname
-    type = models.CharField(max_length=128, null=True, choices=AGENT_TYPE_CHOICES) # types of entities: single entity, dataset
+    name = models.CharField(max_length=128, null=True)  # human readable label, firstname + lastname
+    type = models.CharField(max_length=128, null=True,
+                            choices=AGENT_TYPE_CHOICES)  # types of entities: single entity, dataset
     email = models.CharField(max_length=128, null=True, blank=True)
     address = models.CharField(max_length=128, null=True, blank=True)
     url = models.URLField(null=True, blank=True, help_text="URL of Provenance Agent")
@@ -56,7 +58,7 @@ class Agent(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('provenance:Agent_edit', kwargs={'pk': self.pk})
+        return reverse('admin:provenance_agent_change', args=[self.pk])
 
     class Meta:
         verbose_name = "PROV Agent"

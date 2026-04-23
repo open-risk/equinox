@@ -95,7 +95,7 @@ class Swap(models.Model):
         return self.swap_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Swap_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_swap_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Swap"

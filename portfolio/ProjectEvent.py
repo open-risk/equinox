@@ -69,7 +69,7 @@ class ProjectEvent(models.Model):
         return self.project_event_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:ProjectEvent_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_projectevent_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Project Event"

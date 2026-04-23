@@ -54,4 +54,4 @@ class PEFASUT(models.Model):
         verbose_name_plural = "PEFA SUT Data"
 
     def get_absolute_url(self):
-        return reverse('reference:PEFASUT_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_pefasut_change', args=[self.pk])

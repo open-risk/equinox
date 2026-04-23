@@ -93,7 +93,7 @@ class Revenue(models.Model):
         return self.revenue_group_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Revenue_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_revenue_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Revenue"

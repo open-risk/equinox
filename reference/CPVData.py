@@ -56,7 +56,7 @@ class CPVData(models.Model):
         return self.CPV_ID
 
     def get_absolute_url(self):
-        return reverse('reference:CPVData_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_cpvdata_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Common Procurement Vocabulary"

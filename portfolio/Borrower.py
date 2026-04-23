@@ -338,7 +338,7 @@ class Borrower(models.Model):
         return self.counterparty_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:Borrower_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_borrower_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Borrower"

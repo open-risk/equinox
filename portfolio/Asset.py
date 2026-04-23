@@ -223,7 +223,7 @@ class ProjectAsset(models.Model):
         return self.asset_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:ProjectAsset_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_projectasset_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Project Asset"
@@ -437,7 +437,7 @@ class Building(models.Model):
         return self.protection_identifier if self.protection_identifier else str(self.pk)
 
     def get_absolute_url(self):
-        return reverse('portfolio:Building_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_building_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Building"
@@ -483,7 +483,7 @@ class PowerPlant(models.Model):
         return self.production_device_number
 
     def get_absolute_url(self):
-        return reverse('portfolio:PowerPlant_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_powerplant_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Power Plant"

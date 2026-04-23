@@ -63,7 +63,7 @@ class PrimaryEffect(models.Model):
         return self.primary_effect_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:PrimaryEffect_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_primaryeffect_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Primary Effect"

@@ -144,7 +144,7 @@ class ProjectCompany(models.Model):
         return self.project_company_identifier
 
     def get_absolute_url(self):
-        return reverse('portfolio:ProjectCompany_edit', kwargs={'pk': self.pk})
+        return reverse('admin:portfolio_projectcompany_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Project Company"

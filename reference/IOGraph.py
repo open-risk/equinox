@@ -54,7 +54,7 @@ class IOGraph(models.Model):
         return f"IO Matrix {self.io_family}[{self.io_year}]: {self.io_part} ({self.nodes}x{self.edges})"
 
     def get_absolute_url(self):
-        return reverse('reference:IOGraph_edit', kwargs={'pk': self.pk})
+        return reverse('admin:reference_iograph_change', args=[self.pk])
 
 
 class IOGraphEdge(models.Model):

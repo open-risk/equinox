@@ -74,7 +74,6 @@ INSTALLED_APPS = [
     'policy',
     'risk',
     'reporting',
-    'visualization',
     'provenance',
     'debug_toolbar',
     'behave_django'

@@ -25,8 +25,10 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_json_widget.widgets import JSONEditorWidget
+from django.db.models import JSONField
+from jsoneditor.forms import JSONEditor
 
-from reporting.models import Calculation, ResultGroup, Visualization, SummaryStatistics, AggregatedStatistics
+from reporting.models import Calculation, ResultGroup, Visualization, SummaryStatistics, AggregatedStatistics, VegaSpecification, VegaLiteSpecification
 
 actions = ['export2json', 'export2xml']
 
@@ -111,8 +113,35 @@ class VisualizationAdmin(admin.ModelAdmin):
         return HttpResponseRedirect(reverse("reporting:Visualization_list"))
 
 
+class VegaSpecificationAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        JSONField: {'widget': JSONEditor},
+    }
+    #
+    # Searchable fields
+    #
+    search_fields = ['description']
+    list_display = ('title', 'width', 'height', 'description',)
+    save_as = True
+    view_on_site = False
+
+
+class VegaLiteSpecificationAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        JSONField: {'widget': JSONEditor},
+    }
+
+    search_fields = ['description']
+    list_display = ('title', 'description',)
+    save_as = True
+    view_on_site = False
+
+
 admin.site.register(Calculation, CalculationAdmin)
 admin.site.register(ResultGroup, ResultGroupAdmin)
 admin.site.register(Visualization, VisualizationAdmin)
 admin.site.register(SummaryStatistics, SummaryStatisticsAdmin)
 admin.site.register(AggregatedStatistics, AggregatedStatisticsAdmin)
+admin.site.register(VegaSpecification, VegaSpecificationAdmin)
+admin.site.register(VegaLiteSpecification, VegaLiteSpecificationAdmin)
+

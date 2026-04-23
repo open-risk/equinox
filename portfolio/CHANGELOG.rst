@@ -4,6 +4,7 @@ ChangeLog of Portfolio App
 Portfolio App v0.6.0 (Upcoming)
 --------------------------------
 * DataCenter assets
+* Export to CSV
 
 Portfolio App v0.5.0 (25-09-2024)
 ---------------------------------

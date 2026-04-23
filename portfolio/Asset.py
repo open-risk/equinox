@@ -587,6 +587,10 @@ class DataCenter(models.Model):
     def get_absolute_url(self):
         return reverse('portfolio:DataCenter_edit', kwargs={'pk': self.pk})
 
+    @property
+    def django_url(self):
+        return f'<a href="{self.get_absolute_url()}">{self.datacenter_name}</a>'
+
     class Meta:
         verbose_name = "Data Center"
         verbose_name_plural = "Data Centers"

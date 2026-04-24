@@ -118,10 +118,10 @@ class DataCenterAdmin(admin.GISModelAdmin):
 
     """
     list_display = ('operator', 'datacenter_name', 'county', 'state_abb', 'surface_area')
-    list_filter = ('operator', 'portfolio', 'snapshot')
+    list_filter = ('operator', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
-    search_fields = ['datacenter_name']
+    search_fields = ['datacenter_name', 'county']
 
 
 @admin.register(PointSource)

@@ -347,23 +347,23 @@ class Building(models.Model):
     legal_owner_of_the_property = models.TextField(blank=True, null=True,
                                                    help_text='Legal owner of the Property Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Legal_Owner_of_the_Property">Documentation</a>')
 
-    number_of_bedrooms = models.FloatField(blank=True, null=True,
-                                           help_text='Number of bedrooms that the Unit has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Bedrooms">Documentation</a>')
+    number_of_bedrooms = models.IntegerField(blank=True, null=True,
+                                             help_text='Number of bedrooms that the Unit has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Bedrooms">Documentation</a>')
 
-    number_of_car_parking_spaces = models.FloatField(blank=True, null=True,
-                                                     help_text='Number of car parking spaces relating to the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Car_Parking_Spaces">Documentation</a>')
+    number_of_car_parking_spaces = models.IntegerField(blank=True, null=True,
+                                                       help_text='Number of car parking spaces relating to the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Car_Parking_Spaces">Documentation</a>')
 
-    number_of_lettable_units = models.FloatField(blank=True, null=True,
-                                                 help_text='Number of lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Lettable_Units">Documentation</a>')
+    number_of_lettable_units = models.IntegerField(blank=True, null=True,
+                                                   help_text='Number of lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Lettable_Units">Documentation</a>')
 
-    number_of_rooms = models.FloatField(blank=True, null=True,
-                                        help_text='Number of rooms that the Unit has excluding kitchen and bathroom(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.02.Number_of_Rooms">Documentation</a>')
+    number_of_rooms = models.IntegerField(blank=True, null=True,
+                                          help_text='Number of rooms that the Unit has excluding kitchen and bathroom(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.02.Number_of_Rooms">Documentation</a>')
 
-    number_of_units_occupied = models.FloatField(blank=True, null=True,
-                                                 help_text='Number of occupied lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Occupied">Documentation</a>')
+    number_of_units_occupied = models.IntegerField(blank=True, null=True,
+                                                   help_text='Number of occupied lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Occupied">Documentation</a>')
 
-    number_of_units_vacant = models.FloatField(blank=True, null=True,
-                                               help_text='Number of vacant lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Vacant">Documentation</a>')
+    number_of_units_vacant = models.IntegerField(blank=True, null=True,
+                                                 help_text='Number of vacant lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Vacant">Documentation</a>')
 
     party_liable_for_vat = models.IntegerField(blank=True, null=True, choices=PARTY_LIABLE_FOR_VAT_CHOICES,
                                                help_text='Party who is liable to pay the VAT on the disposal of the Unit i.e. the Institution or the buyer(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Party_Liable_for_VAT">Documentation</a>')
@@ -495,6 +495,8 @@ DATACENTER_CLASS_CHOICES = [(0, '(a) Enterprise'),
                             (2, '(c) Colocation'),
                             (3, '(d) Unknown')]
 
+SURFACE_AREA_UNITS = [(0, 'Square Feet'), (1, 'Square Meters')]
+
 
 class DataCenter(models.Model):
     """
@@ -525,15 +527,23 @@ class DataCenter(models.Model):
     # FACILITY CHARACTERISTICS
 
     surface_area = models.FloatField(blank=True, null=True,
-                                     help_text="Surface area of facility polygon, measured in square feet. Only available for building and campus layers")
+                                     help_text="Surface area of facility polygon, measured in square feet or square meters. Only available for building and campus layers")
 
-    prov_surface_area = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE, help_text="Provenance Agent", related_name='prov_surface_area')
+    surface_area_units = models.IntegerField(blank=True, null=True, choices=SURFACE_AREA_UNITS,
+                                             help_text="Surface area units of measurement")
+
+    prov_surface_area = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                          help_text="Provenance Agent for Surface Area", related_name='prov_surface_area')
+
+    number_of_floors = models.IntegerField(blank=True, null=True, help_text="The number of floors of the facility")
 
     # FACILITY OPERATOR
 
-    operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE, help_text="The operator (corporate entity) of the data center")
+    operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE,
+                                 help_text="The operator (corporate entity) of the data center")
 
-    prov_operator = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE, help_text="Provenance Agent", related_name='prov_operator')
+    prov_operator = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for Operator Data", related_name='prov_operator')
 
     # GEOGRAPHICAL DATA
 
@@ -557,23 +567,36 @@ class DataCenter(models.Model):
 
     # datacenter_location = PointField(blank=True, null=True, help_text='The barycenter location of the data center')
 
-    datacenter_location =  LocationField(based_fields=['city'], zoom=7, blank=True, null=True, help_text='The barycenter location of the data center')
-
+    datacenter_location = LocationField(based_fields=['city'], zoom=7, blank=True, null=True,
+                                        help_text='The barycenter location of the data center')
 
     #
     # Environmental Data
     #
 
+    power_usage_effectiveness = models.FloatField(blank=True, null=True,
+                                            help_text='Ratio of tota power use to IT power use (dimensionless)')
+
+    prov_pue = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for PUE", related_name='prov_pue')
+
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
                                             help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents')
 
+    prov_ghg_emissions = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for GHG Emissions", related_name='prov_ghg_emissions')
+
+    #TODO expand and document units (Liters)
     asset_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the aggregate current annualized water usage of an asset')
+                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons')
+
+    prov_water_usage = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for Water Usage Data", related_name='prov_water_usage')
 
     # OTHER
 
     date_of_commisioning = models.DateField(blank=True, null=True,
-                                            help_text='Commissioning date of the data center. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                            help_text='Commissioning date of the data center. Determines earliest available data points.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

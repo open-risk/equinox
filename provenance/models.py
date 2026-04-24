@@ -48,6 +48,8 @@ class Agent(models.Model):
     address = models.CharField(max_length=128, null=True, blank=True)
     url = models.URLField(null=True, blank=True, help_text="URL of Provenance Agent")
 
+    description = models.TextField(null=True, blank=True, help_text="Description of any Provenance Agent specifics")
+
     #
     # BOOKKEEPING FIELDS
     #

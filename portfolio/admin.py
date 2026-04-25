@@ -91,14 +91,23 @@ def export2csv(self, request, queryset):
 
 @admin.action(description='View Selected Entries on Map')
 def view_on_map(self, request, queryset):
-    meta = self.model._meta
-    response = None
-    return response
+    # Get selected IDs
+    ids = list(queryset.values_list('id', flat=True))
 
+    if not ids:
+        self.message_user(request, "No entries selected.", level='warning')
+        return
 
+    # Redirect to map view with selected IDs
+    from django.shortcuts import redirect
+    ids_param = ','.join(map(str, ids))
+    return redirect(f'/reporting/data_center_map/?ids={ids_param}')
+
+# Actions for all models
 admin.site.add_action(export2json)
 admin.site.add_action(export2xml)
 admin.site.add_action(export2csv)
+admin.site.add_action(view_on_map)
 
 
 #

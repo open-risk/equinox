@@ -1010,7 +1010,12 @@ class DataCenterMapView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(TemplateView, self).get_context_data(**kwargs)
-        dc_data = DataCenter.objects.all()
+        ids_param = self.request.GET.get('ids', '')
+        if ids_param:
+            ids = [int(id_str.strip()) for id_str in ids_param.split(',')]
+            dc_data = DataCenter.objects.filter(id__in=ids)
+        else:
+            dc_data = DataCenter.objects.all()
         geojson = serialize("geojson", dc_data, geometry_field='datacenter_location')
         geodata = json.loads(geojson)
         server_url = SITE_URL

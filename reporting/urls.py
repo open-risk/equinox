@@ -45,7 +45,7 @@ urlpatterns = [
     re_path(r'^manager_nuts3_map$', views.manager_nuts3_map, name='manager_nuts3_map'),
     re_path(r'^project_nuts3_map$', views.project_nuts3_map, name='project_nuts3_map'),
     re_path(r'^asset_map$', views.AssetMapView.as_view(), name='asset_map'),
-    re_path(r'^data_center_map$', views.DataCenterMapView.as_view(), name='data_center_map'),
+    re_path(r'^data_center_map/$', views.DataCenterMapView.as_view(), name='data_center_map'),
     # Visualizations
     re_path(r'^visualization_country$', views.visualization_country, name='visualization_country'),
     re_path(r'^visualization_sector$', views.visualization_sector, name='visualization_sector'),

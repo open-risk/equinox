@@ -89,6 +89,13 @@ def export2csv(self, request, queryset):
     return response
 
 
+@admin.action(description='View Selected Entries on Map')
+def view_on_map(self, request, queryset):
+    meta = self.model._meta
+    response = None
+    return response
+
+
 admin.site.add_action(export2json)
 admin.site.add_action(export2xml)
 admin.site.add_action(export2csv)

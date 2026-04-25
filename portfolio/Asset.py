@@ -574,6 +574,12 @@ class DataCenter(models.Model):
     # Environmental Data
     #
 
+    electricity_consumption = models.FloatField(blank=True, null=True,
+                                            help_text='This field stores the aggregate current annualized electricity consumption (MWh)')
+
+    prov_electricity_consumption = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for Electricity Consumption", related_name='prov_electricity_consumption')
+
     power_usage_effectiveness = models.FloatField(blank=True, null=True,
                                             help_text='Ratio of tota power use to IT power use (dimensionless)')
 
@@ -581,14 +587,26 @@ class DataCenter(models.Model):
                                       help_text="Provenance Agent for PUE", related_name='prov_pue')
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents')
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in tCO2 of CO2 equivalents - Scope 2')
 
     prov_ghg_emissions = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                       help_text="Provenance Agent for GHG Emissions", related_name='prov_ghg_emissions')
 
+    grid_carbon_intensity = models.FloatField(blank=True, null=True,
+                                            help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh')
+
+    prov_grid_carbon_intensity = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for Grid Carbon Intensity", related_name='prov_grid_carbon_intensity')
+
+    grid_water_intensity = models.FloatField(blank=True, null=True,
+                                            help_text='This field stores the electricity grid water intensity in units of L/KWh')
+
+    prov_grid_water_intensity = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for Grid Water Intensity", related_name='prov_grid_water_intensity')
+
     #TODO expand and document units (Liters)
     asset_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons')
+                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons). ')
 
     prov_water_usage = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                       help_text="Provenance Agent for Water Usage Data", related_name='prov_water_usage')

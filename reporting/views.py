@@ -20,7 +20,7 @@
 
 
 import json
-from django.forms.models import model_to_dict
+
 import pandas as pd
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -285,7 +285,7 @@ class AssetList(LoginRequiredMixin, ListView):
     Also generation options at the end
     """
     model = ProjectAsset
-    template_name = 'asset_list.html'
+    template_name = 'reporting/asset_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(ListView, self).get_context_data(**kwargs)
@@ -999,7 +999,7 @@ def contractor_nuts3_map(request):
 class AssetMapView(LoginRequiredMixin, TemplateView):
     """Asset Markers Map view."""
 
-    template_name = "asset_map.html"
+    template_name = "reporting/asset_map.html"
 
 
 class DataCenterMapView(LoginRequiredMixin, TemplateView):
@@ -1029,5 +1029,3 @@ class DataCenterMapView(LoginRequiredMixin, TemplateView):
         geodata_plus['features'] = features
         context.update({'geodata': geodata_plus})
         return context
-
-

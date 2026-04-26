@@ -490,10 +490,14 @@ class PowerPlant(models.Model):
         verbose_name_plural = "Power Plants"
 
 
+# The Campus class is a composite of discrete data center facilities
+# ATTN the term is different from how OSM defines a campus
+
 DATACENTER_CLASS_CHOICES = [(0, '(a) Enterprise'),
                             (1, '(b) Cloud'),
                             (2, '(c) Colocation'),
-                            (3, '(d) Unknown')]
+                            (3, '(d) Unknown'),
+                            (4, '(e) Campus')]
 
 SURFACE_AREA_UNITS = [(0, 'Square Feet'), (1, 'Square Meters')]
 
@@ -527,7 +531,7 @@ class DataCenter(models.Model):
     # FACILITY CHARACTERISTICS
 
     surface_area = models.FloatField(blank=True, null=True,
-                                     help_text="Surface area of facility polygon, measured in square feet or square meters. Only available for building and campus layers")
+                                     help_text="Surface area of facility polygon, measured in square feet or square meters. Only available for OSM building and campus layers")
 
     surface_area_units = models.IntegerField(blank=True, null=True, choices=SURFACE_AREA_UNITS,
                                              help_text="Surface area units of measurement")
@@ -613,7 +617,7 @@ class DataCenter(models.Model):
 
     # OTHER
 
-    date_of_commisioning = models.DateField(blank=True, null=True,
+    date_of_commissioning = models.DateField(blank=True, null=True,
                                             help_text='Commissioning date of the data center. Determines earliest available data points.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #

@@ -392,8 +392,9 @@ class ContractorAdmin(admin.ModelAdmin):
 class OperatorAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
-    date_hierarchy = ('creation_date')
-
+    list_display = ('operator_identifier',)
+    list_filter = ('operator_identifier',)
+    search_fields = ['operator_identifier']
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):

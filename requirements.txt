@@ -1,4 +1,4 @@
-Django==5.2.13
+Django==5.2.14
 djangorestframework
 drf-yasg
 numpy

@@ -25,7 +25,7 @@ from reporting import views
 app_name = 'reporting'
 
 """
-Custom reporting URL's (in addition to the admin URL's) that implement the Equinox reporting functionality
+Custom reporting URL's (in addition to the admin URL's) that implement the Equinox reporting functionality. They are grouped into tabular reports, geospatial maps and visualizations
 
 """
 
@@ -40,22 +40,22 @@ urlpatterns = [
     re_path(r'^gpp_report$', views.gpp_report, name='gpp_report'),
     re_path(r'^pcaf_mortgage_report$', views.pcaf_mortgage_report, name='pcaf_mortgage_report'),
     # Maps
-    re_path(r'^pcaf_waterfall_report$', views.pcaf_waterfall_report, name='pcaf_waterfall_report'),
+    re_path(r'^data_center_map/$', views.DataCenterMapView.as_view(), name='data_center_map'),
     re_path(r'^contractor_nuts3_map$', views.contractor_nuts3_map, name='contractor_nuts3_map'),
     re_path(r'^manager_nuts3_map$', views.manager_nuts3_map, name='manager_nuts3_map'),
     re_path(r'^project_nuts3_map$', views.project_nuts3_map, name='project_nuts3_map'),
     re_path(r'^asset_map$', views.AssetMapView.as_view(), name='asset_map'),
-    re_path(r'^data_center_map/$', views.DataCenterMapView.as_view(), name='data_center_map'),
     # Visualizations
+    re_path(r'^pcaf_waterfall_report$', views.pcaf_waterfall_report, name='pcaf_waterfall_report'),
     re_path(r'^visualization_country$', views.visualization_country, name='visualization_country'),
     re_path(r'^visualization_sector$', views.visualization_sector, name='visualization_sector'),
     re_path(r'^visualization_grid$', views.visualization_grid, name='visualization_grid'),
-    # TODO
+    re_path(r'^visualization_vega$', views.visualization_vega, name='visualization_vega'),
+    # TODO / Other
     re_path(r'^portfolio_summary/(?P<pk>\d+)$', views.portfolio_summary, name='portfolio_summary'),
     re_path(r'^credit_portfolio_stats/(?P<pk>[-\w.]+)$', views.credit_portfolio_stats_view,
             name='credit_portfolio_stats'),
     re_path(r'^portfolio_aggregates$', views.portfolio_aggregates, name='portfolio_aggregates'),
     # re_path(r'^result_types$', views.result_types, name='result_types'),
     re_path(r'^results_view/(?P<pk>\d+)$', views.results_view, name='results_view'),
-    re_path(r'^visualization_vega$', views.visualization_vega, name='visualization_vega'),
 ]

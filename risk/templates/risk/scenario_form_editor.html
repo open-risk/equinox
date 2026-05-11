@@ -35,29 +35,25 @@
 
     <div id="page" class="container-non-responsive">
 
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div>
-                <h4>Scenario Data</h4>
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <h4>Scenario Data</h4>
+                </div>
+                <div>
+                    <form id="myform" method="post" action="">{% csrf_token %}
+                        <table>
+                            {{ formset.as_table }}
+                        </table>
+                    </form>
+                </div>
             </div>
-            <div>
-                <form id="myform" method="post" action="">{% csrf_token %}
-                    <table>
-                        {{ formset.as_table }}
-                    </table>
-                </form>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <input class="interface_buttons btn btn-default" value="Update" type="submit" form="myform">
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-
-            <input class="interface_buttons btn btn-default" value="Update" type="submit" form="myform">
-
-
-        </div>
-    </div>
-
 {% endblock %}

@@ -11,10 +11,15 @@
 }
 
 .dark-mode .navbar-navy {
-  /*background-color: #393e43;*/
-  /*color: #fff;*/
+  background-color: #393e43;
+  color: #fff;
 }
 
 .card-header {
-    background-color: #e6e6e6!important;
+    /*background-color: #e6e6e6!important;*/
+}
+
+.row {
+  --bs-gutter-y: 1.5rem;
+  --bs-gutter-x: 1.5rem;
 }

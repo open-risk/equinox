@@ -2,6 +2,14 @@
     background-color: #dbdbdb;
 }
 
+.dark-mode .card {
+    color: #000;
+}
+
+.dark-mode .card .card {
+    color: #262323 !important;
+}
+
 .helpblock {
     height: 80px;
     background-color: #dbdbdb;
@@ -303,16 +311,6 @@ table.db_stats td:nth-of-type(2) {
 
 #category_list tr {
     background-color: #A1AD72;
-}
-
-
-
-.dark-mode .card {
-    color: #000;
-}
-
-.dark-mode .card .card {
-    color: #262323 !important;
 }
 
 .category {

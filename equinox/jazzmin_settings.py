@@ -25,8 +25,8 @@ Jazzmin Django settings for the Equinox platform.
 
 JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on the sidebar
-    # "show_ui_builder": False,
-    "show_ui_builder": True,
+    "show_ui_builder": False,
+    #"show_ui_builder": True,
 
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Equinox",
@@ -40,8 +40,23 @@ JAZZMIN_SETTINGS = {
     # square logo to use for your site, must be present in static files, used for favicon and brand on top left
     "site_logo": "start/img/equinox.png",
 
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": None,
+
     # Welcome text on the login screen
     "welcome_sign": "Welcome to Equinox",
+
+    # Relative path to logo for your site, used for login logo (must be present in static files. Defaults to site_logo)
+
+    "login_logo": None,
+
+    # Logo to use when data-bs-theme is dark (must be present in static files. Defaults to login_logo)
+
+    "login_logo_dark": None,
+
+    # CSS classes that are applied to the logo
+
+    "site_logo_classes": "img-circle",
 
     # Copyright on the footer
     "copyright": "Open Risk",
@@ -91,8 +106,9 @@ JAZZMIN_SETTINGS = {
     # Hide these models when generating side menu (e.g auth.user)
     "hide_models": [],
 
-    # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": ["start", "portfolio", "policy", "risk", "reporting", "reference", "auth"],
+    # List of apps (and/or models) to base side menu ordering off of
+    # (does not need to contain all apps/models)
+    "order_with_respect_to": ["start", "portfolio", "policy", "risk", "reporting", "reference", "provenance", "auth"],
 
     "icons": {
         "auth": "fas fa-users-cog",
@@ -136,14 +152,14 @@ JAZZMIN_UI_TWEAKS = {
     "body_small_text": True,
     "brand_small_text": False,
     "brand_colour": "navbar-lightblue",
-    "accent": "accent-olive",
+    "accent": "accent-primary",
     "navbar": "navbar-lightblue navbar-dark",
     "no_navbar_border": False,
     "navbar_fixed": True,
     "layout_boxed": False,
     "footer_fixed": False,
     "sidebar_fixed": True,
-    "sidebar": "sidebar-light-lightblue",
+    "sidebar": "sidebar-dark-primary",
     "sidebar_nav_small_text": True,
     "sidebar_disable_expand": True,
     "sidebar_nav_child_indent": True,

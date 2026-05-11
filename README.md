@@ -55,11 +55,12 @@ Once you log in successfully you'd be greeted by the admin area
 
 ![Admin Page](docs/source/admin.png)
 
-The admin is our main workbench
+The admin styled via jazzmin is our main workbench
 
 ## Credits
 
-* The Python and Django ecosystems and the many powerful software components (GeoDjango, Jazzmin, ... full list coming) 
+* The Python / Django ecosystems with the many powerful software components (full list coming) 
+  * django-jazzmin, a drop-in theme for django admin, that utilises AdminLTE 3.2 & Bootstrap 5
 * The GHG Protocol
 * The Partnership for Carbon Accounting Financials  
 * The European Banking Authority

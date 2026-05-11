@@ -16,6 +16,7 @@ NB: Individual apps have their own more detailed changelogs within each app's su
 v0.9.0 (XX-XX-2026)
 --------------------
 * Enhancements: GHG Protocol reporting for data centers
+* Dependency updates: jazzmin 3.0.1
 
 
 v0.8.0 (25-09-2024)

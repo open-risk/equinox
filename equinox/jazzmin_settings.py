@@ -25,8 +25,8 @@ Jazzmin Django settings for the Equinox platform.
 
 JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on the sidebar
-    "show_ui_builder": False,
-    # "show_ui_builder": True,
+    # "show_ui_builder": False,
+    "show_ui_builder": True,
 
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Equinox",
@@ -129,6 +129,8 @@ JAZZMIN_SETTINGS = {
 }
 
 JAZZMIN_UI_TWEAKS = {
+    "theme": "cerulean",
+    "default_theme_mode": 'light',
     "navbar_small_text": False,
     "footer_small_text": False,
     "body_small_text": True,
@@ -148,8 +150,6 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": True,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-    "theme": "cerulean",
-    "dark_mode_theme": "darkly",
     "button_classes": {
         "primary": "btn-outline-primary",
         "secondary": "btn-outline-secondary",

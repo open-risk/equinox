@@ -39,6 +39,8 @@ AGGREGATION_TYPE = [(0, '(a) Facility'), (1, '(b) Campus')]
 
 SURFACE_AREA_UNITS = [(0, 'Square Feet'), (1, 'Square Meters')]
 
+WATER_VOLUME_UNITS = [(0, 'Gallons'), (1, 'Liters'), (2, 'm3')]
+
 
 class DataCenter(models.Model):
     """
@@ -61,9 +63,11 @@ class DataCenter(models.Model):
                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
                                       verbose_name="Type")
 
-    aggregation_type = models.IntegerField(blank=True, null=True, choices=AGGREGATION_TYPE, default=0, help_text='Aggregation type of data center', verbose_name="Aggregation")
+    aggregation_type = models.IntegerField(blank=True, null=True, choices=AGGREGATION_TYPE, default=0,
+                                           help_text='Aggregation type of data center', verbose_name="Aggregation")
 
-    campus = models.ForeignKey('DataCenterCampus', blank=True, null=True, on_delete=models.CASCADE, help_text="Campus to which the facility belongs", verbose_name="Campus")
+    campus = models.ForeignKey('DataCenterCampus', blank=True, null=True, on_delete=models.CASCADE,
+                               help_text="Campus to which the facility belongs", verbose_name="Campus")
 
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
                                   help_text="The portfolio to which this data center belongs", verbose_name="Portfolio")
@@ -133,7 +137,7 @@ class DataCenter(models.Model):
                                                      related_name='prov_electricity_consumption')
 
     power_usage_effectiveness = models.FloatField(blank=True, null=True,
-                                                  help_text='Ratio of tota power use to IT power use (dimensionless)')
+                                                  help_text='Ratio of total power use to IT power use (dimensionless)')
 
     prov_pue = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                  help_text="Provenance Agent for PUE", related_name='prov_pue')
@@ -159,13 +163,24 @@ class DataCenter(models.Model):
                                                   help_text="Provenance Agent for Grid Water Intensity",
                                                   related_name='prov_grid_water_intensity')
 
-    # TODO expand and document units (Liters)
     asset_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons). ')
+                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
+
+    embedded_water_usage = models.FloatField(blank=True, null=True,
+                                          help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
 
     prov_water_usage = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                          help_text="Provenance Agent for Water Usage Data",
                                          related_name='prov_water_usage')
+
+    water_usage_effectiveness = models.FloatField(blank=True, null=True,
+                                                  help_text='Ratio of water consumption over IT power use (liters per kilowatt-hour or gallons per megawatt-hour)')
+
+    prov_wue = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
+                                 help_text="Provenance Agent for WUE", related_name='prov_wue')
+
+    water_volume_units = models.IntegerField(blank=True, null=True, choices=WATER_VOLUME_UNITS,
+                                             help_text="Water volume units of measurement")
 
     # OTHER
 
@@ -230,7 +245,7 @@ class DataCenterCampus(models.Model):
     # GEOGRAPHICAL DATA
 
     country = models.CharField(max_length=300, blank=True, null=True,
-                               help_text='Country of Campusocation')
+                               help_text='Country of Campus Location')
 
     county = models.CharField(max_length=300, blank=True, null=True,
                               help_text='County of Campus Location')
@@ -266,9 +281,17 @@ class DataCenterCampus(models.Model):
     grid_water_intensity = models.FloatField(blank=True, null=True,
                                              help_text='This field stores the electricity grid water intensity in units of L/KWh')
 
-    # TODO expand and document units (Liters)
     asset_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons). ')
+                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
+
+    embedded_water_usage = models.FloatField(blank=True, null=True,
+                                          help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
+
+    water_usage_effectiveness = models.FloatField(blank=True, null=True,
+                                                  help_text='Ratio of water consumption over IT power use (liters per kilowatt-hour or gallons per megawatt-hour)')
+
+    water_volume_units = models.IntegerField(blank=True, null=True, choices=WATER_VOLUME_UNITS,
+                                             help_text="Water volume units of measurement")
 
     #
     # BOOKKEEPING FIELDS

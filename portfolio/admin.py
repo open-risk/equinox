@@ -134,8 +134,8 @@ class DataCenterAdmin(admin.GISModelAdmin):
     """Data Center Admin
 
     """
-    list_display = ('operator', 'datacenter_name', 'asset_class', 'county', 'state_abb', 'surface_area')
-    list_filter = ('operator', 'asset_class', 'state_abb', 'portfolio', 'snapshot')
+    list_display = ('operator', 'datacenter_name', 'aggregation_type', 'county', 'state_abb', 'surface_area')
+    list_filter = ('operator', 'aggregation_type', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
     search_fields = ['datacenter_name', 'county']

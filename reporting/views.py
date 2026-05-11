@@ -33,7 +33,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
 
 from equinox.settings import SITE_URL
-from portfolio.Asset import ProjectAsset, DataCenter
+from portfolio.Asset import ProjectAsset
+from portfolio.DataCenter import DataCenter
 from portfolio.Contractor import Contractor
 from portfolio.EmissionsSource import GPCEmissionsSource, BuildingEmissionsSource
 from portfolio.EmissionsSource import GPPEmissionsSource

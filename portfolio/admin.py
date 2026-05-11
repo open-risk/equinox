@@ -34,7 +34,7 @@ from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import PowerPlant
 from portfolio.Asset import ProjectAsset, Building
-from portfolio.Asset import DataCenter
+from portfolio.DataCenter import DataCenter, DataCenterCampus
 from portfolio.Borrower import Borrower
 from portfolio.Certificate import Certificate
 from portfolio.Contractor import Contractor
@@ -103,6 +103,7 @@ def view_on_map(self, request, queryset):
     ids_param = ','.join(map(str, ids))
     return redirect(f'/reporting/data_center_map/?ids={ids_param}')
 
+
 # Actions for all models
 admin.site.add_action(export2json)
 admin.site.add_action(export2xml)
@@ -133,11 +134,23 @@ class DataCenterAdmin(admin.GISModelAdmin):
     """Data Center Admin
 
     """
-    list_display = ('operator', 'datacenter_name', 'county', 'state_abb', 'surface_area')
-    list_filter = ('operator', 'state_abb', 'portfolio', 'snapshot')
+    list_display = ('operator', 'datacenter_name', 'asset_class', 'county', 'state_abb', 'surface_area')
+    list_filter = ('operator', 'asset_class', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
     search_fields = ['datacenter_name', 'county']
+
+
+@admin.register(DataCenterCampus)
+class DataCenterCampusAdmin(admin.GISModelAdmin):
+    """Data Center Campus Admin
+
+    """
+    list_display = ('operator', 'campus_name', 'county', 'state_abb', 'surface_area')
+    list_filter = ('operator', 'state_abb', 'portfolio', 'snapshot')
+    view_on_site = False
+    save_as = True
+    search_fields = ['campus_name', 'county']
 
 
 @admin.register(PointSource)
@@ -395,6 +408,7 @@ class OperatorAdmin(admin.ModelAdmin):
     list_display = ('operator_identifier',)
     list_filter = ('operator_identifier',)
     search_fields = ['operator_identifier']
+
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):

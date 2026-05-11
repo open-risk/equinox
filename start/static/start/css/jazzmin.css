@@ -23,3 +23,7 @@
   --bs-gutter-y: 1.5rem;
   --bs-gutter-x: 1.5rem;
 }
+
+.gap-2 {
+  gap: 2rem !important;
+}

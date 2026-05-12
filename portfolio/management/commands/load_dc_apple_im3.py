@@ -82,4 +82,4 @@ class Command(BaseCommand):
     DataCenter.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted data center data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted data center sample data into db'))

@@ -231,7 +231,7 @@ class DataCenterCampus(models.Model):
     # CAMPUS CHARACTERISTICS (DERIVED)
 
     surface_area = models.FloatField(blank=True, null=True,
-                                     help_text="Total surface area of campus")
+                                     help_text="Total surface area of campus", verbose_name='Floor Space')
 
     surface_area_units = models.IntegerField(blank=True, null=True, choices=SURFACE_AREA_UNITS,
                                              help_text="Surface area units of measurement")
@@ -267,7 +267,7 @@ class DataCenterCampus(models.Model):
     #
 
     electricity_consumption = models.FloatField(blank=True, null=True,
-                                                help_text='This field stores the aggregate current annualized electricity consumption (MWh)')
+                                                help_text='This field stores the aggregate current annualized electricity consumption (MWh)', verbose_name="Electricity (MWh)")
 
     power_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of tota power use to IT power use (dimensionless)')

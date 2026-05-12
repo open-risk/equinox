@@ -135,11 +135,11 @@ class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
     """Data Center Admin
 
     """
-    list_display = ('operator', 'datacenter_name', 'aggregation_type', 'county', 'state_abb', 'surface_area')
+    list_display = ('operator', 'datacenter_name', 'aggregation_type', 'county', 'state_abb', 'surface_area', 'last_change_date')
     list_filter = ('operator', 'aggregation_type', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
-    search_fields = ['datacenter_name', 'county']
+    search_fields = ['datacenter_name', 'datacenter_id', 'county']
 
 
 @admin.register(DataCenterCampus)
@@ -147,7 +147,7 @@ class DataCenterCampusAdmin(admin.GISModelAdmin):
     """Data Center Campus Admin
 
     """
-    list_display = ('operator', 'campus_name', 'county', 'state_abb', 'surface_area')
+    list_display = ('operator', 'campus_name', 'county', 'state_abb', 'electricity_consumption', 'surface_area')
     list_filter = ('operator', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True

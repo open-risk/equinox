@@ -34,14 +34,14 @@ class Operator(models.Model):
     # IDENTITY
 
     operator_identifier = models.CharField(max_length=300, blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name='Name')
 
     operator_lei = models.TextField(blank=True, null=True,
-                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Legal Entity Identifier")
 
     # LINKS
     project_company = models.ForeignKey('ProjectCompany', blank=True, null=True, on_delete=models.CASCADE,
-                                        help_text="The Project Company that contracted this Operator")
+                                        help_text="The Project Company that contracted this Operator", verbose_name="Project Company")
 
     # SCORECARD
 

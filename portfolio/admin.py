@@ -22,6 +22,7 @@ import csv
 from django import forms
 
 from django.contrib.gis import admin
+from import_export.admin import ImportExportModelAdmin
 
 from django.core import serializers
 from django.forms.widgets import NumberInput
@@ -130,7 +131,7 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 # OSMGeoAdmin
 
 @admin.register(DataCenter)
-class DataCenterAdmin(admin.GISModelAdmin):
+class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
     """Data Center Admin
 
     """

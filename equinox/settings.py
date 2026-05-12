@@ -185,13 +185,13 @@ LOCALE_PATHS = (
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
-TIME_ZONE = 'UTC'
+USE_TZ = True
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Amsterdam'
 
 USE_I18N = True
 
 USE_L10N = True
-
-USE_TZ = True
 
 # Debug-Toolbar
 INTERNAL_IPS = [
@@ -201,3 +201,6 @@ INTERNAL_IPS = [
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda r: False,
+}

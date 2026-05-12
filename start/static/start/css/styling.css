@@ -23,3 +23,25 @@ body {
     /*background-color: #4d4d4d;*/
     /*color: white;*/
 }
+
+.card-header {
+  background-color: #6291CB!important;
+}
+
+.card-header {
+    /*background-color: #e6e6e6!important;*/
+}
+
+.row {
+  --bs-gutter-y: 1.5rem;
+  --bs-gutter-x: 1.5rem;
+}
+
+.gap-2 {
+  gap: 2rem !important;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	text-shadow: none;
+    color:white;
+}

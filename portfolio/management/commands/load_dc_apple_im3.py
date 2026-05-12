@@ -28,51 +28,30 @@ from portfolio.DataCenter import DataCenter
 from portfolio.Operator import Operator
 from provenance.models import Agent
 
+
 class Command(BaseCommand):
-    help = 'Imports data center / operator data from the IM3 Dataset'
+    help = 'Imports sample data center / operator data from the IM3 Dataset'
 
     # Delete existing Operator / DataCenter / Provenance objects
-    ProjectPortfolio.objects.all().delete()
-    PortfolioSnapshot.objects.all().delete()
-    Agent.objects.all().delete()
-    Operator.objects.all().delete()
-    DataCenter.objects.all().delete()
+    # ProjectPortfolio.objects.all().delete()
+    # PortfolioSnapshot.objects.all().delete()
+    # Agent.objects.all().delete()
+    # Operator.objects.all().delete()
+    # DataCenter.objects.all().delete()
 
     # Import data from CSV file
     # data = pd.read_csv("im3.csv", header='infer', delimiter=',')
     data = pd.read_csv("im3.clean.csv", header='infer', delimiter=',')
 
-
-
     """
-     Create Portfolio, Portfolio Snapshot and Provenance Data
+     Select Operator Portfolio, Portfolio Snapshot and Provenance objects
 
     """
 
-    portfolio = ProjectPortfolio(name='US Data Centers')
-    portfolio.save()
-    portfolio_id = ProjectPortfolio.objects.get(name='US Data Centers')
-
-    portfolio_snapshot = PortfolioSnapshot(name='2023')
-    portfolio_snapshot.save()
+    portfolio_id = ProjectPortfolio.objects.get(name='Apple Data Center Portfolio')
     portfolio_snapshot_id = PortfolioSnapshot.objects.get(name='2023')
-
-    agent = Agent(name='IM3', url='https://data.msdlive.org/records/p147s-4h760')
-    agent.save()
     agent_id = Agent.objects.get(name='IM3')
-
-    """
-    Create Data Center Operators
-
-    """
-
-    operators = list(set(data[data['operator'].notna()]['operator'].values.tolist()))
-    ops = []
-    for operator in operators:
-        op =  Operator(operator_identifier=operator)
-        ops.append(op)
-    ops.append(Operator(operator_identifier='Unknown'))
-    Operator.objects.bulk_create(ops)
+    operator_id = Operator.objects.get(operator_identifier='Apple')
 
     """
     Create Data Centers
@@ -80,30 +59,25 @@ class Command(BaseCommand):
     """
     indata = []
     for index, entry in data.iterrows():
-        name = entry['operator']
-        if isinstance(name, float):
-            name = 'Unknown'
-        print(name)
-        op = Operator.objects.get(operator_identifier=name)
+        if entry['operator'] == 'Apple':
+            dc = DataCenter(
+                portfolio=portfolio_id,
+                snapshot=portfolio_snapshot_id,
+                datacenter_id=entry['id'],
+                datacenter_name=entry['name'],
+                surface_area=entry['sqft'],
+                prov_surface_area=agent_id,
+                country='United States',
+                county=entry['county'],
+                county_id=entry['county_id'],
+                state=entry['state'],
+                state_id=entry['state_id'],
+                state_abb=entry['state_abb'],
+                datacenter_location=Point(entry['lon'], entry['lat']),
+                operator=operator_id,
+                prov_operator=agent_id)
 
-        dc = DataCenter(
-            portfolio=portfolio_id,
-            snapshot=portfolio_snapshot_id,
-            datacenter_id=entry['id'],
-            datacenter_name=entry['name'],
-            surface_area=entry['sqft'],
-            prov_surface_area=agent_id,
-            country='United States',
-            county=entry['county'],
-            county_id=entry['county_id'],
-            state=entry['state'],
-            state_id=entry['state_id'],
-            state_abb=entry['state_abb'],
-            datacenter_location=Point(entry['lon'],entry['lat']),
-            operator=op,
-            prov_operator=agent_id)
-
-        indata.append(dc)
+            indata.append(dc)
 
     DataCenter.objects.bulk_create(indata)
 

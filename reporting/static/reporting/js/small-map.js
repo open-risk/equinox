@@ -9,15 +9,25 @@ const smallMap = L.map('map')
 // Add CartoDB tile layer (development)
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: 'abcd',
-  maxZoom: 20
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20
 }).addTo(smallMap);
 
 const geodata = JSON.parse(document.getElementById('geodata').textContent);
 
-let feature = L.geoJSON(geodata).bindPopup(function (layer) {
-}).addTo(smallMap);
+function pointToLayer(feature, latlng) {
+  let radius = feature.properties.radius || 10;
+
+  return L.circleMarker(latlng, {
+    radius: radius,
+    fillColor: 'orange',
+    color: 'white',
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 0.8
+  });
+}
 
 function onEachFeature(feature, layer) {
 
@@ -25,13 +35,15 @@ function onEachFeature(feature, layer) {
         layer.bindPopup(feature.properties.nuts_id);
     }
     if (feature.properties && feature.properties.operator) {
-        var name = feature.properties.datacenter_name.toString();
-        var popupContent = '<a href=" '+ feature.properties.local_url +' ">' + name + '</a>';
+
+        let name = feature.properties.datacenter_name.toString();
+        let popupContent = '<a href=" ' + feature.properties.local_url + ' ">' + name + '</a>';
         layer.bindPopup(popupContent);
     }
 }
 
-L.geoJSON(geodata, {
+let feature = L.geoJSON(geodata, {
+    pointToLayer: pointToLayer,
     onEachFeature: onEachFeature
 }).addTo(smallMap);
 

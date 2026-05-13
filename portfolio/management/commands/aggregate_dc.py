@@ -35,22 +35,12 @@ class Command(BaseCommand):
     agent_id = Agent.objects.get(name='IM3')
     operator_id = Operator.objects.get(operator_identifier='Apple')
 
-    # Fetch all data centers
-    # for obj in DataCenter.objects.filter(portfolio=portfolio_id):
-    #     print(obj.datacenter_id, obj.datacenter_location)
+    selection = DataCenterCampus.objects.filter(portfolio=portfolio_id, snapshot=portfolio_snapshot_id).annotate(sum_surface_area=Sum('datacenter__surface_area'))
 
-    # Sum area grouped by campus key
-    results = DataCenter.objects.values('campus').annotate(
-        total=Sum('surface_area')
-    )
+    for campus in selection:
+        campus.surface_area = campus.sum_surface_area
 
-    for result in results:
-        DataCenterCampus.objects.filter(
-            pk=result['campus']
-        ).update(surface_area=result['total'])
-
-    for result in results:
-        print(f"Campus: {result['campus']}, Total: {result['total']}")
+    DataCenterCampus.objects.bulk_update(selection, ['surface_area'], batch_size=1000)
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Successfully aggregated floor space into campuses'))

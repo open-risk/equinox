@@ -132,6 +132,7 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 
 @admin.register(DataCenter)
 class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
+# class DataCenterAdmin(admin.GISModelAdmin):
     """Data Center Admin
 
     """

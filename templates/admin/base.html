@@ -342,6 +342,7 @@
     {% endif %}
 
     <main class="app-main" {% if is_popup %}style="margin-left:0; padding-top: 20px;"{% endif %}>
+
         {% block page_content %}
             {% if not is_popup %}
                 <div class="app-content-header">
@@ -396,8 +397,8 @@
                 </div>
             </div>
 
-
         {% endblock %}
+
     </main>
 
     {% block footer %}

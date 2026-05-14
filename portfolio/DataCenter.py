@@ -35,6 +35,8 @@ DATACENTER_CLASS_CHOICES = [(0, '(a) Enterprise'),
                             (2, '(c) Colocation'),
                             (3, '(d) Unknown')]
 
+AREA_TYPE_CHOICES = [(0, '(a) City'), (1, '(b) Industrial'), (2, '(c) Rural')]
+
 AGGREGATION_TYPE = [(0, '(a) Facility'), (1, '(b) Campus')]
 
 SURFACE_AREA_UNITS = [(0, 'Square Feet'), (1, 'Square Meters')]
@@ -54,10 +56,10 @@ class DataCenter(models.Model):
                                      help_text='Data Center ID (OSM)')
 
     datacenter_name = models.CharField(max_length=80, blank=True, null=True,
-                                       help_text='Name of Data Center (OSM)', verbose_name="Datacenter")
+                                       help_text='Name of Data Center (OSM)', verbose_name="Data Center")
 
-    description = models.TextField(blank=True, null=True,
-                                   help_text='Additional information about the Data Center')
+    notes = models.TextField(blank=True, null=True,
+                                   help_text='Additional information about the Data Center', verbose_name="Notes")
 
     asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
@@ -167,7 +169,7 @@ class DataCenter(models.Model):
                                           help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
 
     embedded_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
+                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
 
     prov_water_usage = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                          help_text="Provenance Agent for Water Usage Data",
@@ -213,13 +215,19 @@ class DataCenterCampus(models.Model):
 
     """
 
+    # FACILITY OPERATOR
+
+    operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE,
+                                 help_text="The operator (corporate entity) of the campus",
+                                 verbose_name="Operator")
+
     # IDENTIFICATION & CATEGORIZATION
 
     campus_name = models.CharField(max_length=80, blank=True, null=True,
                                    help_text='Name of Campus', verbose_name="Campus")
 
-    description = models.TextField(blank=True, null=True,
-                                   help_text='Additional information about the Data Center Campus')
+    notes = models.TextField(blank=True, null=True,
+                                   help_text='Additional information about the Data Center Campus', verbose_name="Notes")
 
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
                                   help_text="The portfolio to which this data center belongs", verbose_name="Portfolio")
@@ -227,6 +235,12 @@ class DataCenterCampus(models.Model):
     snapshot = models.ForeignKey('PortfolioSnapshot', on_delete=models.CASCADE, blank=True, null=True,
                                  help_text="The portfolio snapshot to which the date center record belongs",
                                  verbose_name="Snapshot")
+
+    address = models.TextField(blank=True, null=True,
+                               help_text='Street address where the Property is located at')
+
+    area_type = models.IntegerField(blank=True, null=True, choices=AREA_TYPE_CHOICES,
+                                    help_text='Area type where the Property is located at, i.e. City, Industrial, Rural')
 
     # CAMPUS CHARACTERISTICS (DERIVED)
 
@@ -236,11 +250,7 @@ class DataCenterCampus(models.Model):
     surface_area_units = models.IntegerField(blank=True, null=True, choices=SURFACE_AREA_UNITS,
                                              help_text="Surface area units of measurement")
 
-    # FACILITY OPERATOR
 
-    operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE,
-                                 help_text="The operator (corporate entity) of the campus",
-                                 verbose_name="Operator")
 
     # GEOGRAPHICAL DATA
 
@@ -267,7 +277,8 @@ class DataCenterCampus(models.Model):
     #
 
     electricity_consumption = models.FloatField(blank=True, null=True,
-                                                help_text='This field stores the aggregate current annualized electricity consumption (MWh)', verbose_name="Electricity (MWh)")
+                                                help_text='This field stores the aggregate current annualized electricity consumption (MWh)',
+                                                verbose_name="Electricity (MWh)")
 
     power_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of tota power use to IT power use (dimensionless)')
@@ -285,7 +296,7 @@ class DataCenterCampus(models.Model):
                                           help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
 
     embedded_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
+                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
 
     water_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of water consumption over IT power use (liters per kilowatt-hour or gallons per megawatt-hour)')

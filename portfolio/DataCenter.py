@@ -37,7 +37,7 @@ DATACENTER_CLASS_CHOICES = [(0, '(a) Enterprise'),
 
 AREA_TYPE_CHOICES = [(0, '(a) City'), (1, '(b) Industrial'), (2, '(c) Rural')]
 
-AGGREGATION_TYPE = [(0, '(a) Facility'), (1, '(b) Campus')]
+AGGREGATION_TYPE = [(0, '(a) Entire Facility'), (1, '(b) Colocation Share')]
 
 SURFACE_AREA_UNITS = [(0, 'Square Feet'), (1, 'Square Meters')]
 
@@ -62,11 +62,11 @@ class DataCenter(models.Model):
                                    help_text='Additional information about the Data Center', verbose_name="Notes")
 
     asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
-                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                      help_text='This identifies the way the data center is used <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
                                       verbose_name="Type")
 
     aggregation_type = models.IntegerField(blank=True, null=True, choices=AGGREGATION_TYPE, default=0,
-                                           help_text='Aggregation type of data center', verbose_name="Aggregation")
+                                           help_text='How the data center is used', verbose_name="Aggregation")
 
     campus = models.ForeignKey('DataCenterCampus', blank=True, null=True, on_delete=models.CASCADE,
                                help_text="Campus to which the facility belongs", verbose_name="Campus")

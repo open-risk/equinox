@@ -130,7 +130,7 @@ JAZZMIN_SETTINGS = {
     #############
 
     "custom_css": "./start/css/jazzmin.css",
-    "custom_js": None,
+    "custom_js": "./start/js/jazzmin.js",
 
     ###############
     # Change view #

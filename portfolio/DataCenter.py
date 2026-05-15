@@ -37,7 +37,7 @@ DATACENTER_CLASS_CHOICES = [(0, '(a) Enterprise'),
 
 AREA_TYPE_CHOICES = [(0, '(a) City'), (1, '(b) Industrial'), (2, '(c) Rural')]
 
-AGGREGATION_TYPE = [(0, '(a) Entire Facility'), (1, '(b) Colocation Share')]
+AGGREGATION_TYPE = [(0, '(a) Facility'), (1, '(b) Colocation Share'), (2, '(c) Campus')]
 
 SURFACE_AREA_UNITS = [(0, 'Square Feet'), (1, 'Square Meters')]
 
@@ -59,14 +59,14 @@ class DataCenter(models.Model):
                                        help_text='Name of Data Center (OSM)', verbose_name="Data Center")
 
     notes = models.TextField(blank=True, null=True,
-                                   help_text='Additional information about the Data Center', verbose_name="Notes")
+                             help_text='Additional information about the Data Center', verbose_name="Notes")
 
     asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
                                       help_text='This identifies the way the data center is used <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
                                       verbose_name="Type")
 
     aggregation_type = models.IntegerField(blank=True, null=True, choices=AGGREGATION_TYPE, default=0,
-                                           help_text='How the data center is used', verbose_name="Aggregation")
+                                           help_text='How the data center is reported', verbose_name="Aggregation")
 
     campus = models.ForeignKey('DataCenterCampus', blank=True, null=True, on_delete=models.CASCADE,
                                help_text="Campus to which the facility belongs", verbose_name="Campus")
@@ -215,11 +215,14 @@ class DataCenterCampus(models.Model):
 
     """
 
-    # FACILITY OPERATOR
+    # OWNER / OPERATOR Role
 
     operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE,
                                  help_text="The operator (corporate entity) of the campus",
                                  verbose_name="Operator")
+
+    aggregation_type = models.IntegerField(blank=True, null=True, choices=AGGREGATION_TYPE, default=0,
+                                           help_text='How the data center campus is reported', verbose_name="Aggregation")
 
     # IDENTIFICATION & CATEGORIZATION
 
@@ -227,7 +230,7 @@ class DataCenterCampus(models.Model):
                                    help_text='Name of Campus', verbose_name="Campus")
 
     notes = models.TextField(blank=True, null=True,
-                                   help_text='Additional information about the Data Center Campus', verbose_name="Notes")
+                             help_text='Additional information about the Data Center Campus', verbose_name="Notes")
 
     portfolio = models.ForeignKey('ProjectPortfolio', blank=True, null=True, on_delete=models.CASCADE,
                                   help_text="The portfolio to which this data center belongs", verbose_name="Portfolio")
@@ -250,8 +253,6 @@ class DataCenterCampus(models.Model):
     surface_area_units = models.IntegerField(blank=True, null=True, choices=SURFACE_AREA_UNITS,
                                              help_text="Surface area units of measurement")
 
-
-
     # GEOGRAPHICAL DATA
 
     country = models.CharField(max_length=300, blank=True, null=True,
@@ -273,7 +274,19 @@ class DataCenterCampus(models.Model):
                                    help_text='State ID of Campus Location')
 
     #
-    # Environmental Data
+    # Environmental Data Scope 1
+    #
+
+    gas_consumption = models.FloatField(blank=True, null=True,
+                                        help_text='This field stores the aggregate current annualized gas consumption (MMBtu)',
+                                        verbose_name="Gas (MMBtu)")
+
+    scope1_ghg_emissions = models.FloatField(blank=True, null=True,
+                                             help_text='This field stores the aggregate current annualized emissions of an asset in tCO2 of CO2 equivalents - Scope 1',
+                                             verbose_name='Scope 1 GHG')
+
+    #
+    # Environmental Data Scope 2
     #
 
     electricity_consumption = models.FloatField(blank=True, null=True,
@@ -283,8 +296,9 @@ class DataCenterCampus(models.Model):
     power_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of tota power use to IT power use (dimensionless)')
 
-    asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='This field stores the aggregate current annualized emissions of an asset in tCO2 of CO2 equivalents - Scope 2')
+    scope2_ghg_emissions = models.FloatField(blank=True, null=True,
+                                             help_text='This field stores the aggregate current annualized emissions of an asset in tCO2 of CO2 equivalents - Scope 2',
+                                             verbose_name='Scope 2 GHG')
 
     grid_carbon_intensity = models.FloatField(blank=True, null=True,
                                               help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh')
@@ -314,7 +328,7 @@ class DataCenterCampus(models.Model):
         return self.campus_name
 
     def get_absolute_url(self):
-        return reverse('admin:portfolio_campus_change', args=[self.pk])
+        return reverse('admin:portfolio_datacentercampus_change', args=[self.pk])
 
     class Meta:
         verbose_name = "Data Center Campus"

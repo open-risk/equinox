@@ -6,6 +6,7 @@ pandas
 scipy
 Markdown
 Pillow
+django-csp
 django-leaflet
 django-jazzmin
 django-json-widget

@@ -23,8 +23,10 @@ import pandas as pd
 from django.core.management.base import BaseCommand
 
 from django.contrib.gis.geos import Point
-from portfolio.Asset import DataCenter
+from portfolio.DataCenter import DataCenter, DataCenterCampus
 from portfolio.Operator import Operator
+from portfolio.ProjectCompany import ProjectCompany
+from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from provenance.models import Agent
 
 
@@ -32,9 +34,13 @@ class Command(BaseCommand):
     help = 'Deletes data center / operator data'
 
     # Delete existing objects
+    ProjectPortfolio.objects.all().delete()
+    PortfolioSnapshot.objects.all().delete()
     Agent.objects.all().delete()
     Operator.objects.all().delete()
+    ProjectCompany.objects.all().delete()
     DataCenter.objects.all().delete()
+    DataCenterCampus.objects.all().delete()
 
 
     def handle(self, *args, **options):

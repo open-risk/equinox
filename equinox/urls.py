@@ -46,6 +46,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
                   path('', include('start.urls')),  # Equinox Start Page URLS
+                  path('markdownfield/', include('markdownfield.urls')),
                   path('reporting/', include('reporting.urls')),  # Results Explorer URLS
                   path('policy/', include('policy.urls')),  # Results Explorer URLS
                   path('reference/', include('reference.urls')),  # Results Explorer URLS

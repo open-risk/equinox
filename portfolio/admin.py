@@ -148,7 +148,7 @@ class DataCenterCampusAdmin(admin.GISModelAdmin):
     """Data Center Campus Admin
 
     """
-    list_display = ('operator', 'campus_name', 'county', 'state_abb', 'electricity_consumption', 'surface_area', 'scope2_ghg_emissions')
+    list_display = ('campus_name', 'electricity_consumption', 'surface_area', 'grid_carbon_intensity', 'grid_water_intensity', 'scope2_ghg_emissions', 'embedded_water_usage')
     list_filter = ('operator', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True

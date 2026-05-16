@@ -301,16 +301,16 @@ class DataCenterCampus(models.Model):
                                              verbose_name='Scope 2 GHG')
 
     grid_carbon_intensity = models.FloatField(blank=True, null=True,
-                                              help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh')
+                                              help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh', verbose_name="Grid Carbon Intensity")
 
     grid_water_intensity = models.FloatField(blank=True, null=True,
-                                             help_text='This field stores the electricity grid water intensity in units of L/KWh')
+                                             help_text='This field stores the electricity grid water intensity in units of L/KWh', verbose_name="Grid Water Intensity")
 
     asset_water_usage = models.FloatField(blank=True, null=True,
                                           help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
 
     embedded_water_usage = models.FloatField(blank=True, null=True,
-                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
+                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).', verbose_name="Embedded Water")
 
     water_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of water consumption over IT power use (liters per kilowatt-hour or gallons per megawatt-hour)')

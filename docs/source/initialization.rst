@@ -1,5 +1,6 @@
 Initialization
 ==============================
+
 A new equinox instance will have no data in the database. To get a feel for the platform it is advisable to load some of the datasets included in the distribution. A production oriented installation will have its own procedure for populating the database depending on the use cases supported and other requirements.
 
 Here we discuss how to do demo oriented initializations both for a local installation from sources and a docker based installation respectively

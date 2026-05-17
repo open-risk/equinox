@@ -5,7 +5,7 @@
 
 # Equinox Overview
 
-![Equinox Logo](docs/source/equinox-logo.png) Equinox is an open source platform for sustainable portfolio management. It supports holistic risk management and reporting of sustainable finance projects in accordance with evolving industry standards. 
+![Equinox Logo](docs/source/equinox-logo-small.png) Equinox is an open source platform for sustainable portfolio management. It supports holistic risk management and reporting of sustainable finance projects in accordance with evolving industry standards. 
 
 ## The Challenge of Sustainability
 
@@ -23,7 +23,7 @@ NB: For easy installation and testing the current release uses an sqlite databas
 
 The functionality of Equinox focuses on integrating the following concepts:
 
-* Data Center Environmental impact reporting
+* Data Center Environmental impact reporting (NEW!)
 * Green Public Procurement (GPP) portfolio management
 * Energy Accounting and in Particular Scope 2 Accounting and Reporting
 * GHG Accounting Protocol for Projects
@@ -63,7 +63,7 @@ The admin styled via jazzmin is our main workbench
 
 * The Python / Django ecosystems with the many powerful software components (full list coming) 
   * django-jazzmin, a drop-in theme for django admin, that utilises AdminLTE 3.2 & Bootstrap 5
-* The GHG Protocol
+* The GHG Protocol Methodology Documents
 * The Partnership for Carbon Accounting Financials  
 * The European Banking Authority
 * The EU Open Data Portal and the EU Publications Office 

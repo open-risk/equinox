@@ -25,12 +25,12 @@ import django
 
 django.setup()
 
-__version__ = '0.8.0'
+__version__ = '0.9.0'
 
 # -- Project information -----------------------------------------------------
 
 project = 'equinox'
-copyright = '2021 - 2024, Open Risk'
+copyright = '2021 - 2026, Open Risk'
 author = 'Open Risk'
 
 # The short X.Y version

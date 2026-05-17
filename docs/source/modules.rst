@@ -15,6 +15,7 @@ Portfolio Data Models
    Asset
    EmissionsSource
    Certificate
+   DataCenter
    Project
    ProjectCompany
    ProjectActivity

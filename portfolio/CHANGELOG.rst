@@ -2,7 +2,7 @@ ChangeLog of Portfolio App
 ===========================
 
 Portfolio App v0.6.0 (17-05-2026)
---------------------------------
+----------------------------------
 * DataCenter, DataCenterCampus assets
 * Export to CSV
 

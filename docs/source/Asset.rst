@@ -23,6 +23,3 @@ The Asset model includes an GHG emissions field to store the aggregate GHG emiss
 
 
    .. automethod:: portfolio.Asset.PowerPlant
-
-
-   .. automethod:: portfolio.Asset.DataCenter

@@ -13,7 +13,7 @@ NB: Individual apps have their own more detailed changelogs within each app's su
 * :doc:`risk-changelog`
 * :doc:`provenance-changelog`
 
-v0.9.0 (XX-XX-2026)
+v0.9.0 (17-05-2026)
 --------------------
 * Enhancements: GHG Protocol reporting for data centers
 * Dependency updates: jazzmin 3.0.4

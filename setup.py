@@ -23,7 +23,7 @@ from codecs import open
 
 from setuptools import setup
 
-__version__ = '0.7.1'
+__version__ = '0.9.0'
 
 ver = __version__
 
@@ -44,7 +44,7 @@ setup(name='equinox-server',
       ],
       zip_safe=False,
       provides=['equinox'],
-      keywords=['sustainable finance', 'ghg emissions', 'pcaf', 'eeio', 'portfolio', 'loan', 'database'],
+      keywords=['sustainable finance', 'ghg emissions', 'water usage', 'pcaf', 'eeio', 'portfolio', 'loan', 'data center', 'database'],
       classifiers=[
           'Environment :: Web Environment',
           'Intended Audience :: Developers',

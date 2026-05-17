@@ -45,7 +45,7 @@ class RiskModelTests(TestCase):
         instance = Scorecard.objects.get()
         self.assertEqual("test", str(instance))
 
-    def test_limitflow_str(self):
+    def test_limitflow_str(self, user):
         User.objects.create()
         user = User.objects.get()
         Limitflow.objects.create(name='test', user_id=user)

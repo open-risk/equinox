@@ -33,7 +33,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 
 import policy.settings as settings
-from policy.settings import field_codes, field_description
+from policy.covid_settings import field_codes, field_description
 
 """
 For each dataflow (country based)

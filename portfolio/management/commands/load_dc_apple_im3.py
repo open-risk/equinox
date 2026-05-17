@@ -18,14 +18,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import numpy as np
 import pandas as pd
+from django.contrib.gis.geos import Point
 from django.core.management.base import BaseCommand
 
-from django.contrib.gis.geos import Point
-from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from portfolio.DataCenter import DataCenter
 from portfolio.Operator import Operator
+from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from provenance.models import Agent
 
 

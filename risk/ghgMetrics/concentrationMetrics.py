@@ -69,7 +69,6 @@ class Index(object):
         ts = self.total_size(data)
         if ts <= 0:
             raise TypeError('Input data vector must have positive values')
-            exit()
         else:
             return np.true_divide(data, ts)
 
@@ -108,6 +107,8 @@ class Index(object):
 
         :param data: Positive data
         :type data: numpy array
+        :param normalized: flag
+        :type normalized: Boolean
         :return: HHI (Float)
 
         `Open Risk Manual Entry for Hirschman-Herfindahl Index <https://www.openriskmanual.org/wiki/Herfindahl-Hirschman_Index>`_

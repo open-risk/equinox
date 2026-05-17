@@ -21,7 +21,7 @@
 from django.core.management.base import BaseCommand
 from django.db.models import Sum
 
-from portfolio.DataCenter import DataCenter, DataCenterCampus
+from portfolio.DataCenter import DataCenterCampus
 from portfolio.Operator import Operator
 from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from provenance.models import Agent

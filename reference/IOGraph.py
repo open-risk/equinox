@@ -18,10 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models, transaction, connection
-from django.db.models import Index, Sum
 import uuid
 
+from django.db import models
+from django.db.models import Index
 from django.urls import reverse
 
 

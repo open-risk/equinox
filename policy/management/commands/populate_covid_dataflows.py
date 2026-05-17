@@ -119,7 +119,7 @@ class Command(BaseCommand):
             # observation_list = [red, orange, yellow, gray]
 
             # Name is the full name country
-            # Identifier is the 2 letter country code
+            # Identifier is the 2-letter country code
 
             # TODO geoslices is set to zero (populate_db_geoslices)
             dataflow = DataFlow(

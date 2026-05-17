@@ -281,7 +281,7 @@
 
                         <nav class="mt-2">
                             <ul class="nav sidebar-menu flex-column {{ jazzmin_ui.sidebar_list_classes }}"
-                                data-lte-toggle="treeview" role="navigation" aria-label="Main navigation"
+                                data-lte-toggle="treeview" role="listbox" aria-label="Main navigation"
                                 data-accordion="false" id="jazzy-navigation">
 
                                 <li class="nav-item">
@@ -303,7 +303,7 @@
                                                     </a>
                                                 {% else %}
                                                     <span class="nav-link disabled">
-                                                <i class="nav-icon {{ model.icon }}"></i> <p>{{ model.name }}</p>
+                                                <i class="nav-icon {{ model.icon }}"></i> <span>{{ model.name }}</span>
                                             </span>
                                                 {% endif %}
                                             </li>

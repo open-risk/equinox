@@ -9,7 +9,7 @@ At present Equinox is in beta (0.9).
 We will use this section to tell people about which versions of the Equinox project will be supported with security updates.
 
 | Version | Supported          |
-|---------| ------------------ |
+|---------|--------------------|
 | 1.0.x   | :white_check_mark: |
 | 1.2.x   | :x:                |
 | 1.3.x   | :white_check_mark: |

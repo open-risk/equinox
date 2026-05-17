@@ -26,7 +26,7 @@ Jazzmin Django settings for the Equinox platform.
 JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on the sidebar
     "show_ui_builder": False,
-    #"show_ui_builder": True,
+    # "show_ui_builder": True,
 
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Equinox",

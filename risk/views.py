@@ -72,7 +72,7 @@ def scenario_editor(request, pk):
         # scenario_dict['factor_values'] = json.loads(scenario.factor_values)
         # scenario_dict['scenario_probabilities'] = json.loads(scenario.scenario_probabilities)
 
-        t = loader.get_template('scenario_form_editor.html')
+        t = loader.get_template('risk/scenario_form_editor.html')
         context = RequestContext(request, {})
         context.update({'scenario': scenario, 'formset': formset})
         return HttpResponse(t.template.render(context))

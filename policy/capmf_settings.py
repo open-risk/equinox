@@ -21,7 +21,7 @@
 
 """
 
- head -1 policy/fixtures/policy_data/OECD.ENV.EPI\,DSD_CAPMF@DF_CAPMF\,1.0+all.csv
+ head -1 policy/fixtures/policy_data/OECD.ENV.EPI,DSD_CAPMF@DF_CAPMF,1.0+all.csv
 
 """
 

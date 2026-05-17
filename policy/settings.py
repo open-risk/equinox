@@ -127,7 +127,7 @@ country_dict = {'AE': 'United Arab Emirates', 'AF': 'Afghanistan', 'AG': 'Antigu
                 'EE': 'Estonia', 'EG': 'Egypt', 'ES': 'Spain', 'FI': 'Finland', 'FJ': 'Fiji', 'FR': 'France',
                 'GA': 'Gabon', 'GB': 'United Kingdom', 'GE': 'Georgia', 'GH': 'Ghana', 'GR': 'Greece',
                 'GT': 'Guatemala', 'GW': 'Guinea-Bissau', 'HK': 'Hong Kong', 'HN': 'Honduras', 'HR': 'Croatia',
-                'HT': 'Haiti', 'HU': 'Hungary', 'ID': 'Indonesia', 'IE': 'Ireland', 'IL': 'Israel', 'IN': 'India', 'IS' : 'Iceland',
+                'HT': 'Haiti', 'HU': 'Hungary', 'ID': 'Indonesia', 'IE': 'Ireland', 'IL': 'Israel', 'IN': 'India', 'IS': 'Iceland',
                 'IQ': 'Iraq', 'IT': 'Italy', 'JM': 'Jamaica', 'JO': 'Jordan', 'JP': 'Japan', 'KE': 'Kenya',
                 'KG': 'Kyrgyzstan', 'KH': 'Cambodia', 'KR': 'South Korea', 'KW': 'Kuwait', 'KZ': 'Kazakhstan',
                 'LA': 'Laos', 'LB': 'Lebanon', 'LI': 'Liechtenstein', 'LK': 'Sri Lanka', 'LT': 'Lithuania',

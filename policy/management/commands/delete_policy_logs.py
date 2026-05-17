@@ -36,6 +36,5 @@ class Command(BaseCommand):
 
     os.remove(settings.logfile_path)
 
-
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Deleted all policy logs. Good Luck!'))

@@ -18,15 +18,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import numpy as np
 import pandas as pd
+from django.contrib.gis.geos import Point
 from django.core.management.base import BaseCommand
 
-from django.contrib.gis.geos import Point
-from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from portfolio.DataCenter import DataCenter
 from portfolio.Operator import Operator
+from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from provenance.models import Agent
+
 
 class Command(BaseCommand):
     help = 'Imports data center / operator data from the IM3 Dataset'
@@ -41,8 +41,6 @@ class Command(BaseCommand):
     # Import data from CSV file
     # data = pd.read_csv("im3.csv", header='infer', delimiter=',')
     data = pd.read_csv("im3.clean.csv", header='infer', delimiter=',')
-
-
 
     """
      Create Portfolio, Portfolio Snapshot and Provenance Data
@@ -69,7 +67,7 @@ class Command(BaseCommand):
     operators = list(set(data[data['operator'].notna()]['operator'].values.tolist()))
     ops = []
     for operator in operators:
-        op =  Operator(operator_identifier=operator)
+        op = Operator(operator_identifier=operator)
         ops.append(op)
     ops.append(Operator(operator_identifier='Unknown'))
     Operator.objects.bulk_create(ops)
@@ -99,7 +97,7 @@ class Command(BaseCommand):
             state=entry['state'],
             state_id=entry['state_id'],
             state_abb=entry['state_abb'],
-            datacenter_location=Point(entry['lon'],entry['lat']),
+            datacenter_location=Point(entry['lon'], entry['lat']),
             operator=op,
             prov_operator=agent_id)
 

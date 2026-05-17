@@ -9,12 +9,12 @@
 {% block extrahead %}
     {{ block.super }}
  <script type="text/javascript" charset="utf-8"
-            src="{% static 'start/js/datatables/media/js/datatable.js' %}"></script>
+            src="{% static 'start/js/datatables.js' %}"></script>
 {% endblock %}
 
 {% block extrastyle %}
     {{ block.super }}
-<link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
 {% endblock %}
 
@@ -24,7 +24,6 @@
     HOVER over a DataSet entry to read a more detailed description<br>
     SEARCH for keywords in the DataSet descriptions<br>
     CLICK on Series name to explore further<br>
-    </p>
     </div>
 {% endblock %}
 
@@ -42,7 +41,7 @@
     <div class="row">
         <div class="col-sm-12">
 
-            <table id="series_list" class="display responsive no-wrap" width="100%">
+            <table id="series_list" class="display responsive no-wrap">
                 <thead>
                 <tr>
                     <th>Series</th>
@@ -54,10 +53,10 @@
                 <tbody>
                 {% for DataSeries in object_list %}
                     <tr class="feed" id={{ DataSeries.id }}>
-                        <td width="250px">{{ DataSeries.title }}</td>
+                        <td>{{ DataSeries.title }}</td>
                         <td>{{ DataSeries.title_long }}</td>
                         <td>{{ DataSeries.last_observation_date }}</td>
-                        <td width="160px"><a href="{% url 'policy:DataSeries2' DataSeries.identifier %}" target="_blank"> <i
+                        <td><a href="{% url 'policy:DataSeries2' DataSeries.identifier %}" target="_blank"> <i
                                 class="fa fa-table fa-2x"></i> </a>
                             <a href="{% url 'policy:Plot' DataSeries.identifier %}" target="_blank"> <i
                                     class="fa fa-area-chart fa-2x"></i> </a>

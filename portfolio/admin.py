@@ -132,11 +132,12 @@ admin.site.register(ProjectCategory, ProjectCategoryAdmin)
 
 @admin.register(DataCenter)
 class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
-# class DataCenterAdmin(admin.GISModelAdmin):
+    # class DataCenterAdmin(admin.GISModelAdmin):
     """Data Center Admin
 
     """
-    list_display = ('operator', 'datacenter_name', 'aggregation_type', 'county', 'state_abb', 'surface_area', 'last_change_date')
+    list_display = (
+        'operator', 'datacenter_name', 'aggregation_type', 'county', 'state_abb', 'surface_area', 'last_change_date')
     list_filter = ('operator', 'aggregation_type', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
@@ -148,7 +149,9 @@ class DataCenterCampusAdmin(admin.GISModelAdmin):
     """Data Center Campus Admin
 
     """
-    list_display = ('campus_name', 'electricity_consumption', 'surface_area', 'grid_carbon_intensity', 'grid_water_intensity', 'scope2_ghg_emissions', 'embedded_water_usage')
+    list_display = (
+        'campus_name', 'electricity_consumption', 'surface_area', 'grid_carbon_intensity', 'grid_water_intensity',
+        'scope2_ghg_emissions', 'embedded_water_usage')
     list_filter = ('operator', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True
@@ -198,7 +201,7 @@ class ProjectAssetAdmin(admin.ModelAdmin):
     """Project Asset admin"""
     view_on_site = False
     save_as = True
-    search_fields = ['name']
+    search_fields = ['description']
     list_display = ('asset_identifier', 'asset_class', 'asset_ghg_emissions', 'project')
     list_filter = ('asset_class', 'project')
 

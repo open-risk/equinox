@@ -274,7 +274,7 @@ def credit_portfolio_stats_view(request, pk):
         pstats.set_index(attr)
         stats_view[attr] = pstats.to_html(index=False)
 
-    t = loader.get_template('reporting/credit_portfolio_stats_view.html')
+    t = loader.get_template('reporting/portfolio_stats_view.html')
     context = RequestContext(request, {})
     context.update({'portfolio': p, 'stats_view': stats_view, 'portfolio_data': portfolio_queryset})
     return HttpResponse(t.template.render(context))
@@ -887,7 +887,7 @@ def visualization_vega(request, pk):
     visualization = Visualization.objects.get(pk=pk)
     context = RequestContext(request, {})
 
-    t = loader.get_template('vega_viz.html')
+    t = loader.get_template('reporting/vega_viz.html')
     spec = json.dumps(visualization.vega_specification)
     data = json.dumps(visualization.visualization_data)
     context.update({'object': visualization})

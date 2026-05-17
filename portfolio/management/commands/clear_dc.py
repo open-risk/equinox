@@ -18,15 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import numpy as np
-import pandas as pd
 from django.core.management.base import BaseCommand
 
-from django.contrib.gis.geos import Point
 from portfolio.DataCenter import DataCenter, DataCenterCampus
 from portfolio.Operator import Operator
-from portfolio.ProjectCompany import ProjectCompany
 from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
+from portfolio.ProjectCompany import ProjectCompany
 from provenance.models import Agent
 
 
@@ -41,7 +38,6 @@ class Command(BaseCommand):
     ProjectCompany.objects.all().delete()
     DataCenter.objects.all().delete()
     DataCenterCampus.objects.all().delete()
-
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Successfully deleted data center data from db'))

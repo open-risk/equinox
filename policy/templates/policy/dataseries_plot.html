@@ -56,51 +56,51 @@
         </div>
     </div>
     <div class="card card-primary card-outline">
-    <div class="card-body">
-        {% if object.field_type == 'numerical' %}
-            <h3>Summary Statistics:</h3>
-            <table id="metrics" style="width:180px">
-                <tr class="even">
-                    <td>Maximum Value</td>
-                    <td>{{ maxval }}</td>
-                </tr>
-                <tr class="odd">
-                    <td>Minimum Value</td>
-                    <td>{{ minval }}</td>
-                </tr>
-                <tr class="even">
-                    <td>Average Value</td>
-                    <td>{{ average }}</td>
-                </tr>
-                <tr class="odd">
-                    <td>Latest Value</td>
-                    <td>{{ latest }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-                <tr class="odd">
-                    <td>Date</td>
-                    <td id="date_element">2020-01-05</td>
-                </tr>
-                <tr class="even">
-                    <td>Value</td>
-                    <td id="value_element">0</td>
-                </tr>
-            </table>
-        {% else %}
-            <h3>Policy Value Dictionary:</h3>
-            <table id="metrics">
-                {% for key, value in code_list.items %}
-                    <tr>
-                        <td>{{ key }}</td>
-                        <td>{{ value }}</td>
+        <div class="card-body">
+            {% if object.field_type == 'numerical' %}
+                <h3>Summary Statistics:</h3>
+                <table id="metrics" style="width:180px">
+                    <tr class="even">
+                        <td>Maximum Value</td>
+                        <td>{{ maxval }}</td>
                     </tr>
-                {% endfor %}
-            </table>
-        {% endif %}
+                    <tr class="odd">
+                        <td>Minimum Value</td>
+                        <td>{{ minval }}</td>
+                    </tr>
+                    <tr class="even">
+                        <td>Average Value</td>
+                        <td>{{ average }}</td>
+                    </tr>
+                    <tr class="odd">
+                        <td>Latest Value</td>
+                        <td>{{ latest }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr class="odd">
+                        <td>Date</td>
+                        <td id="date_element">2020-01-05</td>
+                    </tr>
+                    <tr class="even">
+                        <td>Value</td>
+                        <td id="value_element">0</td>
+                    </tr>
+                </table>
+            {% else %}
+                <h3>Policy Value Dictionary:</h3>
+                <table id="metrics">
+                    {% for key, value in code_list.items %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
     </div>
-
     <script>
         let values = {{ object.values | safe }};
         let units = "{{ object.unit }}";

@@ -17,12 +17,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-from contextlib import nullcontext
 
+import numpy as np
 from django.core.management import BaseCommand
 from openpyxl import load_workbook
-import pandas as pd
-import numpy as np
 
 from reference.settings import ADB_PATH
 

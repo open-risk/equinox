@@ -52,19 +52,23 @@ class ProjectAsset(models.Model):
     # IDENTIFICATION & CATEGORIZATION
 
     asset_identifier = models.CharField(max_length=80, blank=True, null=True,
-                                        help_text='Unique identifier of the asset for internal purposes', verbose_name="Identifier")
+                                        help_text='Unique identifier of the asset for internal purposes',
+                                        verbose_name="Identifier")
 
     description = models.TextField(blank=True, null=True,
                                    help_text='Textual Description of the Asset', verbose_name="Description")
 
     asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
-                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Asset Class")
+                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                      verbose_name="Asset Class")
 
     business_description = models.TextField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Business Model")
+                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                            verbose_name="Business Model")
 
     registration_number = models.TextField(blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Registration No")
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                           verbose_name="Registration No")
 
     # LINKS / RELATIONS
 
@@ -72,7 +76,8 @@ class ProjectAsset(models.Model):
                                 help_text="The project to which this asset belongs", verbose_name="Project")
 
     legal_owner = models.TextField(blank=True, null=True,
-                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Owner")
+                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                   verbose_name="Owner")
 
     #
     # GHG Data
@@ -80,7 +85,8 @@ class ProjectAsset(models.Model):
     #
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents', verbose_name="GHG Emissions")
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents',
+                                            verbose_name="GHG Emissions")
 
     #
     # Geographic Information (Geometries stored separately)
@@ -92,123 +98,160 @@ class ProjectAsset(models.Model):
     #                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     city_of_registered_location = models.TextField(blank=True, null=True,
-                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="City")
+                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                   verbose_name="City")
 
     address_of_registered_location = models.TextField(blank=True, null=True,
-                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Address")
+                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                      verbose_name="Address")
 
     country_of_registered_location = models.TextField(blank=True, null=True,
-                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Country")
+                                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                      verbose_name="Country")
 
     current_country_of_registration = models.TextField(blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Current Country")
-
+                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                       verbose_name="Current Country")
 
     geographic_region_classification = models.TextField(blank=True, null=True,
-                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Geography")
+                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                        verbose_name="Geography")
 
     geographic_region_of_registered_location = models.TextField(blank=True, null=True,
-                                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Region")
+                                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                                verbose_name="Region")
 
     original_country_of_registration = models.TextField(blank=True, null=True,
-                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Original Country")
+                                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                        verbose_name="Original Country")
 
     postcode_of_registered_location = models.TextField(blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="PostCode")
+                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                       verbose_name="PostCode")
 
     #
     # Financial Data
     #
 
     activation_of_guarantee = models.BooleanField(blank=True, null=True,
-                                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Guarantee")
+                                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                  verbose_name="Guarantee")
 
     asset_purchase_obligation = models.BooleanField(blank=True, null=True,
-                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Purchase Obligation")
+                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                    verbose_name="Purchase Obligation")
 
     collateral_insurance = models.BooleanField(blank=True, null=True,
-                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Insurance")
+                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                               verbose_name="Insurance")
 
     collateral_insurance_coverage_amount = models.FloatField(blank=True, null=True,
-                                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Coverage Amount")
+                                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                             verbose_name="Coverage Amount")
 
     collateral_insurance_provider = models.TextField(blank=True, null=True,
-                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Insurance Provider")
+                                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                     verbose_name="Insurance Provider")
 
     collateral_type = models.IntegerField(blank=True, null=True, choices=COLLATERAL_TYPE_CHOICES,
-                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Collateral Type")
+                                          help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                          verbose_name="Collateral Type")
 
     configuration = models.TextField(blank=True, null=True,
-                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Configuration")
+                                     help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                     verbose_name="Configuration")
 
     currency_of_collateral = models.TextField(blank=True, null=True,
-                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Collateral Currency")
+                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                              verbose_name="Collateral Currency")
 
     current_opex_and_overheads = models.FloatField(blank=True, null=True,
-                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="OpEx")
+                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                   verbose_name="OpEx")
 
     date_of_initial_valuation = models.DateField(blank=True, null=True,
-                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Initial Valuation")
+                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                 verbose_name="Initial Valuation")
 
     date_of_latest_valuation = models.DateField(blank=True, null=True,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Latest Valuation")
+                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                verbose_name="Latest Valuation")
 
     date_of_the_latest_residual_valuation = models.DateField(blank=True, null=True,
-                                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Date Latest Valuation")
+                                                             help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                             verbose_name="Date Latest Valuation")
 
     engine_size = models.FloatField(blank=True, null=True,
-                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Engine Size")
+                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                    verbose_name="Engine Size")
 
     estimated_useful_life = models.FloatField(blank=True, null=True,
-                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Useful Life")
+                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                              verbose_name="Useful Life")
 
     industry_segment = models.TextField(blank=True, null=True,
-                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Industry")
+                                        help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                        verbose_name="Industry")
 
     initial_residual_valuation_date = models.DateField(blank=True, null=True,
-                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Initial Valuation Data")
+                                                       help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                       verbose_name="Initial Valuation Data")
 
     initial_residual_value = models.FloatField(blank=True, null=True,
-                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Initial Residual Value")
+                                               help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                               verbose_name="Initial Residual Value")
 
     initial_valuation_amount = models.FloatField(blank=True, null=True,
-                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Initial Valuation")
+                                                 help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                 verbose_name="Initial Valuation")
 
     latest_residual_value = models.FloatField(blank=True, null=True,
-                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Latest Residual Value")
+                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                              verbose_name="Latest Residual Value")
 
     latest_valuation_amount = models.FloatField(blank=True, null=True,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Latest Valuation Amount")
+                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                verbose_name="Latest Valuation Amount")
 
     manufacturer_of_collateral = models.TextField(blank=True, null=True,
-                                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Manufacturer")
+                                                  help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                  verbose_name="Manufacturer")
 
     name_or_model_of_collateral = models.TextField(blank=True, null=True,
-                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Model of Collateral")
+                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                   verbose_name="Model of Collateral")
 
     new_or_used = models.IntegerField(blank=True, null=True, choices=NEW_OR_USED_CHOICES,
-                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="New or Used Status")
+                                      help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                      verbose_name="New or Used Status")
 
     option_to_buy_price = models.FloatField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Option to Buy")
+                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                            verbose_name="Option to Buy")
 
     project_characteristics = models.FloatField(blank=True, null=True,
-                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Project Characteristics")
+                                                help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                verbose_name="Project Characteristics")
 
     type_of_initial_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_INITIAL_VALUATION_CHOICES,
-                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Initial Valuation Type")
+                                                    help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                    verbose_name="Initial Valuation Type")
 
     type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
-                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Latest Valuation Type")
+                                                   help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                                   verbose_name="Latest Valuation Type")
 
     type_of_legal_owner = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LEGAL_OWNER_CHOICES,
-                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Owner Type")
+                                              help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                              verbose_name="Owner Type")
 
     year_of_manufacture = models.DateField(blank=True, null=True,
-                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Year of Manufacture")
+                                           help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                           verbose_name="Year of Manufacture")
 
     year_of_registration = models.DateField(blank=True, null=True,
-                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Year of Registration")
+                                            help_text='Standard Description. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                            verbose_name="Year of Registration")
 
     #
     # BOOKKEEPING FIELDS
@@ -239,192 +282,251 @@ class Building(models.Model):
     #
 
     protection_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Institutions internal identifier for the Property Collateral.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Protection_identifier" >Documentation</a>', verbose_name="Identifier")
+                                             help_text='Institutions internal identifier for the Property Collateral.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Protection_identifier" >Documentation</a>',
+                                             verbose_name="Identifier")
 
     #
     # FOREIGN KEYS
     #
 
-    loan_identifier = models.ForeignKey('portfolio.Mortgage', on_delete=models.CASCADE, null=True, blank=True, verbose_name="Loan")
+    loan_identifier = models.ForeignKey('portfolio.Mortgage', on_delete=models.CASCADE, null=True, blank=True,
+                                        verbose_name="Loan")
 
     #
     # DATA PROPERTIES
     #
 
     address_of_property = models.TextField(blank=True, null=True,
-                                           help_text='Street address where the Property is located at, including flat / house number or name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Address_of_Property">Documentation</a>', verbose_name="Address")
+                                           help_text='Street address where the Property is located at, including flat / house number or name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Address_of_Property">Documentation</a>',
+                                           verbose_name="Address")
 
     amount_of_vat_payable = models.FloatField(blank=True, null=True,
-                                              help_text='Amount of VAT payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.05.Amount_of_VAT_Payable">Documentation</a>', verbose_name="VAT Payable")
+                                              help_text='Amount of VAT payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.05.Amount_of_VAT_Payable">Documentation</a>',
+                                              verbose_name="VAT Payable")
 
     area_type_of_property = models.IntegerField(blank=True, null=True, choices=AREA_TYPE_OF_PROPERTY_CHOICES,
-                                                help_text='Area type where the Property is located at, i.e. City centre, Suburban and Rural. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Area_Type_of_Property">Documentation</a>', verbose_name="Area Type")
+                                                help_text='Area type where the Property is located at, i.e. City centre, Suburban and Rural. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Area_Type_of_Property">Documentation</a>',
+                                                verbose_name="Area Type")
 
     building_area_m2 = models.FloatField(blank=True, null=True,
-                                         help_text='Building area (square metres) of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2">Documentation</a>', verbose_name="Building Area")
+                                         help_text='Building area (square metres) of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2">Documentation</a>',
+                                         verbose_name="Building Area")
 
     building_area_m2_lettable = models.FloatField(blank=True, null=True,
-                                                  help_text='Building area (square metres) of the Unit that is lettable. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2_Lettable">Documentation</a>', verbose_name="Lettable Building Area")
+                                                  help_text='Building area (square metres) of the Unit that is lettable. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2_Lettable">Documentation</a>',
+                                                  verbose_name="Lettable Building Area")
 
     building_area_m2_occupied = models.FloatField(blank=True, null=True,
-                                                  help_text='Building area (square metres) of the Unit that has been occupied by landlord / tenant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2_Occupied">Documentation</a>', verbose_name="Occupied Building Area")
+                                                  help_text='Building area (square metres) of the Unit that has been occupied by landlord / tenant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2_Occupied">Documentation</a>',
+                                                  verbose_name="Occupied Building Area")
 
     city_of_property = models.TextField(blank=True, null=True,
-                                        help_text='City where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.City_of_Property">Documentation</a>', verbose_name="City")
+                                        help_text='City where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.City_of_Property">Documentation</a>',
+                                        verbose_name="City")
 
     completion_of_property = models.BooleanField(blank=True, null=True,
-                                                 help_text='Indicator as to whether the construction of the Unit is complete. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Completion_of_Property">Documentation</a>', verbose_name="Completion Status")
+                                                 help_text='Indicator as to whether the construction of the Unit is complete. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Completion_of_Property">Documentation</a>',
+                                                 verbose_name="Completion Status")
 
     condition_of_property = models.IntegerField(blank=True, null=True, choices=CONDITION_OF_PROPERTY_CHOICES,
-                                                help_text='Quality classification of the property, e.g. Excellent, Good, Fair, Poor. and include explanation of the category, and please provide the internal methodology used to decide the categories as a part of the transaction documents. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Condition_of_Property">Documentation</a>', verbose_name="Condition")
+                                                help_text='Quality classification of the property, e.g. Excellent, Good, Fair, Poor. and include explanation of the category, and please provide the internal methodology used to decide the categories as a part of the transaction documents. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Condition_of_Property">Documentation</a>',
+                                                verbose_name="Condition")
 
     currency_of_property = models.TextField(blank=True, null=True,
-                                            help_text='Currency that the valuation and cash flows related to the Unit are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Currency_of_Property">Documentation</a>', verbose_name="Currency of Cash Flows")
+                                            help_text='Currency that the valuation and cash flows related to the Unit are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Currency_of_Property">Documentation</a>',
+                                            verbose_name="Currency of Cash Flows")
 
     current_annual_passing_rent = models.FloatField(blank=True, null=True,
-                                                    help_text='Current annual passing rent charged to the Tenants of the Unit as at latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Annual_Passing_Rent">Documentation</a>', verbose_name="Annual Rent")
+                                                    help_text='Current annual passing rent charged to the Tenants of the Unit as at latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Annual_Passing_Rent">Documentation</a>',
+                                                    verbose_name="Annual Rent")
 
     current_net_operating_income = models.FloatField(blank=True, null=True,
-                                                     help_text='Current annual net operating income generated by the Unit as at the latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Net_Operating_Income">Documentation</a>', verbose_name="Operating Income")
+                                                     help_text='Current annual net operating income generated by the Unit as at the latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Net_Operating_Income">Documentation</a>',
+                                                     verbose_name="Operating Income")
 
     current_opex_and_overheads = models.FloatField(blank=True, null=True,
-                                                   help_text='Current annual operational expenses and overheads of the Unit as at latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Opex_And_Overheads">Documentation</a>', verbose_name="OpEx")
+                                                   help_text='Current annual operational expenses and overheads of the Unit as at latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Opex_And_Overheads">Documentation</a>',
+                                                   verbose_name="OpEx")
 
     date_of_initial_valuation = models.DateField(blank=True, null=True,
-                                                 help_text='Date that the initial valuation was assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Date_of_Initial_Valuation">Documentation</a>', verbose_name="Initial Valuation Date")
+                                                 help_text='Date that the initial valuation was assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Date_of_Initial_Valuation">Documentation</a>',
+                                                 verbose_name="Initial Valuation Date")
 
     date_of_latest_valuation = models.DateField(blank=True, null=True,
-                                                help_text='Date that the latest valuation took place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Date_of_Latest_Valuation">Documentation</a>', verbose_name="Latest Valuation Date")
+                                                help_text='Date that the latest valuation took place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Date_of_Latest_Valuation">Documentation</a>',
+                                                verbose_name="Latest Valuation Date")
 
     enforcement_description = models.TextField(blank=True, null=True,
-                                               help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Description">Documentation</a>', verbose_name="Enforcement Type")
+                                               help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Description">Documentation</a>',
+                                               verbose_name="Enforcement Type")
 
     enforcement_status = models.BooleanField(blank=True, null=True,
-                                             help_text='Indicator as to whether the property collateral has entered into the enforcement process as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status">Documentation</a>', verbose_name="Enforcement Status")
+                                             help_text='Indicator as to whether the property collateral has entered into the enforcement process as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status">Documentation</a>',
+                                             verbose_name="Enforcement Status")
 
     enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
-                                                           help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status_Third_Parties">Documentation</a>', verbose_name="Enforcement by 3rd Parties")
+                                                           help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status_Third_Parties">Documentation</a>',
+                                                           verbose_name="Enforcement by 3rd Parties")
 
     estimated_annual_void_cost = models.FloatField(blank=True, null=True,
-                                                   help_text='Additional costs to "Current Opex And Overheads" when the Units are vacant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Annual_Void_Cost">Documentation</a>', verbose_name="Void Costs")
+                                                   help_text='Additional costs to "Current Opex And Overheads" when the Units are vacant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Annual_Void_Cost">Documentation</a>',
+                                                   verbose_name="Void Costs")
 
     estimated_rental_void = models.FloatField(blank=True, null=True,
-                                              help_text='Estimated number of months the property is expected to be void. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Rental_Void">Documentation</a>', verbose_name="Void Period")
+                                              help_text='Estimated number of months the property is expected to be void. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Rental_Void">Documentation</a>',
+                                              verbose_name="Void Period")
 
     geographic_region_classification = models.IntegerField(blank=True, null=True,
                                                            choices=GEOGRAPHIC_REGION_CLASSIFICATION_CHOICES,
-                                                           help_text='NUTS3 classification used for the field "Geographic Region of Property", i.e. NUTS3 2013 (1), NUTS3 2010 (2), NUTS3 2006 (3), NUTS3 2003 (4), Other (5). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Geographic_Region_Classification">Documentation</a>', verbose_name="NUT3 Region")
+                                                           help_text='NUTS3 classification used for the field "Geographic Region of Property", i.e. NUTS3 2013 (1), NUTS3 2010 (2), NUTS3 2006 (3), NUTS3 2003 (4), Other (5). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Geographic_Region_Classification">Documentation</a>',
+                                                           verbose_name="NUT3 Region")
 
     geographic_region_of_property = models.TextField(blank=True, null=True,
-                                                     help_text='Province / Region where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.01.Property Collateral.Geographic_Region_of_Property">Documentation</a>', verbose_name="Region")
+                                                     help_text='Province / Region where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.01.Property Collateral.Geographic_Region_of_Property">Documentation</a>',
+                                                     verbose_name="Region")
 
     initial_estimated_rental_value = models.FloatField(blank=True, null=True,
-                                                       help_text='Estimated annual gross rental value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Initial_Estimated_Rental_Value">Documentation</a>', verbose_name="Rental Value")
+                                                       help_text='Estimated annual gross rental value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Initial_Estimated_Rental_Value">Documentation</a>',
+                                                       verbose_name="Rental Value")
 
     initial_valuation_amount = models.FloatField(blank=True, null=True,
-                                                 help_text='Value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.03.Initial_Valuation_Amount">Documentation</a>', verbose_name="Valuation Amount")
+                                                 help_text='Value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.03.Initial_Valuation_Amount">Documentation</a>',
+                                                 verbose_name="Valuation Amount")
 
     internal_or_external_initial_valuation = models.IntegerField(blank=True, null=True,
                                                                  choices=INTERNAL_or_EXTERNAL_INITIAL_VALUATION_CHOICES,
-                                                                 help_text='Indicator as to whether the initial valuation was outsource, or done internally. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Internal_or_External_Initial_Valuation">Documentation</a>', verbose_name="Initial Valuation Type")
+                                                                 help_text='Indicator as to whether the initial valuation was outsource, or done internally. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Internal_or_External_Initial_Valuation">Documentation</a>',
+                                                                 verbose_name="Initial Valuation Type")
 
     internal_or_external_latest_valuation = models.IntegerField(blank=True, null=True,
                                                                 choices=INTERNAL_or_EXTERNAL_LATEST_VALUATION_CHOICES,
-                                                                help_text='Indicator as to whether the latest valuation was performed internally or by an external appraiser. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Internal_or_External_Latest_Valuation">Documentation</a>', verbose_name="Latest Valuation Type")
+                                                                help_text='Indicator as to whether the latest valuation was performed internally or by an external appraiser. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Internal_or_External_Latest_Valuation">Documentation</a>',
+                                                                verbose_name="Latest Valuation Type")
 
     land_area_m2 = models.FloatField(blank=True, null=True,
-                                     help_text='Land area (square metres) of the Property. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Land_Area_M2">Documentation</a>', verbose_name="Land Area")
+                                     help_text='Land area (square metres) of the Property. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Land_Area_M2">Documentation</a>',
+                                     verbose_name="Land Area")
 
     latest_estimated_rental_value = models.FloatField(blank=True, null=True,
-                                                      help_text='Estimated annual gross rental value of the Unit when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Latest_Estimated_Rental_Value">Documentation</a>', verbose_name="Latest Rental Value")
+                                                      help_text='Estimated annual gross rental value of the Unit when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Latest_Estimated_Rental_Value">Documentation</a>',
+                                                      verbose_name="Latest Rental Value")
 
     latest_valuation_amount = models.FloatField(blank=True, null=True,
-                                                help_text='Value of the Unit when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Latest_Valuation_Amount">Documentation</a>', verbose_name="Latest Valuation Amount")
+                                                help_text='Value of the Unit when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Latest_Valuation_Amount">Documentation</a>',
+                                                verbose_name="Latest Valuation Amount")
 
     legal_owner_of_the_property = models.TextField(blank=True, null=True,
-                                                   help_text='Legal owner of the Property Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Legal_Owner_of_the_Property">Documentation</a>', verbose_name="Owner")
+                                                   help_text='Legal owner of the Property Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Legal_Owner_of_the_Property">Documentation</a>',
+                                                   verbose_name="Owner")
 
     number_of_bedrooms = models.IntegerField(blank=True, null=True,
-                                             help_text='Number of bedrooms that the Unit has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Bedrooms">Documentation</a>', verbose_name="Bedroom Number")
+                                             help_text='Number of bedrooms that the Unit has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Bedrooms">Documentation</a>',
+                                             verbose_name="Bedroom Number")
 
     number_of_car_parking_spaces = models.IntegerField(blank=True, null=True,
-                                                       help_text='Number of car parking spaces relating to the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Car_Parking_Spaces">Documentation</a>', verbose_name="Car Parking Space Number")
+                                                       help_text='Number of car parking spaces relating to the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Car_Parking_Spaces">Documentation</a>',
+                                                       verbose_name="Car Parking Space Number")
 
     number_of_lettable_units = models.IntegerField(blank=True, null=True,
-                                                   help_text='Number of lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Lettable_Units">Documentation</a>', verbose_name="Lettable Unit Number")
+                                                   help_text='Number of lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Lettable_Units">Documentation</a>',
+                                                   verbose_name="Lettable Unit Number")
 
     number_of_rooms = models.IntegerField(blank=True, null=True,
-                                          help_text='Number of rooms that the Unit has excluding kitchen and bathroom(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.02.Number_of_Rooms">Documentation</a>', verbose_name="Number of Rooms")
+                                          help_text='Number of rooms that the Unit has excluding kitchen and bathroom(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.02.Number_of_Rooms">Documentation</a>',
+                                          verbose_name="Number of Rooms")
 
     number_of_units_occupied = models.IntegerField(blank=True, null=True,
-                                                   help_text='Number of occupied lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Occupied">Documentation</a>', verbose_name="Number of Occupied Units")
+                                                   help_text='Number of occupied lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Occupied">Documentation</a>',
+                                                   verbose_name="Number of Occupied Units")
 
     number_of_units_vacant = models.IntegerField(blank=True, null=True,
-                                                 help_text='Number of vacant lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Vacant">Documentation</a>', verbose_name="Number of Vacant Units")
+                                                 help_text='Number of vacant lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Vacant">Documentation</a>',
+                                                 verbose_name="Number of Vacant Units")
 
     party_liable_for_vat = models.IntegerField(blank=True, null=True, choices=PARTY_LIABLE_FOR_VAT_CHOICES,
-                                               help_text='Party who is liable to pay the VAT on the disposal of the Unit i.e. the Institution or the buyer(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Party_Liable_for_VAT">Documentation</a>', verbose_name="VAT Liable Party")
+                                               help_text='Party who is liable to pay the VAT on the disposal of the Unit i.e. the Institution or the buyer(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Party_Liable_for_VAT">Documentation</a>',
+                                               verbose_name="VAT Liable Party")
 
     percentage_complete = models.FloatField(blank=True, null=True,
-                                            help_text='The percentage of development completed since construction started (applicable to Units in development). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Percentage_complete">Documentation</a>', verbose_name="Percent Complete")
+                                            help_text='The percentage of development completed since construction started (applicable to Units in development). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Percentage_complete">Documentation</a>',
+                                            verbose_name="Percent Complete")
 
     planned_capex_next_12m = models.FloatField(blank=True, null=True,
-                                               help_text='Current planned CAPEX for the next 12 months. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Planned_Capex_next_12m">Documentation</a>', verbose_name="Planned CapEx")
+                                               help_text='Current planned CAPEX for the next 12 months. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Planned_Capex_next_12m">Documentation</a>',
+                                               verbose_name="Planned CapEx")
 
     property_country = models.CharField(max_length=40, blank=True, null=True,
-                                        help_text='Country of residence where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Country">Documentation</a>', verbose_name="Country of Residence")
+                                        help_text='Country of residence where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Country">Documentation</a>',
+                                        verbose_name="Country of Residence")
 
     property_postcode = models.TextField(blank=True, null=True,
-                                         help_text='Postcode where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Postcode">Documentation</a>', verbose_name="Post Code")
+                                         help_text='Postcode where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Postcode">Documentation</a>',
+                                         verbose_name="Post Code")
 
     provider_of_energy_performance_certificate = models.TextField(blank=True, null=True,
-                                                                  help_text='Name of the provider of the energy performance certificate. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Provider_of_Energy_Performance_Certificate">Documentation</a>', verbose_name="Energy Performance Certificate")
+                                                                  help_text='Name of the provider of the energy performance certificate. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Provider_of_Energy_Performance_Certificate">Documentation</a>',
+                                                                  verbose_name="Energy Performance Certificate")
 
     provider_of_initial_valuation = models.TextField(blank=True, null=True,
-                                                     help_text='Name of the external appraiser or managing / estate agent is when "Full Appraisal" or "Managing / Estate Agent" is selected in field "Type of Initial Valuation". If the valuation was done internally, please select "Internal". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Provider_of_Initial_Valuation">Documentation</a>', verbose_name="Initial Valuation Provider")
+                                                     help_text='Name of the external appraiser or managing / estate agent is when "Full Appraisal" or "Managing / Estate Agent" is selected in field "Type of Initial Valuation". If the valuation was done internally, please select "Internal". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Provider_of_Initial_Valuation">Documentation</a>',
+                                                     verbose_name="Initial Valuation Provider")
 
     provider_of_latest_valuation = models.TextField(blank=True, null=True,
-                                                    help_text='Name of the external appraiser or managing / estate agent when "Full Appraisal" or "Managing / Estate Agent" is selected in field "Type of Latest Valuation". If the valuation was done internally, please select "Internal". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.04.Provider_of_Latest_Valuation">Documentation</a>', verbose_name="Latest Valuation Provider")
+                                                    help_text='Name of the external appraiser or managing / estate agent when "Full Appraisal" or "Managing / Estate Agent" is selected in field "Type of Latest Valuation". If the valuation was done internally, please select "Internal". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.04.Provider_of_Latest_Valuation">Documentation</a>',
+                                                    verbose_name="Latest Valuation Provider")
 
     purpose_of_property = models.IntegerField(blank=True, null=True, choices=PURPOSE_OF_PROPERTY_CHOICES,
-                                              help_text='Purpose of the Property, e.g. Investment property, owner occupied, Business Use, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Purpose_of_Property">Documentation</a>', verbose_name="Purpose")
+                                              help_text='Purpose of the Property, e.g. Investment property, owner occupied, Business Use, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Purpose_of_Property">Documentation</a>',
+                                              verbose_name="Purpose")
 
     register_of_deeds_number = models.TextField(blank=True, null=True,
-                                                help_text='Registration number of the Property. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Register_of_Deeds_Number">Documentation</a>', verbose_name="Register of Deeds")
+                                                help_text='Registration number of the Property. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Register_of_Deeds_Number">Documentation</a>',
+                                                verbose_name="Register of Deeds")
 
     remaining_term_of_leasehold = models.FloatField(blank=True, null=True,
-                                                    help_text='Remaining term of the leasehold when "Leasehold" is selected in field "Tenure". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Remaining_Term_of_Leasehold">Documentation</a>', verbose_name="Remaining Term")
+                                                    help_text='Remaining term of the leasehold when "Leasehold" is selected in field "Tenure". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Remaining_Term_of_Leasehold">Documentation</a>',
+                                                    verbose_name="Remaining Term")
 
     sector_of_property = models.IntegerField(blank=True, null=True, choices=SECTOR_OF_PROPERTY_CHOICES,
-                                             help_text='Sector which the property is used for, e.g. commercial real estate, residential real estate, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Sector_of_Property">Documentation</a>', verbose_name="Property Sector")
+                                             help_text='Sector which the property is used for, e.g. commercial real estate, residential real estate, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Sector_of_Property">Documentation</a>',
+                                             verbose_name="Property Sector")
 
     tenure = models.IntegerField(blank=True, null=True, choices=TENURE_CHOICES,
-                                 help_text='Conditions that the Property is held or occupied, e.g. freehold and leasehold. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Tenure">Documentation</a>', verbose_name="Tenure Type")
+                                 help_text='Conditions that the Property is held or occupied, e.g. freehold and leasehold. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Tenure">Documentation</a>',
+                                 verbose_name="Tenure Type")
 
     type_of_initial_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_INITIAL_VALUATION_CHOICES,
-                                                    help_text='Type of the initial valuation for the Unit i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Borrowers Valuation. <a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Initial_Valuation" >Documentation</a>', verbose_name="Initial Valuation Type")
+                                                    help_text='Type of the initial valuation for the Unit i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Borrowers Valuation. <a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Initial_Valuation" >Documentation</a>',
+                                                    verbose_name="Initial Valuation Type")
 
     type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
-                                                   help_text='Type of the latest valuation for the Unit i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Internal Institution Valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Latest_Valuation">Documentation</a>', verbose_name="Latest Valuation Type")
+                                                   help_text='Type of the latest valuation for the Unit i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Internal Institution Valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Latest_Valuation">Documentation</a>',
+                                                   verbose_name="Latest Valuation Type")
 
     type_of_occupancy = models.IntegerField(blank=True, null=True, choices=TYPE_OF_OCCUPANCY_CHOICES,
-                                            help_text='Type of occupancy, i.e. owner occupied, tenanted, not tenanted. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Occupancy">Documentation</a>', verbose_name="Occupancy Type")
+                                            help_text='Type of occupancy, i.e. owner occupied, tenanted, not tenanted. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Occupancy">Documentation</a>',
+                                            verbose_name="Occupancy Type")
 
     type_of_property = models.IntegerField(blank=True, null=True, choices=TYPE_OF_PROPERTY_CHOICES,
-                                           help_text='Type of the Property, e.g. Apartment, Semi Detached House, Terraced House, Land, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Property">Documentation</a>', verbose_name="Property Type")
+                                           help_text='Type of the Property, e.g. Apartment, Semi Detached House, Terraced House, Land, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Property">Documentation</a>',
+                                           verbose_name="Property Type")
 
     value_of_energy_performance_certificate = models.IntegerField(blank=True, null=True,
                                                                   choices=VALUE_OF_ENERGY_PERFORMANCE_CERTIFICATE_CHOICES,
-                                                                  help_text='Value stated on Energy Performance Certificate, i.e. A,B,C,D,E,F and G. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Value_of_Energy_Performance_Certificate">Documentation</a>', verbose_name="EPC Value")
+                                                                  help_text='Value stated on Energy Performance Certificate, i.e. A,B,C,D,E,F and G. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Value_of_Energy_Performance_Certificate">Documentation</a>',
+                                                                  verbose_name="EPC Value")
 
     vat_payable = models.BooleanField(blank=True, null=True,
-                                      help_text='Indicator as to whether the VAT is payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.VAT_Payable">Documentation</a>', verbose_name="VAT Payable")
+                                      help_text='Indicator as to whether the VAT is payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.VAT_Payable">Documentation</a>',
+                                      verbose_name="VAT Payable")
 
     year_of_construction = models.DateField(blank=True, null=True,
-                                            help_text='Year that the Property was completed and refurbished. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Construction">Documentation</a>', verbose_name="Construction Year")
+                                            help_text='Year that the Property was completed and refurbished. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Construction">Documentation</a>',
+                                            verbose_name="Construction Year")
 
     year_of_refurbishment = models.DateField(blank=True, null=True,
-                                             help_text='Year in which the last significantly refurbished was completed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Refurbishment">Documentation</a>', verbose_name="Refurbishment Year")
+                                             help_text='Year in which the last significantly refurbished was completed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Refurbishment">Documentation</a>',
+                                             verbose_name="Refurbishment Year")
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -450,7 +552,8 @@ class PowerPlant(models.Model):
     # IDENTIFICATION & CATEGORIZATION
 
     production_device_number = models.CharField(max_length=80, blank=True, null=True,
-                                                help_text='Production Device Number (GSRN)', verbose_name="Device Number")
+                                                help_text='Production Device Number (GSRN)',
+                                                verbose_name="Device Number")
 
     production_device_name = models.CharField(max_length=80, blank=True, null=True,
                                               help_text='Name of Production Device', verbose_name="Production Device")
@@ -463,12 +566,14 @@ class PowerPlant(models.Model):
     #
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents', verbose_name="GHG Emissions")
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in CO2 equivalents',
+                                            verbose_name="GHG Emissions")
 
     # OTHER
 
     date_of_commissioning = models.DateField(blank=True, null=True,
-                                            help_text='Commissioning date of the power plant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>', verbose_name="Commissioning Date")
+                                             help_text='Commissioning date of the power plant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
+                                             verbose_name="Commissioning Date")
 
     #
     # BOOKKEEPING FIELDS

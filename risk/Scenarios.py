@@ -38,7 +38,7 @@ class Scenario(models.Model):
 
     Timepoints are specified explicitly (and are assumed common measurement points for all factors)
       "Timepoints" : [Values]
-     }
+
 
     """
 
@@ -67,7 +67,7 @@ class Scenario(models.Model):
     scenario_probabilities = models.JSONField(blank=True, null=True,
                                               help_text="Scenario Probabilities (Optional). For mathematical consistency must add to unity")
 
-    # number of factors projected per scenario. this supports multi-factor (multi-variable)
+    # number of factors projected per scenario. this supports multifactor (multi-variable)
     factor_no = models.IntegerField(blank=True, null=True, default=1,
                                     help_text="The Number of Scenario Factors (Variables)")
 

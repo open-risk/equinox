@@ -24,6 +24,7 @@ from django.core.management import BaseCommand
 from reference.settings import PEFA_PATH
 
 # TODO there are empty values despite data cleaning
+# TODO get_loc API change
 
 """
 

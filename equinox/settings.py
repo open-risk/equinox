@@ -207,7 +207,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 
-# Apply this spatialite workaround during tests
+# Applying this spatialite workaround during tests
 if 'test' in sys.argv or any('pytest' in arg for arg in sys.argv):
     def fix_spatialite_trigger(sender, connection, **kwargs):
         if connection.vendor == 'sqlite':

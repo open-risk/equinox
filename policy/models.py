@@ -169,7 +169,7 @@ class DataFlow(models.Model):
      Policy Dataflow MetaData (Country Based)
     """
 
-    # Dataflow name (=Country 2 Letter Code)
+    # Dataflow name (=Country 2-Letter Code)
     name = models.CharField(null=True, blank=True, max_length=80, help_text="Internal dataflow name")
     # formal identifier of the dataflow (country code)
     identifier = models.CharField(null=True, blank=True, max_length=80, help_text="Formal identifier of the dataflow")

@@ -8,7 +8,7 @@
 
 {% block extrahead %}
     {{ block.super }}
-    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3.js' %}"></script>
     <script type="text/javascript" charset="utf-8"
             src="{% static 'policy/js/generate_scatterplot.js' %}"></script>
     <script type="text/javascript" charset="utf-8"
@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div id="graph2">
-                    <svg version="1.1" viewBox="0 0 500 500" class="chart2"></svg>
+                    <svg viewBox="0 0 500 500" class="chart2"></svg>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -57,7 +57,7 @@
                                 </li>
                                 <li>Each disk represents a pair of reported Policy decline values for a
                                     particular country (use the drop-down menus to select which metric to use (lowest reading, latest,
-                                    average etc)
+                                    average etc.)
                                 </li>
                                 <li>The disk area scales with population size</li>
                                 <li>The scale of the X and Y-axeds is the percentage points decline from the

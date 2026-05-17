@@ -154,7 +154,7 @@ class PortfolioTable(models.Model):
     Sector = models.IntegerField(blank=True, null=True, choices=NACE_CHOICES, help_text="Business Sector")
 
     # The field encodes using an integer key a dictionary of geographical locations
-    # Eg. countries, NUTS regions etc.
+    # E.g. countries, NUTS regions etc.
     Country = models.IntegerField(blank=True, null=True, choices=NUTS3_CHOICES, help_text="NUTS3 Region of Operations")
 
     # bookkeeping

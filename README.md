@@ -17,7 +17,7 @@ Equinox is a *database and a web application frontend* that works together with 
 
 Running an equinox *instance* creates a local *server* that can then be accessed via any regular web browser. With some additional installation steps an instance can be also be made available online (publicly or via registration). For a running instance of equinox check out [Sustainability.Town](https://www.sustainability.town). 
 
-NB: For easy installation and testing the current release uses an sqlite database instead of a production database.
+NB: For easy installation and testing the current release uses a sqlite database instead of a production database.
 
 ## Functionality
 

@@ -5,9 +5,9 @@ from selenium.webdriver.common.by import By
 
 use_step_matcher("re")
 
+
 @given("I am on the Equinox Admin Page")
 def step_impl(context):
-
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.set_capability("browserVersion", "113.0.5672.126")
@@ -26,9 +26,11 @@ def step_impl(context):
     # Locate login button and click on it
     context.selenium.find_element(By.XPATH, '//button[normalize-space()="Log in"]').click()
 
+
 @when('I click on the Documentation Pages link')
 def step_impl(context):
     context.selenium.find_element(By.XPATH, '//a[@href="/admin/doc/"]').click()
+
 
 @then('I am on the Documentation page')
 def step_impl(context):

@@ -25,6 +25,7 @@ from django.utils.timezone import now
 from django_countries.fields import CountryField
 from django.db.models import JSONField
 
+
 class SummaryStatistics(models.Model):
     """
     A Container for global (portfolio-wide) statistics
@@ -194,6 +195,7 @@ class Visualization(models.Model):
         verbose_name = "Visualization"
         verbose_name_plural = "Visualizations"
 
+
 def padding_default():
     return {"left": 5, "top": 5, "right": 5, "bottom": 5}
 
@@ -255,7 +257,7 @@ class VegaSpecification(models.Model):
     Principle 4 is that the overall data and specification flow architecture should make sense and ber re-usable for non-vega visualizations
         * Internal (matplotlib, pygal)
         * Partially custom js (d3)
-        * Fully custom js (vol gauge etc)
+        * Fully custom js (vol gauge etc.)
 
     Principle 5 is that the URL patterns follow a well-structured REST API
         * The pattern has intuitive placeholders for object selection (viz & data)

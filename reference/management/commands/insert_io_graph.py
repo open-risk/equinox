@@ -21,7 +21,6 @@ import random
 import string
 
 from django.core.management import BaseCommand
-from django.db import connection
 
 from reference.IOGraph import IOGraph, IOGraphEdge, IOGraphNode
 

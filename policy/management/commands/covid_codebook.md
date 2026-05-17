@@ -147,7 +147,7 @@ Table 1: OxCGRT Indicators:
 --[return to start of codebook](#codebook-and-interpretation-guidance)--
 
 | ID | Name | Description | Measurement | Coding |
-| --- | --- | --- | --- | --- |
+| -- | --- | --- | --- | --- |
 | E1 | `E1_Income support` <br/>(for households)<br/> *no differentiated policies reported in this indicator | Record if the government is providing direct cash payments to people who lose their jobs or cannot work. <br/><br/>Note: only includes payments to firms if explicitly linked to payroll/salaries | Ordinal scale | 0 - no income support <br/>1 - government is replacing less than 50% of lost salary (or if a flat sum, it is less than 50% median salary) <br/>2 - government is replacing 50% or more of lost salary (or if a flat sum, it is greater than 50% median salary) <br/>Blank - no data |
 | | `E1_Flag` | | Binary flag for sectoral scope | 0 - formal sector workers only or informal sector workers only <br/>1 - all workers
 | E2 | `E2_Debt/contract relief` <br/>(for households) <br/>*no differentiated policies reported in this indicator | Record if the government is freezing financial obligations for households (eg stopping loan repayments, preventing services like water from stopping, or banning evictions) | Ordinal scale | 0 - no debt/contract relief <br/>1 - narrow relief, specific to one kind of contract <br/>2 - broad debt/contract relief |

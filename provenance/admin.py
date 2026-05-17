@@ -21,9 +21,9 @@
 from django.contrib import admin
 from provenance.models import Agent
 
+
 @admin.register(Agent)
 class AgentAdmin(admin.ModelAdmin):
     list_display = ('name', 'url')
     save_as = True
     view_on_site = False
-

@@ -4,6 +4,8 @@ Provenance is a Django app to help keep track of data provenance.
 
 It loosely follows the data schemas of the PROV ontology.
 
+Currently only the Agent model is implemented.
+
 
 Quick start
 ---------------------

@@ -149,7 +149,6 @@ class Command(BaseCommand):
         Values = []
         Status = []
 
-
         # Try to load the data
         try:
             mydata = json.load(open(input_file))
@@ -301,7 +300,8 @@ class Command(BaseCommand):
             theta_max = angle_unit * (max_value - mean_value) / std_value
             theta_min = angle_unit * (min_value - mean_value) / std_value
 
-            Geometry = {'Max': theta_max, 'Min': theta_min, 'Current': theta_current, 'Min1': theta_m1, 'Min2': theta_m2, 'Min3': theta_m3}
+            Geometry = {'Max': theta_max, 'Min': theta_min, 'Current': theta_current, 'Min1': theta_m1,
+                        'Min2': theta_m2, 'Min3': theta_m3}
 
         else:
             Geometry = {'Max': 0, 'Min': 0, 'Current': 0, 'Min1': 0, 'Min2': 0, 'Min3': 0}

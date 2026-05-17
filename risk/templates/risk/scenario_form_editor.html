@@ -9,15 +9,15 @@
 
 {% block extrahead %}
     {{ block.super }}
-    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3/d3.js' %}"></script>
-    <script type="text/javascript" charset="utf-8" src="{% static 'scenario_explorer/js/xmlhttppost.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/d3.js' %}"></script>
+    <script type="text/javascript" charset="utf-8" src="{% static 'risk/js/xmlhttppost.js' %}"></script>
     <script type="text/javascript" charset="utf-8"
-            src="{% static 'scenario_explorer/js/timeseries_graph.js' %}"></script>
+            src="{% static 'risk/js/timeseries_graph.js' %}"></script>
 {% endblock %}
 
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'scenario_explorer/css/scenario_editor.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'risk/css/scenario_editor.css' %}"/>
 {% endblock %}
 
 {% block messages %}

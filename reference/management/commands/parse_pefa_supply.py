@@ -35,6 +35,7 @@ stk_flow: ER_USE, SUP, USE, USE_END, USE_TRS
 
 """
 
+# TODO get_loc API change
 
 class Command(BaseCommand):
     help = 'Parse PEFA SUPPLY table tsv file and insert into Database'

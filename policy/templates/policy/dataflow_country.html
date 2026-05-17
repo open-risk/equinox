@@ -9,12 +9,12 @@
 {% block extrahead %}
     {{ block.super }}
     <script type="text/javascript" charset="utf-8"
-            src="{% static 'start/js/datatables/media/js/datatable.js' %}"></script>
+            src="{% static 'start/js/datatables.js' %}"></script>
 {% endblock %}
 
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables/demo_table.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/datatables.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
 {% endblock %}
 
@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <table id="series_list" class="display responsive no-wrap" width="100%">
+                <table id="series_list" class="display responsive no-wrap">
                     <thead>
                     <tr>
                         <th class="table_header">Regional Code</th>

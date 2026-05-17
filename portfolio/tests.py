@@ -18,11 +18,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#
-# class SimpleTest(TestCase):
-#
-#     def test_logged(self):
-#         client = Client()
-#         client.login(username='admin', password='admin')
-#         response = client.get('/portfolio/api_root')
-#         self.assertEqual(response.status_code, 200)
+# TODO

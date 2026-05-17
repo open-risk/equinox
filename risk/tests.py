@@ -18,4 +18,51 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Create your tests here.
+
+from django.contrib.auth.models import User
+from django.test import Client
+from django.test import TestCase
+
+"""
+    re_path(r'^scenario_graphical_editor/(?P<pk>\d+)$', ScenarioEdit.as_view(), name='scenario_graphical_editor'),
+    re_path(r'^scenario_form_editor/(?P<pk>\d+)$', scenario_editor, name='scenario_form_editor'),
+"""
+
+
+class SimpleTest(TestCase):
+
+    def create_user(self):
+        self.username = "admin"
+        self.password = "admin"
+        user, created = User.objects.get_or_create(username=self.username)
+        user.set_password(self.password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.is_active = True
+        user.save()
+        self.user = user
+
+    def test_not_logged(self):
+        client = Client()
+        response = client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_logged_admin(self):
+        self.create_user()
+        client = Client()
+        client.login(username=self.username, password=self.password)
+        response = client.get('/admin', follow=True)
+        self.assertEqual(response.status_code, 200)
+
+    # TODO
+    # def test_risk_urls(self):
+    #     self.create_user()
+    #     client = Client()
+    #     client.login(username=self.username, password=self.password)
+    #     risk_pages = [
+    #         "/risk/scenario_graphical_editor",
+    #         "/risk/scenario_form_editor"
+    #     ]
+    #     for page in risk_pages:
+    #         resp = client.get(page)
+    #         self.assertEqual(resp.status_code, 200, msg=page)

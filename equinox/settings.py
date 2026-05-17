@@ -24,8 +24,9 @@ Django settings for the Equinox platform.
 """
 
 import os
+import sys
 from pathlib import Path
-
+from django.db.backends.signals import connection_created
 from django.utils.translation import gettext_lazy as _
 from equinox.jazzmin_settings import *
 
@@ -204,3 +205,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda r: False,
 }
+
+
+# Apply this spatialite workaround during tests
+if 'test' in sys.argv or any('pytest' in arg for arg in sys.argv):
+    def fix_spatialite_trigger(sender, connection, **kwargs):
+        if connection.vendor == 'sqlite':
+            with connection.cursor() as cursor:
+                # Pre-initialize metadata to prevent Django from running the full version
+                try:
+                    cursor.execute("SELECT InitSpatialMetaData(1);")
+                except Exception:
+                    pass
+
+    connection_created.connect(fix_spatialite_trigger)

@@ -23,6 +23,7 @@ NB: For easy installation and testing the current release uses an sqlite databas
 
 The functionality of Equinox focuses on integrating the following concepts:
 
+* Data Center Environmental impact reporting
 * Green Public Procurement (GPP) portfolio management
 * Energy Accounting and in Particular Scope 2 Accounting and Reporting
 * GHG Accounting Protocol for Projects
@@ -30,6 +31,7 @@ The functionality of Equinox focuses on integrating the following concepts:
 * The PCAF coalition's approach to accounting and reporting **project finance** GHG emissions
 * Equator Principles for Project Finance
 * The European Banking Authority's Criteria for Credit Risk Assessment of Project Finance under the Standardized approach for Specialized Lending
+
 
 ## Find out more:
 

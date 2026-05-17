@@ -1,5 +1,6 @@
 Equinox Policy App
 ==========================================
+
 Policy is an Equinox app to monitor and manage portfolio-wide policy data.
 
 In a sustainable portfolio management context, Policy refers to a system of principles, objectives, rules and guidelines, adopted by an Organization (company, public sector etc.) to guide decision making with respect to particular situations and implemented via procedures or protocols to achieve stated goals.

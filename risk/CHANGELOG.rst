@@ -1,6 +1,10 @@
 ChangeLog of Risk App
 ===========================
 
+Risk App v0.6.0 (17-05-2026)
+------------------------------
+* PCAF Waterfall
+
 Risk App v0.5.0 (03-06-2023)
 ------------------------------
 * Model testing framework

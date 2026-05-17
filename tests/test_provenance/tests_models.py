@@ -18,31 +18,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib.auth.models import User
-from django.test import Client
+
 from django.test import TestCase
 
+from provenance.models import Agent
 
-class SimpleTest(TestCase):
 
-    def create_user(self):
-        self.username = "admin"
-        self.password = "admin"
-        user, created = User.objects.get_or_create(username=self.username)
-        user.set_password(self.password)
-        user.is_staff = True
-        user.is_superuser = True
-        user.is_active = True
-        user.save()
-        self.user = user
+class StartModelTests(TestCase):
 
-    def test_reporting_urls(self):
-        self.create_user()
-        client = Client()
-        client.login(username=self.username, password=self.password)
-        policy_pages = [
-            "/policy/policy_overview"
-        ]
-        for page in policy_pages:
-            resp = client.get(page)
-            self.assertEqual(resp.status_code, 200, msg=page)
+    def test_agent_str(self):
+        Agent.objects.create(name='test')
+        instance = Agent.objects.get()
+        self.assertEqual("test", instance.name)
+

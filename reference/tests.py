@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from django.test import TestCase, Client
+from django.contrib.auth.models import User
 
 from reference.EmissionFactor import EmissionFactor
 
@@ -36,3 +37,40 @@ class BaseModelTestCase(TestCase):
         client.login(username='admin', password='admin')
         response = client.get('/')
         self.assertEqual(response.status_code, 200)
+
+
+class SimpleTest(TestCase):
+
+    def create_user(self):
+        self.username = "admin"
+        self.password = "admin"
+        user, created = User.objects.get_or_create(username=self.username)
+        user.set_password(self.password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.is_active = True
+        user.save()
+        self.user = user
+
+    def test_not_logged(self):
+        client = Client()
+        response = client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_logged_admin(self):
+        self.create_user()
+        client = Client()
+        client.login(username=self.username, password=self.password)
+        response = client.get('/admin', follow=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_reference_urls(self):
+        self.create_user()
+        client = Client()
+        client.login(username=self.username, password=self.password)
+        reference_pages = [
+            "/reference/nace_list"
+        ]
+        for page in reference_pages:
+            resp = client.get(page)
+            self.assertEqual(resp.status_code, 200, msg=page)

@@ -1,6 +1,11 @@
 ChangeLog of Reporting App
 ===========================
 
+Reporting App v0.8.0 (17-05-2026)
+-----------------------------------
+* Data Center Maps
+* PCAF Waterfall Report
+
 Reporting App v0.7.0 (21-06-2024)
 -----------------------------------
 * Vega visualization framework

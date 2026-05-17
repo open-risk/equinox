@@ -21,3 +21,15 @@ List of Auxiliary Data stored
 * Input-Output Data
 
 
+Quick start
+---------------------
+1. Add "reference" to your INSTALLED_APPS setting like this::
+
+INSTALLED_APPS = [
+...
+'reference',
+]
+
+2. Run ``python manage.py migrate`` to create the reference models.
+
+3. Start the development server and visit http://127.0.0.1:8000/admin/

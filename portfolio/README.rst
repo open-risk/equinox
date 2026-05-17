@@ -1,6 +1,8 @@
 Equinox Portfolio App
 ==========================================
-Portfolio is a Django app store Sustainable Portfolio Data
+Portfolio is a Django app to store Sustainable Portfolio Data.
+
+This is the central collection of objects, most other apps in some way depend or augment the functionality provided by the Portfolio app.
 
 Quick start
 ---------------------

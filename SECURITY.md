@@ -2,7 +2,9 @@
 
 ## Supported Versions
 
-At present Equinox is in beta. **Do not use in production**.
+At present Equinox is in beta (0.9). 
+
+**Do not use in production**.
 
 We will use this section to tell people about which versions of the Equinox project will be supported with security updates.
 
@@ -17,7 +19,8 @@ We will use this section to tell people about which versions of the Equinox proj
 
 We will use this section to tell people how to report a vulnerability.
 
-We tell them
+We tell them:
+
 * where to go
 * how often they can expect to get an update on a reported vulnerability
 * what to expect if the vulnerability is accepted or declined, etc.

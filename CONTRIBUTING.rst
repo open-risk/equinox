@@ -13,6 +13,12 @@ Code / Translations
 ----------------------
 If you want to contribute code or translations, please fork the code and submit a `pull request <https://github.com/open-risk/equinox/pulls>`_
 
+LLM Assisted Contributions
+---------------------- ----
+
+If contributors use large language models (LLMs) to assist in their coding, they must explicitly state this; failure to do so will result in rejection of their patches.
+
+
 Todo List (auto-generated)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

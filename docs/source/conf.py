@@ -55,6 +55,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.githubpages',
     'sphinx.ext.todo',
+    'sphinx_toolbox.github',
     'sphinx.ext.napoleon',
 ]
 
@@ -193,3 +194,6 @@ todo_include_todos = True
 
 # extensions.append('sphinx_automodapi.automodapi')
 # numpydoc_show_class_members = False
+
+github_username = 'open-risk'
+github_repository = 'equinox'

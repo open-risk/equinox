@@ -30,22 +30,13 @@ from django.db.backends.signals import connection_created
 from django.utils.translation import gettext_lazy as _
 from equinox.jazzmin_settings import *
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '3i=clc#nog3a2v__q9n89wak2#p54mfs(*-x)oj7+1)igkmylf'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 
-# Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -95,9 +86,7 @@ MIDDLEWARE = [
 ]
 
 CSP_DEFAULT_SRC = ("'self'",)
-
 ROOT_URLCONF = 'equinox.urls'
-
 SITE_ID = 1
 # SITE_URL = "http://127.0.0.1:8080/"
 SITE_URL = "http://localhost:8080/"
@@ -189,9 +178,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 USE_TZ = True
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Europe/Amsterdam'
-
 USE_I18N = True
-
 USE_L10N = True
 
 # Debug-Toolbar

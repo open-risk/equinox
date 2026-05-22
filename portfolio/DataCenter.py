@@ -53,10 +53,13 @@ class DataCenter(models.Model):
     # IDENTIFICATION & CATEGORIZATION
 
     datacenter_id = models.CharField(max_length=80, blank=True, null=True,
-                                     help_text='Data Center ID (OSM)')
+                                     help_text='Data Center ID (defaults to OSM @id)')
 
     datacenter_name = models.CharField(max_length=80, blank=True, null=True,
                                        help_text='Name of Data Center (from OSM or elsewhere)', verbose_name="Data Center")
+
+    datacenter_ref = models.CharField(max_length=80, blank=True, null=True,
+                                       help_text='Reference ID of Data Center (from OSM or elsewhere)', verbose_name="Reference")
 
     notes = models.TextField(blank=True, null=True,
                              help_text='Additional unstructured information about the Data Center', verbose_name="Notes")
@@ -78,6 +81,8 @@ class DataCenter(models.Model):
                                  help_text="The portfolio snapshot to which the date center record belongs",
                                  verbose_name="Snapshot")
 
+    website = models.URLField(null=True, blank=True, help_text="URL for further information", verbose_name='Website')
+
     # FACILITY CHARACTERISTICS
 
     surface_area = models.FloatField(blank=True, null=True,
@@ -95,8 +100,7 @@ class DataCenter(models.Model):
     # FACILITY OPERATOR
 
     operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE,
-                                 help_text="The operator (corporate entity) of the data center",
-                                 verbose_name="Operator")
+                                 help_text="The operator (corporate entity) of the data center", verbose_name="Operator")
 
     prov_operator = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                       help_text="Provenance Agent for Operator Data", related_name='prov_operator')
@@ -104,27 +108,41 @@ class DataCenter(models.Model):
     # GEOGRAPHICAL DATA
 
     country = models.CharField(max_length=300, blank=True, null=True,
-                               help_text='Country of Datacenter Location')
+                               help_text='Country of Datacenter Location (Word)', verbose_name='Country')
 
     county = models.CharField(max_length=300, blank=True, null=True,
-                              help_text='County of Datacenter Location')
+                              help_text='County of Datacenter Location - if applicable')
 
     county_id = models.IntegerField(blank=True, null=True,
-                                    help_text='County ID of Datacenter Location')
+                                    help_text='County ID of Datacenter Location - if applicable')
 
     state = models.CharField(max_length=300, blank=True, null=True,
-                             help_text='State of Datacenter Location')
+                             help_text='State of Datacenter Location - if applicable')
 
     state_abb = models.CharField(max_length=2, blank=True, null=True,
-                                 help_text='2-Letter State Abbreviation of Datacenter Location', verbose_name="State")
+                                 help_text='2-Letter State Abbreviation of Datacenter Location - if applicable', verbose_name="State")
 
     state_id = models.IntegerField(blank=True, null=True,
-                                   help_text='State ID of Datacenter Location')
+                                   help_text='State ID of Datacenter Location - if applicable')
 
-    # datacenter_location = PointField(blank=True, null=True, help_text='The barycenter location of the data center')
+    city = models.CharField(max_length=300, blank=True, null=True,
+                             help_text='City Name (OSM)', verbose_name='City')
 
-    datacenter_location = LocationField(based_fields=['city'], zoom=7, blank=True, null=True,
-                                        help_text='The barycenter location of the data center')
+    address_street = models.CharField(max_length=300, blank=True, null=True,
+                             help_text='Street Name (OSM)')
+
+    address_number = models.CharField(max_length=30, blank=True, null=True,
+                             help_text='Street Number (OSM)')
+
+    postcode = models.CharField(max_length=30, blank=True, null=True,
+                             help_text='Post Code (OSM)')
+
+    datacenter_location = LocationField(based_fields=['city'], zoom=7, blank=True, null=True, help_text='The barycenter location of the data center')
+
+    prov_location = models.ForeignKey('provenance.Agent', blank=True, null=True,
+                                                     on_delete=models.CASCADE,
+                                                     help_text="Provenance Agent for Geographical Data (Default is OSM)",
+                                                     related_name='prov_location')
 
     #
     # Environmental Data
@@ -188,6 +206,10 @@ class DataCenter(models.Model):
 
     date_of_commissioning = models.DateField(blank=True, null=True,
                                              help_text='Commissioning date of the data center. Determines earliest available data points.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    wikidata_object = models.CharField(max_length=30, blank=True, null=True,
+                             help_text='Wikidata Object (from OSM)')
 
     #
     # BOOKKEEPING FIELDS

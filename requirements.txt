@@ -1,11 +1,11 @@
 Django==5.2.14
-djangorestframework
+djangorestframework==3.15.2
 drf-yasg
 numpy
 pandas
 scipy
 Markdown
-Pillow
+Pillow==12.2.0
 django-csp
 django-leaflet
 django-jazzmin
@@ -28,6 +28,6 @@ behave-django
 pytest
 pytest-bdd
 coverage
-requests
+requests==2.33.0
 behave
 setuptools

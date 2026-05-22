@@ -56,10 +56,10 @@ class DataCenter(models.Model):
                                      help_text='Data Center ID (OSM)')
 
     datacenter_name = models.CharField(max_length=80, blank=True, null=True,
-                                       help_text='Name of Data Center (OSM)', verbose_name="Data Center")
+                                       help_text='Name of Data Center (from OSM or elsewhere)', verbose_name="Data Center")
 
     notes = models.TextField(blank=True, null=True,
-                             help_text='Additional information about the Data Center', verbose_name="Notes")
+                             help_text='Additional unstructured information about the Data Center', verbose_name="Notes")
 
     asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
                                       help_text='This identifies the way the data center is used <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
@@ -90,7 +90,7 @@ class DataCenter(models.Model):
                                           help_text="Provenance Agent for Surface Area",
                                           related_name='prov_surface_area')
 
-    number_of_floors = models.IntegerField(blank=True, null=True, help_text="The number of floors of the facility")
+    number_of_floors = models.IntegerField(blank=True, null=True, help_text="The number of floors of the facility. Building:levels in OSM")
 
     # FACILITY OPERATOR
 

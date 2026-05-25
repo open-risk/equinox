@@ -28,6 +28,6 @@ behave-django
 pytest
 pytest-bdd
 coverage
-requests==2.33.0
+requests==2.34.2
 behave
 setuptools

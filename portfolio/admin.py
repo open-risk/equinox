@@ -136,8 +136,24 @@ class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
     """Data Center Admin
 
     """
+
+    # gis_widget_kwargs = {
+    #     'attrs': {
+    #         'default_lon': 543880,
+    #         'default_lat': 6867950,
+    #         'default_zoom': 12,
+    #         # Pass inline CSS directly to the widget HTML element
+    #         'style': 'height: 500px; width: 100%; display: block;',
+    #     }
+    # }
+
+    class Media:
+        css = {
+            'all': ('portfolio/css/carto.css',)
+        }
+
     list_display = (
-        'operator', 'datacenter_name', 'aggregation_type', 'county', 'state_abb', 'surface_area', 'last_change_date')
+        'operator', 'datacenter_name', 'aggregation_type', 'country', 'county', 'state_abb', 'surface_area', 'last_change_date')
     list_filter = ('operator', 'aggregation_type', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True

@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_json_widget',
     'django_extensions',
-    'django_htmx',
     'import_export',
     'rest_framework',
     'drf_yasg',

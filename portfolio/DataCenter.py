@@ -18,9 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
 from django.urls import reverse
-
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
 from location_field.models.spatial import LocationField
 
 """
@@ -56,13 +56,16 @@ class DataCenter(models.Model):
                                      help_text='Data Center ID (defaults to OSM @id)')
 
     datacenter_name = models.CharField(max_length=80, blank=True, null=True,
-                                       help_text='Name of Data Center (from OSM or elsewhere)', verbose_name="Data Center")
+                                       help_text='Name of Data Center (from OSM or elsewhere)',
+                                       verbose_name="Data Center")
 
     datacenter_ref = models.CharField(max_length=80, blank=True, null=True,
-                                       help_text='Reference ID of Data Center (from OSM or elsewhere)', verbose_name="Reference")
+                                      help_text='Reference ID of Data Center (from OSM or elsewhere)',
+                                      verbose_name="Reference")
 
     notes = models.TextField(blank=True, null=True,
-                             help_text='Additional unstructured information about the Data Center', verbose_name="Notes")
+                             help_text='Additional unstructured information about the Data Center',
+                             verbose_name="Notes")
 
     asset_class = models.IntegerField(blank=True, null=True, choices=DATACENTER_CLASS_CHOICES,
                                       help_text='This identifies the way the data center is used <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>',
@@ -95,12 +98,14 @@ class DataCenter(models.Model):
                                           help_text="Provenance Agent for Surface Area",
                                           related_name='prov_surface_area')
 
-    number_of_floors = models.IntegerField(blank=True, null=True, help_text="The number of floors of the facility. Building:levels in OSM")
+    number_of_floors = models.IntegerField(blank=True, null=True,
+                                           help_text="The number of floors of the facility. Building:levels in OSM")
 
     # FACILITY OPERATOR
 
     operator = models.ForeignKey('portfolio.Operator', blank=True, null=True, on_delete=models.CASCADE,
-                                 help_text="The operator (corporate entity) of the data center", verbose_name="Operator")
+                                 help_text="The operator (corporate entity) of the data center",
+                                 verbose_name="Operator")
 
     prov_operator = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                       help_text="Provenance Agent for Operator Data", related_name='prov_operator')
@@ -120,29 +125,47 @@ class DataCenter(models.Model):
                              help_text='State of Datacenter Location - if applicable')
 
     state_abb = models.CharField(max_length=2, blank=True, null=True,
-                                 help_text='2-Letter State Abbreviation of Datacenter Location - if applicable', verbose_name="State")
+                                 help_text='2-Letter State Abbreviation of Datacenter Location - if applicable',
+                                 verbose_name="State")
 
     state_id = models.IntegerField(blank=True, null=True,
                                    help_text='State ID of Datacenter Location - if applicable')
 
     city = models.CharField(max_length=300, blank=True, null=True,
-                             help_text='City Name (OSM)', verbose_name='City')
+                            help_text='City Name (OSM)', verbose_name='City')
 
     address_street = models.CharField(max_length=300, blank=True, null=True,
-                             help_text='Street Name (OSM)')
+                                      help_text='Street Name (OSM)')
 
     address_number = models.CharField(max_length=30, blank=True, null=True,
-                             help_text='Street Number (OSM)')
+                                      help_text='Street Number (OSM)')
 
     postcode = models.CharField(max_length=30, blank=True, null=True,
-                             help_text='Post Code (OSM)')
+                                help_text='Post Code (OSM)')
 
-    datacenter_location = LocationField(based_fields=['city'], zoom=7, blank=True, null=True, help_text='The barycenter location of the data center')
+    #
+    # GEOSPATIAL DATA
+    #
+
+    datacenter_location = LocationField(based_fields=['city'], zoom=7, blank=True, null=True,
+                                        help_text='The barycenter location of the data center (LOLA format)')
+
+    # Common OSM geometries used in this context:
+    # 'MultiPolygon', 'LineString', 'Polygon', 'Point'
+
+    point_geometry = models.PointField(blank=True, null=True, srid=4326, spatial_index=False,
+                                       default=Point(0, 0), help_text='Store GeoJSON Point Geometry')
+
+    linestring_geometry = models.LineStringField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON LineString Geometry')
+
+    polygon_geometry = models.PolygonField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON Polygon Geometry')
+
+    multipolygon_geometry = models.MultiPolygonField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON MultiPolygon Geometry')
 
     prov_location = models.ForeignKey('provenance.Agent', blank=True, null=True,
-                                                     on_delete=models.CASCADE,
-                                                     help_text="Provenance Agent for Geographical Data (Default is OSM)",
-                                                     related_name='prov_location')
+                                      on_delete=models.CASCADE,
+                                      help_text="Provenance Agent for Geographical Data (Default is OSM)",
+                                      related_name='prov_location')
 
     #
     # Environmental Data
@@ -207,9 +230,8 @@ class DataCenter(models.Model):
     date_of_commissioning = models.DateField(blank=True, null=True,
                                              help_text='Commissioning date of the data center. Determines earliest available data points.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-
     wikidata_object = models.CharField(max_length=30, blank=True, null=True,
-                             help_text='Wikidata Object (from OSM)')
+                                       help_text='Wikidata Object (from OSM)')
 
     #
     # BOOKKEEPING FIELDS
@@ -244,7 +266,8 @@ class DataCenterCampus(models.Model):
                                  verbose_name="Operator")
 
     aggregation_type = models.IntegerField(blank=True, null=True, choices=AGGREGATION_TYPE, default=0,
-                                           help_text='How the data center campus is reported', verbose_name="Aggregation")
+                                           help_text='How the data center campus is reported',
+                                           verbose_name="Aggregation")
 
     # IDENTIFICATION & CATEGORIZATION
 
@@ -323,16 +346,19 @@ class DataCenterCampus(models.Model):
                                              verbose_name='Scope 2 GHG')
 
     grid_carbon_intensity = models.FloatField(blank=True, null=True,
-                                              help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh', verbose_name="Grid Carbon Intensity")
+                                              help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh',
+                                              verbose_name="Grid Carbon Intensity")
 
     grid_water_intensity = models.FloatField(blank=True, null=True,
-                                             help_text='This field stores the electricity grid water intensity in units of L/KWh', verbose_name="Grid Water Intensity")
+                                             help_text='This field stores the electricity grid water intensity in units of L/KWh',
+                                             verbose_name="Grid Water Intensity")
 
     asset_water_usage = models.FloatField(blank=True, null=True,
                                           help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
 
     embedded_water_usage = models.FloatField(blank=True, null=True,
-                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).', verbose_name="Embedded Water")
+                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).',
+                                             verbose_name="Embedded Water")
 
     water_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of water consumption over IT power use (liters per kilowatt-hour or gallons per megawatt-hour)')

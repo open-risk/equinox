@@ -40,4 +40,4 @@ class Command(BaseCommand):
     DataCenterCampus.objects.all().delete()
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully deleted data center data from db'))
+        self.stdout.write(self.style.SUCCESS('Successfully deleted all data center data from the db'))

@@ -19,9 +19,13 @@
 # SOFTWARE.
 
 import csv
+import json
+
 from django import forms
+import geojson
 
 from django.contrib.gis import admin
+from django.db.models import Q
 from import_export.admin import ImportExportModelAdmin
 
 from django.core import serializers
@@ -90,6 +94,41 @@ def export2csv(self, request, queryset):
     return response
 
 
+@admin.action(description='Export Selected Entries as GeoJSON')
+def export2geojson(self, request, queryset):
+    ids = list(queryset.values_list('id', flat=True))
+
+    if not ids:
+        self.message_user(request, "No entries selected.", level='warning')
+        return
+
+    dc_linestrings = DataCenter.objects.exclude(linestring_geometry__isnull=True).filter(id__in=ids)
+    geojson_linestrings = serializers.serialize("geojson", dc_linestrings, geometry_field='linestring_geometry')
+
+    dc_polygons = DataCenter.objects.exclude(polygon_geometry__isnull=True).filter(id__in=ids)
+    geojson_polygons = serializers.serialize("geojson", dc_polygons, geometry_field='polygon_geometry')
+
+    dc_multipolygons = DataCenter.objects.exclude(multipolygon_geometry__isnull=True).filter(id__in=ids)
+    geojson_multypolygons = serializers.serialize("geojson", dc_multipolygons, geometry_field='multipolygon_geometry')
+
+    dc_points = DataCenter.objects.filter(id__in=ids, linestring_geometry__isnull=True, polygon_geometry__isnull=True, multipolygon_geometry__isnull=True)
+    geojson_points = serializers.serialize("geojson", dc_points, geometry_field='point_geometry')
+
+    merged_features = []
+    for collection in [geojson_points, geojson_linestrings, geojson_polygons, geojson_multypolygons]:
+        geodata = json.loads(collection)
+        print(len(geodata['features']))
+        for feature in geodata['features']:
+            merged_features.append(feature)
+
+    print('Total: ', len(merged_features))
+    # Total data centers: 1178
+    merged = geojson.FeatureCollection(merged_features)
+    serialized = geojson.dumps(merged)
+    response = HttpResponse(serialized, content_type="application/json")
+    return response
+
+
 @admin.action(description='View Selected Entries on Map')
 def view_on_map(self, request, queryset):
     # Get selected IDs
@@ -99,7 +138,7 @@ def view_on_map(self, request, queryset):
         self.message_user(request, "No entries selected.", level='warning')
         return
 
-    # Redirect to map view with selected IDs
+    # Redirect to a geographical map view that will process the selected IDs
     from django.shortcuts import redirect
     ids_param = ','.join(map(str, ids))
     return redirect(f'/reporting/data_center_map/?ids={ids_param}')
@@ -110,6 +149,7 @@ admin.site.add_action(export2json)
 admin.site.add_action(export2xml)
 admin.site.add_action(export2csv)
 admin.site.add_action(view_on_map)
+admin.site.add_action(export2geojson)
 
 
 #
@@ -153,7 +193,8 @@ class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
         }
 
     list_display = (
-        'operator', 'datacenter_name', 'aggregation_type', 'country', 'county', 'state_abb', 'surface_area', 'last_change_date')
+        'operator', 'datacenter_name', 'aggregation_type', 'country', 'county', 'state_abb', 'surface_area',
+        'last_change_date')
     list_filter = ('operator', 'aggregation_type', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
     save_as = True

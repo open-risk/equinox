@@ -28,7 +28,7 @@ from provenance.models import Agent
 
 
 class Command(BaseCommand):
-    help = 'Aggregate facility data center are into campus area'
+    help = 'Aggregate facility data center area into campus area'
 
     portfolio_id = ProjectPortfolio.objects.get(name='Apple Data Center Portfolio')
     portfolio_snapshot_id = PortfolioSnapshot.objects.get(name='2023')

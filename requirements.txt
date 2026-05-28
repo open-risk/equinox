@@ -17,6 +17,7 @@ django-import-export
 django-countries
 django-extensions
 django-location-field
+geojson
 django-debug-toolbar
 psycopg2-binary
 openpyxl

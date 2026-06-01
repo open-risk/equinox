@@ -1,6 +1,10 @@
 ChangeLog of Portfolio App
 ===========================
 
+Portfolio App v0.6.1 (28-05-2026)
+----------------------------------
+* Export to GeoJSON
+
 Portfolio App v0.6.0 (17-05-2026)
 ----------------------------------
 * DataCenter, DataCenterCampus assets

@@ -1,7 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# GENERAL TRANSLATIONS
+# Copyright (C) 2021 - 2026, Open Risk (www.openriskmanagement.com)
+# This file is distributed under the same license as the equinox package.
 #
 #, fuzzy
 msgid ""

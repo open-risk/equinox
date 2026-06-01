@@ -46,6 +46,8 @@ class Front(TemplateView):
 
 
 class DocList(LoginRequiredMixin, TemplateView):
+
+    login_url = '/admin/login/'
     template_name = 'start/doclist.html'
 
     def get_context_data(self, **kwargs):
@@ -60,7 +62,7 @@ class DocList(LoginRequiredMixin, TemplateView):
         return context
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/admin/login/')
 def documentation(request, slug):
     context = RequestContext(request, {})
     page = DocPage.objects.get(slug=slug)
@@ -77,6 +79,8 @@ def documentation(request, slug):
 
 
 class Concepts(LoginRequiredMixin, TemplateView):
+
+    login_url = '/admin/login/'
     template_name = 'start/concepts.html'
 
     def get_context_data(self, **kwargs):

@@ -13,6 +13,10 @@ img {
     flex-basis: 40%
 }
 
+.img-circle {
+	border-radius: 50%;
+}
+
 .text {
     font-size: 20px;
     padding-left: 20px;
@@ -33,6 +37,11 @@ body {
 .row {
   --bs-gutter-y: 1.5rem;
   --bs-gutter-x: 1.5rem;
+}
+
+.row > * {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .gap-2 {

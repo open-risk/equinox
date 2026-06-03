@@ -21,29 +21,26 @@
 import csv
 import json
 
-from django import forms
 import geojson
-
+from django import forms
 from django.contrib.gis import admin
-from django.db.models import Q
-from import_export.admin import ImportExportModelAdmin
-
 from django.core import serializers
 from django.forms.widgets import NumberInput
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.html import format_html
+from import_export.admin import ImportExportModelAdmin
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
 from portfolio.Asset import PowerPlant
 from portfolio.Asset import ProjectAsset, Building
-from portfolio.DataCenter import DataCenter, DataCenterCampus
 from portfolio.Borrower import Borrower
 from portfolio.Certificate import Certificate
 from portfolio.Contractor import Contractor
 from portfolio.Counterparty import Counterparty
+from portfolio.DataCenter import DataCenter, DataCenterCampus
 from portfolio.EmissionsSource import EmissionsSource, BuildingEmissionsSource
 from portfolio.EmissionsSource import GPCEmissionsSource, GPPEmissionsSource
 from portfolio.Loan import Loan
@@ -64,6 +61,8 @@ from portfolio.Sponsor import Sponsor
 from portfolio.Stakeholders import Stakeholders
 from portfolio.Swap import Swap
 from portfolio.models import PointSource, AreaSource, MultiAreaSource
+
+from equinox.settings import SITE_URL
 
 
 @admin.action(description='Export Selected Entries as JSON')
@@ -102,29 +101,52 @@ def export2geojson(self, request, queryset):
         self.message_user(request, "No entries selected.", level='warning')
         return
 
-    dc_linestrings = DataCenter.objects.exclude(linestring_geometry__isnull=True).filter(id__in=ids)
-    geojson_linestrings = serializers.serialize("geojson", dc_linestrings, geometry_field='linestring_geometry')
+    # dc_linestrings = DataCenter.objects.filter(id__in=ids, geometry_type=0)
+    # geojson_linestrings = serializers.serialize("geojson", dc_linestrings, geometry_field='geometry')
+    #
+    # dc_polygons = DataCenter.objects.filter(id__in=ids, geometry_type=1)
+    # geojson_polygons = serializers.serialize("geojson", dc_polygons, geometry_field='geometry')
+    #
+    # dc_multipolygons = DataCenter.objects.filter(id__in=ids, geometry_type=2)
+    # geojson_multypolygons = serializers.serialize("geojson", dc_multipolygons, geometry_field='geometry')
+    #
+    # dc_points = DataCenter.objects.filter(id__in=ids, geometry_type=3)
+    # geojson_points = serializers.serialize("geojson", dc_points, geometry_field='geometry')
+    #
+    # merged_features = []
+    # for collection in [geojson_points, geojson_linestrings, geojson_polygons, geojson_multypolygons]:
+    #     geodata = json.loads(collection)
+    #     print(len(geodata['features']))
+    #     for feature in geodata['features']:
+    #         merged_features.append(feature)
+    #
+    # merged = geojson.FeatureCollection(merged_features)
+    # serialized = geojson.dumps(merged)
 
-    dc_polygons = DataCenter.objects.exclude(polygon_geometry__isnull=True).filter(id__in=ids)
-    geojson_polygons = serializers.serialize("geojson", dc_polygons, geometry_field='polygon_geometry')
+    dc = DataCenter.objects.filter(id__in=ids)
+    raw_serialized = serializers.serialize("geojson", dc, geometry_field='geometry')
+    geodata = json.loads(raw_serialized)
+    processed_features = []
+    for feature in geodata['features']:
+        # add feature editing URL
+        feature_id = feature['id']
+        local_url = SITE_URL + 'admin/portfolio/datacenter/' + str(feature_id) + '/change'
+        feature['properties']['local_url'] = local_url
+        # rename keys to conform to OSM extract
+        feature['properties']['@id'] = feature['properties']['datacenter_id']
+        # delete db instance specific attributes
+        del feature['id']
+        del feature['properties']['pk']
+        del feature['properties']['portfolio']
+        del feature['properties']['snapshot']
+        del feature['properties']['datacenter_id']
+        # fetch related model values
+        op = feature['properties']['operator']
+        feature['properties']['operator'] = Operator.objects.get(id=op).operator_identifier
+        processed_features.append(feature)
 
-    dc_multipolygons = DataCenter.objects.exclude(multipolygon_geometry__isnull=True).filter(id__in=ids)
-    geojson_multypolygons = serializers.serialize("geojson", dc_multipolygons, geometry_field='multipolygon_geometry')
-
-    dc_points = DataCenter.objects.filter(id__in=ids, linestring_geometry__isnull=True, polygon_geometry__isnull=True, multipolygon_geometry__isnull=True)
-    geojson_points = serializers.serialize("geojson", dc_points, geometry_field='point_geometry')
-
-    merged_features = []
-    for collection in [geojson_points, geojson_linestrings, geojson_polygons, geojson_multypolygons]:
-        geodata = json.loads(collection)
-        print(len(geodata['features']))
-        for feature in geodata['features']:
-            merged_features.append(feature)
-
-    print('Total: ', len(merged_features))
-    # Total data centers: 1178
-    merged = geojson.FeatureCollection(merged_features)
-    serialized = geojson.dumps(merged)
+    processed = geojson.FeatureCollection(processed_features)
+    serialized = geojson.dumps(processed)
     response = HttpResponse(serialized, content_type="application/json")
     return response
 
@@ -193,7 +215,7 @@ class DataCenterAdmin(admin.GISModelAdmin, ImportExportModelAdmin):
         }
 
     list_display = (
-        'operator', 'datacenter_name', 'aggregation_type', 'country', 'county', 'state_abb', 'surface_area',
+        'operator', 'datacenter_name', 'aggregation_type', 'country', 'county', 'state_abb', 'surface_area', 'geometry_type',
         'last_change_date')
     list_filter = ('operator', 'aggregation_type', 'state_abb', 'portfolio', 'snapshot')
     view_on_site = False
@@ -467,10 +489,10 @@ class ContractorAdmin(admin.ModelAdmin):
 class OperatorAdmin(admin.ModelAdmin):
     view_on_site = False
     save_as = True
-    list_display = ('operator_identifier',)
+    list_display = ('operator_identifier', 'creation_date')
     list_filter = ('operator_identifier',)
     search_fields = ['operator_identifier']
-
+    date_hierarchy = ('creation_date')
 
 @admin.register(Swap)
 class SwapAdmin(admin.ModelAdmin):

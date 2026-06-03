@@ -19,9 +19,10 @@
 # SOFTWARE.
 
 import json
-import pandas as pd
-from django.contrib.gis.geos import Point, LineString, Polygon, MultiPolygon
+
+import geojson
 from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.geos import Point
 from django.core.management.base import BaseCommand
 
 from portfolio.DataCenter import DataCenter
@@ -29,16 +30,18 @@ from portfolio.Operator import Operator
 from portfolio.Portfolios import ProjectPortfolio, PortfolioSnapshot
 from provenance.models import Agent
 
+from utils.geospatial import calculate_barycenter, calculate_polygon_area
 
 class Command(BaseCommand):
-    help = 'Imports data center / operator data from the euDataCenterDB Dataset'
+    help = 'Imports Data Center / Operator data from the euroDaCe Dataset'
 
     # Import data from GeoJSON file
 
-    filename = 'dc.json'
+    # filename = 'portfolio/fixtures/dc.0.2.json'
+    filename = 'portfolio/fixtures/dc.0.1.json'
 
     """
-    Create Data Center Operators if they do not exist already
+    Create Data Center Operators (if they do not exist already in the DB)
 
     """
 
@@ -54,24 +57,38 @@ class Command(BaseCommand):
         operators = list(set(operators))
     f.close()
 
-    for operator in operators:
-        op = Operator.objects.get_or_create(operator_identifier=operator)
-    Operator.objects.get_or_create(operator_identifier='Unknown')
+    noop = len(operators)
+    print(f"Found {noop:02d} operators")
 
-    print('Created Operators')
+    newop = 0
+    for operator in operators:
+        op, created = Operator.objects.get_or_create(operator_identifier=operator)
+        if created:
+            newop += 1
+
+    # Placeholder Operator
+    op, created = Operator.objects.get_or_create(operator_identifier='Unknown')
+    if created:
+        newop += 1
+
+    print(f"Created {newop:02d} operators")
+
     """
      Create Portfolio, Portfolio Snapshot and Provenance Data
 
     """
 
     portfolio_id, portfolio_created = ProjectPortfolio.objects.get_or_create(name='EU Data Centers')
+
     portfolio_snapshot_id, snapshot_created = PortfolioSnapshot.objects.get_or_create(name='2025')
+
     agent_id, agent_created = Agent.objects.get_or_create(name='OSM')
 
-    print('Created Portfolio Data')
+    print('Created Portfolio, Snapshot, Agent Data')
 
     """
     Create Data Centers
+    
     """
 
     print('Inserting Data Center Data')
@@ -94,63 +111,67 @@ class Command(BaseCommand):
                 else:
                     data_center_name = 'Unknown'
 
+                # ID key depends on whether GeoJSON is direct OSM import or Equinox export
+
+                if 'datacenter_id' in props.keys():
+                    datacenter_id = props['datacenter_id']
+                elif '@id' in props.keys():
+                    datacenter_id = props['@id']
+
+                # Branch according to geometry type
                 geom = feature['geometry']['type']
                 coords = str(feature['geometry']['coordinates'])
-                if geom == 'Point':
-                    gstring = '{"type": "Point", "coordinates": ' + coords + '}'
-                    point_geometry = GEOSGeometry(gstring)
-                    dc = DataCenter(
-                        portfolio=portfolio_id,
-                        snapshot=portfolio_snapshot_id,
-                        datacenter_id=props['@id'],
-                        datacenter_name=data_center_name,
-                        country=props['country'],
-                        point_geometry=point_geometry,
-                        operator=op,
-                        prov_operator=agent_id)
-                    indata.append(dc)
-                elif geom == 'LineString':
-                    gstring = '{"type": "LineString", "coordinates": ' + coords + '}'
-                    linestring_geometry = GEOSGeometry(gstring)
-                    dc = DataCenter(
-                        portfolio=portfolio_id,
-                        snapshot=portfolio_snapshot_id,
-                        datacenter_id=props['@id'],
-                        datacenter_name=data_center_name,
-                        country=props['country'],
-                        linestring_geometry=linestring_geometry,
-                        operator=op,
-                        prov_operator=agent_id)
-                    indata.append(dc)
-                elif geom == 'Polygon':
-                    gstring = '{"type": "Polygon", "coordinates": ' + coords + '}'
-                    polygon_geometry = GEOSGeometry(gstring)
-                    dc = DataCenter(
-                        portfolio=portfolio_id,
-                        snapshot=portfolio_snapshot_id,
-                        datacenter_id=props['@id'],
-                        datacenter_name=data_center_name,
-                        country=props['country'],
-                        polygon_geometry=polygon_geometry,
-                        operator=op,
-                        prov_operator=agent_id)
-                    indata.append(dc)
-                elif geom == 'MultiPolygon':
-                    gstring = '{"type": "MultiPolygon", "coordinates": ' + coords + '}'
-                    multipolygon_geometry = GEOSGeometry(gstring)
-                    dc = DataCenter(
-                        portfolio=portfolio_id,
-                        snapshot=portfolio_snapshot_id,
-                        datacenter_id=props['@id'],
-                        datacenter_name=data_center_name,
-                        country=props['country'],
-                        multipolygon_geometry=multipolygon_geometry,
-                        operator=op,
-                        prov_operator=agent_id)
-                    indata.append(dc)
+                coordinates = list(geojson.utils.coords(feature))
 
-    print(len(indata))
+                geometry = None
+                surface_area = None
+
+                if geom == 'Point':
+                    lon = feature['geometry']['coordinates'][0]
+                    lat = feature['geometry']['coordinates'][1]
+                    gstring = '{"type": "Point", "coordinates": ' + coords + '}'
+                    geometry = GEOSGeometry(gstring)
+                    dc = DataCenter(
+                        portfolio=portfolio_id,
+                        snapshot=portfolio_snapshot_id,
+                        datacenter_id=datacenter_id,
+                        datacenter_name=data_center_name,
+                        country=props['country'],
+                        datacenter_location=Point(lon, lat),
+                        geometry_type=DataCenter.get_geometry_by_display(geom),
+                        operator=op,
+                        prov_operator=agent_id)
+                    indata.append(dc)
+                elif geom in ['LineString', 'Polygon', 'MultiPolygon']:
+                    if geom == 'LineString':
+                        gstring = '{"type": "LineString", "coordinates": ' + coords + '}'
+                    elif geom == 'Polygon':
+                        gstring = '{"type": "Polygon", "coordinates": ' + coords + '}'
+                        surface_area = calculate_polygon_area(coordinates)
+                    elif geom == 'MultiPolygon':
+                        gstring = '{"type": "MultiPolygon", "coordinates": ' + coords + '}'
+                    geometry = GEOSGeometry(gstring)
+
+                    dc = DataCenter(
+                        portfolio=portfolio_id,
+                        snapshot=portfolio_snapshot_id,
+                        datacenter_id=datacenter_id,
+                        datacenter_name=data_center_name,
+                        country=props['country'],
+                        datacenter_location=Point(calculate_barycenter(coordinates)),
+                        geometry=geometry,
+                        geometry_type=DataCenter.get_geometry_by_display(geom),
+                        surface_area=surface_area,
+                        operator=op,
+                        prov_operator=agent_id)
+                    indata.append(dc)
+                else:
+                    print("No geometry found")
+
+    nodc = len(indata)
+    print(f"Created {nodc:02d} data centers")
+
     DataCenter.objects.bulk_create(indata)
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted data center data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted all Data Center data into the db'))

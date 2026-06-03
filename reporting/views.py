@@ -1008,7 +1008,10 @@ class AssetMapView(LoginRequiredMixin, TemplateView):
 
 
 class DataCenterMapView(LoginRequiredMixin, TemplateView):
-    """Data Centers Markers Map view."""
+    """Data Centers Markers Map view.
+
+    Only data centers with known data center location (point geometry) are displayed. This excludes polygons without precomputed barycenter
+    """
 
     model = DataCenter
     template_name = "reporting/data_center_map.html"
@@ -1023,12 +1026,11 @@ class DataCenterMapView(LoginRequiredMixin, TemplateView):
             dc_data = DataCenter.objects.all()
         geojson = serialize("geojson", dc_data, geometry_field='datacenter_location')
         geodata = json.loads(geojson)
-        server_url = SITE_URL
         geodata_plus = {'type': 'FeatureCollection'}
         features = []
         for feature in geodata['features']:
             feature_id = feature['id']
-            local_url = server_url + 'admin/portfolio/datacenter/' + str(feature_id) + '/change'
+            local_url = SITE_URL + 'admin/portfolio/datacenter/' + str(feature_id) + '/change'
             feature['properties']['local_url'] = local_url
             features.append(feature)
         geodata_plus['features'] = features

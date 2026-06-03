@@ -50,10 +50,12 @@ class DataCenter(models.Model):
 
     """
 
+    GEOMETRY_CHOICES = [(0, 'LineString'), (1, 'Polygon'), (2, 'Multipolygon'), (3, 'Point')]
+
     # IDENTIFICATION & CATEGORIZATION
 
     datacenter_id = models.CharField(max_length=80, blank=True, null=True,
-                                     help_text='Data Center ID (defaults to OSM @id)')
+                                     help_text='Data Center ID (defaults to OSM @id)', verbose_name='OSM ID')
 
     datacenter_name = models.CharField(max_length=80, blank=True, null=True,
                                        help_text='Name of Data Center (from OSM or elsewhere)',
@@ -96,7 +98,7 @@ class DataCenter(models.Model):
 
     prov_surface_area = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                           help_text="Provenance Agent for Surface Area",
-                                          related_name='prov_surface_area')
+                                          related_name='prov_surface_area', verbose_name='Provenance surface area')
 
     number_of_floors = models.IntegerField(blank=True, null=True,
                                            help_text="The number of floors of the facility. Building:levels in OSM")
@@ -108,7 +110,7 @@ class DataCenter(models.Model):
                                  verbose_name="Operator")
 
     prov_operator = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
-                                      help_text="Provenance Agent for Operator Data", related_name='prov_operator')
+                                      help_text="Provenance Agent for Operator Data", related_name='prov_operator', verbose_name='Provenance operator')
 
     # GEOGRAPHICAL DATA
 
@@ -151,21 +153,28 @@ class DataCenter(models.Model):
                                         help_text='The barycenter location of the data center (LOLA format)')
 
     # Common OSM geometries used in this context:
-    # 'MultiPolygon', 'LineString', 'Polygon', 'Point'
+    # 'MultiPolygon', 'LineString', 'Polygon'
+    # NB: 'Point' is converted to datacenter location
 
-    point_geometry = models.PointField(blank=True, null=True, srid=4326, spatial_index=False,
-                                       default=Point(0, 0), help_text='Store GeoJSON Point Geometry')
+    # point_geometry = models.PointField(blank=True, null=True, srid=4326, spatial_index=False,
+    #                                    default=Point(0, 0), help_text='Store GeoJSON Point Geometry')
 
-    linestring_geometry = models.LineStringField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON LineString Geometry')
+    # linestring_geometry = models.LineStringField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON LineString Geometry')
+    #
+    # polygon_geometry = models.PolygonField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON Polygon Geometry')
+    #
+    # multipolygon_geometry = models.MultiPolygonField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON MultiPolygon Geometry')
 
-    polygon_geometry = models.PolygonField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON Polygon Geometry')
+    geometry = models.GeometryField(blank=True, null=True, srid=4326, help_text='Store GeoJSON Geometry (one of LineString, Polygon, Multipolygon')
 
-    multipolygon_geometry = models.MultiPolygonField(blank=True, null=True, srid=4326, spatial_index=False,                                     help_text='Store GeoJSON MultiPolygon Geometry')
+    geometry_type = models.IntegerField(blank=True, null=True, choices=GEOMETRY_CHOICES,
+                                        help_text='Identifies Geometry Type',
+                                        verbose_name="Geometry Type")
 
     prov_location = models.ForeignKey('provenance.Agent', blank=True, null=True,
                                       on_delete=models.CASCADE,
                                       help_text="Provenance Agent for Geographical Data (Default is OSM)",
-                                      related_name='prov_location')
+                                      related_name='prov_location', verbose_name='Provenance location')
 
     #
     # Environmental Data
@@ -177,50 +186,50 @@ class DataCenter(models.Model):
     prov_electricity_consumption = models.ForeignKey('provenance.Agent', blank=True, null=True,
                                                      on_delete=models.CASCADE,
                                                      help_text="Provenance Agent for Electricity Consumption",
-                                                     related_name='prov_electricity_consumption')
+                                                     related_name='prov_electricity_consumption', verbose_name='Provenance electricity consumption')
 
     power_usage_effectiveness = models.FloatField(blank=True, null=True,
-                                                  help_text='Ratio of total power use to IT power use (dimensionless)')
+                                                  help_text='Ratio of total power use to IT power use (dimensionless)', verbose_name='Power Usage Effectiveness')
 
     prov_pue = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
-                                 help_text="Provenance Agent for PUE", related_name='prov_pue')
+                                 help_text="Provenance Agent for PUE", related_name='prov_pue', verbose_name='Provenance PUE')
 
     asset_ghg_emissions = models.FloatField(blank=True, null=True,
-                                            help_text='This field stores the aggregate current annualized emissions of an asset in tCO2 of CO2 equivalents - Scope 2')
+                                            help_text='This field stores the aggregate current annualized emissions of an asset in tCO2 of CO2 equivalents - Scope 2', verbose_name='Asset GHG emissions')
 
     prov_ghg_emissions = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                            help_text="Provenance Agent for GHG Emissions",
-                                           related_name='prov_ghg_emissions')
+                                           related_name='prov_ghg_emissions', verbose_name='Provenance GHG emissions')
 
     grid_carbon_intensity = models.FloatField(blank=True, null=True,
                                               help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh')
 
     prov_grid_carbon_intensity = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                                    help_text="Provenance Agent for Grid Carbon Intensity",
-                                                   related_name='prov_grid_carbon_intensity')
+                                                   related_name='prov_grid_carbon_intensity', verbose_name='Provenance grid carbon intensity')
 
     grid_water_intensity = models.FloatField(blank=True, null=True,
                                              help_text='This field stores the electricity grid water intensity in units of L/KWh')
 
     prov_grid_water_intensity = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                                   help_text="Provenance Agent for Grid Water Intensity",
-                                                  related_name='prov_grid_water_intensity')
+                                                  related_name='prov_grid_water_intensity', verbose_name='Provenance grid water intensity')
 
     asset_water_usage = models.FloatField(blank=True, null=True,
-                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
+                                          help_text='This field stores the aggregate current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
 
     embedded_water_usage = models.FloatField(blank=True, null=True,
-                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3). ')
+                                             help_text='This field stores the embedded (Scope 2) current annualized water usage of an asset (Millions of Gallons, Liters or M3).')
 
     prov_water_usage = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
                                          help_text="Provenance Agent for Water Usage Data",
-                                         related_name='prov_water_usage')
+                                         related_name='prov_water_usage', verbose_name='Provenance water usage')
 
     water_usage_effectiveness = models.FloatField(blank=True, null=True,
                                                   help_text='Ratio of water consumption over IT power use (liters per kilowatt-hour or gallons per megawatt-hour)')
 
     prov_wue = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
-                                 help_text="Provenance Agent for WUE", related_name='prov_wue')
+                                 help_text="Provenance Agent for WUE", related_name='prov_wue', verbose_name='Provenance WUE')
 
     water_volume_units = models.IntegerField(blank=True, null=True, choices=WATER_VOLUME_UNITS,
                                              help_text="Water volume units of measurement")
@@ -238,6 +247,13 @@ class DataCenter(models.Model):
     #
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
+
+    @classmethod
+    def get_geometry_by_display(cls, display_value):
+        for value, display in cls.GEOMETRY_CHOICES:
+            if display == display_value:
+                return value
+        return None
 
     def __str__(self):
         return self.datacenter_name

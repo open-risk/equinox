@@ -18,6 +18,7 @@ django-countries
 django-extensions
 django-location-field
 geojson
+shapely
 django-debug-toolbar
 psycopg2-binary
 openpyxl

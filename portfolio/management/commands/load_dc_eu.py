@@ -32,6 +32,7 @@ from provenance.models import Agent
 
 from utils.geospatial import calculate_barycenter, calculate_polygon_area
 
+
 class Command(BaseCommand):
     help = 'Imports Data Center / Operator data from the euroDaCe Dataset'
 
@@ -66,7 +67,7 @@ class Command(BaseCommand):
         if created:
             newop += 1
 
-    # Placeholder Operator
+    # Placeholder Operator if Unknown
     op, created = Operator.objects.get_or_create(operator_identifier='Unknown')
     if created:
         newop += 1
@@ -111,6 +112,7 @@ class Command(BaseCommand):
                 else:
                     data_center_name = 'Unknown'
 
+                # TODO roundtrip consistency
                 # ID key depends on whether GeoJSON is direct OSM import or Equinox export
 
                 if 'datacenter_id' in props.keys():

@@ -117,6 +117,9 @@ class DataCenter(models.Model):
     country = models.CharField(max_length=300, blank=True, null=True,
                                help_text='Country of Datacenter Location (Word)', verbose_name='Country')
 
+    country_code = models.CharField(max_length=2, blank=True, null=True,
+                               help_text='Country Code of Datacenter Location - 2 Letter', verbose_name='Country Code')
+
     county = models.CharField(max_length=300, blank=True, null=True,
                               help_text='County of Datacenter Location - if applicable')
 
@@ -201,12 +204,21 @@ class DataCenter(models.Model):
                                            help_text="Provenance Agent for GHG Emissions",
                                            related_name='prov_ghg_emissions', verbose_name='Provenance GHG emissions')
 
+    # TODO, various possible units
+    # e.g., gCO2/KWh, tCO2/MWh (multiply gCO2/kWh by 0.001 to get tCO2/MWh)
+
     grid_carbon_intensity = models.FloatField(blank=True, null=True,
-                                              help_text='This field stores the electricity grid carbon intensity in units of tCO2/MWh')
+                                              help_text='This field stores the electricity grid carbon intensity of the production mix in units of tCO2/MWh', verbose_name='Production mix carbon intensity')
+
+    grid_carbon_intensity_r = models.FloatField(blank=True, null=True,
+                                              help_text='This field stores the electricity grid carbon intensity of the residual mix in units of tCO2/MWh', verbose_name='Residual mix carbon intensity')
+
+    grid_carbon_intensity_s = models.FloatField(blank=True, null=True,
+                                              help_text='This field stores the electricity grid carbon intensity of the supplier mix in units of tCO2/MWh', verbose_name='Supplier mix carbon intensity')
 
     prov_grid_carbon_intensity = models.ForeignKey('provenance.Agent', blank=True, null=True, on_delete=models.CASCADE,
-                                                   help_text="Provenance Agent for Grid Carbon Intensity",
-                                                   related_name='prov_grid_carbon_intensity', verbose_name='Provenance grid carbon intensity')
+                                                   help_text="Provenance Agent for Grid Carbon Intensities",
+                                                   related_name='prov_grid_carbon_intensity', verbose_name='Provenance of grid carbon intensities')
 
     grid_water_intensity = models.FloatField(blank=True, null=True,
                                              help_text='This field stores the electricity grid water intensity in units of L/KWh')

@@ -22,10 +22,11 @@ import os
 from pathlib import Path
 
 # Directories
-# NOTE: External databases are not shipped with Equinox, users must fetch them separately
+# NOTE: External databases are not shipped with Equinox, users must fetch them separately and place them in the below locations (or change as required).
 
 EQUINOX_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = os.path.join(EQUINOX_DIR, 'reference/fixtures/')
 EXIOBASE_PATH = os.path.join(EQUINOX_DIR, 'data/exiobase/')
 ADB_PATH = os.path.join(EQUINOX_DIR, 'data/adb/')
 PEFA_PATH = os.path.join(EQUINOX_DIR, 'data/pefa/')
+AIBMIX_PATH = os.path.join(EQUINOX_DIR, 'data/aibmix/')

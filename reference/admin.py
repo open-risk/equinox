@@ -27,13 +27,14 @@ from import_export.admin import ImportExportModelAdmin
 from treebeard.admin import TreeAdmin
 from treebeard.forms import movenodeform_factory
 
+from reference.AIB import AIBMix
 from reference.CPVData import CPVData
 from reference.EmissionFactor import EmissionFactor, BuildingEmissionFactor
 from reference.EmissionIntensity import ReferenceIntensity
 from reference.GPCSector import GPCSector
-from reference.NUTS3Data import NUTS3PointData
-from reference.IOMatrix import IOMatrix, IOMatrixEntry
 from reference.IOGraph import IOGraph, IOGraphEdge, IOGraphNode
+from reference.IOMatrix import IOMatrix, IOMatrixEntry
+from reference.NUTS3Data import NUTS3PointData
 from reference.PEFA import PEFASUT
 from reference.SUTGraph import SUTGraph, SUTGraphEdge, SUTGraphNode
 
@@ -236,5 +237,13 @@ class PEFASUTAdmin(admin.ModelAdmin):
     search_fields = ['industry', 'product', 'region']
     list_display = ('role', 'industry', 'product', 'region', 'year', 'value')
     list_filter = ('role', 'industry', 'product', 'region', 'year')
+    view_on_site = False
+    save_as = False
+
+
+@admin.register(AIBMix)
+class AIBMixAdmin(admin.ModelAdmin):
+    list_display = ('country', 'year', 'grid_mix_type', 'grid_mix_value')
+    list_filter = ('country', 'year', 'grid_mix_type')
     view_on_site = False
     save_as = False

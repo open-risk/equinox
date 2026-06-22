@@ -26,7 +26,7 @@ Sphinx
 sphinx-rtd-theme
 selenium
 behave-django
-pytest==9.1.0
+pytest==9.1.1
 pytest-bdd
 coverage
 requests==2.34.2

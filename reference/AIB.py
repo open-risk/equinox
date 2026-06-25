@@ -22,7 +22,7 @@ from django.db import models
 from django.db.models import Index
 from django.urls import reverse
 
-GRID_MIX_CHOICES = [(0, 'Production'), (1, 'Supplier'), (2, 'Residual')]
+GRID_MIX_CHOICES = [(0, 'Production'), (1, 'Residual'), (2, 'Supplier')]
 
 
 class AIBMix(models.Model):

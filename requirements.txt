@@ -5,7 +5,7 @@ numpy
 pandas
 scipy
 Markdown
-Pillow==12.2.0
+Pillow==12.3.0
 django-csp
 django-leaflet
 django-jazzmin==3.0.5

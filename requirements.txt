@@ -1,5 +1,5 @@
 Django==5.2.17
-djangorestframework==3.17.2
+djangorestframework==3.18.0
 drf-yasg
 numpy
 pandas

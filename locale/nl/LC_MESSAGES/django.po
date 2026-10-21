@@ -1,6 +1,6 @@
 # GENERAL TRANSLATIONS
 # Copyright (C) 2021 - 2026, Open Risk (www.openriskmanagement.com)
-# This file is distributed under the same license as the equinox package.
+# This file is distributed under the same license as the Equinox package.
 #
 #, fuzzy
 msgid ""

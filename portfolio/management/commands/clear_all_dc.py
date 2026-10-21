@@ -28,7 +28,7 @@ from provenance.models import Agent
 
 
 class Command(BaseCommand):
-    help = 'Deletes data center / operator data'
+    help = 'Deletes ALL data center / operator data'
 
     # Delete existing objects
     ProjectPortfolio.objects.all().delete()

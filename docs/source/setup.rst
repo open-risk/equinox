@@ -76,12 +76,12 @@ Step 1: Download the github sources to your preferred directory
     cd equinox
 
 
-Step 2: Create a virtualenv for Python >= 3.10.
+Step 2: Create a virtualenv for Python >= 3.12.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is advisable to run the equinox platform via a Python *virtualenv* so as not to interfere with your system's own Python distribution.
 
-.. note:: If you do not have Python 3.10 please install it first into your system (either as a replacement of your previous 3.X version or as an alternative).
+.. note:: If you do not have Python 3.12 please install it first into your system (either as a replacement of your previous 3.X version or as an alternative).
 
 .. code:: bash
 

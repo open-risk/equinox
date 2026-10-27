@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "equinox"
-version = "0.8"
+version = "0.9"
 description = ""
 authors = ["Open Risk <info@openriskmanagement.com>"]
 readme = "README.md"
 packages = [{include = "poetry_demo"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
 
 
 #[build-system]

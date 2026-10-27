@@ -15,11 +15,7 @@ build:
     - spatialite-bin
     - libsqlite3-mod-spatialite
   tools:
-    python: "3.10"
-    # You can also specify other tool versions:
-    # nodejs: "20"
-    # rust: "1.70"
-    # golang: "1.20"
+    python: "3.12"
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:

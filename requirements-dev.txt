@@ -5,7 +5,7 @@ behave-django
 pytest
 pytest-bdd
 coverage
-pytest==9.1.1
+pytest==9.2.0
 pytest-bdd
 behave
 setuptools

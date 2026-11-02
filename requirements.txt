@@ -11,7 +11,7 @@ django-leaflet
 django-jazzmin==3.0.5
 django-json-widget
 django-jsoneditor
-django-markdownfield==0.20.2
+django-markdownfield==0.21.1
 django-treebeard
 django-import-export
 django-countries
